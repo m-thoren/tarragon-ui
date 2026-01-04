@@ -1,0 +1,24 @@
+---
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+import { SearchIcon } from '@lucide/astro'
+---
+
+<ComponentLayout name='Search'>
+	<form action='/component-search' method='Get' role='search' class='search'>
+		<div>
+			<label class='visually-hidden' for='component-search-header'>
+				Search for components
+			</label>
+			<input
+				type='search'
+				name='search'
+				placeholder='Search for components'
+				id='component-search-header'
+			/>
+		</div>
+		<button type='submit' class='outline'>
+			<SearchIcon />
+			<span class='visually-hidden-below-tablet'>Search</span>
+		</button>
+	</form>
+</ComponentLayout>

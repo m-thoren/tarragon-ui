@@ -1,0 +1,9 @@
+@layer tarragon-ui.layout {
+	.split {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--size-md);
+		align-items: center;
+		justify-content: space-between;
+	}
+}

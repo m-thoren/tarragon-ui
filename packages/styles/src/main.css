@@ -1,0 +1,68 @@
+@import url('./font.css');
+
+@import url('./layers.css');
+
+/* Settings - used with preprocessors and contain font, colors definitions, etc. */
+@import url('./theme/colors.css');
+@import url('./theme/rounded.css');
+@import url('./theme/size.css');
+@import url('./theme/typography.css');
+
+/* Generic - reset and/or normalize styles, box-sizing definition, etc. This is the first layer which generates actual CSS. */
+@import url('./normalize/normalize.css');
+@import url('./normalize/reduced-motion.css');
+@import url('./normalize/body.css');
+
+/* Layout - layout classes */
+@import url('./layout/container.css');
+@import url('./layout/grid.css');
+@import url('./layout/center.css');
+@import url('./layout/cluster.css');
+@import url('./layout/split.css');
+@import url('./layout/stack.css');
+@import url('./layout/prose.css');
+
+/* Components - specific UI components. This is where most of our work takes place. We often compose UI components of Objects and Components */
+@import url('./components/accordion.css');
+@import url('./components/alert.css');
+@import url('./components/badge.css');
+@import url('./components/button.css');
+@import url('./components/breadcrumb.css');
+@import url('./components/card.css');
+@import url('./components/checkbox.css');
+@import url('./components/dialog.css');
+@import url('./components/drawer.css');
+@import url('./components/dropdown.css');
+@import url('./components/figure.css');
+@import url('./components/form.css');
+@import url('./components/footer.css');
+@import url('./components/header.css');
+@import url('./components/headings.css');
+@import url('./components/input.css');
+@import url('./components/link.css');
+@import url('./components/list.css');
+@import url('./components/progress.css');
+@import url('./components/radio.css');
+@import url('./components/search.css');
+@import url('./components/select.css');
+@import url('./components/range.css');
+@import url('./components/separator.css');
+@import url('./components/spinner.css');
+@import url('./components/steps.css');
+@import url('./components/switch.css');
+@import url('./components/table.css');
+@import url('./components/text.css');
+@import url('./components/textarea.css');
+
+/* @import url('./components/tooltip.css'); */
+
+/* Utilities - utilities and helper classes with ability to override anything which goes before in the triangle, e.g. hide helper class */
+@import url('./utilities/animations.css');
+@import url('./utilities/flex.css');
+@import url('./utilities/gap.css');
+@import url('./utilities/image.css');
+@import url('./utilities/margin.css');
+@import url('./utilities/padding.css');
+@import url('./utilities/size.css');
+@import url('./utilities/typography.css');
+@import url('./utilities/visibility.css');

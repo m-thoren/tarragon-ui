@@ -1,0 +1,65 @@
+@layer tarragon-ui.components {
+	select {
+		width: 100%;
+		min-width: 0;
+		max-width: var(--maximum-input-width);
+		min-height: var(--minimum-clickable-size);
+		padding: var(--size-2xs) var(--size-xs);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-default);
+
+		font-size: var(--text-md);
+		color: var(--color-text);
+
+		appearance: none;
+		background-color: var(--color-background-interactive);
+		background-image:
+			linear-gradient(45deg, transparent 50%, currentcolor 50%),
+			linear-gradient(135deg, currentcolor 50%, transparent 50%);
+		background-repeat: no-repeat;
+		background-position:
+			calc(100% - 20px) calc(1px + 50%),
+			calc(100% - 16.1px) calc(1px + 50%);
+		background-size:
+			4px 4px,
+			4px 4px;
+
+		transition:
+			box-shadow 0.2s,
+			border-color 0.2s,
+			color 0.2s;
+
+		&:focus-visible {
+			outline: var(--outline-default);
+			outline-offset: var(--outline-offset);
+		}
+
+		&:disabled {
+			pointer-events: none;
+			opacity: 0.5;
+		}
+
+		&:hover:not([disabled]) {
+			border-color: var(--color-border-hover);
+			box-shadow: var(--shadow-default);
+		}
+
+		/* --- Error State Styling --- */
+
+		/* When the input has the aria-invalid="true" attribute */
+		&[aria-invalid='true'] {
+			border-color: var(--color-danger);
+		}
+
+		&[aria-invalid='true']:focus-visible {
+			outline: 2px solid var(--color-danger);
+			outline-offset: var(--outline-offset);
+		}
+
+		/* Optional: Keep the error border on hover/focus if it's invalid */
+		&[aria-invalid='true']:hover:not([disabled]) {
+			border-color: var(--color-danger-hover);
+			box-shadow: var(--shadow-danger);
+		}
+	}
+}

@@ -1,0 +1,1 @@
+npx tsx scripts/hooks/preCommit.ts || exit 1

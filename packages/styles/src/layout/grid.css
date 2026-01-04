@@ -1,0 +1,156 @@
+@layer tarragon-ui.layout {
+	[class*='grid'] {
+		display: flex;
+		grid-template-columns: repeat(12, 1fr);
+		grid-template-rows: 1fr;
+		flex-direction: column;
+		gap: var(--size-md);
+	}
+
+	.grid {
+		display: grid;
+	}
+
+	.grid-cols-1 {
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		grid-template-rows: auto;
+	}
+
+	.grid-cols-2 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-rows: auto;
+	}
+
+	.grid-cols-3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-template-rows: auto;
+	}
+
+	.grid-cols-4 {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		grid-template-rows: auto;
+	}
+
+	.grid-auto {
+		--size-width: 20ch;
+
+		grid-template-columns: repeat(auto-fit, minmax(min(var(--size-width), 100%), 1fr));
+		grid-template-rows: auto;
+	}
+
+	.o-cell-one-fourth {
+		grid-column: auto / span 3;
+	}
+
+	.o-cell-three-fourths {
+		grid-column: auto / span 9;
+	}
+
+	.o-cell-one-third {
+		grid-column: auto / span 4;
+	}
+
+	.o-cell-two-thirds {
+		grid-column: auto / span 8;
+	}
+
+	.o-cell-half {
+		grid-column: auto / span 6;
+	}
+
+	.o-cell-full {
+		grid-column: auto / span 12;
+	}
+
+	@media (width > 640px) {
+		.grid-tablet {
+			display: grid;
+		}
+
+		.grid-tablet-cols-1 {
+			grid-template-columns: repeat(1, minmax(0, 1fr));
+		}
+
+		.grid-tablet-cols-2 {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.grid-tablet-cols-3 {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.grid-tablet-cols-4 {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+
+		.o-cell-tablet-one-fourth {
+			grid-column: auto / span 3;
+		}
+
+		.o-cell-tablet-three-fourths {
+			grid-column: auto / span 9;
+		}
+
+		.o-cell-tablet-one-third {
+			grid-column: auto / span 4;
+		}
+
+		.o-cell-tablet-two-thirds {
+			grid-column: auto / span 8;
+		}
+
+		.o-cell-tablet-half {
+			grid-column: auto / span 6;
+		}
+
+		.o-cell-tablet-full {
+			grid-column: auto / span 12;
+		}
+	}
+
+	@media (width > 1024px) {
+		.grid-desktop {
+			display: grid;
+		}
+
+		.grid-desktop-cols-1 {
+			grid-template-columns: repeat(1, minmax(0, 1fr));
+		}
+
+		.grid-desktop-cols-2 {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.grid-desktop-cols-3 {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.grid-desktop-cols-4 {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+
+		.o-cell-desktop-one-fourth {
+			grid-column: auto / span 3;
+		}
+
+		.o-cell-desktop-three-fourths {
+			grid-column: auto / span 9;
+		}
+
+		.o-cell-desktop-one-third {
+			grid-column: auto / span 4;
+		}
+
+		.o-cell-desktop-two-thirds {
+			grid-column: auto / span 8;
+		}
+
+		.o-cell-desktop-half {
+			grid-column: auto / span 6;
+		}
+
+		.o-cell-desktop-full {
+			grid-column: auto / span 12;
+		}
+	}
+}

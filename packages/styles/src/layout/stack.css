@@ -1,0 +1,25 @@
+@layer tarragon-ui.layout {
+	.stack {
+		display: flex;
+		flex-direction: column;
+		gap: var(--size-md);
+	}
+}
+
+@layer tarragon-ui.utilities {
+	@media (width > 640px) {
+		.stack-tablet {
+			display: flex;
+			flex-direction: column;
+			gap: var(--size-md);
+		}
+	}
+
+	@media (width > 1024px) {
+		.stack-desktop {
+			display: flex;
+			flex-direction: column;
+			gap: var(--size-md);
+		}
+	}
+}

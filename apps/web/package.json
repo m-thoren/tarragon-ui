@@ -1,0 +1,30 @@
+{
+	"name": "web",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"lint": "eslint . --max-warnings 0 --config ../../eslint.config.mts",
+		"lint:fix": "prettier . --write && eslint . --fix --config ../../eslint.config.mts",
+		"type-check": "tsc --noEmit --composite false --project tsconfig.json",
+		"e2e": "exec playwright test",
+		"e2e:ui": "exec playwright test --ui"
+	},
+	"dependencies": {
+		"@astrojs/node": "^9.5.1",
+		"@lucide/astro": "^0.562.0",
+		"@tarragon-ui/js": "workspace:*",
+		"@tarragon-ui/styles": "workspace:*",
+		"astro": "^5.16.6",
+		"sharp": "0.34.5"
+	},
+	"devDependencies": {
+		"@axe-core/playwright": "^4.11.0",
+		"@playwright/test": "^1.57.0",
+		"@types/node": "^24.10.4",
+		"typescript": "^5.9.3"
+	}
+}

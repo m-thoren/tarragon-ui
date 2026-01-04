@@ -1,0 +1,26 @@
+---
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+import { XIcon } from '@lucide/astro'
+---
+
+<ComponentLayout name='Drawer'>
+	<div>
+		<button commandfor='drawer-default' command='show-modal'>Open default drawer</button>
+		<dialog class='drawer' id='drawer-default'>
+			<div class='split'>
+				<h2>Hello!</h2>
+				<form method='dialog'>
+					<button class='ghost size-icon'>
+						<XIcon aria-hidden /><span class='visually-hidden'>Close drawer</span>
+					</button>
+				</form>
+			</div>
+			<p class='py-4'>Press ESC key or click the button below to close</p>
+			<div class='action-footer'>
+				<form method='dialog'>
+					<button class='outline'>Close</button>
+				</form>
+			</div>
+		</dialog>
+	</div>
+</ComponentLayout>

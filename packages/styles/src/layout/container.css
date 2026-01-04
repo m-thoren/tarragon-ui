@@ -1,0 +1,17 @@
+@layer tarragon-ui.layout {
+	.container {
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		gap: var(--size-3xl);
+
+		width: 100%;
+		max-width: var(--size-8xl);
+		margin-inline: auto;
+		padding: var(--size-xl);
+
+		@media (width > 640px) {
+			padding: var(--size-3xl);
+		}
+	}
+}

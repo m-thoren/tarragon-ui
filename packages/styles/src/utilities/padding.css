@@ -1,0 +1,133 @@
+@layer tarragon-ui.utilities {
+	.padding-0 {
+		padding: 0;
+	}
+
+	.padding-inline-start-0 {
+		padding-inline-start: 0;
+	}
+
+	.padding-inline-end-0 {
+		padding-inline-end: 0;
+	}
+
+	.padding-3xs {
+		padding: var(--size-3xs);
+	}
+
+	.padding-inline-start-3xs {
+		padding-inline-start: var(--size-3xs);
+	}
+
+	.padding-inline-end-3xs {
+		padding-inline-end: var(--size-3xs);
+	}
+
+	.padding-2xs {
+		padding: var(--size-2xs);
+	}
+
+	.padding-inline-start-2xs {
+		padding-inline-start: var(--size-2xs);
+	}
+
+	.padding-inline-end-2xs {
+		padding-inline-end: var(--size-2xs);
+	}
+
+	.padding-xs {
+		padding: var(--size-xs);
+	}
+
+	.padding-inline-start-xs {
+		padding-inline-start: var(--size-xs);
+	}
+
+	.padding-inline-end-xs {
+		padding-inline-end: var(--size-xs);
+	}
+
+	.padding-sm {
+		padding: var(--size-sm);
+	}
+
+	.padding-inline-start-sm {
+		padding-inline-start: var(--size-sm);
+	}
+
+	.padding-inline-end-sm {
+		padding-inline-end: var(--size-sm);
+	}
+
+	.padding-md {
+		padding: var(--size-md);
+	}
+
+	.padding-inline-start-md {
+		padding-inline-start: var(--size-md);
+	}
+
+	.padding-inline-end-md {
+		padding-inline-end: var(--size-md);
+	}
+
+	.padding-lg {
+		padding: var(--size-lg);
+	}
+
+	.padding-inline-start-lg {
+		padding-inline-start: var(--size-lg);
+	}
+
+	.padding-inline-end-lg {
+		padding-inline-end: var(--size-lg);
+	}
+
+	.padding-xl {
+		padding: var(--size-xl);
+	}
+
+	.padding-inline-start-xl {
+		padding-inline-start: var(--size-xl);
+	}
+
+	.padding-inline-end-xl {
+		padding-inline-end: var(--size-xl);
+	}
+
+	.padding-2xl {
+		padding: var(--size-2xl);
+	}
+
+	.padding-inline-start-2xl {
+		padding-inline-start: var(--size-2xl);
+	}
+
+	.padding-inline-end-2xl {
+		padding-inline-end: var(--size-2xl);
+	}
+
+	.padding-3xl {
+		padding: var(--size-3xl);
+	}
+
+	.padding-inline-start-3xl {
+		padding-inline-start: var(--size-3xl);
+	}
+
+	.padding-inline-end-3xl {
+		padding-inline-end: var(--size-3xl);
+	}
+
+	.padding-4xl {
+		padding: var(--size-4xl);
+	}
+
+	.padding-inline-start-4xl {
+		padding-inline-start: var(--size-4xl);
+	}
+
+	.padding-inline-end-4xl {
+		padding-inline-end: var(--size-4xl);
+	}
+}

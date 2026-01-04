@@ -1,0 +1,53 @@
+@layer tarragon-ui.components {
+	input[type='radio'] {
+		user-select: none;
+
+		position: relative;
+
+		display: flex;
+		place-content: center;
+		align-items: center;
+
+		box-sizing: border-box;
+		width: 1.1rem;
+		height: 1.1rem;
+		padding: 0;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-full);
+
+		appearance: none;
+		background-color: var(--color-background-interactive);
+		background-clip: content-box;
+
+		transition:
+			box-shadow 0.2s,
+			border-color 0.2s,
+			color 0.2s;
+
+		&:hover {
+			box-shadow: var(--shadow-default);
+		}
+
+		&:checked {
+			border-color: var(--color-primary);
+			background-color: var(--color-primary);
+		}
+
+		&:checked::before {
+			content: '';
+
+			position: absolute;
+
+			width: 100%;
+			height: 100%;
+			border-radius: var(--radius-full);
+
+			background-color: var(--color-primary);
+		}
+
+		&:focus-visible {
+			outline: var(--outline-default);
+			outline-offset: var(--outline-offset);
+		}
+	}
+}

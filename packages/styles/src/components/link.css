@@ -1,0 +1,43 @@
+@layer tarragon-ui.components {
+	a {
+		cursor: pointer;
+		color: var(--color-primary);
+		text-decoration: underline;
+		text-decoration-style: dashed;
+
+		&:hover,
+		&:focus-visible {
+			color: var(--color-primary-hover);
+			text-decoration-style: solid;
+		}
+
+		&:focus-visible {
+			border-radius: var(--radius-default);
+			outline: var(--outline-default);
+			outline-offset: var(--outline-offset);
+		}
+	}
+
+	a[aria-current='page']:not(.primary) {
+		color: var(--color-accent);
+		text-decoration: none;
+
+		&:hover,
+		&:focus-visible {
+			color: var(--color-accent-hover);
+			text-decoration: underline;
+			text-decoration-style: solid;
+		}
+	}
+
+	.link-subtle {
+		text-decoration: none;
+
+		&:hover,
+		&:focus-visible {
+			color: var(--color-primary-hover);
+			text-decoration: underline;
+			text-decoration-style: solid;
+		}
+	}
+}

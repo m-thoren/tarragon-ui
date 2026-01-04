@@ -1,0 +1,7 @@
+@layer tarragon-ui.layout {
+	.center {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}

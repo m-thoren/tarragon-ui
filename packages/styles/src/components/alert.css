@@ -1,0 +1,73 @@
+@layer tarragon-ui.components {
+	@scope (.alert) {
+		:scope {
+			display: grid;
+			grid-template-columns: var(--size-md) 1fr;
+			gap: var(--size-xs);
+			align-items: center;
+
+			width: 100%;
+			padding: var(--size-xs) var(--size-md);
+			border: 1px solid var(--color-info);
+			border-radius: var(--radius-default);
+
+			font-size: var(--text-sm);
+			color: var(--color-info);
+
+			background-color: var(--color-background-raised);
+			box-shadow: var(--shadow-default);
+		}
+
+		:scope.alert-success {
+			border-color: var(--color-success);
+			color: var(--color-success);
+		}
+
+		:scope.alert-danger {
+			border-color: var(--color-danger);
+			color: var(--color-danger);
+			box-shadow: var(--shadow-danger);
+		}
+
+		:scope.alert-warning {
+			border-color: var(--color-warning);
+			color: var(--color-warning);
+		}
+
+		:scope > svg {
+			width: var(--size-md);
+			height: var(--size-md);
+		}
+
+		a {
+			color: inherit;
+
+			&:hover,
+			&:focus-visible {
+				color: inherit;
+			}
+		}
+
+		h2,
+		.alert-title {
+			grid-column-start: 2;
+
+			font-family: var(--font-heading);
+			font-size: var(--text-lg);
+			font-weight: var(--font-weight-semibold);
+			line-height: var(--line-height-md);
+			color: inherit;
+		}
+
+		p,
+		.alert-description {
+			grid-column-start: 2;
+			font-size: var(--text-sm);
+		}
+
+		ul {
+			grid-column-start: 2;
+			font-size: var(--text-sm);
+		}
+	}
+}

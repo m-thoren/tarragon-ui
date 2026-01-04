@@ -1,0 +1,57 @@
+@layer tarragon-ui.components {
+	@scope ([type='checkbox'][role='switch']) {
+		:scope {
+			--color-switch-fill: var(--color-primary);
+			--size-switch-height: var(--size-xl);
+			--size-switch-width: 0.9;
+
+			display: inline-block;
+
+			width: calc(var(--size-switch-height) * calc(1 + var(--size-switch-width)));
+			height: var(--size-switch-height);
+			border: 1px solid var(--color-border);
+			border-radius: var(--radius-full);
+
+			appearance: none;
+			background-color: var(--color-background-interactive);
+
+			transition:
+				box-shadow 200ms ease-in-out,
+				border-color 200ms ease-in-out;
+
+			&:hover {
+				box-shadow: var(--shadow-default);
+			}
+
+			&:focus-visible {
+				outline: var(--outline-default);
+				outline-offset: var(--outline-offset);
+			}
+		}
+
+		/* thumb */
+		:scope::after {
+			content: '';
+
+			display: block;
+
+			aspect-ratio: 1;
+			height: 100%;
+			border: max(2px, var(--size-3xs)) solid var(--color-background-interactive);
+			border-radius: 50%;
+
+			background-color: var(--color-accent);
+
+			transition: translate 200ms ease-in-out;
+		}
+
+		:scope:checked {
+			border-color: var(--color-switch-fill);
+		}
+
+		:scope:checked::after {
+			translate: calc(var(--size-switch-height) * var(--size-switch-width)) 0;
+			background-color: var(--color-switch-fill);
+		}
+	}
+}

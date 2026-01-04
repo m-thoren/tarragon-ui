@@ -1,0 +1,61 @@
+@layer tarragon-ui.components {
+	p {
+		font-size: var(--text-md);
+		line-height: var(--line-height-md);
+	}
+
+	blockquote {
+		margin-left: 0;
+		padding-left: 1rem;
+		border-left: 0.25rem solid var(--color-border);
+
+		font-size: var(--text-lg);
+		font-style: italic;
+		line-height: var(--line-height-md);
+		color: var(--color-text-muted);
+	}
+
+	code {
+		padding: 0.2em 0.4em;
+		border-radius: 0.25rem;
+
+		font-family: monospace;
+		font-size: var(--text-sm);
+		color: var(--color-text);
+
+		background-color: var(--color-muted);
+	}
+
+	pre {
+		overflow: auto;
+		display: block;
+
+		padding: var(--size-xs);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-default);
+
+		font-size: var(--text-sm);
+		line-height: var(--line-height-md);
+		color: var(--color-text);
+		word-break: break-all;
+		tab-size: 2;
+		white-space: pre-wrap;
+
+		background-color: var(--color-muted);
+		box-shadow: var(--shadow-default);
+
+		code {
+			padding: 0;
+			border-radius: 0;
+
+			font-size: inherit;
+			color: inherit;
+
+			background-color: inherit;
+		}
+
+		@media (width > 640px) {
+			tab-size: 4;
+		}
+	}
+}

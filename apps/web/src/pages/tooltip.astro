@@ -1,0 +1,33 @@
+---
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+---
+
+<ComponentLayout name='Tooltip'>
+	<div class='cluster'>
+		<button class='tooltip-right' data-tooltip='The tooltip is shown on hover!'>
+			Top right
+		</button>
+		<button class='tooltip' data-tooltip='The tooltip is shown on hover!'>Top center</button>
+		<button class='tooltip-left' data-tooltip='The tooltip is shown on hover!'>Top left</button>
+	</div>
+	<div class='cluster'>
+		<button
+			class='outline tooltip-bottom tooltip-right'
+			data-tooltip='The tooltip is shown on hover!'
+		>
+			Bottom right
+		</button>
+		<button
+			class='outline tooltip-bottom'
+			data-tooltip='The tooltip can be placed on the bottom too!'
+		>
+			Bottom center
+		</button>
+		<button
+			class='outline tooltip-bottom tooltip-left'
+			data-tooltip='The tooltip is shown on hover!'
+		>
+			Bottom left
+		</button>
+	</div>
+</ComponentLayout>

@@ -1,0 +1,9 @@
+{
+	"extends": ["./tsconfig.base.json"],
+	"include": ["./scripts/**/*.ts"],
+	"exclude": ["dist"],
+	"compilerOptions": {
+		"module": "preserve",
+		"moduleResolution": "bundler"
+	}
+}

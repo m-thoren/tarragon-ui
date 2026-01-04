@@ -1,0 +1,68 @@
+---
+import { ArrowLeft, ArrowRight } from '@lucide/astro'
+import { components, docPages } from '@/scripts/constants'
+import RootLayout from '@/layouts/RootLayout.astro'
+import Sidebar from '@/components/Sidebar.astro'
+
+type Props = {
+	name: string
+}
+
+const { name } = Astro.props
+
+const allPages = [...docPages, ...components]
+
+const componentIndex = allPages.findIndex((c) => c.name === name)
+const component = allPages[componentIndex]
+const prevComponent = allPages.at(componentIndex - 1)
+const nextComponent = allPages.at(componentIndex + 1 > allPages.length - 1 ? 0 : componentIndex + 1)
+---
+
+<title>{component ? component.name : 'Page not found'} | Tarragon-UI</title>
+
+<RootLayout>
+	<div class='grid-desktop'>
+		<Sidebar />
+		<main id='main' class='container o-cell-three-fourths'>
+			{
+				component ? (
+					<>
+						<div class='stack'>
+							<div class='split'>
+								<h1>{component.name}</h1>
+								{(prevComponent || nextComponent) && (
+									<div class='cluster'>
+										{prevComponent && (
+											<a
+												href={prevComponent.href}
+												class='btn outline size-icon'
+												aria-label='Go to previous component'
+											>
+												<ArrowLeft aria-hidden />
+											</a>
+										)}
+										{nextComponent && (
+											<a
+												href={nextComponent.href}
+												class='btn outline size-icon'
+												aria-label='Go to next component'
+											>
+												<ArrowRight aria-hidden />
+											</a>
+										)}
+									</div>
+								)}
+							</div>
+							{component.description && (
+								<p class='text-muted'>{component.description}</p>
+							)}
+						</div>
+						<slot />
+					</>
+				) : (
+					<h1>Page not found</h1>
+				)
+			}
+		</main>
+	</div>
+</RootLayout>

@@ -1,0 +1,27 @@
+@layer tarragon-ui.theme {
+	:root {
+		--font-body:
+			'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', oxygen-sans, ubuntu, cantarell,
+			'Helvetica Neue', sans-serif;
+		--font-heading:
+			'InterDisplay', -apple-system, blinkmacsystemfont, 'Segoe UI', oxygen-sans, ubuntu,
+			cantarell, 'Helvetica Neue', sans-serif;
+		--line-height-xs: 1.2;
+		--line-height-sm: 1.4;
+		--line-height-md: 1.5;
+		--text-xs: 0.75rem;
+		--text-sm: 0.875rem;
+		--text-md: 1rem;
+		--text-lg: 1.125rem;
+		--text-xl: 1.25rem;
+		--text-2xl: 1.5rem;
+		--text-3xl: 1.875rem;
+		--text-4xl: 2.25rem;
+		--text-5xl: 3rem;
+		--text-6xl: 3.75rem;
+		--font-weight-normal: 400;
+		--font-weight-medium: 500;
+		--font-weight-semibold: 600;
+		--font-weight-bold: 700;
+	}
+}

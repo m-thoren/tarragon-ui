@@ -1,0 +1,27 @@
+---
+import { ArrowRight } from '@lucide/astro'
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+---
+
+<ComponentLayout name='Dropdown'>
+	<tui-dropdown>
+		<details class='dropdown' data-testid='dropdown-default'>
+			<summary class='btn outline' data-testid='dropdown-trigger'>Open</summary>
+			<ul>
+				<li data-testid='dropdown-list-item'>
+					<a href='#test' class='dropdown-action' data-testid='dropdown-action'>
+						Item 1 <ArrowRight />
+					</a>
+				</li>
+				<li data-testid='dropdown-list-item'>
+					<a href='#test' class='dropdown-action' data-testid='dropdown-action'>
+						Item 2 <ArrowRight />
+					</a>
+				</li>
+				<li data-testid='dropdown-list-item'>
+					<button class='dropdown-action' data-testid='dropdown-action'>Item 3</button>
+				</li>
+			</ul>
+		</details>
+	</tui-dropdown>
+</ComponentLayout>

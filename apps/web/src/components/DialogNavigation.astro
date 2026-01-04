@@ -1,0 +1,28 @@
+---
+import { MenuIcon, XIcon } from '@lucide/astro'
+import NavigationAccordion from './NavigationAccordion.astro'
+---
+
+<div>
+	<button
+		id='testet'
+		class='ghost size-icon hide-above-desktop'
+		commandfor='mobile-menu'
+		command='show-modal'
+	>
+		<MenuIcon aria-hidden />
+		<span class='visually-hidden'>Open navigation</span>
+	</button>
+
+	<dialog class='drawer' id='mobile-menu' closedby='any'>
+		<div class='split'>
+			<h2>Pages</h2>
+			<form method='dialog'>
+				<button class='ghost size-icon'>
+					<XIcon aria-hidden /><span class='visually-hidden'>Stäng navigation</span>
+				</button>
+			</form>
+		</div>
+		<NavigationAccordion />
+	</dialog>
+</div>

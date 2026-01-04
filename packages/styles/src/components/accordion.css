@@ -1,0 +1,81 @@
+@layer tarragon-ui.components {
+	@scope (.accordion-group) {
+		:scope {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+
+			width: 100%;
+			border-radius: var(--radius-default);
+
+			box-shadow: var(--shadow-default);
+		}
+
+		details {
+			border-bottom: 1px solid var(--color-border);
+
+			&:last-child,
+			&:last-of-type {
+				border-bottom: none;
+			}
+		}
+
+		summary {
+			cursor: default;
+
+			display: inline-flex;
+			align-items: center;
+			justify-content: space-between;
+
+			width: 100%;
+			min-height: var(--minimum-clickable-size);
+			padding: var(--size-md);
+
+			color: var(--color-on-background-interactive);
+			list-style: none;
+
+			background-color: var(--color-background-interactive);
+
+			&:hover {
+				background-color: var(--color-muted);
+			}
+
+			&:focus-visible {
+				background-color: var(--color-muted);
+				outline: var(--outline-default);
+				outline-offset: calc(var(--outline-offset) * -1);
+			}
+		}
+
+		.accordion-content {
+			padding: var(--size-md);
+			padding-top: var(--size-xs);
+			color: var(--color-text-muted);
+			background-color: var(--color-background-raised);
+		}
+
+		details:open svg {
+			transform: rotate(180deg);
+		}
+
+		details:first-of-type summary {
+			border-top-left-radius: var(--radius-default);
+			border-top-right-radius: var(--radius-default);
+		}
+
+		details:last-of-type:not(:open) summary {
+			border-bottom-right-radius: var(--radius-default);
+			border-bottom-left-radius: var(--radius-default);
+		}
+
+		details:last-of-type {
+			overflow: hidden;
+			border-bottom-right-radius: var(--radius-default);
+			border-bottom-left-radius: var(--radius-default);
+		}
+
+		details:only-of-type {
+			box-shadow: var(--shadow-default);
+		}
+	}
+}

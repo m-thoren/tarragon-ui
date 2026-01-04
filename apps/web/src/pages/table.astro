@@ -1,0 +1,109 @@
+---
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+
+type Status = 'Paid' | 'Unpaid' | 'Pending'
+type Method = 'Credit Card' | 'Debit Card' | 'BitCoin' | 'Bank Transfer'
+
+const list: Array<{
+	id: string
+	status: Status
+	method: Method
+	total: number
+}> = [
+	{
+		id: 'ABC123',
+		status: 'Paid',
+		method: 'Credit Card',
+		total: 100,
+	},
+	{
+		id: 'ABD124',
+		status: 'Unpaid',
+		method: 'Debit Card',
+		total: 150,
+	},
+	{
+		id: 'ABD125',
+		status: 'Pending',
+		method: 'Debit Card',
+		total: 80,
+	},
+	{
+		id: 'ABD126',
+		status: 'Unpaid',
+		method: 'Bank Transfer',
+		total: 150,
+	},
+	{
+		id: 'ABA127',
+		status: 'Paid',
+		method: 'Bank Transfer',
+		total: 15,
+	},
+	{
+		id: 'ABA128',
+		status: 'Pending',
+		method: 'Debit Card',
+		total: 75,
+	},
+	{
+		id: 'ABD129',
+		status: 'Pending',
+		method: 'Debit Card',
+		total: 150,
+	},
+	{
+		id: 'ACC124',
+		status: 'Paid',
+		method: 'Bank Transfer',
+		total: 110,
+	},
+	{
+		id: 'ABT124',
+		status: 'Paid',
+		method: 'BitCoin',
+		total: 35,
+	},
+]
+
+const total = list.reduce((previousValue, row) => previousValue + row.total, 0)
+---
+
+<ComponentLayout name='Table'>
+	<div class='overflow-x-auto'>
+		<table>
+			<caption>A list of your recent invoices.</caption>
+			<thead>
+				<tr>
+					<th>Invoice</th>
+					<th>Status</th>
+					<th class='text-center'>Action</th>
+					<th>Method</th>
+					<th class='text-right'>Amount</th>
+				</tr>
+			</thead>
+			<tbody>
+				{
+					list.map((row) => (
+						<tr>
+							<td>{row.id}</td>
+							<td>{row.status}</td>
+							<td class='text-center'>
+								{row.status === 'Unpaid' && <button>Pay</button>}
+								{row.status === 'Pending' && <button class='danger'>Cancel</button>}
+							</td>
+							<td>{row.method}</td>
+							<td class='text-right'>${row.total}</td>
+						</tr>
+					))
+				}
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan='4'>Total</td>
+					<td class='text-right'>${total}</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</ComponentLayout>

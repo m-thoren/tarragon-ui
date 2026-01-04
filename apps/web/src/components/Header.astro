@@ -1,0 +1,18 @@
+---
+import BrandIcon from '../assets/brand-icon.svg'
+import ComponentSearch from './ComponentSearch.astro'
+import DialogNavigation from './DialogNavigation.astro'
+import ThemeToggle from './ThemeToggle.astro'
+---
+
+<header>
+	<a href='/' class='btn link' aria-label='Home'>
+		<BrandIcon />
+		<span class='visually-hidden-below-tablet'>Tarragon-UI</span>
+	</a>
+	<div class='cluster'>
+		<ComponentSearch class='show-above-desktop' />
+		<ThemeToggle />
+		<DialogNavigation class='hide-above-desktop' />
+	</div>
+</header>

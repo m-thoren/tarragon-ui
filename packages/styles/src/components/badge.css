@@ -1,0 +1,47 @@
+@layer tarragon-ui.components {
+	.badge {
+		pointer-events: none;
+
+		overflow: hidden;
+		display: inline-flex;
+		flex-shrink: 0;
+		gap: var(--size-2xs);
+		align-items: center;
+		justify-content: center;
+
+		width: fit-content;
+		padding: var(--size-2xs) var(--size-xs);
+		border: 1px solid transparent;
+		border-radius: calc(var(--radius-default) * 3);
+
+		font-size: var(--text-xs);
+		font-weight: var(--font-weight-medium);
+		color: var(--color-on-primary);
+		white-space: nowrap;
+
+		background-color: var(--color-primary);
+	}
+
+	.badge > svg {
+		pointer-events: none;
+		flex-shrink: 0;
+		width: var(--size-xs);
+		height: var(--size-xs);
+	}
+
+	.badge-accent {
+		color: var(--color-on-accent);
+		background-color: var(--color-accent);
+	}
+
+	.badge-danger {
+		color: var(--color-on-danger);
+		background-color: var(--color-danger);
+	}
+
+	.badge-outline {
+		border-color: var(--color-border);
+		color: var(--color-text);
+		background-color: transparent;
+	}
+}

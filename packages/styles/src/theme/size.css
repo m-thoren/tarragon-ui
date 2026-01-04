@@ -1,0 +1,23 @@
+@layer tarragon-ui.theme {
+	:root {
+		--size-3xs: 0.125rem;
+		--size-2xs: 0.25rem;
+		--size-xs: 0.5rem;
+		--size-sm: 0.75rem;
+		--size-md: 1rem;
+		--size-lg: 1.25rem;
+		--size-xl: 1.5rem;
+		--size-2xl: 1.75rem;
+		--size-3xl: 2rem;
+		--size-4xl: 4rem;
+		--size-5xl: 8rem;
+		--size-6xl: 16rem;
+		--size-7xl: 32rem;
+		--size-8xl: 64rem;
+		--minimum-clickable-size: 44px;
+		--maximum-input-width: var(--size-7xl);
+		--breakpoint-mobile: 640px;
+		--breakpoint-tablet: 1024px;
+		--breakpoint-desktop: 1440px;
+	}
+}

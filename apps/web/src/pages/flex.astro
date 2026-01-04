@@ -1,0 +1,124 @@
+---
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+---
+
+<ComponentLayout name='Flex'>
+	<div class='prose'>
+		<h2>Flex Layout System Documentation</h2>
+		<p>
+			This documentation outlines a collection of utility-first CSS classes designed to create
+			flexible and responsive layouts using CSS Flexbox. These classes provide foundational
+			building blocks for common layout patterns like stacking elements, creating rows,
+			splitting content, and centering items.
+		</p>
+
+		<h3>Core Flex Classes</h3>
+		<p>
+			These classes leverage CSS Flexbox to control the arrangement and alignment of elements.
+		</p>
+
+		<h4>Stack</h4>
+		<pre><code>.stack</code></pre>
+		<p>
+			Arranges items in a vertical column by default. This is useful for creating sections of
+			content where elements should stack one after another.
+		</p>
+		<div class='stack'>
+			<div class='card'>1</div>
+			<div class='card'>2</div>
+			<div class='card'>3</div>
+			<div class='card'>4</div>
+		</div>
+
+		<h4>Cluster</h4>
+		<pre><code>.cluster</code></pre>
+		<p>
+			Arranges items horizontally in a row. Items will wrap to the next line if there isn't
+			enough space. This is ideal for lists of items or elements that should sit side-by-side.
+		</p>
+		<div class='cluster'>
+			<div class='card'>1</div>
+			<div class='card'>2</div>
+			<div class='card'>3</div>
+			<div class='card'>4</div>
+		</div>
+
+		<h4>Split</h4>
+		<pre><code>.split</code></pre>
+		<p>
+			Arranges items horizontally, pushing the first item(s) to one end and the last item(s)
+			to the other, with space distributed between them. This is commonly used for header-like
+			elements where you might have a logo on the left and navigation on the right.
+		</p>
+		<div class='split'>
+			<div class='card'>Left Item</div>
+			<div class='card'>Right Item</div>
+		</div>
+
+		<h4>Center</h4>
+		<pre><code>.center</code></pre>
+		<p>
+			Centers its child content both horizontally and vertically within the container. Useful
+			for placing elements precisely in the middle of a given space.
+		</p>
+		<div class='center' style='height: 100px; border: 1px solid var(--c-gray-300);'>
+			<div class='card'>Centered</div>
+		</div>
+
+		<h3>Spacing</h3>
+
+		<pre><code>.gap-[size]</code></pre>
+		<p>Applies consistent spacing (gap) between flex items.</p>
+
+		<h3>Responsive Breakpoints</h3>
+
+		<p>
+			These utility classes offer responsive variations to change the flex direction at
+			different screen sizes, following a mobile-first approach.
+		</p>
+
+		<h4>Tablet Breakpoint</h4>
+		<p>Classes prefixed with `-tablet-` apply styles from tablet screens upwards.</p>
+
+		<pre><code>.stack-tablet</code></pre>
+		<p>
+			Forces items into a column layout on tablet and larger screens, overriding a potential
+			row layout from smaller screens.
+		</p>
+
+		<pre><code>.cluster-tablet</code></pre>
+		<p>
+			Forces items into a row layout on tablet and larger screens, overriding a potential
+			column layout from smaller screens.
+		</p>
+
+		<h4>Desktop Breakpoint</h4>
+		<p>Classes prefixed with `-desktop-` apply styles from desktop screens upwards.</p>
+
+		<pre><code>.stack-desktop</code></pre>
+		<p>Forces items into a column layout on desktop and larger screens.</p>
+
+		<pre><code>.cluster-desktop</code></pre>
+		<p>Forces items into a row layout on desktop and larger screens.</p>
+
+		<h3>Example Usage</h3>
+
+		<h4>Responsive Navigation Bar</h4>
+		<p>A common pattern where navigation items stack on mobile and become a row on desktop.</p>
+		<div class='stack cluster-desktop gap-xs'>
+			<div class='card'>Nav Item 1</div>
+			<div class='card'>Nav Item 2</div>
+			<div class='card'>Nav Item 3</div>
+		</div>
+
+		<h4>Header with Logo and User Info</h4>
+		<p>Using `split` to distribute elements within a header.</p>
+		<div class='split'>
+			<div class='card'>Logo</div>
+			<div class='cluster gap-xs'>
+				<div class='card'>User Avatar</div>
+				<div class='card'>Settings</div>
+			</div>
+		</div>
+	</div>
+</ComponentLayout>

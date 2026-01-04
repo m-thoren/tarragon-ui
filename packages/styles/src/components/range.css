@@ -1,0 +1,65 @@
+@layer tarragon-ui.components {
+	input[type='range'] {
+		--size-thumb-size: 20px;
+		--radius-thumb: var(--radius-full);
+		--size-track-height: var(--size-md);
+		--color-track-border: 1px solid var(--color-border);
+		--radius-track: var(--radius-default);
+		--color-thumb: var(--color-primary);
+		--color-track: var(--color-background-interactive);
+
+		width: 100%; /* Specific width is required for Firefox. */
+		border-radius: var(--radius-default);
+		appearance: none; /* Hides the slider so that custom slider can be made */
+		background: transparent; /* Otherwise white in Chrome */
+	}
+
+	input[type='range']:focus-visible {
+		outline: var(--outline-default);
+		outline-offset: var(--outline-offset);
+	}
+
+	/* Special styling for WebKit/Blink */
+	input[type='range']::-webkit-slider-thumb {
+		width: var(--size-thumb-size);
+		height: var(--size-thumb-size);
+		margin-top: -5px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+		border-color: var(--color-thumb);
+		border-radius: var(--radius-thumb);
+
+		appearance: none;
+		background: var(--color-thumb);
+	}
+
+	/* All the same stuff for Firefox */
+	input[type='range']::-moz-range-thumb {
+		width: var(--size-thumb-size);
+		height: var(--size-thumb-size);
+		border-color: var(--color-thumb);
+		border-radius: var(--radius-thumb);
+
+		background: var(--color-thumb);
+	}
+
+	input[type='range']::-webkit-slider-runnable-track {
+		width: 100%;
+		height: var(--size-track-height);
+		border: var(--color-track-border);
+		border-radius: var(--radius-track);
+
+		background: var(--color-track);
+	}
+
+	input[type='range']:focus::-webkit-slider-runnable-track {
+		background: var(--color-track);
+	}
+
+	input[type='range']::-moz-range-track {
+		width: 100%;
+		height: var(--size-track-height);
+		border: var(--color-track-border);
+		border-radius: var(--radius-track);
+
+		background: var(--color-track);
+	}
+}

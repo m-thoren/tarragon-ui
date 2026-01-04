@@ -1,0 +1,12 @@
+@layer tarragon-ui.normalize {
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		::after,
+		::before {
+			scroll-behavior: auto !important;
+			transition-duration: 0.01ms !important;
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+		}
+	}
+}

@@ -1,0 +1,19 @@
+@layer tarragon-ui.normalize {
+	body {
+		display: grid;
+		grid-template-rows: auto 1fr auto;
+
+		min-height: 100dvh;
+
+		font-family: var(--font-body);
+		font-weight: var(--font-weight-normal);
+		line-height: var(--line-height-md);
+		color: var(--color-text-muted);
+
+		background-color: var(--color-background-base);
+	}
+
+	body:has(dialog[open]) {
+		overflow: hidden;
+	}
+}

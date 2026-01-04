@@ -1,0 +1,105 @@
+@layer tarragon-ui.utilities {
+	[hidden],
+	[data-state='not-ready'] {
+		display: none;
+	}
+
+	.visually-hidden {
+		position: absolute;
+
+		overflow: hidden;
+
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		border: 0;
+
+		white-space: nowrap;
+
+		clip-path: inset(50%);
+	}
+
+	.visually-hidden-focusable {
+		position: absolute;
+
+		overflow: hidden;
+
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		border: 0;
+
+		white-space: nowrap;
+
+		clip-path: inset(50%);
+
+		&:active,
+		&:focus {
+			position: static;
+
+			overflow: visible;
+
+			width: auto;
+			height: auto;
+			margin: 0;
+
+			white-space: inherit;
+
+			clip-path: inherit;
+		}
+	}
+
+	@media (width > 640px) {
+		.hide-above-tablet {
+			display: none;
+		}
+	}
+
+	@media (width > 1024px) {
+		.hide-above-desktop {
+			display: none;
+		}
+	}
+
+	@media (width <= calc(640px - 1px)) {
+		.show-above-tablet {
+			display: none;
+		}
+
+		.visually-hidden-below-tablet {
+			position: absolute;
+
+			overflow: hidden;
+
+			width: 1px;
+			height: 1px;
+			padding: 0;
+			border: 0;
+
+			white-space: nowrap;
+
+			clip-path: inset(50%);
+		}
+	}
+
+	@media (width <= calc(1024px - 1px)) {
+		.show-above-desktop {
+			display: none;
+		}
+
+		.visually-hidden-below-desktop {
+			position: absolute;
+
+			overflow: hidden;
+
+			width: 1px;
+			height: 1px;
+			padding: 0;
+			border: 0;
+
+			white-space: nowrap;
+
+			clip-path: inset(50%);
+		}
+	}
+}

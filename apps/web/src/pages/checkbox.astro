@@ -1,0 +1,68 @@
+---
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+---
+
+<ComponentLayout name='Checkbox'>
+	<fieldset class='choice-group'>
+		<legend>Standard</legend>
+		<label for='checkbox-standard-1'>
+			<input id='checkbox-standard-1' type='checkbox' />
+			Label text
+		</label>
+		<label for='checkbox-standard-2'>
+			<input id='checkbox-standard-2' type='checkbox' />
+			Label text
+		</label>
+		<label for='checkbox-standard-3'>
+			<input id='checkbox-standard-3' type='checkbox' />
+			Label text
+		</label>
+	</fieldset>
+
+	<h2>Exclusive checkbox</h2>
+	<fieldset class='choice-group'>
+		<legend>Exclusive checkbox</legend>
+		<label for='checkbox-exclusive-1'>
+			<input id='checkbox-exclusive-1' type='checkbox' name='exclusive' />
+			Label text
+		</label>
+		<label for='checkbox-exclusive-2'>
+			<input id='checkbox-exclusive-2' type='checkbox' name='exclusive' />
+			Label text
+		</label>
+		<label for='checkbox-exclusive-3'>
+			<input id='checkbox-exclusive-3' type='checkbox' name='exclusive' />
+			Label text
+		</label>
+		<p class='text-muted text-sm'>Or</p>
+		<tui-exclusive-checkbox target-name='exclusive'>
+			<label for='checkbox-exclusive-4'>
+				<input id='checkbox-exclusive-4' type='checkbox' />
+				None of the above
+			</label>
+		</tui-exclusive-checkbox>
+	</fieldset>
+
+	<h2>Select all</h2>
+	<fieldset class='choice-group'>
+		<legend>Select all</legend>
+		<tui-select-all target-name='select-all' data-state='not-ready'>
+			<label for='checkbox-select-all-1'>
+				<input id='checkbox-select-all-1' type='checkbox' />
+				Select all
+			</label>
+		</tui-select-all>
+		<label for='checkbox-select-all-2'>
+			<input id='checkbox-select-all-2' type='checkbox' name='select-all' />
+			Label text
+		</label>
+		<label for='checkbox-select-all-3'>
+			<input id='checkbox-select-all-3' type='checkbox' name='select-all' />
+			Label text
+		</label>
+		<label for='checkbox-select-all-4'>
+			<input id='checkbox-select-all-4' type='checkbox' name='select-all' />
+			Label text
+		</label>
+	</fieldset>
+</ComponentLayout>

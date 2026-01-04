@@ -1,0 +1,42 @@
+---
+import { FilePlus, Folder } from '@lucide/astro'
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+---
+
+<ComponentLayout name='Breadcrumbs'>
+	<nav aria-describedby='breadcrumbs' class='breadcrumb'>
+		<h2 class='visually-hidden' id='breadcrumbs'>Breadcrumbs</h2>
+		<ul>
+			<li>
+				<a class='btn link' href='#test'>Home</a>
+			</li>
+			<li>
+				<a class='btn link' href='#test'>Documents</a>
+			</li>
+			<li aria-current='page'>Add Document</li>
+		</ul>
+	</nav>
+	<nav aria-describedby='breadcrumbs-icons' class='breadcrumb'>
+		<h2 class='visually-hidden' id='breadcrumbs-icons'>Breadcrumbs with icons</h2>
+		<ul>
+			<li>
+				<a class='btn link' href='#test'>
+					<Folder />
+					Home
+				</a>
+			</li>
+			<li>
+				<a class='btn link' href='#test'>
+					<Folder />
+					Documents
+				</a>
+			</li>
+			<li aria-current='page'>
+				<span>
+					<FilePlus />
+					Add Document
+				</span>
+			</li>
+		</ul>
+	</nav>
+</ComponentLayout>

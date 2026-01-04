@@ -1,0 +1,61 @@
+---
+import { type Page, components, docPages } from '@/scripts/constants'
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+import SearchComponent from '@/components/ComponentSearch.astro'
+
+export const prerender = false
+
+const search = Astro.url.searchParams.get('search') ?? undefined
+
+let searchMatchesDocs: Array<Page> = docPages
+let searchMatches: Array<Page> = components
+
+if (search) {
+	searchMatchesDocs = docPages.filter((c) =>
+		c.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
+	)
+	searchMatches = components.filter((c) =>
+		c.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
+	)
+}
+---
+
+<ComponentLayout name='Search'>
+	<SearchComponent value={search} />
+	{
+		searchMatchesDocs.length !== 0 && (
+			<>
+				<h2>Getting started</h2>
+				<div class='grid grid-cols-1 grid-tablet-cols-2 grid-desktop-cols-3 gap-3xl'>
+					{searchMatchesDocs.map((component) => (
+						<div class='card navigation-card'>
+							<h2 class='h3'>
+								<a href={component.href} class='navigation-card-link'>
+									{component.name}
+								</a>
+							</h2>
+						</div>
+					))}
+				</div>
+			</>
+		)
+	}
+	{
+		searchMatches.length !== 0 && (
+			<>
+				<h2>Components</h2>
+				<div class='grid grid-cols-1 grid-tablet-cols-2 grid-desktop-cols-3 gap-3xl'>
+					{searchMatches.map((component) => (
+						<div class='card navigation-card'>
+							<h2 class='h3'>
+								<a href={component.href} class='navigation-card-link'>
+									{component.name}
+								</a>
+							</h2>
+						</div>
+					))}
+				</div>
+			</>
+		)
+	}
+</ComponentLayout>

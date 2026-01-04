@@ -1,0 +1,65 @@
+---
+import { Moon, Sun } from '@lucide/astro'
+
+const { class: className } = Astro.props
+---
+
+<button
+	id='themeToggle'
+	class:list={['btn ghost size-icon', className]}
+	aria-label='Toggle Dark Mode'
+>
+	<span data-theme='dark'>
+		<Moon />
+	</span>
+	<span data-theme='light' hidden>
+		<Sun />
+	</span>
+</button>
+
+<script is:inline>
+	const bodyElement = document.querySelector('body')
+	const moonIcon = document.querySelector('[data-theme="dark"]')
+	const sunIcon = document.querySelector('[data-theme="light"]')
+
+	const hiddenAttribute = 'hidden'
+
+	const theme = (() => {
+		const localStorageTheme = localStorage?.getItem('theme') ?? ''
+		if (['dark', 'light'].includes(localStorageTheme)) {
+			return localStorageTheme
+		}
+		if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			return 'dark'
+		}
+		return 'light'
+	})()
+
+	if (theme === 'light') {
+		bodyElement.classList.add('light')
+		moonIcon.setAttribute(hiddenAttribute, '')
+		sunIcon.removeAttribute(hiddenAttribute)
+	} else {
+		bodyElement.removeAttribute('light')
+		moonIcon.removeAttribute(hiddenAttribute)
+		sunIcon.setAttribute(hiddenAttribute, '')
+	}
+
+	window.localStorage.setItem('theme', theme)
+
+	const handleToggleClick = () => {
+		bodyElement.classList.toggle('light')
+		const isLight = bodyElement.classList.contains('light')
+		if (isLight) {
+			moonIcon.setAttribute(hiddenAttribute, '')
+			sunIcon.removeAttribute(hiddenAttribute)
+			localStorage.setItem('theme', 'light')
+		} else {
+			moonIcon.removeAttribute(hiddenAttribute)
+			sunIcon.setAttribute(hiddenAttribute, '')
+			localStorage.setItem('theme', 'dark')
+		}
+	}
+
+	document.getElementById('themeToggle')?.addEventListener('click', handleToggleClick)
+</script>

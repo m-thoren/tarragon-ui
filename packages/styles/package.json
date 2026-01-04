@@ -1,0 +1,32 @@
+{
+	"name": "@tarragon-ui/styles",
+	"type": "module",
+	"version": "0.0.1",
+	"style": "dist/main.min.css",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "mkdir -p dist/fonts && cp -R src/fonts/*.woff2 dist/fonts && postcss src/main.css -o dist/main.min.css",
+		"clean": "rm -rf dist",
+		"prebuild": "pnpm clean",
+		"lint": "stylelint '**/*.css' --fix"
+	},
+	"exports": {
+		".": {
+			"development": "./src/main.css",
+			"default": "./dist/main.min.css"
+		},
+		"./fonts/*": "./dist/fonts/*",
+		"./package.json": "./package.json"
+	},
+	"devDependencies": {
+		"cssnano": "^7.1.1",
+		"postcss": "^8.5.6",
+		"postcss-cli": "^11.0.1",
+		"postcss-import": "^16.1.1",
+		"stylelint": "^16.24.0",
+		"stylelint-config-clean-order": "^7.0.0",
+		"stylelint-config-standard": "^39.0.0"
+	}
+}

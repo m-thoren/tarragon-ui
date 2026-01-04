@@ -1,0 +1,71 @@
+@layer tarragon-ui.components {
+	@scope (.dropdown) {
+		:scope {
+			position: relative;
+			width: max-content;
+		}
+
+		summary {
+			cursor: default;
+		}
+
+		ul {
+			position: absolute;
+			z-index: 999;
+
+			overflow-y: auto;
+
+			width: max-content;
+			max-width: calc(100vw - var(--size-xs));
+			max-height: calc(100dvh - var(--size-xs));
+			margin-top: var(--size-2xs);
+			padding: var(--size-xs);
+			border: 1px solid var(--color-border);
+			border-radius: var(--radius-default);
+
+			color: var(--color-on-background-raised);
+			list-style: none;
+
+			background-color: var(--color-background-raised);
+			box-shadow: var(--shadow-default);
+		}
+
+		li {
+			display: flex;
+			align-items: center;
+		}
+
+		a,
+		button {
+			display: flex;
+			gap: var(--size-md);
+			align-items: center;
+			justify-content: space-between;
+
+			box-sizing: border-box;
+			width: 100%;
+			min-height: var(--minimum-clickable-size);
+			padding: var(--size-xs) var(--size-md);
+			border: none;
+			border-radius: var(--radius-default);
+
+			font-size: var(--text-sm);
+			font-weight: var(--font-weight-normal);
+			line-height: var(--line-height-md);
+			color: inherit;
+
+			background-color: inherit;
+
+			&:hover {
+				color: inherit;
+				background-color: var(--color-muted);
+				box-shadow: none;
+			}
+
+			&:focus-visible {
+				outline: var(--outline-default);
+				outline-offset: var(--outline-offset);
+			}
+		}
+	}
+}

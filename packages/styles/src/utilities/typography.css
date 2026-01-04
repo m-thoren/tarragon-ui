@@ -1,0 +1,77 @@
+@layer tarragon-ui.utilities {
+	.text-2xl {
+		font-size: var(--text-2xl);
+		line-height: var(--line-height-sm);
+	}
+
+	.text-xl {
+		font-size: var(--text-xl);
+		line-height: var(--line-height-sm);
+	}
+
+	.text-lg {
+		font-size: var(--text-lg);
+		line-height: var(--line-height-md);
+	}
+
+	.text-sm {
+		font-size: var(--text-sm);
+		line-height: var(--line-height-md);
+	}
+
+	.text-xs {
+		font-size: var(--text-xs);
+		line-height: var(--line-height-md);
+	}
+
+	.text-muted {
+		color: var(--color-text-muted);
+	}
+
+	.text-danger {
+		color: var(--color-danger);
+	}
+
+	.text-center {
+		text-align: center;
+	}
+
+	.text-right {
+		text-align: right;
+	}
+
+	.text-capitalize {
+		text-transform: capitalize;
+	}
+
+	.text-uppercase {
+		text-transform: uppercase;
+	}
+
+	.text-lowercase {
+		text-transform: lowercase;
+	}
+
+	.text-decoration-none {
+		text-decoration: none;
+	}
+
+	.font-italic {
+		font-style: italic;
+	}
+
+	.font-medium {
+		font-weight: var(--font-weight-medium);
+	}
+
+	.font-bold {
+		font-weight: var(--font-weight-bold);
+	}
+
+	.text-lead {
+		font-size: var(--text-xl);
+		font-weight: var(--font-weight-medium);
+		line-height: var(--line-height-sm);
+		color: var(--color-text);
+	}
+}

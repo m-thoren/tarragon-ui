@@ -1,0 +1,45 @@
+@layer tarragon-ui.utilities {
+	.gap-0 {
+		gap: 0;
+	}
+
+	.gap-3xs {
+		gap: var(--size-3xs);
+	}
+
+	.gap-2xs {
+		gap: var(--size-2xs);
+	}
+
+	.gap-xs {
+		gap: var(--size-xs);
+	}
+
+	.gap-sm {
+		gap: var(--size-sm);
+	}
+
+	.gap-md {
+		gap: var(--size-md);
+	}
+
+	.gap-lg {
+		gap: var(--size-lg);
+	}
+
+	.gap-xl {
+		gap: var(--size-xl);
+	}
+
+	.gap-2xl {
+		gap: var(--size-2xl);
+	}
+
+	.gap-3xl {
+		gap: var(--size-3xl);
+	}
+
+	.gap-4xl {
+		gap: var(--size-4xl);
+	}
+}

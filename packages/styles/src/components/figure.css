@@ -1,0 +1,38 @@
+@layer tarragon-ui.components {
+	figure {
+		overflow: hidden;
+		margin: 0;
+		border-radius: var(--radius-default);
+		box-shadow: var(--shadow-default);
+	}
+
+	.image {
+		aspect-ratio: 16 / 9;
+		width: 100%;
+		max-width: 100%;
+		height: auto;
+
+		object-fit: cover;
+	}
+
+	figcaption {
+		display: flex;
+		flex-direction: column;
+		gap: var(--size-xs);
+
+		padding: var(--size-md);
+
+		font-size: var(--text-sm);
+		line-height: var(--line-height-md);
+		color: var(--color-on-background-raised);
+
+		background-color: var(--color-background-raised);
+	}
+
+	.photo-by {
+		font-size: var(--text-xs);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--line-height-md);
+		color: var(--color-text-muted);
+	}
+}

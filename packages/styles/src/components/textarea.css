@@ -1,0 +1,47 @@
+@layer tarragon-ui.components {
+	textarea {
+		resize: vertical;
+
+		width: 100%;
+		min-width: 0;
+		max-width: var(--maximum-input-width);
+		min-height: var(--minimum-clickable-size);
+		padding: var(--size-2xs) var(--size-md);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-default);
+
+		font-size: var(--text-md);
+		color: var(--color-text);
+
+		background-color: var(--color-background-interactive);
+
+		transition:
+			box-shadow 0.2s,
+			border-color 0.2s,
+			color 0.2s;
+	}
+
+	textarea:hover {
+		border-color: var(--color-border-hover);
+		box-shadow: var(--shadow-default);
+	}
+
+	textarea:focus-visible {
+		outline: var(--outline-default);
+		outline-offset: var(--outline-offset);
+	}
+
+	textarea::placeholder {
+		color: var(--color-text-muted);
+	}
+
+	textarea::selection {
+		color: var(--color-on-primary);
+		background-color: var(--color-primary);
+	}
+
+	textarea:disabled {
+		pointer-events: none;
+		opacity: 0.5;
+	}
+}

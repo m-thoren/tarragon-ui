@@ -1,0 +1,94 @@
+import { Component, NativeEvent } from '../constants'
+import { emitEvent } from '../emitEvent'
+
+customElements.define(
+	Component.ExclusiveCheckbox.Name,
+	class extends HTMLElement {
+		private targetName: string | null = null
+		private exclusiveCheckbox: HTMLInputElement | null = null
+		private checkboxes: Array<HTMLInputElement> | null = null
+
+		connectedCallback() {
+			this.targetName = this.getAttribute('target-name')
+			this.exclusiveCheckbox = this.querySelector('input')
+
+			if (!this.targetName || !this.exclusiveCheckbox || !this.parentElement) {
+				return
+			}
+
+			this.checkboxes = [
+				...this.parentElement.querySelectorAll<HTMLInputElement>(
+					`[name="${this.targetName}"]`,
+				),
+			]
+			if (this.checkboxes.length === 0) return
+
+			this.addEvents()
+		}
+
+		disconnectedCallback() {
+			if (this.exclusiveCheckbox) {
+				this.exclusiveCheckbox.removeEventListener(
+					NativeEvent.Change,
+					this.handleExclusiveChange.bind(this),
+				)
+			}
+			if (this.checkboxes) {
+				for (const checkbox of this.checkboxes) {
+					checkbox.removeEventListener(
+						NativeEvent.Change,
+						this.handleCheckboxChange.bind(this),
+					)
+				}
+			}
+		}
+
+		private addEvents() {
+			if (
+				!this.exclusiveCheckbox ||
+				!this.targetName ||
+				!this.parentElement ||
+				!this.checkboxes
+			)
+				return
+
+			this.exclusiveCheckbox.addEventListener('change', this.handleExclusiveChange.bind(this))
+			for (const checkbox of this.checkboxes) {
+				if (checkbox.disabled) continue
+				checkbox.addEventListener(NativeEvent.Change, this.handleCheckboxChange.bind(this))
+			}
+		}
+
+		private handleExclusiveChange() {
+			if (!this.exclusiveCheckbox || !this.checkboxes || this.checkboxes.length === 0) return
+			const isChecked = this.exclusiveCheckbox.checked
+
+			for (const checkbox of this.checkboxes) {
+				if (checkbox.disabled) continue
+				if (!isChecked) continue
+				checkbox.checked = false
+			}
+			this.exclusiveCheckbox.indeterminate = false
+			emitEvent(
+				Component.ExclusiveCheckbox.Name,
+				Component.ExclusiveCheckbox.Event.Toggle,
+				this.exclusiveCheckbox,
+			)
+		}
+
+		private handleCheckboxChange() {
+			if (!this.exclusiveCheckbox || !this.checkboxes || this.checkboxes.length === 0) return
+			if (!this.exclusiveCheckbox.checked) return
+
+			const someChecked = this.checkboxes.some(
+				(checkbox) => !checkbox.disabled && checkbox.checked,
+			)
+			this.exclusiveCheckbox.checked = !someChecked
+			emitEvent(
+				Component.ExclusiveCheckbox.Name,
+				Component.ExclusiveCheckbox.Event.Toggle,
+				this.exclusiveCheckbox,
+			)
+		}
+	},
+)

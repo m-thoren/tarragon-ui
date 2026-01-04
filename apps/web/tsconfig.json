@@ -1,0 +1,13 @@
+{
+	"extends": ["../../tsconfig.base.json", "astro/tsconfigs/strict"],
+	"include": [".astro/types.d.ts", "**/*.ts", "**/*.astro"],
+	"exclude": ["dist"],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		},
+		"module": "preserve",
+		"moduleResolution": "bundler"
+	}
+}

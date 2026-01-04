@@ -1,0 +1,22 @@
+@layer tarragon-ui.components {
+	ol,
+	ul {
+		margin: 0;
+		padding-inline: var(--size-3xl) 0;
+		font-size: var(--text-md);
+		line-height: var(--line-height-md);
+
+		li:not(:first-child) {
+			margin-top: var(--size-xs);
+		}
+	}
+
+	.list-unstyled {
+		padding-inline: 0;
+		list-style: none;
+
+		li:not(:first-child) {
+			margin: 0;
+		}
+	}
+}

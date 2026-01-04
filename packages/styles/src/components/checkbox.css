@@ -1,0 +1,64 @@
+@layer tarragon-ui.components {
+	input[type='checkbox']:not([role='switch']) {
+		position: relative;
+
+		display: inline-block;
+
+		width: 1rem;
+		height: 1rem;
+		border: 1px solid var(--color-border);
+		border-radius: 3px;
+
+		vertical-align: middle;
+
+		appearance: none;
+		background-color: var(--color-background-interactive);
+
+		transition:
+			box-shadow 0.2s,
+			border-color 0.2s,
+			color 0.2s;
+
+		&:hover {
+			box-shadow: var(--shadow-default);
+		}
+
+		&:focus-visible {
+			outline: var(--outline-default);
+			outline-offset: var(--outline-offset);
+		}
+
+		&:indeterminate,
+		&:checked {
+			border: 1px solid var(--color-primary);
+			background-color: var(--color-primary);
+		}
+
+		&:checked::before {
+			content: '';
+
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -60%) rotate(45deg);
+
+			width: 0.3rem;
+			height: 0.5rem;
+			border: solid var(--color-on-primary);
+			border-width: 0 2px 2px 0;
+		}
+
+		&:indeterminate::before {
+			content: '';
+
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+
+			width: 0.6rem;
+			border: solid var(--color-on-primary);
+			border-width: 0 0 2px;
+		}
+	}
+}

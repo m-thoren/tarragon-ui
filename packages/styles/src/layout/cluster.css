@@ -1,0 +1,30 @@
+@layer tarragon-ui.layout {
+	.cluster {
+		display: flex;
+		flex-flow: row wrap;
+		gap: var(--size-md);
+		align-items: center;
+	}
+}
+
+@layer tarragon-ui.utilities {
+	@media (width > 640px) {
+		.cluster-tablet {
+			display: flex;
+			flex-flow: row wrap;
+			flex-wrap: wrap;
+			gap: var(--size-md);
+			align-items: center;
+		}
+	}
+
+	@media (width > 1024px) {
+		.cluster-desktop {
+			display: flex;
+			flex-flow: row wrap;
+			flex-wrap: wrap;
+			gap: var(--size-md);
+			align-items: center;
+		}
+	}
+}

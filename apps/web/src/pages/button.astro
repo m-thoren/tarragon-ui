@@ -1,0 +1,16 @@
+---
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+import { Skull } from '@lucide/astro'
+---
+
+<ComponentLayout name='Button'>
+	<div class='cluster'>
+		<button>Default</button>
+		<button class='accent'>Accent</button>
+		<button class='outline'>Outline</button>
+		<button class='danger'>Danger</button>
+		<button class='ghost'>Ghost</button>
+		<a href='#test' class='btn link'>Link</a>
+		<button class='size-icon'><Skull /></button>
+	</div>
+</ComponentLayout>

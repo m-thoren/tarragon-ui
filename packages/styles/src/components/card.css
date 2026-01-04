@@ -1,0 +1,56 @@
+@layer tarragon-ui.components {
+	.card {
+		--size-card-padding: var(--size-3xl);
+
+		display: flex;
+		flex-direction: column;
+		gap: var(--size-md);
+
+		padding: var(--size-3xl);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-default);
+
+		background: var(--color-background-raised);
+		box-shadow: var(--shadow-default);
+	}
+
+	.card-image {
+		--size-card-image-margin: calc(-1 * var(--size-card-padding));
+
+		margin-top: var(--size-card-image-margin);
+		margin-inline: var(--size-card-image-margin);
+		border-bottom-right-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+
+	.navigation-card {
+		position: relative;
+	}
+
+	.navigation-card-link {
+		color: inherit;
+		text-decoration: none;
+
+		&::after {
+			content: '';
+
+			position: absolute;
+			top: 0;
+			left: 0;
+
+			width: 100%;
+			height: 100%;
+		}
+
+		&:hover,
+		&:focus-visible {
+			text-decoration: underline;
+		}
+
+		&:focus-visible {
+			border-radius: var(--radius-default);
+			outline: var(--outline-default);
+			outline-offset: var(--outline-offset);
+		}
+	}
+}

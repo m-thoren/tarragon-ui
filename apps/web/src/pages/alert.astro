@@ -1,0 +1,35 @@
+---
+import { CircleAlertIcon, CircleCheckBigIcon, PopcornIcon, TriangleAlertIcon } from '@lucide/astro'
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+---
+
+<ComponentLayout name='Alert'>
+	<div class='alert'>
+		<CircleCheckBigIcon />
+		<h2>This is an alert with icon, title</h2>
+		<p class='alert-description'>And description.</p>
+	</div>
+	<div class='alert'>
+		<PopcornIcon />
+		<h2>This Alert has a title and an icon. No description.</h2>
+	</div>
+	<div class='alert alert-success'>
+		<CircleCheckBigIcon />
+		<h2>Success! Your changes have been saved</h2>
+	</div>
+	<div class='alert alert-warning'>
+		<TriangleAlertIcon />
+		<h2>This Alert is a warning</h2>
+	</div>
+	<div class='alert alert-danger'>
+		<CircleAlertIcon />
+		<h2>Unable to process your payment.</h2>
+		<p>Please verify your billing information and try again.</p>
+		<ul>
+			<li>Check your card details</li>
+			<li>Ensure sufficient funds</li>
+			<li>Verify billing address</li>
+			<li><a href='#test'>Input must have value</a></li>
+		</ul>
+	</div>
+</ComponentLayout>

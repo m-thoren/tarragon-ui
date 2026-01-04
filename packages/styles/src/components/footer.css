@@ -1,0 +1,30 @@
+@layer tarragon-ui.components {
+	footer {
+		display: flex;
+		flex-direction: column;
+		gap: var(--size-md);
+		align-items: start;
+		justify-content: space-between;
+
+		padding: var(--size-3xl);
+
+		background-color: var(--color-background-raised);
+
+		@media (width > 640px) {
+			flex-direction: row;
+			padding: var(--size-md) var(--size-5xl);
+		}
+	}
+
+	.footer-about {
+		display: flex;
+		flex-direction: column;
+		gap: var(--size-md);
+		max-width: var(--size-7xl);
+	}
+
+	.footer-logo {
+		width: var(--size-5xl);
+		height: var(--size-4xl);
+	}
+}
