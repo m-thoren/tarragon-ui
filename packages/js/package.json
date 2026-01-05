@@ -1,7 +1,14 @@
 {
 	"name": "@tarragon-ui/js",
 	"type": "module",
-	"version": "0.0.1",
+	"version": "0.1.0",
+	"description": "Lightweight and simple Web Components for Tarragon UI.",
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
 	"scripts": {
 		"build": "vite build",
 		"clean": "rm -rf dist",
@@ -11,21 +18,29 @@
 		"type-check": "tsc --noEmit --composite false --project tsconfig.json"
 	},
 	"dependencies": {
-		"invokers-polyfill": "^0.5.7",
+		"invokers-polyfill": "^0.5.7"
+	},
+	"devDependencies": {
+		"typescript": "^5.9.3",
 		"vite": "^7.1.9",
 		"vite-plugin-dts": "^4.5.4"
 	},
-	"devDependencies": {
-		"typescript": "^5.9.3"
-	},
-	"files": [
-		"dist"
-	],
 	"exports": {
 		".": {
-			"development": "./src/index.ts",
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"require": "./dist/index.js",
 			"default": "./dist/index.js"
 		},
 		"./package.json": "./package.json"
+	},
+	"keywords": [
+		"tarragon",
+		"ui",
+		"js",
+		"design-system"
+	],
+	"publishConfig": {
+		"access": "public"
 	}
 }

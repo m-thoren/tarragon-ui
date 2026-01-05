@@ -96,16 +96,16 @@ importers:
       invokers-polyfill:
         specifier: ^0.5.7
         version: 0.5.7
+    devDependencies:
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
       vite:
         specifier: ^7.1.9
         version: 7.1.9(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.1)
       vite-plugin-dts:
         specifier: ^4.5.4
         version: 4.5.4(@types/node@24.10.4)(rollup@4.52.4)(typescript@5.9.3)(vite@7.1.9(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.1))
-    devDependencies:
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
 
   packages/styles:
     devDependencies:
