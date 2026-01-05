@@ -1,23 +1,22 @@
 {
 	"name": "@tarragon-ui/styles",
 	"type": "module",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "Simple and opinionated CSS styles for Tarragon UI.",
-	"main": "dist/main.min.css",
-	"style": "dist/main.min.css",
+	"style": "dist/tarragon.css",
 	"files": [
 		"dist"
 	],
 	"scripts": {
-		"build": "mkdir -p dist/fonts && cp -R src/fonts/*.woff2 dist/fonts && postcss src/main.css -o dist/main.min.css",
+		"build": "mkdir -p dist/fonts && cp -R src/fonts/*.woff2 dist/fonts && postcss src/tarragon.css -o dist/tarragon.css",
 		"clean": "rm -rf dist",
 		"prebuild": "pnpm clean",
 		"lint": "stylelint '**/*.css' --fix"
 	},
 	"exports": {
 		".": {
-			"development": "./src/main.css",
-			"default": "./dist/main.min.css"
+			"development": "./src/tarragon.css",
+			"default": "./dist/tarragon.css"
 		},
 		"./fonts/*": "./dist/fonts/*",
 		"./package.json": "./package.json"
