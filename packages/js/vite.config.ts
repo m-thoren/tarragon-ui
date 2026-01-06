@@ -6,13 +6,13 @@ export default defineConfig({
 		// Library entry points
 		lib: {
 			entry: {
-				index: resolve(__dirname, 'src/tarragon.ts'),
+				index: resolve(__dirname, 'src/tarragon-ui.ts'),
 				// Add more entries here for other components you want to expose directly
 				// e.g., button: resolve(__dirname, 'src/button.ts'),
 			},
 			name: 'tarragon',
 			formats: ['es'],
-			fileName: () => 'tarragon.js',
+			fileName: () => 'tarragon-ui.js',
 		},
 		rollupOptions: {
 			// Externalize deps that shouldn't be bundled with your library

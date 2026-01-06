@@ -3,20 +3,20 @@
 	"type": "module",
 	"version": "0.2.0",
 	"description": "Simple and opinionated CSS styles for Tarragon UI.",
-	"style": "dist/tarragon.css",
+	"style": "dist/tarragon-ui.css",
 	"files": [
 		"dist"
 	],
 	"scripts": {
-		"build": "mkdir -p dist/fonts && cp -R src/fonts/*.woff2 dist/fonts && postcss src/tarragon.css -o dist/tarragon.css",
+		"build": "mkdir -p dist/fonts && cp -R src/fonts/*.woff2 dist/fonts && postcss src/tarragon-ui.css -o dist/tarragon-ui.css",
 		"clean": "rm -rf dist",
 		"prebuild": "pnpm clean",
 		"lint": "stylelint '**/*.css' --fix"
 	},
 	"exports": {
 		".": {
-			"development": "./src/tarragon.css",
-			"default": "./dist/tarragon.css"
+			"development": "./src/tarragon-ui.css",
+			"default": "./dist/tarragon-ui.css"
 		},
 		"./fonts/*": "./dist/fonts/*",
 		"./package.json": "./package.json"

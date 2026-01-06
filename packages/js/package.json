@@ -3,8 +3,8 @@
 	"type": "module",
 	"version": "0.2.0",
 	"description": "Lightweight and simple Web Components for Tarragon UI.",
-	"main": "dist/tarragon.js",
-	"module": "dist/tarragon.js",
+	"main": "dist/tarragon-ui.js",
+	"module": "dist/tarragon-ui.js",
 	"files": [
 		"dist"
 	],
@@ -25,10 +25,10 @@
 	},
 	"exports": {
 		".": {
-			"development": "./src/tarragon.ts",
-			"import": "./dist/tarragon.js",
-			"require": "./dist/tarragon.js",
-			"default": "./dist/tarragon.js"
+			"development": "./src/tarragon-ui.ts",
+			"import": "./dist/tarragon-ui.js",
+			"require": "./dist/tarragon-ui.js",
+			"default": "./dist/tarragon-ui.js"
 		},
 		"./package.json": "./package.json"
 	},
