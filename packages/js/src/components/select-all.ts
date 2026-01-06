@@ -31,15 +31,12 @@ customElements.define(
 			if (this.selectAllCheckbox) {
 				this.selectAllCheckbox.removeEventListener(
 					NativeEvent.Change,
-					this.handleSelectAllChange.bind(this),
+					this.handleSelectAllChange,
 				)
 			}
 			if (this.checkboxes) {
 				for (const checkbox of this.checkboxes) {
-					checkbox.removeEventListener(
-						NativeEvent.Change,
-						this.handleCheckboxChange.bind(this),
-					)
+					checkbox.removeEventListener(NativeEvent.Change, this.handleCheckboxChange)
 				}
 			}
 		}
@@ -57,15 +54,15 @@ customElements.define(
 			)
 				return
 
-			this.selectAllCheckbox.addEventListener('change', this.handleSelectAllChange.bind(this))
+			this.selectAllCheckbox.addEventListener('change', this.handleSelectAllChange)
 			for (const checkbox of this.checkboxes) {
 				if (checkbox.disabled) continue
 				checkbox.parentElement?.classList.add('padding-inline-start-lg')
-				checkbox.addEventListener(NativeEvent.Change, this.handleCheckboxChange.bind(this))
+				checkbox.addEventListener(NativeEvent.Change, this.handleCheckboxChange)
 			}
 		}
 
-		private handleSelectAllChange() {
+		private handleSelectAllChange = () => {
 			if (!this.selectAllCheckbox || !this.checkboxes || this.checkboxes.length === 0) return
 			const isChecked = this.selectAllCheckbox.checked
 
@@ -81,7 +78,7 @@ customElements.define(
 			)
 		}
 
-		private handleCheckboxChange() {
+		private handleCheckboxChange = () => {
 			if (!this.selectAllCheckbox || !this.checkboxes || this.checkboxes.length === 0) return
 
 			const checkedCount = this.checkboxes.filter(

@@ -50,23 +50,20 @@ customElements.define(
 		disconnectedCallback() {
 			document.removeEventListener(
 				`${Component.ExclusiveCheckbox.Name}:${Component.ExclusiveCheckbox.Event.Toggle}`,
-				this.handleTargetChange.bind(this),
+				this.handleTargetChange,
 			)
 			document.removeEventListener(
 				`${Component.SelectAll.Name}:${Component.ExclusiveCheckbox.Event.Toggle}`,
-				this.handleTargetChange.bind(this),
+				this.handleTargetChange,
 			)
 
 			if (this.targetElement) {
-				this.targetElement.removeEventListener(
-					NativeEvent.Change,
-					this.handleTargetChange.bind(this),
-				)
+				this.targetElement.removeEventListener(NativeEvent.Change, this.handleTargetChange)
 			}
 
 			if (this.events && this.events.length > 0) {
 				for (const event of this.events) {
-					document.removeEventListener(event, this.handleTargetChange.bind(this))
+					document.removeEventListener(event, this.handleTargetChange)
 				}
 			}
 		}
@@ -74,28 +71,25 @@ customElements.define(
 		private addEvents() {
 			document.addEventListener(
 				`${Component.ExclusiveCheckbox.Name}:${Component.ExclusiveCheckbox.Event.Toggle}`,
-				this.handleTargetChange.bind(this),
+				this.handleTargetChange,
 			)
 			document.addEventListener(
 				`${Component.SelectAll.Name}:${Component.ExclusiveCheckbox.Event.Toggle}`,
-				this.handleTargetChange.bind(this),
+				this.handleTargetChange,
 			)
 
 			if (this.targetElement) {
-				this.targetElement.addEventListener(
-					NativeEvent.Change,
-					this.handleTargetChange.bind(this),
-				)
+				this.targetElement.addEventListener(NativeEvent.Change, this.handleTargetChange)
 			}
 
 			if (this.events && this.events.length > 0) {
 				for (const event of this.events) {
-					document.addEventListener(event, this.handleTargetChange.bind(this))
+					document.addEventListener(event, this.handleTargetChange)
 				}
 			}
 		}
 
-		private handleTargetChange() {
+		private handleTargetChange = () => {
 			if (!this.targetElement) return
 
 			const shouldHideElement = this.hideWhenChecked

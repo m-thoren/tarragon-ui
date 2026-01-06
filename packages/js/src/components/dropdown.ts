@@ -14,17 +14,12 @@ customElements.define(
 
 			if (!this.dropdown || !this.trigger || !this.content) return
 
-			this.trigger.addEventListener(NativeEvent.Click, this.handleOpen.bind(this))
-			this.dropdown.addEventListener(NativeEvent.Toggle, this.handleToggle.bind(this))
+			this.trigger.addEventListener(NativeEvent.Click, this.handleOpen)
 		}
 
 		disconnectedCallback() {
 			if (this.trigger) {
-				this.trigger.removeEventListener(NativeEvent.Click, this.handleOpen.bind(this))
-			}
-
-			if (this.dropdown) {
-				this.dropdown.removeEventListener(NativeEvent.Toggle, this.handleToggle.bind(this))
+				this.trigger.removeEventListener(NativeEvent.Click, this.handleOpen)
 			}
 
 			this.removeEvents()
@@ -50,7 +45,7 @@ customElements.define(
 			}, 1)
 		}
 
-		private handleTrapFocus(event: Event) {
+		private handleTrapFocus = (event: Event) => {
 			if (!this.content) return
 			if (!(event instanceof KeyboardEvent)) return
 			const focusableElements = Array.from(
@@ -126,39 +121,25 @@ customElements.define(
 
 		private addEvents() {
 			if (!this.dropdown || !this.content) return
-			document.addEventListener(NativeEvent.Click, this.handleClickOutside.bind(this))
-			this.dropdown.addEventListener(NativeEvent.KeyDown, this.handleEscape.bind(this))
-			this.content.addEventListener(NativeEvent.KeyDown, this.handleTrapFocus.bind(this), {
+			console.log('lägger till')
+			document.addEventListener(NativeEvent.Click, this.handleClickOutside)
+			this.dropdown.addEventListener(NativeEvent.KeyDown, this.handleEscape)
+			this.content.addEventListener(NativeEvent.KeyDown, this.handleTrapFocus, {
 				capture: true,
 			})
 		}
 
 		private removeEvents() {
-			document.removeEventListener(NativeEvent.Click, this.handleClickOutside.bind(this))
+			document.removeEventListener(NativeEvent.Click, this.handleClickOutside)
 
 			if (this.dropdown) {
-				this.dropdown.removeEventListener(NativeEvent.KeyDown, this.handleEscape.bind(this))
+				this.dropdown.removeEventListener(NativeEvent.KeyDown, this.handleEscape)
 			}
 
 			if (this.content) {
-				this.content.removeEventListener(
-					NativeEvent.KeyDown,
-					this.handleTrapFocus.bind(this),
-					{
-						capture: true,
-					},
-				)
-			}
-		}
-
-		private handleToggle() {
-			if (!this.dropdown) return
-
-			if (this.dropdown.open) {
-				this.focusFirstDropdownItem()
-				this.addEvents()
-			} else {
-				this.removeEvents()
+				this.content.removeEventListener(NativeEvent.KeyDown, this.handleTrapFocus, {
+					capture: true,
+				})
 			}
 		}
 
@@ -170,19 +151,19 @@ customElements.define(
 			this.removeEvents()
 		}
 
-		private handleOpen() {
+		private handleOpen = () => {
 			if (this.dropdown?.open) return
 			this.focusFirstDropdownItem()
 			this.addEvents()
 		}
 
-		private handleClickOutside(event: Event) {
+		private handleClickOutside = (event: Event) => {
 			if (!this.dropdown) return
 			if (this.dropdown.contains(event.target as Node)) return
 			this.handleClose()
 		}
 
-		private handleEscape(event: Event) {
+		private handleEscape = (event: Event) => {
 			if (!(event instanceof KeyboardEvent)) return
 			if (event.key !== 'Escape') return
 			event.preventDefault()

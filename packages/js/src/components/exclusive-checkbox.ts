@@ -30,15 +30,12 @@ customElements.define(
 			if (this.exclusiveCheckbox) {
 				this.exclusiveCheckbox.removeEventListener(
 					NativeEvent.Change,
-					this.handleExclusiveChange.bind(this),
+					this.handleExclusiveChange,
 				)
 			}
 			if (this.checkboxes) {
 				for (const checkbox of this.checkboxes) {
-					checkbox.removeEventListener(
-						NativeEvent.Change,
-						this.handleCheckboxChange.bind(this),
-					)
+					checkbox.removeEventListener(NativeEvent.Change, this.handleCheckboxChange)
 				}
 			}
 		}
@@ -52,14 +49,14 @@ customElements.define(
 			)
 				return
 
-			this.exclusiveCheckbox.addEventListener('change', this.handleExclusiveChange.bind(this))
+			this.exclusiveCheckbox.addEventListener('change', this.handleExclusiveChange)
 			for (const checkbox of this.checkboxes) {
 				if (checkbox.disabled) continue
-				checkbox.addEventListener(NativeEvent.Change, this.handleCheckboxChange.bind(this))
+				checkbox.addEventListener(NativeEvent.Change, this.handleCheckboxChange)
 			}
 		}
 
-		private handleExclusiveChange() {
+		private handleExclusiveChange = () => {
 			if (!this.exclusiveCheckbox || !this.checkboxes || this.checkboxes.length === 0) return
 			const isChecked = this.exclusiveCheckbox.checked
 
@@ -76,7 +73,7 @@ customElements.define(
 			)
 		}
 
-		private handleCheckboxChange() {
+		private handleCheckboxChange = () => {
 			if (!this.exclusiveCheckbox || !this.checkboxes || this.checkboxes.length === 0) return
 			if (!this.exclusiveCheckbox.checked) return
 

@@ -41,19 +41,15 @@ customElements.define(
 						break
 					case 'lazy':
 						this.intersectionObserver = new IntersectionObserver(
-							this.handleIntersection.bind(this),
+							this.handleIntersection,
 							{ rootMargin: '0px 0px 100px 0px' },
 						)
 						this.intersectionObserver.observe(this)
 						break
 					case 'defer':
-						document.addEventListener(
-							'DOMContentLoaded',
-							this.handleDomContentLoaded.bind(this),
-							{
-								once: true,
-							},
-						)
+						document.addEventListener('DOMContentLoaded', this.handleDomContentLoaded, {
+							once: true,
+						})
 						break
 				}
 			} else {
@@ -65,7 +61,7 @@ customElements.define(
 			if (this.unsubscribe) {
 				this.unsubscribe()
 			}
-			document.removeEventListener('DOMContentLoaded', this.handleDomContentLoaded.bind(this))
+			document.removeEventListener('DOMContentLoaded', this.handleDomContentLoaded)
 			if (this.intersectionObserver) {
 				this.intersectionObserver.unobserve(this)
 				this.intersectionObserver.disconnect()
@@ -73,11 +69,11 @@ customElements.define(
 			}
 		}
 
-		private handleDomContentLoaded() {
+		private handleDomContentLoaded = () => {
 			this.triggerInitialFetch()
 		}
 
-		private handleIntersection(entries: Array<IntersectionObserverEntry>) {
+		private handleIntersection = (entries: Array<IntersectionObserverEntry>) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
 					this.triggerInitialFetch()
