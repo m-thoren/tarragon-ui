@@ -126,19 +126,19 @@
 		padding: var(--size-sm);
 	}
 
-	@media (width > 640px) {
-		.size-button-tablet {
-			width: unset;
-			height: unset;
-			padding: var(--size-xs) var(--size-md);
+	@media (width <= calc(640px - 1px)) {
+		.size-icon-below-tablet {
+			width: var(--minimum-clickable-size);
+			height: var(--minimum-clickable-size);
+			padding: var(--size-sm);
 		}
 	}
 
-	@media (width > 1024px) {
-		.size-button-desktop {
-			width: unset;
-			height: unset;
-			padding: var(--size-xs) var(--size-md);
+	@media (width <= calc(1024px - 1px)) {
+		.size-icon-below-desktop {
+			width: var(--minimum-clickable-size);
+			height: var(--minimum-clickable-size);
+			padding: var(--size-sm);
 		}
 	}
 }

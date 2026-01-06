@@ -1,7 +1,7 @@
 {
 	"name": "@tarragon-ui/styles",
 	"type": "module",
-	"version": "0.2.1",
+	"version": "0.3.0",
 	"description": "Simple and opinionated CSS styles for Tarragon UI.",
 	"style": "dist/tarragon-ui.css",
 	"files": [
