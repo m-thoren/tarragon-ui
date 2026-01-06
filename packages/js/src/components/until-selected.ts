@@ -7,7 +7,7 @@ customElements.define(
 		private targetElement: HTMLInputElement | null = null
 		private focusTargetElement: HTMLElement | null = null
 		private events: Array<string> | null = null
-		private hideWhenChecked = false
+		private showWhen: 'checked' | 'not-checked' = 'checked'
 
 		connectedCallback() {
 			this.target = this.getAttribute('target')
@@ -39,10 +39,11 @@ customElements.define(
 				this.events = eventString.split(',').map((event) => event.trim())
 			}
 
-			this.hideWhenChecked = this.getAttribute('hide-when-checked') === 'true'
+			this.showWhen =
+				this.getAttribute('show-when') === 'not-checked' ? 'not-checked' : 'checked'
 
 			const isChecked = this.targetElement.checked
-			this.toggleAttribute('hidden', this.hideWhenChecked ? isChecked : !isChecked)
+			this.toggleAttribute('hidden', this.showWhen === 'checked' ? isChecked : !isChecked)
 
 			this.addEvents()
 		}
@@ -92,9 +93,10 @@ customElements.define(
 		private handleTargetChange = () => {
 			if (!this.targetElement) return
 
-			const shouldHideElement = this.hideWhenChecked
-				? this.targetElement.checked
-				: !this.targetElement.checked
+			const shouldHideElement =
+				this.showWhen === 'checked'
+					? this.targetElement.checked
+					: !this.targetElement.checked
 
 			this.toggleAttribute('hidden', shouldHideElement)
 			if (shouldHideElement && this.focusTargetElement && this.matches(':focus-within')) {
