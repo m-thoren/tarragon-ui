@@ -28,25 +28,19 @@ type FetchResult = Promise<Result<FetchError, FetchSuccess>>
 
 export class FetchClient {
 	private static instance: FetchClient | undefined = undefined
-	private baseUrl: string
 	private baseHeaders: Headers | undefined = undefined
 
-	constructor(baseUrl: string, headers: Headers = {}) {
-		this.baseUrl = baseUrl
+	constructor(headers: Headers = {}) {
 		this.baseHeaders = headers
 	}
 
 	// Singleton pattern with initial configuration.
 	// Subsequent calls without arguments will return the existing instance.
 	// If arguments are provided, it reconfigures the existing instance or creates a new one.
-	public static getInstance(baseUrl: string, headers?: Headers): FetchClient {
+	public static getInstance(headers?: Headers): FetchClient {
 		if (!FetchClient.instance) {
-			FetchClient.instance = new FetchClient(baseUrl, headers)
+			FetchClient.instance = new FetchClient(headers)
 		} else {
-			// Allow re-configuration of baseUrl and baseHeaders if provided
-			if (baseUrl) {
-				FetchClient.instance.baseUrl = baseUrl
-			}
 			if (headers) {
 				FetchClient.instance.baseHeaders = {
 					...FetchClient.instance.baseHeaders,
@@ -57,7 +51,7 @@ export class FetchClient {
 		return FetchClient.instance
 	}
 
-	isMethod(value: string): value is Method {
+	public isMethod(value: string): value is Method {
 		// Define an array of all valid methods
 		const validMethods: Array<Method> = ['GET', 'PUT', 'POST', 'PATCH', 'DELETE']
 
@@ -79,10 +73,10 @@ export class FetchClient {
 		}
 	}
 
-	async send(url: string, method: Method, parameters: FetchParameters): FetchResult {
+	public async send(url: string, method: Method, parameters: FetchParameters): FetchResult {
 		try {
 			const queryParameters = this.buildQueryString(parameters.queryParameters)
-			const fullUrl = `${this.baseUrl}${url}${queryParameters}`
+			const fullUrl = `${url}${queryParameters}`
 
 			const requestOptions: RequestInit = {
 				method,
@@ -173,6 +167,6 @@ export class FetchClient {
 	}
 }
 
-export const fetchClient = FetchClient.getInstance('', {
+export const fetchClient = FetchClient.getInstance({
 	'Content-Type': 'application/json',
 })

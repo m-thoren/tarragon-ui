@@ -14,14 +14,16 @@
 		"prebuild": "pnpm clean",
 		"lint": "eslint . --max-warnings 0 --config ../../eslint.config.mts",
 		"lint:fix": "prettier . --write && eslint . --fix --config ../../eslint.config.mts",
-		"type-check": "tsc --noEmit --composite false --project tsconfig.json"
+		"type-check": "tsc --noEmit --composite false --project tsconfig.json",
+		"test": "vitest"
 	},
 	"dependencies": {
 		"invokers-polyfill": "^0.5.7"
 	},
 	"devDependencies": {
 		"typescript": "^5.9.3",
-		"vite": "^7.1.9"
+		"vite": "^7.1.9",
+		"vitest": "^4.0.16"
 	},
 	"exports": {
 		".": {

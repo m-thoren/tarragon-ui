@@ -20,7 +20,7 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 	</fieldset>
 
 	<h2>Exclusive checkbox</h2>
-	<fieldset class='choice-group'>
+	<fieldset class='choice-group' data-testid='exclusive-checkbox'>
 		<legend>Exclusive checkbox</legend>
 		<label for='checkbox-exclusive-1'>
 			<input id='checkbox-exclusive-1' type='checkbox' name='exclusive' />
@@ -44,7 +44,7 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 	</fieldset>
 
 	<h2>Select all</h2>
-	<fieldset class='choice-group'>
+	<fieldset class='choice-group' data-testid='select-all-checkbox'>
 		<legend>Select all</legend>
 		<tui-select-all target-name='select-all' data-state='not-ready'>
 			<label for='checkbox-select-all-1'>

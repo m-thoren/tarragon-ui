@@ -35,6 +35,7 @@ export default defineConfig({
 
 	/* Configure projects for major browsers */
 	projects: [
+		// Only use chromium to speed up CI runs
 		{
 			name: 'chromium',
 			use: { ...devices['Desktop Chrome'] },
@@ -72,9 +73,9 @@ export default defineConfig({
 	],
 
 	/* Run your local dev server before starting the tests */
-	webServer: {
-		command: 'pnpm dev',
-		url: baseURL,
-		reuseExistingServer: !process.env.CI,
-	},
+	// webServer: {
+	// 	command: 'pnpm dev',
+	// 	url: baseURL,
+	// 	reuseExistingServer: !process.env.CI,
+	// },
 })

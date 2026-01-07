@@ -11,7 +11,9 @@
 		"build": "mkdir -p dist/fonts && cp -R src/fonts/*.woff2 dist/fonts && postcss src/tarragon-ui.css -o dist/tarragon-ui.css",
 		"clean": "rm -rf dist",
 		"prebuild": "pnpm clean",
-		"lint": "stylelint '**/*.css' --fix"
+		"lint": "stylelint '**/*.css' --fix",
+		"test": "playwright test",
+		"test:ui": "playwright test --ui"
 	},
 	"exports": {
 		".": {
@@ -25,7 +27,9 @@
 		"./package.json": "./package.json"
 	},
 	"devDependencies": {
+		"@playwright/test": "^1.57.0",
 		"cssnano": "^7.1.1",
+		"typescript": "^5.9.3",
 		"postcss": "^8.5.6",
 		"postcss-cli": "^11.0.1",
 		"postcss-import": "^16.1.1",

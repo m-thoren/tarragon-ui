@@ -97,7 +97,11 @@ class QueryCache {
 	 * @param options Query options that might affect initial state or refetch behavior.
 	 * @returns An unsubscribe function.
 	 */
-	subscribe(key: string, callback: SubscriberCallback, meta?: Partial<QueryMeta>): () => void {
+	public subscribe(
+		key: string,
+		callback: SubscriberCallback,
+		meta?: Partial<QueryMeta>,
+	): () => void {
 		if (!this.subscriptions.has(key)) {
 			this.subscriptions.set(key, new Set())
 		}
@@ -133,7 +137,7 @@ class QueryCache {
 	 * @param key The query key.
 	 * @returns The current QueryResult, or undefined if not initialized.
 	 */
-	get(key: string): QueryResult | undefined {
+	public get(key: string): QueryResult | undefined {
 		const query = this.cache.get(key)
 		if (!query) return undefined
 		return query
@@ -146,7 +150,7 @@ class QueryCache {
 	 * @param data The data to set.
 	 * @param options Options for this query.
 	 */
-	setQueryData(key: string, data: QueryData, meta?: Partial<QueryMeta>) {
+	public setQueryData(key: string, data: QueryData, meta?: Partial<QueryMeta>) {
 		this.updateQueryState(
 			key,
 			{
@@ -208,7 +212,7 @@ class QueryCache {
 	 * Invalidates a query, triggering an immediate refetch
 	 * @param key The query key.
 	 */
-	invalidateQuery(key: string) {
+	public invalidateQuery(key: string) {
 		const existingQuery = this.cache.get(key)
 		if (!existingQuery) {
 			console.warn(`No query exists for key: ${key}`)

@@ -7,18 +7,18 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 	<tui-dropdown>
 		<details class='dropdown' data-testid='dropdown-default'>
 			<summary class='btn outline' data-testid='dropdown-trigger'>Open</summary>
-			<ul>
-				<li data-testid='dropdown-list-item'>
+			<ul data-testid='dropdown-list'>
+				<li>
 					<a href='#test' class='dropdown-action' data-testid='dropdown-action'>
 						Item 1 <ArrowRight />
 					</a>
 				</li>
-				<li data-testid='dropdown-list-item'>
+				<li>
 					<a href='#test' class='dropdown-action' data-testid='dropdown-action'>
 						Item 2 <ArrowRight />
 					</a>
 				</li>
-				<li data-testid='dropdown-list-item'>
+				<li>
 					<button class='dropdown-action' data-testid='dropdown-action'>Item 3</button>
 				</li>
 			</ul>

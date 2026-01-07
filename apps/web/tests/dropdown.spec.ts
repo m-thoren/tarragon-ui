@@ -2,20 +2,20 @@ import test, { type Locator, type Page, expect } from '@playwright/test'
 
 test.describe('Dropdown', () => {
 	const createDropdown = (root: Locator) => {
-		const list = root.getByTestId('dropdown-list')
-		const listItem = root.getByTestId('dropdown-list-item')
-		const action = root.getByTestId('dropdown-action')
 		const trigger = root.getByTestId('dropdown-trigger')
+		const list = root.getByTestId('dropdown-list')
+		const listItem = list.getByTestId('dropdown-list-item')
+		const action = list.getByTestId('dropdown-action')
 		return {
+			trigger,
 			root,
 			list,
 			listItem,
 			action,
-			trigger,
 		}
 	}
 
-	const defaultDropdown = (page: Page) => createDropdown(page.getByTestId('dropdown-default'))
+	const defaultDropdown = (page: Page) => createDropdown(page.locator('tui-dropdown'))
 
 	test.beforeEach(async ({ page }) => {
 		await page.goto('/dropdown')
