@@ -18,7 +18,7 @@ test.describe('Dropdown', () => {
 	const defaultDropdown = (page: Page) => createDropdown(page.locator('tui-dropdown'))
 
 	test.beforeEach(async ({ page }) => {
-		await page.goto('/dropdown')
+		await page.goto('/tarragon-ui/dropdown')
 	})
 
 	test('dropdowns are visible', async ({ page }) => {

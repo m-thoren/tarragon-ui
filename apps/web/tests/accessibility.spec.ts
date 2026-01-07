@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright'
 
 test.describe('homepage', () => {
 	test('should not have any automatically detectable accessibility issues', async ({ page }) => {
-		await page.goto('/')
+		await page.goto('/tarragon-ui')
 
 		const accessibilityScanResults = await new AxeBuilder({ page }).analyze()
 

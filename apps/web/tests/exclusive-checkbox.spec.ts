@@ -4,7 +4,7 @@ test.describe('Exclusive Checkbox', () => {
 	const exclusiveCheckboxId = 'checkbox-exclusive-4'
 
 	test.beforeEach(async ({ page }) => {
-		await page.goto('/checkbox')
+		await page.goto('/tarragon-ui/checkbox')
 	})
 
 	test('exclusive is visible', async ({ page }) => {

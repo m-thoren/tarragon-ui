@@ -4,7 +4,7 @@ test.describe('Select All', () => {
 	const selectAllCheckboxId = 'checkbox-select-all-1'
 
 	test.beforeEach(async ({ page }) => {
-		await page.goto('/checkbox')
+		await page.goto('/tarragon-ui/checkbox')
 	})
 
 	test('select-all is visible', async ({ page }) => {
