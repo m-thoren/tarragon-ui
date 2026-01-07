@@ -1,13 +1,18 @@
 ---
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
+import { buildUrl } from '@/scripts/constants'
 ---
 
 <ComponentLayout name='Link'>
-	<a href='/components'>Text link</a>
-	<a href='/components' class='link-subtle'>Subtle link</a>
-	<a href='/components' aria-current='page'>Current page link</a>
-	<p>This is some text with a <a href='/components'>link</a> in it</p>
-	<a href='/components' class='btn'>This is a link styled as a primary button</a>
-	<a href='/components' class='btn outline'>This is a link styled as an outline button</a>
-	<a href='/components' class='btn' aria-current='page'>Current page link as a button</a>
+	<a href={buildUrl('/components')}>Text link</a>
+	<a href={buildUrl('/components')} class='link-subtle'>Subtle link</a>
+	<a href={buildUrl('/components')} aria-current='page'>Current page link</a>
+	<p>This is some text with a <a href={buildUrl('/components')}>link</a> in it</p>
+	<a href={buildUrl('/components')} class='btn'>This is a link styled as a primary button</a>
+	<a href={buildUrl('/components')} class='btn outline'>
+		This is a link styled as an outline button
+	</a>
+	<a href={buildUrl('/components')} class='btn' aria-current='page'>
+		Current page link as a button
+	</a>
 </ComponentLayout>

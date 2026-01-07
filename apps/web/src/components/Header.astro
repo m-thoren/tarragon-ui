@@ -3,15 +3,16 @@ import BrandIcon from '../assets/brand-icon.svg'
 import DialogNavigation from './DialogNavigation.astro'
 import { SearchIcon } from '@lucide/astro'
 import ThemeToggle from './ThemeToggle.astro'
+import { buildUrl } from '@/scripts/constants'
 ---
 
 <header>
-	<a href='/' class='btn link' aria-label='Home'>
+	<a href={buildUrl('/')} class='btn link' aria-label='Home'>
 		<BrandIcon />
 		<span class='visually-hidden-below-tablet'>Tarragon-UI</span>
 	</a>
 	<div class='cluster'>
-		<a href='/components' class='btn link size-icon-below-tablet'>
+		<a href={buildUrl('/components')} class='btn link size-icon-below-tablet'>
 			<SearchIcon aria-hidden />
 			<span class='visually-hidden-below-tablet'>Search</span>
 		</a>
