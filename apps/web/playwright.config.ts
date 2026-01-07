@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test'
 
-const baseURL = 'http://localhost:4321'
+const baseURL = 'http://localhost:4321/tarragon-ui'
 
 /**
  * Read environment variables from file.
