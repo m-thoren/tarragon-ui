@@ -1,8 +1,8 @@
 ---
 import { ArrowLeft, ArrowRight } from '@lucide/astro'
 import { components, docPages } from '@/scripts/constants'
+import NavigationAccordion from '@/components/NavigationAccordion.astro'
 import RootLayout from '@/layouts/RootLayout.astro'
-import Sidebar from '@/components/Sidebar.astro'
 
 type Props = {
 	name: string
@@ -22,7 +22,9 @@ const nextComponent = allPages.at(componentIndex + 1 > allPages.length - 1 ? 0 :
 
 <RootLayout>
 	<div class='grid-desktop'>
-		<Sidebar />
+		<aside class='show-above-desktop padding-3xl o-cell-one-fourth'>
+			<NavigationAccordion />
+		</aside>
 		<main id='main' class='container o-cell-three-fourths'>
 			{
 				component ? (

@@ -1,7 +1,7 @@
 ---
 import BrandIcon from '../assets/brand-icon.svg'
-import ComponentSearch from './ComponentSearch.astro'
 import DialogNavigation from './DialogNavigation.astro'
+import { SearchIcon } from '@lucide/astro'
 import ThemeToggle from './ThemeToggle.astro'
 ---
 
@@ -11,7 +11,10 @@ import ThemeToggle from './ThemeToggle.astro'
 		<span class='visually-hidden-below-tablet'>Tarragon-UI</span>
 	</a>
 	<div class='cluster'>
-		<ComponentSearch class='show-above-desktop' />
+		<a href='/components' class='btn link size-icon-below-tablet'>
+			<SearchIcon aria-hidden />
+			<span class='visually-hidden-below-tablet'>Search</span>
+		</a>
 		<ThemeToggle />
 		<DialogNavigation class='hide-above-desktop' />
 	</div>

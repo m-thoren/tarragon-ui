@@ -5,5 +5,6 @@ import './components/dropdown'
 import './components/exclusive-checkbox'
 import './components/select-all'
 import './components/until-selected'
+import './components/search-filter'
 import { apply, isSupported } from 'invokers-polyfill/fn'
 if (!isSupported()) apply()
