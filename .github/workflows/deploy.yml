@@ -1,0 +1,66 @@
+name: Deploy Astro to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Trigger this workflow when code is pushed to the 'main' branch
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: write # To push the build output to the gh-pages branch
+  pages: write # To deploy to GitHub Pages (for project pages, or if using the new GHPages environment)
+  id-token: write # Required for OpenID Connect (OIDC) authentication with gh-pages if using a custom action
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest # The type of runner that the job will run on
+    environment:
+      name: github-pages # Specify the GitHub Pages environment
+      url: ${{ steps.deployment.outputs.page_url }} # Provide the URL of the deployed page
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4 # Action to check out your repository code
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> "$GITHUB_OUTPUT"
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
+        run: pnpm ci --frozen-lockfile
+
+      - name: Build Astro project
+        run: pnpm --filter web build
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./apps/web/dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
