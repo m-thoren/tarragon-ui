@@ -51,7 +51,7 @@ jobs:
         run: pnpm i --frozen-lockfile
 
       - name: Build Astro project
-        run: pnpm --filter web build
+        run: pnpm --r build
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
