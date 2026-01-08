@@ -1,9 +1,10 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import { buildUrl } from '@/scripts/constants'
 ---
 
 <Layout>
 	<h1 class='text-center w-full'>Tarragon-UI</h1>
 	<p>**Explain why it is so good**</p>
-	<a href=`${import.meta.env.BASE_URL}introduction` class='btn'>Get started</a>
+	<a href={buildUrl('/introduction')} class='btn'>Get started</a>
 </Layout>
