@@ -1,27 +1,33 @@
 ---
-import { components, docPages } from '@/scripts/constants'
+import { type Page, components, docPages } from '@/scripts/constants'
 import { ChevronDownIcon } from '@lucide/astro'
 
-const pathname = Astro.url.pathname
+type Props = {
+	currentPage: Page | undefined
+}
 
-const isCurrentInDocs = docPages.some((page) => page.href === pathname)
-const isCurrentInComponents = components.some((page) => page.href === pathname)
+const { currentPage } = Astro.props
+
+const isCurrentInDocs = docPages.some((docPage) => docPage.href === currentPage?.href)
+const isCurrentInComponents = components.some(
+	(componentPage) => componentPage.href === currentPage?.href,
+)
 ---
 
-<div class='accordion-group'>
+<div class='accordion-group' data-testid='navigation-accordion'>
 	<details open={isCurrentInDocs}>
-		<summary>Getting started <ChevronDownIcon /></summary>
+		<summary>Getting started <ChevronDownIcon aria-hidden /></summary>
 		<ul class='list-unstyled padding-xs'>
 			{
-				docPages.map((page) => (
+				docPages.map((docPage) => (
 					<li>
-						{page.href === pathname ? (
-							<a href={page.href} class='btn link' aria-current='page'>
-								{page.name}
+						{docPage.href === currentPage?.href ? (
+							<a href={docPage.href} class='btn link' aria-current='page'>
+								{docPage.name}
 							</a>
 						) : (
-							<a href={page.href} class='btn link'>
-								{page.name}
+							<a href={docPage.href} class='btn link'>
+								{docPage.name}
 							</a>
 						)}
 					</li>
@@ -30,18 +36,18 @@ const isCurrentInComponents = components.some((page) => page.href === pathname)
 		</ul>
 	</details>
 	<details open={isCurrentInComponents}>
-		<summary>Components <ChevronDownIcon /></summary>
+		<summary>Components <ChevronDownIcon aria-hidden /></summary>
 		<ul class='list-unstyled padding-xs'>
 			{
-				components.map((page) => (
+				components.map((componentPage) => (
 					<li>
-						{page.href === pathname ? (
-							<a href={page.href} class='btn link' aria-current='page'>
-								{page.name}
+						{componentPage.href === currentPage?.href ? (
+							<a href={componentPage.href} class='btn link' aria-current='page'>
+								{componentPage.name}
 							</a>
 						) : (
-							<a href={page.href} class='btn link'>
-								{page.name}
+							<a href={componentPage.href} class='btn link'>
+								{componentPage.name}
 							</a>
 						)}
 					</li>

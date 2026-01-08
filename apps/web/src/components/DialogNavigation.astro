@@ -1,9 +1,9 @@
 ---
 import { MenuIcon, XIcon } from '@lucide/astro'
-import NavigationAccordion from './NavigationAccordion.astro'
+import { components, docPages } from '@/scripts/constants'
 ---
 
-<div>
+<div data-testid='dialog-navigation'>
 	<button
 		class='ghost size-icon hide-above-desktop'
 		commandfor='mobile-menu'
@@ -18,10 +18,37 @@ import NavigationAccordion from './NavigationAccordion.astro'
 			<h2>Pages</h2>
 			<form method='dialog'>
 				<button class='ghost size-icon'>
-					<XIcon aria-hidden /><span class='visually-hidden'>Stäng navigation</span>
+					<XIcon aria-hidden /><span class='visually-hidden'>Close navigation</span>
 				</button>
 			</form>
 		</div>
-		<NavigationAccordion />
+		<div class='stack'>
+			<h3>Getting started</h3>
+			<ul class='list-unstyled'>
+				{
+					docPages.map((docPage) => (
+						<li>
+							<a href={docPage.href} class='btn link'>
+								{docPage.name}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+		<div class='stack'>
+			<h3>Components</h3>
+			<ul class='list-unstyled'>
+				{
+					components.map((componentPage) => (
+						<li>
+							<a href={componentPage.href} class='btn link'>
+								{componentPage.name}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
 	</dialog>
 </div>

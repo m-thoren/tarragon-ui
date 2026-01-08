@@ -6,14 +6,14 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 <ComponentLayout name='Accordion'>
 	<div class='accordion-group'>
 		<details data-testid='multi-accordion-1'>
-			<summary>Graduation Requirements <ChevronDownIcon /></summary>
+			<summary>Graduation Requirements <ChevronDownIcon aria-hidden /></summary>
 			<p class='accordion-content'>
 				Requires 40 credits, including a passing grade in health, geography, history,
 				economics, and wood shop.
 			</p>
 		</details>
 		<details data-testid='multi-accordion-2'>
-			<summary>System Requirements <ChevronDownIcon /></summary>
+			<summary>System Requirements <ChevronDownIcon aria-hidden /></summary>
 			<p class='accordion-content'>
 				Requires a computer running an operating system. The computer must have some memory
 				and ideally some kind of long-term storage. An input device as well as some form of
@@ -21,7 +21,7 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 			</p>
 		</details>
 		<details data-testid='multi-accordion-3'>
-			<summary>Job Requirements <ChevronDownIcon /></summary>
+			<summary>Job Requirements <ChevronDownIcon aria-hidden /></summary>
 			<p class='accordion-content'>
 				Requires knowledge of HTML, CSS, JavaScript, accessibility, web performance,
 				privacy, security, and internationalization, as well as a dislike of broccoli.
@@ -31,7 +31,7 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 
 	<div class='accordion-group'>
 		<details data-testid='single-accordion'>
-			<summary>Single accordion <ChevronDownIcon /></summary>
+			<summary>Single accordion <ChevronDownIcon aria-hidden /></summary>
 			<p class='accordion-content'>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ipsam natus
 				possimus. Unde, iusto. Asperiores ullam veritatis rem nemo beatae, repudiandae

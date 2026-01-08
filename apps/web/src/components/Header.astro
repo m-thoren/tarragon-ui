@@ -8,7 +8,7 @@ import { buildUrl } from '@/scripts/constants'
 
 <header>
 	<a href={buildUrl('/')} class='btn link' aria-label='Home'>
-		<BrandIcon />
+		<BrandIcon aria-hidden />
 		<span class='visually-hidden-below-tablet'>Tarragon-UI</span>
 	</a>
 	<div class='cluster'>
@@ -17,6 +17,6 @@ import { buildUrl } from '@/scripts/constants'
 			<span class='visually-hidden-below-tablet'>Search</span>
 		</a>
 		<ThemeToggle />
-		<DialogNavigation class='hide-above-desktop' />
+		<DialogNavigation />
 	</div>
 </header>

@@ -1,5 +1,5 @@
 ---
-import { CircleAlert } from '@lucide/astro'
+import { CircleAlertIcon } from '@lucide/astro'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
@@ -8,7 +8,7 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 		<tui-validate-form>
 			<template id='validation-message-template'>
 				<p class='form-message'>
-					<CircleAlert />
+					<CircleAlertIcon aria-hidden />
 					<span data-slot='form-message'></span>
 				</p>
 			</template>

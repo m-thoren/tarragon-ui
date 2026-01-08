@@ -1,20 +1,17 @@
 ---
-import { Moon, Sun } from '@lucide/astro'
+import { MoonIcon, SunIcon } from '@lucide/astro'
 
 const { class: className } = Astro.props
 ---
 
-<button
-	id='themeToggle'
-	class:list={['btn ghost size-icon', className]}
-	aria-label='Toggle Dark Mode'
->
+<button id='themeToggle' class:list={['btn ghost size-icon', className]}>
 	<span data-theme='dark'>
-		<Moon />
+		<MoonIcon aria-hidden />
 	</span>
 	<span data-theme='light' hidden>
-		<Sun />
+		<SunIcon aria-hidden />
 	</span>
+	<span class='visually-hidden'>Toggle theme</span>
 </button>
 
 <script is:inline>
