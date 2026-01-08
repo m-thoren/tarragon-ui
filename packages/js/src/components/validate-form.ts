@@ -23,36 +23,27 @@ customElements.define(
 			this.form.setAttribute('novalidate', '')
 
 			// Listen for events
-			this.form.addEventListener('submit', this)
-			this.form.addEventListener('input', this)
-			this.form.addEventListener('blur', this, { capture: true })
+			this.form.addEventListener('submit', this.onSubmit)
+			this.form.addEventListener('input', this.onInput)
+			this.form.addEventListener('blur', this.onBlur, { capture: true })
 
 			// Ready
 			emitEvent(Component.ValidateForm.Name, Component.ValidateForm.Event.Validate, this)
 			this.setAttribute('is-ready', '')
 		}
 
-		/**
-		 * Handle events
-		 * @param {Event} event The event object
-		 */
-		handleEvent(event: Event) {
-			if (event.type === 'blur') {
-				this.onBlur(event)
-				return
-			}
-			if (event.type === 'input') {
-				this.onInput(event)
-				return
-			}
-			this.onSubmit(event)
+		disconnectedCallback() {
+			if (!this.form) return
+			this.form.removeEventListener('submit', this.onSubmit)
+			this.form.removeEventListener('input', this.onInput)
+			this.form.removeEventListener('blur', this.onBlur, { capture: true })
 		}
 
 		/**
 		 * Handle input events
 		 * @param {Event} event The event object
 		 */
-		private onInput(event: Event) {
+		private onInput = (event: Event) => {
 			if (!(event.target instanceof Element)) return
 
 			// Check if the input is part of a group
@@ -77,7 +68,7 @@ customElements.define(
 		 * Handle blur events
 		 * @param {Event} event The event object
 		 */
-		private onBlur(event: Event) {
+		private onBlur = (event: Event) => {
 			if (!(event.target instanceof Element)) return
 
 			// If it's an input group and its been interacted with, validate the group
@@ -102,7 +93,7 @@ customElements.define(
 		 * Handle submit events
 		 * @param {Event} event The event object
 		 */
-		private onSubmit(event: Event) {
+		private onSubmit = (event: Event) => {
 			// Emit a cancellable event before validating
 			const cancelled = !emitEvent(
 				Component.ValidateForm.Name,
