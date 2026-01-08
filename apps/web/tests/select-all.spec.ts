@@ -1,10 +1,11 @@
 import test, { expect } from '@playwright/test'
+import { buildUrl } from './utils'
 
 test.describe('Select All', () => {
 	const selectAllCheckboxId = 'checkbox-select-all-1'
 
 	test.beforeEach(async ({ page }) => {
-		await page.goto('/tarragon-ui/checkbox')
+		await page.goto(buildUrl('/checkbox'))
 	})
 
 	test('select-all is visible', async ({ page }) => {

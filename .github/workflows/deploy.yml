@@ -53,6 +53,12 @@ jobs:
       - name: Build Astro project
         run: pnpm --r build
 
+      - name: Install playwright browsers
+        run: pnpx playwright install --with-deps
+      
+      - name: Run tests
+        run: pnpm --r test
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 

@@ -252,7 +252,7 @@
 		--color-on-danger: oklch(96.19% 0 0deg);
 
 		/** Warning */
-		--color-warning-lightness: 55%;
+		--color-warning-lightness: 53%;
 		--color-warning-chroma: 0.2;
 		--color-warning-hue: 92deg;
 		--color-warning: oklch(

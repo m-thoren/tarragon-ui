@@ -1,4 +1,6 @@
 import test, { type Locator, type Page, expect } from '@playwright/test'
+import AxeBuilder from '@axe-core/playwright'
+import { buildUrl } from './utils'
 
 test.describe('Dropdown', () => {
 	const createDropdown = (root: Locator) => {
@@ -18,7 +20,12 @@ test.describe('Dropdown', () => {
 	const defaultDropdown = (page: Page) => createDropdown(page.locator('tui-dropdown'))
 
 	test.beforeEach(async ({ page }) => {
-		await page.goto('/tarragon-ui/dropdown')
+		await page.goto(buildUrl('/dropdown'))
+	})
+
+	test('should not have any automatically detectable accessibility issues', async ({ page }) => {
+		const accessibilityScanResults = await new AxeBuilder({ page }).analyze()
+		expect(accessibilityScanResults.violations).toEqual([])
 	})
 
 	test('dropdowns are visible', async ({ page }) => {

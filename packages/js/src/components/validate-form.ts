@@ -47,7 +47,7 @@ customElements.define(
 			if (!(event.target instanceof Element)) return
 
 			// Check if the input is part of a group
-			const group = event.target.closest('[validate-group]')
+			const group = event.target.closest(`[${groupValidationAttribute}]`)
 			const field = group ?? event.target
 
 			// If a group, set the interacted status

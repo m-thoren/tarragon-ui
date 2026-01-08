@@ -4,13 +4,15 @@ import { Skull } from '@lucide/astro'
 ---
 
 <ComponentLayout name='Button'>
-	<div class='cluster'>
+	<div class='cluster' data-testid='button-variants'>
 		<button>Default</button>
 		<button class='accent'>Accent</button>
 		<button class='outline'>Outline</button>
 		<button class='danger'>Danger</button>
 		<button class='ghost'>Ghost</button>
 		<a href='#test' class='btn link'>Link</a>
-		<button class='size-icon'><Skull /></button>
+		<button class='size-icon'>
+			<Skull aria-hidden /><span class='visually-hidden'>Icon button</span>
+		</button>
 	</div>
 </ComponentLayout>

@@ -1,10 +1,11 @@
 import test, { expect } from '@playwright/test'
+import { buildUrl } from './utils'
 
 test.describe('Exclusive Checkbox', () => {
 	const exclusiveCheckboxId = 'checkbox-exclusive-4'
 
 	test.beforeEach(async ({ page }) => {
-		await page.goto('/tarragon-ui/checkbox')
+		await page.goto(buildUrl('/checkbox'))
 	})
 
 	test('exclusive is visible', async ({ page }) => {
