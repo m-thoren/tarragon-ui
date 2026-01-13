@@ -1,5 +1,6 @@
 @layer tarragon-ui.theme {
 	:root {
+		--size-4xs: 0.0625rem;
 		--size-3xs: 0.125rem;
 		--size-2xs: 0.25rem;
 		--size-xs: 0.5rem;

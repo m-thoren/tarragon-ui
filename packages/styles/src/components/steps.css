@@ -25,10 +25,11 @@
 
 			display: grid;
 			grid-template-columns: auto;
-			grid-template-rows: 40px 1fr;
+			grid-template-rows: 2.5rem 1fr;
 			place-items: center;
 
-			min-width: 4rem;
+			min-width: var(--size-4xl);
+			margin: 0;
 
 			text-align: center;
 		}

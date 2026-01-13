@@ -3,14 +3,43 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Badge'>
-	<div class='cluster' data-testid='badge-variants'>
-		<span class='badge'>Badge</span>
-		<span class='badge badge-accent'>Accent Badge</span>
-		<span class='badge badge-danger'>Danger Badge</span>
-		<span class='badge badge-outline'>Outline Badge</span>
-		<span class='badge'>1</span>
-		<span class='badge badge-accent'>14</span>
-		<span class='badge badge-danger'>99+</span>
-		<span class='badge badge-outline'>2</span>
+	<div class='prose'>
+		<h2>Default</h2>
+		<div class='cluster'>
+			<span class='badge'>Default</span>
+			<span class='badge accent'>Accent</span>
+			<span class='badge info'>Info</span>
+			<span class='badge success'>Success</span>
+			<span class='badge warning'>Warning</span>
+			<span class='badge danger'>Danger</span>
+		</div>
+
+		<h2>Outline</h2>
+		<div class='cluster'>
+			<span class='badge outline'>Default</span>
+			<span class='badge outline accent'>Accent</span>
+			<span class='badge outline info'>Info</span>
+			<span class='badge outline success'>Success</span>
+			<span class='badge outline warning'>Warning</span>
+			<span class='badge outline danger'>Danger</span>
+		</div>
+
+		<h2>Ghost</h2>
+		<div class='cluster'>
+			<span class='badge ghost'>Default</span>
+			<span class='badge ghost accent'>Accent</span>
+			<span class='badge ghost info'>Info</span>
+			<span class='badge ghost success'>Success</span>
+			<span class='badge ghost warning'>Warning</span>
+			<span class='badge ghost danger'>Danger</span>
+		</div>
+
+		<h2>Pills</h2>
+		<div class='cluster'>
+			<span class='badge'>1</span>
+			<span class='badge accent'>14</span>
+			<span class='badge danger'>99+</span>
+			<span class='badge info outline'>2</span>
+		</div>
 	</div>
 </ComponentLayout>

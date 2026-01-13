@@ -24,11 +24,11 @@ import { components, docPages } from '@/scripts/constants'
 		</div>
 		<div class='stack'>
 			<h3>Getting started</h3>
-			<ul class='list-unstyled'>
+			<ul class='list-none'>
 				{
 					docPages.map((docPage) => (
 						<li>
-							<a href={docPage.href} class='btn link'>
+							<a href={docPage.href} class='btn ghost'>
 								{docPage.name}
 							</a>
 						</li>
@@ -38,11 +38,11 @@ import { components, docPages } from '@/scripts/constants'
 		</div>
 		<div class='stack'>
 			<h3>Components</h3>
-			<ul class='list-unstyled'>
+			<ul class='list-none'>
 				{
 					components.map((componentPage) => (
 						<li>
-							<a href={componentPage.href} class='btn link'>
+							<a href={componentPage.href} class='btn ghost'>
 								{componentPage.name}
 							</a>
 						</li>

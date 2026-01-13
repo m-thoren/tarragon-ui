@@ -18,18 +18,6 @@
 		}
 	}
 
-	a[aria-current='page']:not(.primary) {
-		color: var(--color-accent);
-		text-decoration: none;
-
-		&:hover,
-		&:focus-visible {
-			color: var(--color-accent-hover);
-			text-decoration: underline;
-			text-decoration-style: solid;
-		}
-	}
-
 	.link-subtle {
 		text-decoration: none;
 

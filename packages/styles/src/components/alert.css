@@ -1,6 +1,15 @@
 @layer tarragon-ui.components {
 	@scope (.alert) {
 		:scope {
+			--_internal-border-color: var(--color-info);
+			--_internal-background-color: var(--color-info);
+			--_internal-color: var(--color-on-info);
+			--_internal-box-shadow: var(--shadow-info);
+			--_border-color: var(--_internal-border-color);
+			--_background-color: var(--_internal-background-color);
+			--_color: var(--_internal-color);
+			--_box-shadow: var(--_internal-box-shadow);
+
 			display: grid;
 			grid-template-columns: var(--size-md) 1fr;
 			gap: var(--size-xs);
@@ -8,30 +17,30 @@
 
 			width: 100%;
 			padding: var(--size-xs) var(--size-md);
-			border: 1px solid var(--color-info);
+			border: 1px solid var(--_border-color);
 			border-radius: var(--radius-default);
 
 			font-size: var(--text-sm);
-			color: var(--color-info);
+			color: var(--_color);
 
-			background-color: var(--color-background-raised);
-			box-shadow: var(--shadow-default);
+			background-color: var(--_background-color);
+			box-shadow: var(--_box-shadow);
 		}
 
 		:scope.alert-success {
-			border-color: var(--color-success);
-			color: var(--color-success);
+			--_border-color: var(--color-success);
+			--_color: var(--color-success);
 		}
 
 		:scope.alert-danger {
-			border-color: var(--color-danger);
-			color: var(--color-danger);
-			box-shadow: var(--shadow-danger);
+			--_border-color: var(--color-danger);
+			--_color: var(--color-danger);
+			--_box-shadow: var(--shadow-danger);
 		}
 
 		:scope.alert-warning {
-			border-color: var(--color-warning);
-			color: var(--color-warning);
+			--_border-color: var(--color-warning);
+			--_color: var(--color-warning);
 		}
 
 		:scope > svg {

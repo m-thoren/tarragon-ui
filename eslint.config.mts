@@ -6,7 +6,15 @@ import eslintPluginAstro from 'eslint-plugin-astro'
 
 export default defineConfig([
 	{
-		ignores: ['**/dist', '**/*.js', '**/*.mjs', '**/*.cjs', '**/.astro', '**/*.astro/'],
+		ignores: [
+			'**/dist',
+			'**/*.js',
+			'**/*.mjs',
+			'**/*.mts',
+			'**/*.cjs',
+			'**/.astro',
+			'**/*.astro/',
+		],
 	},
 	js.configs.recommended,
 	// Placing Prettier here ensures it applies to JS/TS files before Astro's configs.

@@ -1,4 +1,4 @@
-@layer tarragon-ui.components {
+@layer tarragon-ui.layout {
 	ol,
 	ul {
 		margin: 0;
@@ -18,5 +18,9 @@
 		li:not(:first-child) {
 			margin: 0;
 		}
+	}
+
+	.list-none {
+		list-style: none;
 	}
 }

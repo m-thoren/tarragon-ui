@@ -90,7 +90,9 @@ const total = list.reduce((previousValue, row) => previousValue + row.total, 0)
 							<td>{row.status}</td>
 							<td class='text-center'>
 								{row.status === 'Unpaid' && <button>Pay</button>}
-								{row.status === 'Pending' && <button class='danger'>Cancel</button>}
+								{row.status === 'Pending' && (
+									<button class='outline danger'>Cancel</button>
+								)}
 							</td>
 							<td>{row.method}</td>
 							<td class='text-right'>${row.total}</td>

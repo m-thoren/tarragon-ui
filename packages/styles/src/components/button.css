@@ -1,6 +1,21 @@
 @layer tarragon-ui.components {
 	button,
 	.btn {
+		--_internal-background-color: var(--color-primary);
+		--_internal-background-color-hover: var(--color-primary-hover);
+		--_internal-color: var(--color-on-primary);
+		--_internal-color-hover: var(--_color);
+		--_internal-box-shadow: var(--shadow-primary);
+		--_internal-border-color: transparent;
+		--_internal-border-color-hover: var(--_border);
+		--_background-color: var(--_internal-background-color);
+		--_background-color-hover: var(--_internal-background-color-hover);
+		--_color: var(--_internal-color);
+		--_color-hover: var(--_internal-color-hover);
+		--_box-shadow: var(--_internal-box-shadow);
+		--_border-color: var(--_internal-border-color);
+		--_border-color-hover: var(--_internal-border-color-hover);
+
 		display: inline-flex;
 		flex-shrink: 0;
 		gap: var(--size-xs);
@@ -10,16 +25,16 @@
 		min-width: var(--minimum-clickable-size);
 		min-height: var(--minimum-clickable-size);
 		padding: var(--size-xs) var(--size-md);
-		border: none;
+		border: 1px solid var(--_border-color);
 		border-radius: var(--radius-default);
 
 		font-size: var(--text-sm);
 		font-weight: var(--font-weight-medium);
-		color: var(--color-on-primary);
+		color: var(--_color);
 		text-decoration: none;
 		white-space: nowrap;
 
-		background-color: var(--color-primary);
+		background-color: var(--_background-color);
 
 		transition:
 			background-color 0.2s,
@@ -29,9 +44,10 @@
 
 		&:focus-visible,
 		&:hover {
-			color: var(--color-on-primary);
-			background-color: var(--color-primary-hover);
-			box-shadow: var(--shadow-default);
+			border-color: var(--_border-color-hover);
+			color: var(--_color-hover);
+			background-color: var(--_background-color-hover);
+			box-shadow: var(--_box-shadow);
 		}
 
 		&:focus-visible {
@@ -53,77 +69,29 @@
 		}
 	}
 
-	/* * Variants */
-	.danger {
-		color: var(--color-on-danger);
-		background-color: var(--color-danger);
-
-		&:focus-visible,
-		&:hover {
-			color: var(--color-on-danger);
-			background-color: var(--color-danger-hover);
-			box-shadow: var(--shadow-danger);
-		}
-	}
-
-	.ghost {
-		color: inherit;
-		background-color: transparent;
-		box-shadow: none;
-
-		&:focus-visible,
-		&:hover {
-			color: inherit;
-			background-color: var(--color-muted);
-		}
-	}
-
-	.link {
-		cursor: pointer;
-		color: inherit;
-		background-color: transparent;
-		box-shadow: none;
-
-		&:focus-visible,
-		&:hover {
-			color: inherit;
-			text-decoration: underline;
-			background-color: var(--color-muted);
-		}
-	}
-
-	.outline {
-		border: 1px solid var(--color-border);
-		color: var(--color-text);
-		background-color: transparent;
-
-		&:focus-visible,
-		&:hover {
-			color: var(--color-text);
-			background-color: var(--color-muted);
-		}
-	}
-
-	.accent {
-		color: var(--color-on-accent);
-		background-color: var(--color-accent);
-
-		&:focus-visible,
-		&:hover {
-			color: var(--color-on-accent);
-			background-color: var(--color-accent-hover);
-		}
-	}
-
-	.btn[aria-current='page']:not(.primary) {
-		color: var(--color-on-background-interactive);
-		background-color: var(--color-background-interactive);
-	}
-
 	.size-icon {
 		width: var(--minimum-clickable-size);
 		height: var(--minimum-clickable-size);
 		padding: var(--size-sm);
+	}
+
+	.fill {
+		--_internal-background-color: var(--color-primary);
+		--_internal-color: var(--color-on-primary);
+		--_internal-box-shadow: var(--shadow-primary);
+		--_internal-border-color: transparent;
+		--_background-color: var(--_internal-background-color);
+		--_color: var(--_internal-color);
+		--_box-shadow: var(--_internal-box-shadow);
+		--_border-color: var(--_internal-border-color);
+
+		border: 1px solid var(--_border);
+		border-radius: var(--radius-default);
+
+		color: var(--_color);
+
+		background-color: var(--_background-color);
+		box-shadow: var(--_box-shadow);
 	}
 
 	@media (width <= calc(640px - 1px)) {
@@ -140,5 +108,95 @@
 			height: var(--minimum-clickable-size);
 			padding: var(--size-sm);
 		}
+	}
+}
+
+@layer tarragon-ui.utilities {
+	.outline {
+		/* "Virtual" values */
+		--_internal-color-outline: var(--color-text);
+		--_internal-color-outline-hover: var(--color-text);
+		--_internal-background-color-hover: var(--color-muted);
+		--_internal-border-color: var(--color-border);
+		--_internal-border-color-hover: var(--color-border);
+		--_internal-box-shadow: var(--shadow-default);
+
+		/* Actual values */
+		--_border: var(--_internal-border-color);
+		--_color: var(--_internal-color-outline);
+		--_background-color: transparent;
+		--_border-hover: var(--_internal-border-color-hover);
+		--_color-hover: var(--_internal-color-outline-hover);
+		--_background-color-hover: var(--_internal-background-color-hover);
+		--_box-shadow: var(--_internal-box-shadow);
+	}
+
+	.ghost {
+		--_internal-color-outline: inherit;
+		--_internal-color-outline-hover: inherit;
+		--_internal-background-color-hover: var(--color-muted);
+		--_internal-box-shadow: var(--shadow-default);
+		--_color: var(--_internal-color-outline);
+		--_color-hover: var(--_internal-color-outline-hover);
+		--_background-color: transparent;
+		--_background-color-hover: var(--_internal-background-color-hover);
+		--_border-color: transparent;
+		--_box-shadow: var(--_internal-box-shadow);
+	}
+
+	/* * Variants */
+	.danger {
+		--_internal-background-color: var(--color-danger);
+		--_internal-background-color-hover: var(--color-danger-hover);
+		--_internal-color: var(--color-on-danger);
+		--_internal-color-outline: var(--color-danger);
+		--_internal-color-outline-hover: var(--color-on-danger);
+		--_internal-border-color: var(--color-danger);
+		--_internal-border-color-hover: var(--color-danger-hover);
+		--_internal-box-shadow: var(--shadow-danger);
+	}
+
+	.info {
+		--_internal-background-color: var(--color-info);
+		--_internal-background-color-hover: var(--color-info-hover);
+		--_internal-border-color: var(--color-info);
+		--_internal-border-color-hover: var(--color-info-hover);
+		--_internal-color: var(--color-on-info);
+		--_internal-color-outline: var(--color-info);
+		--_internal-color-outline-hover: var(--color-on-info);
+		--_internal-box-shadow: var(--shadow-info);
+	}
+
+	.success {
+		--_internal-background-color: var(--color-success);
+		--_internal-background-color-hover: var(--color-success-hover);
+		--_internal-border-color: var(--color-success);
+		--_internal-border-color-hover: var(--color-success-hover);
+		--_internal-color: var(--color-on-success);
+		--_internal-color-outline: var(--color-success);
+		--_internal-color-outline-hover: var(--color-on-success);
+		--_internal-box-shadow: var(--shadow-success);
+	}
+
+	.warning {
+		--_internal-background-color: var(--color-warning);
+		--_internal-background-color-hover: var(--color-warning-hover);
+		--_internal-border-color: var(--color-warning);
+		--_internal-border-color-hover: var(--color-warning-hover);
+		--_internal-color: var(--color-on-warning);
+		--_internal-color-outline: var(--color-warning);
+		--_internal-color-outline-hover: var(--color-on-warning);
+		--_internal-box-shadow: var(--shadow-warning);
+	}
+
+	.accent {
+		--_internal-background-color: var(--color-accent);
+		--_internal-background-color-hover: var(--color-accent-hover);
+		--_internal-border-color: var(--color-accent);
+		--_internal-border-color-hover: var(--color-accent-hover);
+		--_internal-color: var(--color-on-accent);
+		--_internal-color-outline: var(--color-accent);
+		--_internal-color-outline-hover: var(--color-on-accent);
+		--_internal-box-shadow: var(--shadow-accent);
 	}
 }

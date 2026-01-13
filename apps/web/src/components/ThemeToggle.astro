@@ -1,10 +1,8 @@
 ---
 import { MoonIcon, SunIcon } from '@lucide/astro'
-
-const { class: className } = Astro.props
 ---
 
-<button id='themeToggle' class:list={['btn ghost size-icon', className]}>
+<button id='themeToggle' class='ghost size-icon'>
 	<span data-theme='dark'>
 		<MoonIcon aria-hidden />
 	</span>
