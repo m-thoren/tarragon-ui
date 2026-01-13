@@ -72,7 +72,6 @@ export const Component = {
 		Name: `${libNamePrefix}exclusive-checkbox`,
 		Event: { Toggle: 'toggle' },
 	},
-	Dropdown: { Name: `${libNamePrefix}dropdown` },
 	SelectAll: { Name: `${libNamePrefix}select-all`, Event: { Toggle: 'toggle' } },
 	SearchFilter: { Name: `${libNamePrefix}search-filter` },
 	UntilSelected: { Name: `${libNamePrefix}until-selected`, Event: { Toggle: 'toggle' } },

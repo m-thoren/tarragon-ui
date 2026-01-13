@@ -15,7 +15,7 @@ export const docPages: Array<Page> = [
 	{ name: 'Flex', href: buildUrl('/flex'), description: '' },
 	{ name: 'Grid', href: buildUrl('/grid'), description: '' },
 	{ name: 'Prose', href: buildUrl('/prose'), description: '' },
-	{ name: 'Search', href: buildUrl('/components'), description: '' },
+	{ name: 'Components', href: buildUrl('/components'), description: '' },
 ]
 
 export const components: Array<Page> = [
@@ -47,7 +47,7 @@ export const components: Array<Page> = [
 		name: 'Button',
 		href: buildUrl('/button'),
 		description:
-			'An interactive element that triggers an action or event when clicked. Available in various styles and sizes to fit different contexts and importance levels.',
+			'An interactive element that triggers an action or event when clicked. Available in various styles to fit different contexts and importance levels.',
 	},
 	{
 		name: 'Checkbox',
@@ -60,12 +60,6 @@ export const components: Array<Page> = [
 		href: buildUrl('/cookie-banner'),
 		description:
 			'Allow users to accept or reject cookies which are not essential to making your service work.',
-	},
-	{
-		name: 'Dropdown',
-		href: buildUrl('/dropdown'),
-		description:
-			'A toggleable overlay that displays a list of links or actions when activated. Useful for navigation menus, context menus, or selection lists.',
 	},
 	{
 		name: 'Dialog',
