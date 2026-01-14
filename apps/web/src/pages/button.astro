@@ -6,7 +6,7 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 <ComponentLayout name='Button'>
 	<div class='prose'>
 		<h2>Default</h2>
-		<div class='cluster' data-testid='button-variants'>
+		<div class='cluster' data-testid='button-variants-default'>
 			<button>Default</button>
 			<button class='accent'>Accent</button>
 			<button class='info'>Info</button>
@@ -22,7 +22,7 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 		</div>
 
 		<h2>Outline</h2>
-		<div class='cluster'>
+		<div class='cluster' data-testid='button-variants-outline'>
 			<button class='outline'>Default</button>
 			<button class='outline accent'>Accent</button>
 			<button class='outline info'>Info</button>
@@ -37,7 +37,7 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 			</button>
 		</div>
 		<h2>Ghost</h2>
-		<div class='cluster'>
+		<div class='cluster' data-testid='button-variants-ghost'>
 			<button class='ghost'>Default</button>
 			<button class='ghost accent'>Accent</button>
 			<button class='ghost info'>Info</button>
@@ -52,7 +52,7 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 			</button>
 		</div>
 		<h2>Link</h2>
-		<div class='cluster'>
+		<div class='cluster' data-testid='button-variants-link'>
 			<a href='#test' class='btn'>Link</a>
 			<a href='#test' class='btn outline'>Link</a>
 			<a href='#test' class='btn ghost'>Link</a>

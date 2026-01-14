@@ -1,6 +1,5 @@
+import { buildUrl, testPageAccessibility } from './utils'
 import { expect, test } from '@playwright/test'
-import AxeBuilder from '@axe-core/playwright'
-import { buildUrl } from './utils'
 
 test.describe('Drawer', () => {
 	test.beforeEach(async ({ page }) => {
@@ -8,8 +7,7 @@ test.describe('Drawer', () => {
 	})
 
 	test('should not have any automatically detectable accessibility issues', async ({ page }) => {
-		const accessibilityScanResults = await new AxeBuilder({ page }).analyze()
-		expect(accessibilityScanResults.violations).toEqual([])
+		await testPageAccessibility(page)
 	})
 
 	test('should open and close the drawer with keyboard', async ({ page }) => {

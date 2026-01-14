@@ -27,22 +27,6 @@
 			box-shadow: var(--_box-shadow);
 		}
 
-		:scope.alert-success {
-			--_border-color: var(--color-success);
-			--_color: var(--color-success);
-		}
-
-		:scope.alert-danger {
-			--_border-color: var(--color-danger);
-			--_color: var(--color-danger);
-			--_box-shadow: var(--shadow-danger);
-		}
-
-		:scope.alert-warning {
-			--_border-color: var(--color-warning);
-			--_color: var(--color-warning);
-		}
-
 		:scope > svg {
 			width: var(--size-md);
 			height: var(--size-md);

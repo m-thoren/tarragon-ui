@@ -1,6 +1,5 @@
+import { buildUrl, testPageAccessibility } from './utils'
 import { expect, test } from '@playwright/test'
-import AxeBuilder from '@axe-core/playwright'
-import { buildUrl } from './utils'
 
 test.describe('Dialog', () => {
 	test.beforeEach(async ({ page }) => {
@@ -8,8 +7,7 @@ test.describe('Dialog', () => {
 	})
 
 	test('should not have any automatically detectable accessibility issues', async ({ page }) => {
-		const accessibilityScanResults = await new AxeBuilder({ page }).analyze()
-		expect(accessibilityScanResults.violations).toEqual([])
+		await testPageAccessibility(page)
 	})
 
 	test('should open and close the dialog with keyboard', async ({ page }) => {

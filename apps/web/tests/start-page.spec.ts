@@ -1,6 +1,5 @@
+import { buildUrl, testPageAccessibility } from './utils'
 import { expect, test } from '@playwright/test'
-import AxeBuilder from '@axe-core/playwright'
-import { buildUrl } from './utils'
 
 test.describe('Start Page', () => {
 	test.beforeEach(async ({ page }) => {
@@ -8,8 +7,7 @@ test.describe('Start Page', () => {
 	})
 
 	test('should not have any automatically detectable accessibility issues', async ({ page }) => {
-		const accessibilityScanResults = await new AxeBuilder({ page }).analyze()
-		expect(accessibilityScanResults.violations).toEqual([])
+		await testPageAccessibility(page)
 	})
 
 	test('link should navigate to the correct page', async ({ page }) => {

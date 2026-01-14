@@ -163,7 +163,7 @@ customElements.define(
 
 			switch (status) {
 				case 'success':
-					this.announce.className = 'alert alert-success'
+					this.announce.className = 'alert success'
 					if (this.actionOnSuccess === 'remove-message') {
 						setTimeout(() => {
 							if (!this.announce || !this.announceTitle) return
@@ -174,7 +174,7 @@ customElements.define(
 					}
 					break
 				case 'error':
-					this.announce.className = 'alert alert-danger'
+					this.announce.className = 'alert danger'
 					break
 				case 'pending':
 					this.announce.className = 'alert visually-hidden'
