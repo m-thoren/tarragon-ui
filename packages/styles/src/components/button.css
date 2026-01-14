@@ -113,7 +113,7 @@
 
 @layer tarragon-ui.utilities {
 	.outline {
-		/* "Virtual" values */
+		/* Internal values */
 		--_internal-color-outline: var(--color-text);
 		--_internal-color-outline-hover: var(--color-text);
 		--_internal-background-color-hover: var(--color-muted);
@@ -131,7 +131,8 @@
 		--_box-shadow: var(--_internal-box-shadow);
 	}
 
-	.ghost {
+	button:where(.ghost),
+	.btn:where(.ghost) {
 		--_internal-color-outline: inherit;
 		--_internal-color-outline-hover: inherit;
 		--_internal-background-color-hover: var(--color-muted);
