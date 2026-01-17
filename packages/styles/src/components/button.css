@@ -7,7 +7,7 @@
 		--_internal-color-hover: var(--_color);
 		--_internal-box-shadow: var(--shadow-primary);
 		--_internal-border-color: transparent;
-		--_internal-border-color-hover: var(--_border);
+		--_internal-border-color-hover: transparent;
 		--_background-color: var(--_internal-background-color);
 		--_background-color-hover: var(--_internal-background-color-hover);
 		--_color: var(--_internal-color);
@@ -25,7 +25,7 @@
 		min-width: var(--minimum-clickable-size);
 		min-height: var(--minimum-clickable-size);
 		padding: var(--size-xs) var(--size-md);
-		border: 1px solid var(--_border-color);
+		border: var(--size-border-width) solid var(--_border-color);
 		border-radius: var(--radius-default);
 
 		font-size: var(--text-sm);
@@ -85,7 +85,7 @@
 		--_box-shadow: var(--_internal-box-shadow);
 		--_border-color: var(--_internal-border-color);
 
-		border: 1px solid var(--_border);
+		border: var(--size-border-width) solid var(--_border);
 		border-radius: var(--radius-default);
 
 		color: var(--_color);
@@ -136,12 +136,14 @@
 		--_internal-color-outline: inherit;
 		--_internal-color-outline-hover: inherit;
 		--_internal-background-color-hover: var(--color-muted);
+		--_internal-border-color-hover: var(--color-border);
 		--_internal-box-shadow: var(--shadow-default);
 		--_color: var(--_internal-color-outline);
 		--_color-hover: var(--_internal-color-outline-hover);
 		--_background-color: transparent;
 		--_background-color-hover: var(--_internal-background-color-hover);
 		--_border-color: transparent;
+		--_border-color-hover: var(--_internal-border-color-hover);
 		--_box-shadow: var(--_internal-box-shadow);
 	}
 

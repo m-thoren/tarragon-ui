@@ -5,7 +5,7 @@
 		max-width: var(--maximum-input-width);
 		min-height: var(--minimum-clickable-size);
 		padding: var(--size-2xs) var(--size-xs);
-		border: 1px solid var(--color-border);
+		border: var(--size-border-width) solid var(--color-border);
 		border-radius: var(--radius-default);
 
 		font-size: var(--text-md);

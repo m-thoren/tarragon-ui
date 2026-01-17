@@ -3,7 +3,7 @@
 		--size-thumb-size: 20px;
 		--radius-thumb: var(--radius-full);
 		--size-track-height: var(--size-md);
-		--color-track-border: 1px solid var(--color-border);
+		--color-track-border: var(--size-border-width) solid var(--color-border);
 		--radius-track: var(--radius-default);
 		--color-thumb: var(--color-primary);
 		--color-track: var(--color-background-interactive);

@@ -35,7 +35,7 @@
 	th,
 	td {
 		padding: var(--size-xs);
-		border: 1px solid var(--color-border);
+		border: var(--size-border-width) solid var(--color-border);
 		text-align: left;
 	}
 

@@ -6,7 +6,7 @@
 
 		width: 1rem;
 		height: 1rem;
-		border: 1px solid var(--color-border);
+		border: var(--size-border-width) solid var(--color-border);
 		border-radius: 3px;
 
 		vertical-align: middle;
@@ -30,7 +30,7 @@
 
 		&:indeterminate,
 		&:checked {
-			border: 1px solid var(--color-primary);
+			border: var(--size-border-width) solid var(--color-primary);
 			background-color: var(--color-primary);
 		}
 

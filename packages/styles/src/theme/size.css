@@ -15,6 +15,7 @@
 		--size-6xl: 16rem;
 		--size-7xl: 32rem;
 		--size-8xl: 64rem;
+		--size-border-width: 1px;
 		--minimum-clickable-size: 44px;
 		--maximum-input-width: var(--size-7xl);
 		--breakpoint-mobile: 640px;

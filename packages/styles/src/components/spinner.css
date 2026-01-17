@@ -2,7 +2,7 @@
 	.spinner {
 		--color-spinner-outline: var(--color-primary);
 		--font-size: var(--size-3xl);
-		--size-border-width: max(var(--size-3xs), calc(var(--font-size) / 12));
+		--_border-width: max(var(--size-3xs), calc(var(--font-size) / 12));
 
 		display: grid;
 		aspect-ratio: 1;
@@ -19,7 +19,7 @@
 	.spinner::before,
 	.spinner::after {
 		content: '';
-		border: var(--size-border-width) solid var(--color-spinner-outline);
+		border: var(--_border-width) solid var(--color-spinner-outline);
 	}
 
 	.spinner::before {
@@ -93,7 +93,7 @@
 	@media (prefers-reduced-motion: reduce) {
 		.spinner {
 			--color-spinner-outline: transparent;
-			--size-border-width: transparent;
+			--_border-width: transparent;
 
 			display: block;
 			aspect-ratio: auto;
