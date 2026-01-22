@@ -4,7 +4,7 @@ import { SearchIcon } from '@lucide/astro'
 ---
 
 <ComponentLayout name='Search'>
-	<form method='GET' role='search' class='search'>
+	<form method='GET' role='search' class='join'>
 		<div>
 			<label class='visually-hidden' for='component-search-header'>
 				Search for components
@@ -14,6 +14,7 @@ import { SearchIcon } from '@lucide/astro'
 				name='search'
 				placeholder='Search for components'
 				id='component-search-header'
+				class='join-item'
 			/>
 		</div>
 		<button type='submit' class='outline'>

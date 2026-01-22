@@ -1,66 +1,64 @@
 @layer tarragon-ui.components {
-	@scope (.alert) {
-		:scope {
-			--_internal-border-color: var(--color-info);
-			--_internal-background-color: var(--color-info);
-			--_internal-color: var(--color-on-info);
-			--_internal-box-shadow: var(--shadow-info);
-			--_border-color: var(--_internal-border-color);
-			--_background-color: var(--_internal-background-color);
-			--_color: var(--_internal-color);
-			--_box-shadow: var(--_internal-box-shadow);
+	.alert {
+		--_internal-border-color: var(--color-info);
+		--_internal-background-color: var(--color-info);
+		--_internal-color: var(--color-on-info);
+		--_internal-box-shadow: var(--shadow-info);
+		--_border-color: var(--_internal-border-color);
+		--_background-color: var(--_internal-background-color);
+		--_color: var(--_internal-color);
+		--_box-shadow: var(--_internal-box-shadow);
 
-			display: grid;
-			grid-template-columns: var(--size-md) 1fr;
-			gap: var(--size-xs);
-			align-items: center;
+		display: grid;
+		grid-template-columns: var(--size-md) 1fr;
+		gap: var(--size-xs);
+		align-items: center;
 
-			width: 100%;
-			padding: var(--size-xs) var(--size-md);
-			border: var(--size-border-width) solid var(--_border-color);
-			border-radius: var(--radius-default);
+		width: 100%;
+		padding: var(--size-xs) var(--size-md);
+		border: var(--size-border-width) solid var(--_border-color);
+		border-radius: var(--radius-default);
 
-			font-size: var(--text-sm);
-			color: var(--_color);
+		font-size: var(--text-sm);
+		color: var(--_color);
 
-			background-color: var(--_background-color);
-			box-shadow: var(--_box-shadow);
-		}
+		background-color: var(--_background-color);
+		box-shadow: var(--_box-shadow);
+	}
 
-		:scope > svg {
-			width: var(--size-md);
-			height: var(--size-md);
-		}
+	.alert > svg {
+		width: var(--size-md);
+		height: var(--size-md);
+	}
 
-		a {
-			color: inherit;
+	.alert a {
+		color: inherit;
 
-			&:hover,
-			&:focus-visible {
-				color: inherit;
-			}
-		}
-
-		h2,
-		.alert-title {
-			grid-column-start: 2;
-
-			font-family: var(--font-heading);
-			font-size: var(--text-lg);
-			font-weight: var(--font-weight-semibold);
-			line-height: var(--line-height-md);
+		&:hover,
+		&:focus-visible {
 			color: inherit;
 		}
+	}
 
-		p,
-		.alert-description {
-			grid-column-start: 2;
-			font-size: var(--text-sm);
-		}
+	.alert h2,
+	.alert-title {
+		grid-column-start: 2;
 
-		ul {
-			grid-column-start: 2;
-			font-size: var(--text-sm);
-		}
+		font-family: var(--font-heading);
+		font-size: var(--text-lg);
+		font-weight: var(--font-weight-semibold);
+		line-height: var(--line-height-md);
+		color: inherit;
+	}
+
+	.alert p,
+	.alert-description {
+		grid-column-start: 2;
+		font-size: var(--text-sm);
+	}
+
+	.alert ul {
+		grid-column-start: 2;
+		font-size: var(--text-sm);
 	}
 }

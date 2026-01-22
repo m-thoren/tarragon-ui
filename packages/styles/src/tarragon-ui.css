@@ -42,7 +42,6 @@
 @import url('./components/list.css');
 @import url('./components/progress.css');
 @import url('./components/radio.css');
-@import url('./components/search.css');
 @import url('./components/select.css');
 @import url('./components/range.css');
 @import url('./components/separator.css');
@@ -60,6 +59,7 @@
 @import url('./utilities/flex.css');
 @import url('./utilities/gap.css');
 @import url('./utilities/image.css');
+@import url('./utilities/join.css');
 @import url('./utilities/margin.css');
 @import url('./utilities/padding.css');
 @import url('./utilities/size.css');

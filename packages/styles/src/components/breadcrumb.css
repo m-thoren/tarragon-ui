@@ -1,5 +1,5 @@
 @layer tarragon-ui.components {
-	@scope (.breadcrumb) {
+	.breadcrumb {
 		ul {
 			display: flex;
 			flex-flow: row wrap;

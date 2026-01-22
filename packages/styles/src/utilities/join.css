@@ -1,0 +1,37 @@
+@layer tarragon-ui.utilities {
+	.join {
+		--_border-radius-start-start: 0;
+		--_border-radius-start-end: 0;
+		--_border-radius-end-start: 0;
+		--_border-radius-end-end: 0;
+
+		display: inline-flex;
+		flex-direction: row;
+		gap: 0;
+		align-items: stretch;
+	}
+
+	.join > :where(:first-child),
+	.join :first-child:not(:last-child) :where(.join-item) {
+		--_border-radius-start-start: var(--radius-default);
+		--_border-radius-start-end: 0;
+		--_border-radius-end-start: var(--radius-default);
+		--_border-radius-end-end: 0;
+	}
+
+	.join > :where(:last-child),
+	.join :last-child:not(:first-child) :where(.join-item) {
+		--_border-radius-start-start: 0;
+		--_border-radius-start-end: var(--radius-default);
+		--_border-radius-end-start: 0;
+		--_border-radius-end-end: var(--radius-default);
+	}
+
+	.join > :not(:has(.join-item)),
+	.join :where(.join-item) {
+		border-start-start-radius: var(--_border-radius-start-start, 0);
+		border-start-end-radius: var(--_border-radius-start-end, 0);
+		border-end-start-radius: var(--_border-radius-end-start, 0);
+		border-end-end-radius: var(--_border-radius-end-end, 0);
+	}
+}

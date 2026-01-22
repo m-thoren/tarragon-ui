@@ -1,10 +1,5 @@
 ---
-import {
-	CircleAlertIcon,
-	CircleCheckBigIcon,
-	CircleQuestionMarkIcon,
-	TriangleAlertIcon,
-} from '@lucide/astro'
+import { CircleAlertIcon, CircleCheckBigIcon, InfoIcon, TriangleAlertIcon } from '@lucide/astro'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
@@ -12,12 +7,12 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 	<div class='prose'>
 		<h2>Default alert</h2>
 		<div class='alert'>
-			<CircleQuestionMarkIcon aria-hidden />
+			<InfoIcon aria-hidden />
 			<h2>This is an alert</h2>
 			<p class='alert-description'>With a description.</p>
 		</div>
 		<div class='alert'>
-			<CircleQuestionMarkIcon aria-hidden />
+			<InfoIcon aria-hidden />
 			<h2>This Alert has only a title</h2>
 		</div>
 		<div class='alert'>
@@ -46,11 +41,11 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 
 		<h3>Info</h3>
 		<div class='alert info'>
-			<CircleQuestionMarkIcon aria-hidden />
+			<InfoIcon aria-hidden />
 			<h2>Default info alert</h2>
 		</div>
 		<div class='alert info outline'>
-			<CircleQuestionMarkIcon aria-hidden />
+			<InfoIcon aria-hidden />
 			<h2>Outline info alert</h2>
 		</div>
 
