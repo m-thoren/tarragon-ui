@@ -1,5 +1,5 @@
 ---
-import { type Page, components, docPages } from '@/scripts/constants'
+import { type Page, sections } from '@/scripts/constants'
 import { ChevronDownIcon } from '@lucide/astro'
 
 type Props = {
@@ -7,52 +7,31 @@ type Props = {
 }
 
 const { currentPage } = Astro.props
-
-const isCurrentInDocs = docPages.some((docPage) => docPage.href === currentPage?.href)
-const isCurrentInComponents = components.some(
-	(componentPage) => componentPage.href === currentPage?.href,
-)
 ---
 
 <div class='accordion-group' data-testid='navigation-accordion'>
-	<details open={isCurrentInDocs}>
-		<summary>Getting started <ChevronDownIcon aria-hidden /></summary>
-		<ul class='list-none padding-xs'>
-			{
-				docPages.map((docPage) => (
-					<li>
-						{docPage.href === currentPage?.href ? (
-							<a href={docPage.href} class='btn outline' aria-current='page'>
-								{docPage.name}
-							</a>
-						) : (
-							<a href={docPage.href} class='btn ghost'>
-								{docPage.name}
-							</a>
-						)}
-					</li>
-				))
-			}
-		</ul>
-	</details>
-	<details open={isCurrentInComponents}>
-		<summary>Components <ChevronDownIcon aria-hidden /></summary>
-		<ul class='list-none padding-xs'>
-			{
-				components.map((componentPage) => (
-					<li>
-						{componentPage.href === currentPage?.href ? (
-							<a href={componentPage.href} class='btn outline' aria-current='page'>
-								{componentPage.name}
-							</a>
-						) : (
-							<a href={componentPage.href} class='btn ghost'>
-								{componentPage.name}
-							</a>
-						)}
-					</li>
-				))
-			}
-		</ul>
-	</details>
+	{
+		sections.map((section) => (
+			<details open={section.pages.some((page) => page.href === currentPage?.href)}>
+				<summary>
+					{section.name} <ChevronDownIcon aria-hidden />
+				</summary>
+				<ul class='list-none padding-xs'>
+					{section.pages.map((page) => (
+						<li>
+							{page.href === currentPage?.href ? (
+								<a href={page.href} class='btn outline' aria-current='page'>
+									{page.name}
+								</a>
+							) : (
+								<a href={page.href} class='btn ghost'>
+									{page.name}
+								</a>
+							)}
+						</li>
+					))}
+				</ul>
+			</details>
+		))
+	}
 </div>

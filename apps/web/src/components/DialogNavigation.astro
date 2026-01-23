@@ -1,6 +1,6 @@
 ---
 import { MenuIcon, XIcon } from '@lucide/astro'
-import { components, docPages } from '@/scripts/constants'
+import { sections } from '@/scripts/constants'
 ---
 
 <div data-testid='dialog-navigation'>
@@ -22,33 +22,21 @@ import { components, docPages } from '@/scripts/constants'
 				</button>
 			</form>
 		</div>
-		<div class='stack'>
-			<h3>Getting started</h3>
-			<ul class='list-none'>
-				{
-					docPages.map((docPage) => (
-						<li>
-							<a href={docPage.href} class='btn ghost'>
-								{docPage.name}
-							</a>
-						</li>
-					))
-				}
-			</ul>
-		</div>
-		<div class='stack'>
-			<h3>Components</h3>
-			<ul class='list-none'>
-				{
-					components.map((componentPage) => (
-						<li>
-							<a href={componentPage.href} class='btn ghost'>
-								{componentPage.name}
-							</a>
-						</li>
-					))
-				}
-			</ul>
-		</div>
+		{
+			sections.map((section) => (
+				<div class='stack'>
+					<h3>{section.name}</h3>
+					<ul class='list-none'>
+						{section.pages.map((page) => (
+							<li>
+								<a href={page.href} class='btn ghost'>
+									{page.name}
+								</a>
+							</li>
+						))}
+					</ul>
+				</div>
+			))
+		}
 	</dialog>
 </div>

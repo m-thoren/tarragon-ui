@@ -1,6 +1,6 @@
 ---
 import { ArrowLeftIcon, ArrowRightIcon } from '@lucide/astro'
-import { components, docPages } from '@/scripts/constants'
+import { type Page, sections } from '@/scripts/constants'
 import NavigationAccordion from '@/components/NavigationAccordion.astro'
 import RootLayout from '@/layouts/RootLayout.astro'
 
@@ -10,7 +10,10 @@ type Props = {
 
 const { name } = Astro.props
 
-const allPages = [...docPages, ...components]
+const allPages: Array<Page> = sections.reduce<Array<Page>>(
+	(accumulator, section) => accumulator.concat(section.pages),
+	[],
+)
 
 const componentIndex = allPages.findIndex((c) => c.name === name)
 const component = allPages[componentIndex]

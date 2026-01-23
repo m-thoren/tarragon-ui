@@ -47,7 +47,6 @@
 			inset-block-start: anchor(bottom);
 			inset-inline-start: anchor(left);
 			transform: none;
-			position-anchor: --dropdown;
 			position-try-fallbacks:
 				--position-top-left, --position-bottom-right, --position-top-right,
 				--position-middle;

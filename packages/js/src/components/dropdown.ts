@@ -1,6 +1,6 @@
-const SELECTOR_POPOVER = '[popover]'
-
 import { Component, NativeEvent, focusableElementsSelector } from '../constants'
+
+const SELECTOR_POPOVER = '[popover]'
 
 customElements.define(
 	Component.Dropdown.Name,
