@@ -42,8 +42,11 @@ test.describe('Dropdown', () => {
 
 		await trigger.click()
 		await expect(dropdown).toBeVisible()
-		const openAttribute = await trigger.getAttribute('data-tui-open')
-		expect(openAttribute).toBe('')
+
+		await expect(async () => {
+			const openAttribute = await trigger.getAttribute('data-tui-open')
+			expect(openAttribute).toBe('')
+		}).toPass()
 	})
 
 	test('should trap focus', async ({ page }) => {
