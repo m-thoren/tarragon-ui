@@ -13,7 +13,14 @@
 		background-color: var(--color-background-base);
 	}
 
+	body:has(:popover-open),
 	body:has(dialog[open]) {
 		overflow: hidden;
+	}
+
+	@supports (top: anchor(--any-name bottom)) {
+		body:has(:popover-open) {
+			overflow: visible;
+		}
 	}
 }

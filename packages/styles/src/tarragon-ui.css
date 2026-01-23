@@ -21,6 +21,7 @@
 @import url('./layout/split.css');
 @import url('./layout/stack.css');
 @import url('./layout/prose.css');
+@import url('./layout/popover.css');
 
 /* Components - specific UI components. This is where most of our work takes place. We often compose UI components of Objects and Components */
 @import url('./components/accordion.css');
@@ -30,6 +31,7 @@
 @import url('./components/breadcrumb.css');
 @import url('./components/card.css');
 @import url('./components/checkbox.css');
+@import url('./components/dropdown.css');
 @import url('./components/dialog.css');
 @import url('./components/drawer.css');
 @import url('./components/figure.css');

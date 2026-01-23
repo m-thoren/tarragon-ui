@@ -14,7 +14,7 @@
 		"test:ui": "playwright test --ui"
 	},
 	"dependencies": {
-		"@astrojs/node": "^9.5.1",
+		"@astrojs/node": "^9.5.2",
 		"@lucide/astro": "^0.562.0",
 		"@tarragon-ui/js": "workspace:*",
 		"@tarragon-ui/styles": "workspace:*",

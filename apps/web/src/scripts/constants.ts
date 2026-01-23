@@ -74,6 +74,12 @@ export const components: Array<Page> = [
 			'A modal window that appears on the left side of the screen. Mainly used for mobile navigation',
 	},
 	{
+		name: 'Dropdown',
+		href: buildUrl('/dropdown'),
+		description:
+			'A contextual menu that appears when a user interacts with a button or other control. It can be used for navigation or to display a list of actions.',
+	},
+	{
 		name: 'Figure',
 		href: buildUrl('/figure'),
 		description: 'Display an image with a caption and source',

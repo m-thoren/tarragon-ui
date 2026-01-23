@@ -1,0 +1,25 @@
+---
+import { ChevronDownIcon } from '@lucide/astro'
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+---
+
+<ComponentLayout name='Dropdown'>
+	<tui-dropdown>
+		<button
+			type='button'
+			class='outline'
+			popovertarget='dropdown'
+			style='anchor-name: --dropdown;'
+		>
+			Open dropdown
+			<ChevronDownIcon aria-hidden='true' />
+		</button>
+		<div popover id='dropdown' class='dropdown'>
+			<ul>
+				<li><button class='ghost w-full'>Edit</button></li>
+				<li><a href='#dropdown' class='btn ghost w-full'>Options</a></li>
+				<li><button class='danger w-full'>Delete</button></li>
+			</ul>
+		</div>
+	</tui-dropdown>
+</ComponentLayout>

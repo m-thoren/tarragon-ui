@@ -1,0 +1,90 @@
+@layer tarragon-ui.layout {
+	[popover] {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+		min-width: var(--size-6xl);
+		max-width: 100vw;
+		min-height: var(--minimum-clickable-size);
+		max-height: 100vh;
+		padding: var(--size-2xs);
+		border: var(--size-border-width) solid var(--color-border);
+		border-radius: var(--radius-default);
+
+		color: var(--color-on-background-raised);
+
+		opacity: 0;
+		background-color: var(--color-background-raised);
+		box-shadow: var(--shadow-default);
+
+		transition:
+			display 150ms ease-in-out,
+			opacity 150ms ease-in-out;
+		transition-behavior: allow-discrete;
+
+		&::backdrop {
+			background-color: var(--color-backdrop);
+		}
+
+		&:popover-open {
+			opacity: 1;
+
+			@starting-style {
+				opacity: 0;
+			}
+		}
+
+		@media (width > 640px) {
+			max-width: 80vw;
+			max-height: 80vh;
+			padding: var(--size-xs);
+		}
+
+		@supports (top: anchor(--any-name bottom)) {
+			inset: auto;
+			inset-block-start: anchor(bottom);
+			inset-inline-start: anchor(left);
+			transform: none;
+			position-anchor: --dropdown;
+			position-try-fallbacks:
+				--position-top-left, --position-bottom-right, --position-top-right,
+				--position-middle;
+
+			margin-top: var(--size-2xs);
+
+			&::backdrop {
+				background-color: transparent;
+			}
+		}
+	}
+
+	@position-try --position-top-left {
+		inset: auto;
+		inset-block-end: anchor(top);
+		inset-inline-start: anchor(left);
+		margin-bottom: var(--size-2xs);
+	}
+
+	@position-try --position-bottom-right {
+		inset: auto;
+		inset-block-start: anchor(bottom);
+		inset-inline-end: anchor(right);
+		margin-top: var(--size-2xs);
+	}
+
+	@position-try --position-top-right {
+		inset: auto;
+		inset-block-end: anchor(top);
+		inset-inline-end: anchor(right);
+		margin-bottom: var(--size-2xs);
+	}
+
+	@position-try --position-middle {
+		inset: auto;
+		inset-block-start: 25%;
+		inset-inline-start: 0;
+		margin-bottom: var(--size-2xs);
+	}
+}

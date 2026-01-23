@@ -48,6 +48,7 @@ export enum NativeEvent {
 	Load = 'load',
 	Unload = 'unload',
 	BeforeUnload = 'beforeunload',
+	BeforeToggle = 'beforetoggle',
 	Resize = 'resize',
 	Move = 'move',
 	DOMContentLoaded = 'DOMContentLoaded',
@@ -67,6 +68,9 @@ export const Component = {
 	},
 	AjaxHtml: {
 		Name: `${libNamePrefix}ajax-html`,
+	},
+	Dropdown: {
+		Name: `${libNamePrefix}dropdown`,
 	},
 	ExclusiveCheckbox: {
 		Name: `${libNamePrefix}exclusive-checkbox`,

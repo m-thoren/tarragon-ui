@@ -1,6 +1,7 @@
 import './components/validate-form'
 import './components/ajax-form'
 import './components/ajax-html'
+import './components/dropdown'
 import './components/exclusive-checkbox'
 import './components/select-all'
 import './components/until-selected'

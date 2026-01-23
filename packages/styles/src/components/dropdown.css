@@ -1,0 +1,10 @@
+@layer tarragon-ui.components {
+	[data-tui-open] svg {
+		transform: rotate(180deg);
+	}
+
+	.dropdown ul {
+		margin: 0;
+		padding: 0;
+	}
+}
