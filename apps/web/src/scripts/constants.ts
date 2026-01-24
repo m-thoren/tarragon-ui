@@ -30,6 +30,12 @@ export const sections: Array<Sections> = [
 		name: 'Components',
 		pages: [
 			{
+				name: 'Avatar',
+				href: buildUrl('/avatar'),
+				description:
+					'Make an image rounded and give it a 1/1 aspect ratio. Often used for profile images',
+			},
+			{
 				name: 'Accordion',
 				href: buildUrl('/accordion'),
 				description:

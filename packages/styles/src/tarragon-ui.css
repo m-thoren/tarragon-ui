@@ -2,18 +2,18 @@
 
 @import url('./layers.css');
 
-/* Settings - used with preprocessors and contain font, colors definitions, etc. */
+/* Settings - contain font, colors definitions, etc. */
 @import url('./theme/colors.css');
 @import url('./theme/rounded.css');
 @import url('./theme/size.css');
 @import url('./theme/typography.css');
 
-/* Generic - reset and/or normalize styles, box-sizing definition, etc. This is the first layer which generates actual CSS. */
+/* Generic - reset and/or normalize styles, box-sizing definition, etc. */
 @import url('./normalize/normalize.css');
 @import url('./normalize/reduced-motion.css');
 @import url('./normalize/body.css');
 
-/* Layout - layout classes */
+/* Layout */
 @import url('./layout/container.css');
 @import url('./layout/grid.css');
 @import url('./layout/center.css');
@@ -23,7 +23,8 @@
 @import url('./layout/prose.css');
 @import url('./layout/popover.css');
 
-/* Components - specific UI components. This is where most of our work takes place. We often compose UI components of Objects and Components */
+/* Components */
+@import url('./components/avatar.css');
 @import url('./components/accordion.css');
 @import url('./components/alert.css');
 @import url('./components/badge.css');
@@ -57,7 +58,7 @@
 
 /* @import url('./components/tooltip.css'); */
 
-/* Utilities - utilities and helper classes with ability to override anything which goes before in the triangle, e.g. hide helper class */
+/* Utilities */
 @import url('./utilities/animations.css');
 @import url('./utilities/flex.css');
 @import url('./utilities/gap.css');

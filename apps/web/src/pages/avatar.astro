@@ -1,0 +1,15 @@
+---
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+import { Image } from 'astro:assets'
+import ibizaImage from '../assets/Ibiza.jpg'
+---
+
+<ComponentLayout name='Avatar'>
+	<Image
+		class='avatar'
+		src={ibizaImage}
+		alt='An orange cat looking into the camera'
+		width={100}
+		height={100}
+	/>
+</ComponentLayout>

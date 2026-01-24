@@ -1,0 +1,8 @@
+@layer tarragon-ui.components {
+	.avatar {
+		display: inline-block;
+		aspect-ratio: 1 / 1;
+		border-radius: var(--radius-full);
+		object-fit: cover;
+	}
+}
