@@ -12,8 +12,8 @@ import { buildUrl } from '@/scripts/constants'
 		<p>Lightweight CSS and WebComponents for performant and accessible applications</p>
 	</div>
 	<div class='cluster gap-4xl items-start'>
-		<nav class='stack gap-xs'>
-			<h2 class='h4'>Code</h2>
+		<nav class='stack gap-xs' aria-labelledby='footer-nav-code'>
+			<h2 class='h4' id='footer-nav-code'>Code</h2>
 			<ul class='list-none padding-0'>
 				<li>
 					<a href='https://github.com/m-thoren/tarragon-ui' class='link-subtle'>Github</a>
@@ -30,8 +30,8 @@ import { buildUrl } from '@/scripts/constants'
 				</li>
 			</ul>
 		</nav>
-		<nav class='stack gap-xs'>
-			<h2 class='h4'>Docs</h2>
+		<nav class='stack gap-xs' aria-labelledby='footer-nav-docs'>
+			<h2 class='h4' id='footer-nav-docs'>Docs</h2>
 			<ul class='list-none padding-0'>
 				<li><a href={buildUrl('/components')} class='link-subtle'>Search</a></li>
 				<li>
