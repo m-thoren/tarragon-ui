@@ -1,0 +1,31 @@
+@layer tarragon-ui.components {
+	.skeleton {
+		width: 100%;
+		height: calc(var(--line-height-md) * 1rem);
+		border-radius: var(--radius-default);
+
+		background-color: var(--color-muted);
+
+		animation: loading-pulse 3s ease-in infinite;
+	}
+
+	@media (forced-colors: active) {
+		.skeleton {
+			border: var(--size-4xs) solid;
+		}
+	}
+
+	@keyframes loading-pulse {
+		0% {
+			background-color: var(--color-muted);
+		}
+
+		50% {
+			background-color: var(--color-background-raised);
+		}
+
+		100% {
+			background-color: var(--color-muted);
+		}
+	}
+}
