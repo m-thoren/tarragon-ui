@@ -1,9 +1,11 @@
 @layer tarragon-ui.components {
 	.breadcrumb {
+		padding: var(--size-lg) var(--size-3xl);
+
 		ul {
 			display: flex;
 			flex-flow: row wrap;
-			gap: 0;
+			gap: var(--size-sm) 0;
 			align-items: center;
 
 			min-height: min-content;
@@ -16,6 +18,9 @@
 		li {
 			display: flex;
 			align-items: center;
+
+			margin: 0;
+
 			font-size: var(--text-sm);
 			font-weight: var(--font-weight-medium);
 		}

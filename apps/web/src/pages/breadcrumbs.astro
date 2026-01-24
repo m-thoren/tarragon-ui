@@ -1,5 +1,4 @@
 ---
-import { FilePlusIcon, FolderIcon } from '@lucide/astro'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
@@ -7,34 +6,35 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 	<nav aria-label='Breadcrumb' class='breadcrumb'>
 		<ul>
 			<li>
-				<a class='btn ghost' href='#test'>Home</a>
+				<a class='link-subtle' href='#test'>Home</a>
 			</li>
 			<li>
-				<a class='btn ghost' href='#test'>Documents</a>
+				<a class='link-subtle' href='#test'>Documents</a>
 			</li>
 			<li aria-current='page'>Add Document</li>
 		</ul>
 	</nav>
-	<nav aria-label='Breadcrumbs with icons' class='breadcrumb'>
+	<nav aria-label='Breadcrumb long' class='breadcrumb'>
 		<ul>
 			<li>
-				<a class='btn ghost' href='#test'>
-					<FolderIcon aria-hidden />
-					Home
-				</a>
+				<a class='link-subtle' href='#test'>Home</a>
 			</li>
 			<li>
-				<a class='btn ghost' href='#test'>
-					<FolderIcon aria-hidden />
-					Documents
-				</a>
+				<a class='link-subtle' href='#test'>User</a>
 			</li>
-			<li aria-current='page'>
-				<span>
-					<FilePlusIcon aria-hidden />
-					Add Document
-				</span>
+			<li>
+				<a class='link-subtle' href='#test'>Information</a>
 			</li>
+			<li>
+				<a class='link-subtle' href='#test'>Archive</a>
+			</li>
+			<li>
+				<a class='link-subtle' href='#test'>Confidential</a>
+			</li>
+			<li>
+				<a class='link-subtle' href='#test'>Documents</a>
+			</li>
+			<li aria-current='page'>Add Document</li>
 		</ul>
 	</nav>
 </ComponentLayout>
