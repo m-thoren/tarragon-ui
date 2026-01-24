@@ -6,4 +6,8 @@
 	.items-start {
 		align-items: start;
 	}
+
+	.flex-1 {
+		flex: 1 0 0;
+	}
 }

@@ -1,5 +1,6 @@
 ---
 import '@tarragon-ui/styles/dev'
+import Footer from '@/components/Footer.astro'
 import Header from '@/components/Header.astro'
 import { buildUrl } from '@/scripts/constants'
 ---
@@ -13,10 +14,11 @@ import { buildUrl } from '@/scripts/constants'
 		<meta name='generator' content={Astro.generator} />
 		<title>Tarragon-UI</title>
 	</head>
-	<body id='body'>
+	<body id='body' class='stack gap-0'>
 		<a href='#main' class='visually-hidden-focusable'>Skip to main content</a>
 		<Header />
 		<slot />
+		<Footer />
 	</body>
 </html>
 

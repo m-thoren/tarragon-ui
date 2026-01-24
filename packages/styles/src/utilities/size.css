@@ -7,6 +7,10 @@
 		width: 100%;
 	}
 
+	.max-w-7xl {
+		max-width: var(--size-7xl);
+	}
+
 	.overflow-auto {
 		overflow: auto;
 	}

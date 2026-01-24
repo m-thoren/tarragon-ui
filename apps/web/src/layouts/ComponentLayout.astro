@@ -24,7 +24,7 @@ const nextComponent = allPages.at(componentIndex + 1 > allPages.length - 1 ? 0 :
 <title>{component ? component.name : 'Page not found'} | Tarragon-UI</title>
 
 <RootLayout>
-	<div class='grid-desktop'>
+	<div class='grid-desktop flex-1'>
 		<aside class='show-above-desktop padding-3xl o-cell-one-fourth'>
 			<NavigationAccordion currentPage={component} />
 		</aside>

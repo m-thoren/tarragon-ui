@@ -42,4 +42,12 @@
 	.gap-4xl {
 		gap: var(--size-4xl);
 	}
+
+	.gap-5xl {
+		gap: var(--size-5xl);
+	}
+
+	.gap-6xl {
+		gap: var(--size-6xl);
+	}
 }
