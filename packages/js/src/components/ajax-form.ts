@@ -1,4 +1,10 @@
-import { Component, SECOND } from '../constants'
+import {
+	Component,
+	SECOND,
+	hiddenAttribute,
+	tuiAttribute,
+	tuiAttributeSelector,
+} from '../constants'
 import { emitEvent } from '../emitEvent'
 import { fetchClient } from '../fetch'
 import { queryCache } from '../query-cache'
@@ -39,13 +45,15 @@ customElements.define(
 
 			// Define options
 			this.messageSubmitting =
-				this.getAttribute('message-submitting') ?? this.messageSubmitting
-			this.messageSuccess = this.getAttribute('message-success') ?? this.messageSuccess
-			this.messageError = this.getAttribute('message-error') ?? this.messageError
-			this.keepFields = this.hasAttribute('keep-fields')
-			this.queryKeyToInvalidate = this.getAttribute('query-key')
+				this.getAttribute(tuiAttribute('message-submitting')) ?? this.messageSubmitting
+			this.messageSuccess =
+				this.getAttribute(tuiAttribute('message-success')) ?? this.messageSuccess
+			this.messageError =
+				this.getAttribute(tuiAttribute('message-error')) ?? this.messageError
+			this.keepFields = this.hasAttribute(tuiAttribute('keep-fields'))
+			this.queryKeyToInvalidate = this.getAttribute(tuiAttribute('query-key'))
 
-			const actionOnSuccess = this.getAttribute('action-on-success')
+			const actionOnSuccess = this.getAttribute(tuiAttribute('action-on-success'))
 			if (actionOnSuccess === 'remove-form') {
 				this.actionOnSuccess = 'remove-form'
 			} else if (actionOnSuccess === 'remove-message') {
@@ -144,15 +152,15 @@ customElements.define(
 		}
 
 		private disable() {
-			this.setAttribute(this.isSubmittingAttribute, '')
+			this.setAttribute(tuiAttribute(this.isSubmittingAttribute), '')
 		}
 
 		private enable() {
-			this.removeAttribute(this.isSubmittingAttribute)
+			this.removeAttribute(tuiAttribute(this.isSubmittingAttribute))
 		}
 
 		private isDisabled(): boolean {
-			return this.hasAttribute(this.isSubmittingAttribute)
+			return this.hasAttribute(tuiAttribute(this.isSubmittingAttribute))
 		}
 
 		private showStatus(msg: string, status: 'success' | 'error' | 'pending') {
@@ -185,21 +193,25 @@ customElements.define(
 		private showStatusIcon(status: 'success' | 'error' | 'pending') {
 			if (!this.announce) return
 
-			const successIcon = this.announce.querySelector('[data-announce-success-icon]')
-			const errorIcon = this.announce.querySelector('[data-announce-error-icon]')
+			const successIcon = this.announce.querySelector(
+				tuiAttributeSelector('announce-success-icon'),
+			)
+			const errorIcon = this.announce.querySelector(
+				tuiAttributeSelector('announce-error-icon'),
+			)
 
 			switch (status) {
 				case 'success':
-					successIcon?.removeAttribute('hidden')
-					errorIcon?.setAttribute('hidden', '')
+					successIcon?.removeAttribute(hiddenAttribute)
+					errorIcon?.setAttribute(hiddenAttribute, '')
 					break
 				case 'error':
-					successIcon?.setAttribute('hidden', '')
-					errorIcon?.removeAttribute('hidden')
+					successIcon?.setAttribute(hiddenAttribute, '')
+					errorIcon?.removeAttribute(hiddenAttribute)
 					break
 				case 'pending':
-					successIcon?.setAttribute('hidden', '')
-					errorIcon?.setAttribute('hidden', '')
+					successIcon?.setAttribute(hiddenAttribute, '')
+					errorIcon?.setAttribute(hiddenAttribute, '')
 					break
 			}
 		}

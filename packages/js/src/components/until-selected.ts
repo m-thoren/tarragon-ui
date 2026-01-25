@@ -1,4 +1,4 @@
-import { Component, NativeEvent } from '../constants'
+import { Component, NativeEvent, hiddenAttribute, tuiAttribute } from '../constants'
 
 customElements.define(
 	Component.UntilSelected.Name,
@@ -10,7 +10,7 @@ customElements.define(
 		private showWhen: 'checked' | 'not-checked' = 'checked'
 
 		connectedCallback() {
-			this.target = this.getAttribute('target')
+			this.target = this.getAttribute(tuiAttribute('target'))
 			if (!this.target) return
 
 			try {
@@ -25,7 +25,7 @@ customElements.define(
 			}
 			if (!this.targetElement) return
 
-			const focusTarget = this.getAttribute('focus-target')
+			const focusTarget = this.getAttribute(tuiAttribute('focus-target'))
 			if (focusTarget) {
 				try {
 					this.focusTargetElement = document.getElementById(focusTarget)
@@ -34,16 +34,21 @@ customElements.define(
 				}
 			}
 
-			const eventString = this.getAttribute('events')
+			const eventString = this.getAttribute(tuiAttribute('events'))
 			if (eventString) {
 				this.events = eventString.split(',').map((event) => event.trim())
 			}
 
 			this.showWhen =
-				this.getAttribute('show-when') === 'not-checked' ? 'not-checked' : 'checked'
+				this.getAttribute(tuiAttribute('show-when')) === 'not-checked'
+					? 'not-checked'
+					: 'checked'
 
 			const isChecked = this.targetElement.checked
-			this.toggleAttribute('hidden', this.showWhen === 'checked' ? isChecked : !isChecked)
+			this.toggleAttribute(
+				hiddenAttribute,
+				this.showWhen === 'checked' ? isChecked : !isChecked,
+			)
 
 			this.addEvents()
 		}
@@ -98,7 +103,7 @@ customElements.define(
 					? this.targetElement.checked
 					: !this.targetElement.checked
 
-			this.toggleAttribute('hidden', shouldHideElement)
+			this.toggleAttribute(hiddenAttribute, shouldHideElement)
 			if (shouldHideElement && this.focusTargetElement && this.matches(':focus-within')) {
 				this.focusTargetElement.focus()
 			}

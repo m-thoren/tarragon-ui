@@ -35,7 +35,7 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 			Label text
 		</label>
 		<p class='text-muted text-sm'>Or</p>
-		<tui-exclusive-checkbox target-name='exclusive'>
+		<tui-exclusive-checkbox data-tui-target-name='exclusive'>
 			<label for='checkbox-exclusive-4'>
 				<input id='checkbox-exclusive-4' type='checkbox' />
 				None of the above
@@ -46,7 +46,7 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 	<h2>Select all</h2>
 	<fieldset class='choice-group' data-testid='select-all-checkbox'>
 		<legend>Select all</legend>
-		<tui-select-all target-name='select-all' data-state='not-ready'>
+		<tui-select-all data-tui-target-name='select-all' data-tui-state='not-ready'>
 			<label for='checkbox-select-all-1'>
 				<input id='checkbox-select-all-1' type='checkbox' />
 				Select all

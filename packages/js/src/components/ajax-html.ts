@@ -1,5 +1,5 @@
+import { Component, tuiAttribute } from '../constants'
 import { QueryResult, queryCache } from '../query-cache'
-import { Component } from '../constants'
 
 customElements.define(
 	Component.AjaxHtml.Name,
@@ -11,15 +11,15 @@ customElements.define(
 		private staleTime: number | undefined
 
 		connectedCallback() {
-			this.queryKey = this.getAttribute('query-key')
+			this.queryKey = this.getAttribute(tuiAttribute('query-key'))
 			if (!this.queryKey) {
 				console.warn(`${Component.AjaxHtml.Name} requires a "query-key" attribute.`, this)
 				return
 			}
 
-			this.staleTime = this.hasAttribute('stale-time')
+			this.staleTime = this.hasAttribute(tuiAttribute('stale-time'))
 				? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-					parseInt(this.getAttribute('stale-time')!, 10)
+					parseInt(this.getAttribute(tuiAttribute('stale-time'))!, 10)
 				: undefined
 
 			this.unsubscribe = queryCache.subscribe(
@@ -30,7 +30,7 @@ customElements.define(
 				{ staleTime: this.staleTime },
 			)
 
-			const load = this.getAttribute('load-strategy')
+			const load = this.getAttribute(tuiAttribute('load-strategy'))
 			if (load) {
 				switch (load) {
 					case 'server-side':

@@ -1,4 +1,4 @@
-import { Component, NativeEvent, focusableElementsSelector } from '../constants'
+import { Component, NativeEvent, focusableElementsSelector, tuiAttribute } from '../constants'
 
 const SELECTOR_POPOVER = '[popover]'
 
@@ -51,7 +51,7 @@ customElements.define(
 
 		private onPopoverOpen(): void {
 			for (const trigger of this.triggers) {
-				trigger.setAttribute('data-tui-open', '')
+				trigger.setAttribute(tuiAttribute('open'), '')
 			}
 
 			const focusableElements = this.getFocusableElementsForTrap()
@@ -63,7 +63,7 @@ customElements.define(
 
 		private onPopoverClose(): void {
 			for (const trigger of this.triggers) {
-				trigger.removeAttribute('data-tui-open')
+				trigger.removeAttribute(tuiAttribute('open'))
 			}
 			this.popoverElement?.removeEventListener(NativeEvent.KeyDown, this.handlePopoverKeydown)
 		}

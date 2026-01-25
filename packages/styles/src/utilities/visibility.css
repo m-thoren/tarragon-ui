@@ -1,6 +1,6 @@
 @layer tarragon-ui.utilities {
 	[hidden],
-	[data-state='not-ready'] {
+	[data-tui-state='not-ready'] {
 		display: none;
 	}
 

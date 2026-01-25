@@ -4,12 +4,12 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Forms'>
-	<tui-ajax-form query-key='/api/messages' show-spinner>
+	<tui-ajax-form data-tui-query-key='/api/messages'>
 		<tui-validate-form>
-			<template id='validation-message-template'>
+			<template data-tui-validation-message-template>
 				<p class='form-message'>
 					<CircleAlertIcon aria-hidden />
-					<span data-slot='form-message'></span>
+					<span data-tui-slot='form-message'></span>
 				</p>
 			</template>
 			<form method='POST' action='/login'>
@@ -58,7 +58,7 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 							<option value='banana'>Banana</option>
 						</select>
 					</div>
-					<fieldset class='choice-group' data-validate-group>
+					<fieldset class='choice-group' data-tui-validate-group>
 						<legend>Berries</legend>
 						<label for='checkbox-1'>
 							<input id='checkbox-1' type='checkbox' aria-invalid='true' />
@@ -73,7 +73,7 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 							Raspberry
 						</label>
 					</fieldset>
-					<fieldset class='choice-group' data-validate-group>
+					<fieldset class='choice-group' data-tui-validate-group>
 						<legend>Living condition</legend>
 						<label for='radio-1'>
 							<input type='radio' id='radio-1' name='example-radio' checked />

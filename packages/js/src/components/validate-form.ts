@@ -1,7 +1,7 @@
-import { Component, libNamePrefix } from '../constants.js'
+import { Component, libNamePrefix, tuiAttribute, tuiAttributeSelector } from '../constants.js'
 import { emitEvent } from '../emitEvent.js'
 
-const groupValidationAttribute = 'data-validate-group'
+const groupValidationAttribute = 'validate-group'
 
 customElements.define(
 	Component.ValidateForm.Name,
@@ -17,7 +17,9 @@ customElements.define(
 			}
 
 			// Get fields and groups
-			this.groups = Array.from(this.form.querySelectorAll(`[${groupValidationAttribute}]`))
+			this.groups = Array.from(
+				this.form.querySelectorAll(tuiAttributeSelector(groupValidationAttribute)),
+			)
 
 			// Suppress default form validation
 			this.form.setAttribute('novalidate', '')
@@ -29,7 +31,7 @@ customElements.define(
 
 			// Ready
 			emitEvent(Component.ValidateForm.Name, Component.ValidateForm.Event.Validate, this)
-			this.setAttribute('is-ready', '')
+			this.setAttribute(tuiAttribute('is-ready'), '')
 		}
 
 		disconnectedCallback() {
@@ -47,11 +49,11 @@ customElements.define(
 			if (!(event.target instanceof Element)) return
 
 			// Check if the input is part of a group
-			const group = event.target.closest(`[${groupValidationAttribute}]`)
+			const group = event.target.closest(tuiAttributeSelector(groupValidationAttribute))
 			const field = group ?? event.target
 
 			// If a group, set the interacted status
-			group?.setAttribute(groupValidationAttribute, 'interacted')
+			group?.setAttribute(tuiAttribute(groupValidationAttribute), 'interacted')
 
 			// If the field or group is not currently invalid, do nothing
 			if (!group && field.getAttribute('aria-invalid') !== 'true') return
@@ -204,8 +206,8 @@ customElements.define(
 
 			field.setAttribute('aria-invalid', 'true')
 
-			const template = document.querySelector<HTMLTemplateElement>(
-				'#validation-message-template',
+			const template = this.querySelector<HTMLTemplateElement>(
+				tuiAttributeSelector('validation-message-template'),
 			)
 			const hasTemplate = !!template
 			const existingErrorID = field.getAttribute('aria-describedby')
@@ -218,7 +220,7 @@ customElements.define(
 				if (existingErrorEl) {
 					if (hasTemplate) {
 						const formMessageEl = existingErrorEl.querySelector(
-							'[data-slot="form-message"]',
+							tuiAttributeSelector('slot', 'form-message'),
 						)
 						if (formMessageEl) formMessageEl.textContent = errorMsg
 						existingErrorEl.id = newErrorID
@@ -240,7 +242,9 @@ customElements.define(
 				const clonedMessageContent = template.content.cloneNode(true) as DocumentFragment
 				errorEl = clonedMessageContent.firstElementChild as HTMLElement
 				errorEl.id = newErrorID
-				const formMessageEl = errorEl.querySelector('[data-slot="form-message"]')
+				const formMessageEl = errorEl.querySelector(
+					tuiAttributeSelector('slot', 'form-message'),
+				)
 				if (formMessageEl) formMessageEl.textContent = errorMsg
 			} else {
 				errorEl = document.createElement('p')
@@ -265,15 +269,16 @@ customElements.define(
 		 * @return {String} The error message
 		 */
 		private getMessage(field: Element, isGroup = false): string {
-			const validateMessage = field.getAttribute('data-validate-message')
+			const validateMessage = field.getAttribute(tuiAttribute('validate-message'))
 			if (validateMessage) return validateMessage
 
 			if (isGroup) {
 				const checkboxGroupMessage =
-					this.getAttribute('checkbox-group-message') ??
+					this.getAttribute(tuiAttribute('checkbox-group-message')) ??
 					'Please select at least one option.'
 				const radioGroupMessage =
-					this.getAttribute('radio-group-message') ?? 'Please select an option.'
+					this.getAttribute(tuiAttribute('radio-group-message')) ??
+					'Please select an option.'
 
 				const isCheckbox = field.querySelector('[type="checkbox"]')
 				return isCheckbox ? checkboxGroupMessage : radioGroupMessage

@@ -15,7 +15,7 @@ test.describe('Select All', () => {
 
 	test('select-all should initialize', async ({ page }) => {
 		const selectAll = page.getByTestId('select-all-checkbox').locator('tui-select-all')
-		await expect(selectAll).toHaveAttribute('data-state', 'ready')
+		await expect(selectAll).toHaveAttribute('data-tui-state', 'ready')
 	})
 
 	test('select-all toggles all checkboxes', async ({ page }) => {
@@ -153,7 +153,7 @@ test.describe('Select All no-js', () => {
 		const wrapper = page.getByTestId('select-all-checkbox')
 
 		const selectAll = wrapper.locator('tui-select-all')
-		await expect(selectAll).toHaveAttribute('data-state', 'not-ready')
+		await expect(selectAll).toHaveAttribute('data-tui-state', 'not-ready')
 		await expect(selectAll).toBeHidden()
 	})
 })

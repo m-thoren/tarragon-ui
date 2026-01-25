@@ -20,11 +20,11 @@
 			transition: all 0.3s ease-in;
 		}
 
-		&[is-submitting] form {
+		&[data-tui-is-submitting] form {
 			visibility: hidden;
 		}
 
-		&:not([is-submitting]) .loading {
+		&:not([data-tui-is-submitting]) .loading {
 			display: none;
 		}
 

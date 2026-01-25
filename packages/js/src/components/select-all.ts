@@ -1,4 +1,4 @@
-import { Component, NativeEvent } from '../constants'
+import { Component, NativeEvent, tuiAttribute } from '../constants'
 import { emitEvent } from '../emitEvent'
 
 customElements.define(
@@ -9,7 +9,7 @@ customElements.define(
 		private checkboxes: Array<HTMLInputElement> | null = null
 
 		connectedCallback() {
-			this.targetName = this.getAttribute('target-name')
+			this.targetName = this.getAttribute(tuiAttribute('target-name'))
 			this.selectAllCheckbox = this.querySelector('input')
 
 			if (!this.targetName || !this.selectAllCheckbox || !this.parentElement) {
@@ -42,7 +42,7 @@ customElements.define(
 		}
 
 		private ready() {
-			this.setAttribute('data-state', 'ready')
+			this.setAttribute(tuiAttribute('state'), 'ready')
 		}
 
 		private addEvents() {

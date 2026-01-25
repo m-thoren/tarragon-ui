@@ -1,4 +1,4 @@
-import { Component, NativeEvent } from '../constants'
+import { Component, NativeEvent, hiddenAttribute, tuiAttribute } from '../constants'
 import { debounce } from '../debounce'
 
 customElements.define(
@@ -24,14 +24,14 @@ customElements.define(
 			if (!this.inputElement) return
 			if (!this.searchButton) return
 
-			const targetSelector = this.getAttribute('data-target-selector')
+			const targetSelector = this.getAttribute(tuiAttribute('target-selector'))
 			if (targetSelector) {
 				const targetElements = Array.from(
 					document.querySelectorAll<HTMLElement>(targetSelector),
 				)
 				this.targetElements = targetElements.map((element) => ({
 					element,
-					text: element.textContent?.toLocaleLowerCase() ?? '',
+					text: element.textContent.toLocaleLowerCase(),
 				}))
 			}
 			if (this.targetElements.length === 0) return
@@ -56,16 +56,16 @@ customElements.define(
 
 			if (!query) {
 				for (const element of this.targetElements) {
-					element.element.removeAttribute('hidden')
+					element.element.removeAttribute(hiddenAttribute)
 				}
 				return
 			}
 
 			this.targetElements.forEach((element) => {
 				if (element.text.includes(query)) {
-					element.element.removeAttribute('hidden')
+					element.element.removeAttribute(hiddenAttribute)
 				} else {
-					element.element.setAttribute('hidden', '')
+					element.element.setAttribute(hiddenAttribute, '')
 				}
 			})
 		}

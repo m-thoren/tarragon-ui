@@ -2,6 +2,10 @@ export type Result<Error, Value> = [Error, undefined] | [undefined, Value]
 
 export const libNamePrefix = 'tui-'
 export const dataAttributePrefix = `data-${libNamePrefix}`
+export const tuiAttribute = (name: string) => dataAttributePrefix + name
+export const tuiAttributeSelector = (name: string, value?: string) =>
+	`[${tuiAttribute(name)}${value ? `="${value}"` : ''}]`
+export const hiddenAttribute = 'hidden'
 
 export const focusableElementsSelector =
 	'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
