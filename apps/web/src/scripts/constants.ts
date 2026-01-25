@@ -20,44 +20,45 @@ export const sections: Array<Sections> = [
 			{ name: 'Utilities', href: buildUrl('/utilities'), description: '' },
 			{ name: 'Contributing', href: buildUrl('/contributing'), description: '' },
 			{ name: 'Changelog', href: buildUrl('/changelog'), description: '' },
-			{ name: 'Flex', href: buildUrl('/flex'), description: '' },
-			{ name: 'Grid', href: buildUrl('/grid'), description: '' },
-			{ name: 'Prose', href: buildUrl('/prose'), description: '' },
-			{ name: 'Components', href: buildUrl('/components'), description: '' },
 		],
 	},
 	{
-		name: 'Components',
+		name: 'Layout',
+		pages: [
+			{ name: 'Flex', href: buildUrl('/flex'), description: '' },
+			{ name: 'Grid', href: buildUrl('/grid'), description: '' },
+		].toSorted((a, b) => a.name.localeCompare(b.name)),
+	},
+	{
+		name: 'Typography',
 		pages: [
 			{
-				name: 'Avatar',
-				href: buildUrl('/avatar'),
+				name: 'Link',
+				href: buildUrl('/link'),
 				description:
-					'Make an image rounded and give it a 1/1 aspect ratio. Often used for profile images',
+					'An interactive text element that navigates the user to another page or section when clicked. It is fundamental for web navigation and content cross-referencing.',
+			},
+			{ name: 'Prose', href: buildUrl('/prose'), description: '' },
+			{
+				name: 'Typography',
+				href: buildUrl('/typography'),
+				description:
+					'Defines a consistent set of styles for text elements like headings, paragraphs, and lists. It ensures readable and aesthetically pleasing content throughout the UI.',
+			},
+		].toSorted((a, b) => a.name.localeCompare(b.name)),
+	},
+	{
+		name: 'Forms',
+		pages: [
+			{
+				name: 'Ajax Form',
+				href: buildUrl('/ajax-form'),
+				description: '',
 			},
 			{
-				name: 'Accordion',
-				href: buildUrl('/accordion'),
-				description:
-					'A vertically stacked list of items that can be expanded or collapsed to reveal content. Ideal for organizing large amounts of information in a compact space.',
-			},
-			{
-				name: 'Alert',
-				href: buildUrl('/alert'),
-				description:
-					'Provides contextual feedback messages for users, typically used to display success, error, warning, or informational notifications. They can be dismissible or static.',
-			},
-			{
-				name: 'Badge',
-				href: buildUrl('/badge'),
-				description:
-					'Small, non-interactive visual indicators used to highlight an item, denote a count, or categorize status. Often seen in notifications, labels, or tags.',
-			},
-			{
-				name: 'Breadcrumbs',
-				href: buildUrl('/breadcrumbs'),
-				description:
-					'A navigation aid that indicates the user’s current location within a hierarchical structure. It helps users understand where they are and easily navigate back to previous pages.',
+				name: 'Ajax HTML',
+				href: buildUrl('/ajax-html'),
+				description: '',
 			},
 			{
 				name: 'Button',
@@ -72,57 +73,9 @@ export const sections: Array<Sections> = [
 					'A form control that allows users to select one or more options from a set. It represents a binary state of either checked or unchecked.',
 			},
 			{
-				name: 'Cookie Banner',
-				href: buildUrl('/cookie-banner'),
-				description:
-					'Allow users to accept or reject cookies which are not essential to making your service work.',
-			},
-			{
-				name: 'Dialog',
-				href: buildUrl('/dialog'),
-				description:
-					'A modal window that appears on top of the main content to request input or display information, requiring user interaction to dismiss. Commonly used for confirmations or critical alerts.',
-			},
-			{
-				name: 'Drawer',
-				href: buildUrl('/drawer'),
-				description:
-					'A modal window that appears on the left side of the screen. Mainly used for mobile navigation',
-			},
-			{
-				name: 'Dropdown',
-				href: buildUrl('/dropdown'),
-				description:
-					'A contextual menu that appears when a user interacts with a button or other control. It can be used for navigation or to display a list of actions.',
-			},
-			{
-				name: 'Figure',
-				href: buildUrl('/figure'),
-				description: 'Display an image with a caption and source',
-			},
-			{
-				name: 'Forms',
-				href: buildUrl('/forms'),
-				description:
-					'A collection of input elements and controls designed for collecting user data. Provides structure and styling for comprehensive data entry interfaces.',
-			},
-			{
-				name: 'Link',
-				href: buildUrl('/link'),
-				description:
-					'An interactive text element that navigates the user to another page or section when clicked. It is fundamental for web navigation and content cross-referencing.',
-			},
-			{
-				name: 'Pagination',
-				href: buildUrl('/pagination'),
-				description:
-					'Enables navigation through large sets of content by dividing it into separate pages. It provides controls to jump to specific pages or move sequentially.',
-			},
-			{
-				name: 'Progress',
-				href: buildUrl('/progress'),
-				description:
-					'Visual indicators that display the completion status of a task or the passage of time. They can be linear or circular, determinate or indeterminate.',
+				name: 'Exclusive Checkbox',
+				href: buildUrl('/exclusive-checkbox'),
+				description: '',
 			},
 			{
 				name: 'Input',
@@ -149,21 +102,15 @@ export const sections: Array<Sections> = [
 					'A slider control that lets users select a numerical value from a predefined range. Useful for adjustable settings like volume, zoom, or price filters.',
 			},
 			{
+				name: 'Select All',
+				href: buildUrl('/select-all'),
+				description: '',
+			},
+			{
 				name: 'Select',
 				href: buildUrl('/select'),
 				description:
 					'A form control that presents a list of options in a dropdown menu, allowing users to choose one or more items. It saves space compared to a full list of choices.',
-			},
-			{
-				name: 'Steps',
-				href: buildUrl('/steps'),
-				description:
-					'Guides users through a multi-stage process by indicating their current position and overall progress. It helps manage complex workflows or onboarding sequences.',
-			},
-			{
-				name: 'Skeleton',
-				href: buildUrl('/skeleton'),
-				description: 'A placeholder for content that is not loaded yet',
 			},
 			{
 				name: 'Switch',
@@ -172,22 +119,38 @@ export const sections: Array<Sections> = [
 					'A binary toggle control used to switch between two states, such as "on" or "off." It offers a more visually engaging alternative to a simple checkbox.',
 			},
 			{
-				name: 'Table',
-				href: buildUrl('/table'),
-				description:
-					'Organizes and displays data in a structured, tabular format with rows and columns. Ideal for presenting large datasets, comparisons, or summaries.',
-			},
-			{
 				name: 'Textarea',
 				href: buildUrl('/textarea'),
 				description:
 					'A multiline text input control designed for longer user-entered content, such as comments or descriptions. It allows for more extensive user input than a standard input field.',
 			},
 			{
-				name: 'Typography',
-				href: buildUrl('/typography'),
+				name: 'Validate Form',
+				href: buildUrl('/validate-form'),
+				description: '',
+			},
+		].toSorted((a, b) => a.name.localeCompare(b.name)),
+	},
+	{
+		name: 'Overlays',
+		pages: [
+			{
+				name: 'Dialog',
+				href: buildUrl('/dialog'),
 				description:
-					'Defines a consistent set of styles for text elements like headings, paragraphs, and lists. It ensures readable and aesthetically pleasing content throughout the UI.',
+					'A modal window that appears on top of the main content to request input or display information, requiring user interaction to dismiss. Commonly used for confirmations or critical alerts.',
+			},
+			{
+				name: 'Drawer',
+				href: buildUrl('/drawer'),
+				description:
+					'A modal window that appears on the left side of the screen. Mainly used for mobile navigation',
+			},
+			{
+				name: 'Dropdown',
+				href: buildUrl('/dropdown'),
+				description:
+					'A contextual menu that appears when a user interacts with a button or other control. It can be used for navigation or to display a list of actions.',
 			},
 			// {
 			// 	name: 'Tooltip',
@@ -195,6 +158,103 @@ export const sections: Array<Sections> = [
 			// 	description:
 			// 		'A small, interactive popover that provides supplementary information about an element when the user hovers over or focuses on it. It enhances clarity without cluttering the interface.',
 			// },
+		].toSorted((a, b) => a.name.localeCompare(b.name)),
+	},
+	{
+		name: 'Disclosure',
+		pages: [
+			{
+				name: 'Accordion',
+				href: buildUrl('/accordion'),
+				description:
+					'A vertically stacked list of items that can be expanded or collapsed to reveal content. Ideal for organizing large amounts of information in a compact space.',
+			},
+			{
+				name: 'Breadcrumbs',
+				href: buildUrl('/breadcrumbs'),
+				description:
+					'A navigation aid that indicates the user’s current location within a hierarchical structure. It helps users understand where they are and easily navigate back to previous pages.',
+			},
+			{
+				name: 'Cookie Banner',
+				href: buildUrl('/cookie-banner'),
+				description:
+					'Allow users to accept or reject cookies which are not essential to making your service work.',
+			},
+			{
+				name: 'Pagination',
+				href: buildUrl('/pagination'),
+				description:
+					'Enables navigation through large sets of content by dividing it into separate pages. It provides controls to jump to specific pages or move sequentially.',
+			},
+			{
+				name: 'Search Filter',
+				href: buildUrl('/search-filter'),
+				description: '',
+			},
+			{
+				name: 'Steps',
+				href: buildUrl('/steps'),
+				description:
+					'Guides users through a multi-stage process by indicating their current position and overall progress. It helps manage complex workflows or onboarding sequences.',
+			},
+			{
+				name: 'Until Selected',
+				href: buildUrl('/until-selected'),
+				description:
+					'Used to hide and show content controlled by a checkbox, switch or radio.',
+			},
+		].toSorted((a, b) => a.name.localeCompare(b.name)),
+	},
+	{
+		name: 'Feedback',
+		pages: [
+			{
+				name: 'Alert',
+				href: buildUrl('/alert'),
+				description:
+					'Provides contextual feedback messages for users, typically used to display success, error, warning, or informational notifications. They can be dismissible or static.',
+			},
+			{
+				name: 'Progress',
+				href: buildUrl('/progress'),
+				description:
+					'Visual indicators that display the completion status of a task or the passage of time. They can be linear or circular, determinate or indeterminate.',
+			},
+			{
+				name: 'Skeleton',
+				href: buildUrl('/skeleton'),
+				description: 'A placeholder for content that is not loaded yet',
+			},
+		].toSorted((a, b) => a.name.localeCompare(b.name)),
+	},
+	{
+		name: 'Data Display',
+		pages: [
+			{
+				name: 'Avatar',
+				href: buildUrl('/avatar'),
+				description:
+					'Make an image rounded and give it a 1/1 aspect ratio. Often used for profile images',
+			},
+			{
+				name: 'Badge',
+				href: buildUrl('/badge'),
+				description:
+					'Small, non-interactive visual indicators used to highlight an item, denote a count, or categorize status. Often seen in notifications, labels, or tags.',
+			},
+			{
+				name: 'Figure',
+				href: buildUrl('/figure'),
+				description: 'Display an image with a caption and source',
+			},
+
+			{
+				name: 'Table',
+				href: buildUrl('/table'),
+				description:
+					'Organizes and displays data in a structured, tabular format with rows and columns. Ideal for presenting large datasets, comparisons, or summaries.',
+			},
 		].toSorted((a, b) => a.name.localeCompare(b.name)),
 	},
 ]

@@ -1,6 +1,13 @@
 ---
 import { MenuIcon, XIcon } from '@lucide/astro'
-import { sections } from '@/scripts/constants'
+import NavigationAccordion from './NavigationAccordion.astro'
+import type { Page } from '@/scripts/constants'
+
+type Props = {
+	currentPage: Page | undefined
+}
+
+const { currentPage } = Astro.props
 ---
 
 <div data-testid='dialog-navigation'>
@@ -22,21 +29,6 @@ import { sections } from '@/scripts/constants'
 				</button>
 			</form>
 		</div>
-		{
-			sections.map((section) => (
-				<div class='stack'>
-					<h3>{section.name}</h3>
-					<ul class='list-none'>
-						{section.pages.map((page) => (
-							<li>
-								<a href={page.href} class='btn ghost'>
-									{page.name}
-								</a>
-							</li>
-						))}
-					</ul>
-				</div>
-			))
-		}
+		<NavigationAccordion currentPage={currentPage} />
 	</dialog>
 </div>

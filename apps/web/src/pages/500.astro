@@ -3,9 +3,9 @@ import Layout from '@/layouts/Layout.astro'
 import { buildUrl } from '@/scripts/constants'
 ---
 
-<Layout>
-	<h1 class='text-center w-full'>An error occurred</h1>
-	<div class='center'>
+<Layout currentPage={undefined}>
+	<h1>An error occurred</h1>
+	<div>
 		<a href={buildUrl('/')} class='btn'>Go to start page</a>
 	</div>
 </Layout>

@@ -9,7 +9,7 @@ type Props = {
 const { currentPage } = Astro.props
 ---
 
-<div class='accordion-group' data-testid='navigation-accordion'>
+<div class='accordion-group'>
 	{
 		sections.map((section) => (
 			<details open={section.pages.some((page) => page.href === currentPage?.href)}>

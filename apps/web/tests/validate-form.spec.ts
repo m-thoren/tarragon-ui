@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test'
 
 test.describe('Validate form', () => {
 	test.beforeEach(async ({ page }) => {
-		await page.goto(buildUrl('/forms'))
+		await page.goto(buildUrl('/validate-form'))
 	})
 
 	test('should not have any automatically detectable accessibility issues', async ({ page }) => {

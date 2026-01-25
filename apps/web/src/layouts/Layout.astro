@@ -1,9 +1,22 @@
 ---
+import NavigationAccordion from '@/components/NavigationAccordion.astro'
+import type { Page } from '@/scripts/constants'
 import RootLayout from './RootLayout.astro'
+
+type Props = {
+	currentPage: Page | undefined
+}
+
+const { currentPage } = Astro.props
 ---
 
-<RootLayout>
-	<main id='main' class='stack center gap-3xl padding-3xl flex-1'>
-		<slot />
-	</main>
+<RootLayout currentPage={currentPage}>
+	<div class='grid-desktop flex-1'>
+		<aside class='show-above-desktop padding-3xl o-cell-one-fourth'>
+			<NavigationAccordion currentPage={currentPage} />
+		</aside>
+		<main id='main' class='container o-cell-three-fourths'>
+			<slot />
+		</main>
+	</div>
 </RootLayout>

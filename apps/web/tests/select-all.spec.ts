@@ -1,11 +1,15 @@
+import { buildUrl, testPageAccessibility } from './utils'
 import test, { expect } from '@playwright/test'
-import { buildUrl } from './utils'
 
 test.describe('Select All', () => {
 	const selectAllCheckboxId = 'checkbox-select-all-1'
 
 	test.beforeEach(async ({ page }) => {
-		await page.goto(buildUrl('/checkbox'))
+		await page.goto(buildUrl('/select-all'))
+	})
+
+	test('should not have any automatically detectable accessibility issues', async ({ page }) => {
+		await testPageAccessibility(page)
 	})
 
 	test('select-all is visible', async ({ page }) => {

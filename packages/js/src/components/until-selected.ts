@@ -47,7 +47,7 @@ customElements.define(
 			const isChecked = this.targetElement.checked
 			this.toggleAttribute(
 				hiddenAttribute,
-				this.showWhen === 'checked' ? isChecked : !isChecked,
+				this.showWhen === 'checked' ? !isChecked : isChecked,
 			)
 
 			this.addEvents()
@@ -100,8 +100,8 @@ customElements.define(
 
 			const shouldHideElement =
 				this.showWhen === 'checked'
-					? this.targetElement.checked
-					: !this.targetElement.checked
+					? !this.targetElement.checked
+					: this.targetElement.checked
 
 			this.toggleAttribute(hiddenAttribute, shouldHideElement)
 			if (shouldHideElement && this.focusTargetElement && this.matches(':focus-within')) {

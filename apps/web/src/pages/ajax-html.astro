@@ -1,0 +1,29 @@
+---
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+import { buildUrl } from '@/scripts/constants'
+---
+
+<ComponentLayout name='Ajax HTML'>
+	<tui-ajax-form data-tui-query-key='/api/messages'>
+		<form method='POST' action={buildUrl('/api/messages')}>
+			<div class='form-group'>
+				<label for='input-username'>
+					Username
+					<span class='font-medium'>(required)</span>
+				</label>
+				<input type='text' name='username' id='input-username' required />
+			</div>
+			<div class='form-group'>
+				<label for='input-password'>
+					Password
+					<span class='font-medium'>(required)</span>
+				</label>
+				<input type='password' name='password' id='input-password' required minlength='8' />
+			</div>
+			<div class='action-footer'>
+				<button type='submit'>Submit</button>
+			</div>
+		</form>
+	</tui-ajax-form>
+	<tui-ajax-html id='ajax-html-example' data-tui-query-key='/api/messages'></tui-ajax-html>
+</ComponentLayout>

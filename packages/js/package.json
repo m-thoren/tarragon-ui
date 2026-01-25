@@ -1,7 +1,7 @@
 {
 	"name": "@tarragon-ui/js",
 	"type": "module",
-	"version": "0.5.0",
+	"version": "0.5.1",
 	"description": "Lightweight and simple Web Components for Tarragon UI.",
 	"main": "dist/tarragon-ui.js",
 	"module": "dist/tarragon-ui.js",

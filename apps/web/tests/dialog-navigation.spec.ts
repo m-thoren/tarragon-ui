@@ -27,6 +27,8 @@ test.describe('Dialog Navigation', () => {
 		await openButton.click()
 
 		const drawer = dialogNavigation.getByRole('dialog')
+		const accordion = drawer.locator('.accordion-group')
+		await accordion.locator('details').nth(3).click()
 		const link = drawer.getByRole('link', { name: 'Button' })
 		await link.click()
 

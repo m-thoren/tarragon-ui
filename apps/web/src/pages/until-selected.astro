@@ -1,0 +1,20 @@
+---
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+---
+
+<ComponentLayout name='Until Selected'>
+	<label for='switch-80sqlb9'>
+		<input id='switch-80sqlb9' role='switch' type='checkbox' />
+		Label text
+	</label>
+	<tui-until-selected data-tui-target='switch-80sqlb9' data-tui-focus-target='switch-80sqlb9'>
+		Visible when toggled on
+	</tui-until-selected>
+	<tui-until-selected
+		data-tui-target='switch-80sqlb9'
+		data-tui-focus-target='switch-80sqlb9'
+		data-tui-show-when='not-checked'
+	>
+		Visible when toggled off
+	</tui-until-selected>
+</ComponentLayout>

@@ -11,6 +11,11 @@ customElements.define(
 		private staleTime: number | undefined
 
 		connectedCallback() {
+			if (!this.id) {
+				console.warn(`${Component.AjaxHtml.Name} requires a "id" attribute.`, this)
+				return
+			}
+
 			this.queryKey = this.getAttribute(tuiAttribute('query-key'))
 			if (!this.queryKey) {
 				console.warn(`${Component.AjaxHtml.Name} requires a "query-key" attribute.`, this)
