@@ -15,8 +15,9 @@
 	}
 
 	body {
-		-webkit-font-smoothing: antialiased;
 		line-height: 1.5;
+
+		-webkit-font-smoothing: antialiased;
 	}
 
 	img,
@@ -59,8 +60,17 @@
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
+		::view-transition-old(root),
+		::view-transition-new(root) {
+			animation: fade 0.3s ease both;
+		}
+
 		html {
 			interpolate-size: allow-keywords;
+		}
+
+		@view-transition {
+			navigation: auto;
 		}
 	}
 }

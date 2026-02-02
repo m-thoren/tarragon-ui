@@ -8,4 +8,18 @@
 			transform: rotate(360deg);
 		}
 	}
+
+	.animate-fade {
+		animation: fade 0.3 ease both;
+	}
+
+	@keyframes fade {
+		from {
+			opacity: 0;
+		}
+
+		to {
+			opacity: 1;
+		}
+	}
 }

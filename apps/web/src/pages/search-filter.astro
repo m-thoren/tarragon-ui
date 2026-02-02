@@ -28,17 +28,19 @@ import { sections } from '@/scripts/constants'
 		sections.map((section) => (
 			<>
 				<h2>{section.name}</h2>
-				<div class='grid grid-cols-1 grid-tablet-cols-2 grid-desktop-cols-3 gap-3xl'>
+				<ul class='list-unstyled grid grid-cols-1 grid-tablet-cols-2 grid-desktop-cols-3 gap-3xl'>
 					{section.pages.map((page) => (
-						<article class='card navigation-card'>
-							<h2 class='h3'>
-								<a href={page.href} class='navigation-card-link'>
-									{page.name}
-								</a>
-							</h2>
-						</article>
+						<li>
+							<article class='card navigation-card'>
+								<h3>
+									<a href={page.href} class='navigation-card-link'>
+										{page.name}
+									</a>
+								</h3>
+							</article>
+						</li>
 					))}
-				</div>
+				</ul>
 			</>
 		))
 	}

@@ -25,7 +25,7 @@ const nextComponent = allPages.at(componentIndex + 1 > allPages.length - 1 ? 0 :
 <Layout currentPage={component}>
 	<div class='stack'>
 		<div class='split'>
-			<h1>{component?.name ?? name}</h1>
+			<h1 style='view-transition-name: component-title;'>{component?.name ?? name}</h1>
 			{
 				(prevComponent || nextComponent) && (
 					<div class='cluster'>
