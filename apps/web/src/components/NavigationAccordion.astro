@@ -24,7 +24,11 @@ const { currentPage } = Astro.props
 									{page.name}
 								</a>
 							) : (
-								<a href={page.href} class='btn ghost'>
+								<a
+									href={page.href}
+									class='btn ghost'
+									style={`view-transition-name: component-${page.name.toLowerCase()};`}
+								>
 									{page.name}
 								</a>
 							)}
