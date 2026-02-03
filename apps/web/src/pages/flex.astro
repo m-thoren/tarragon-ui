@@ -24,10 +24,10 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 			content where elements should stack one after another.
 		</p>
 		<div class='stack'>
-			<div class='card'>1</div>
-			<div class='card'>2</div>
-			<div class='card'>3</div>
-			<div class='card'>4</div>
+			<div class='card center padding-xs'>1</div>
+			<div class='card center padding-xs'>2</div>
+			<div class='card center padding-xs'>3</div>
+			<div class='card center padding-xs'>4</div>
 		</div>
 
 		<h4>Cluster</h4>
@@ -37,10 +37,14 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 			enough space. This is ideal for lists of items or elements that should sit side-by-side.
 		</p>
 		<div class='cluster'>
-			<div class='card'>1</div>
-			<div class='card'>2</div>
-			<div class='card'>3</div>
-			<div class='card'>4</div>
+			<div class='card center'>Item 1</div>
+			<div class='card center'>Item 2</div>
+			<div class='card center'>Item 3</div>
+			<div class='card center'>Item 4</div>
+			<div class='card center'>Item 5</div>
+			<div class='card center'>Item 6</div>
+			<div class='card center'>Item 7</div>
+			<div class='card center'>Item 8</div>
 		</div>
 
 		<h4>Split</h4>
@@ -51,8 +55,8 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 			elements where you might have a logo on the left and navigation on the right.
 		</p>
 		<div class='split'>
-			<div class='card'>Left Item</div>
-			<div class='card'>Right Item</div>
+			<div class='card center padding-xs'>Left Item</div>
+			<div class='card center padding-xs'>Right Item</div>
 		</div>
 
 		<h4>Center</h4>
@@ -65,7 +69,7 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 			class='center'
 			style='height: 100px; border: var(--size-border-width) solid var(--c-gray-300);'
 		>
-			<div class='card'>Centered</div>
+			<div class='card center padding-xs'>Centered</div>
 		</div>
 
 		<h3>Spacing</h3>
@@ -109,18 +113,18 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 		<h4>Responsive Navigation Bar</h4>
 		<p>A common pattern where navigation items stack on mobile and become a row on desktop.</p>
 		<div class='stack cluster-desktop gap-xs'>
-			<div class='card'>Nav Item 1</div>
-			<div class='card'>Nav Item 2</div>
-			<div class='card'>Nav Item 3</div>
+			<div class='card center padding-xs'>Nav Item 1</div>
+			<div class='card center padding-xs'>Nav Item 2</div>
+			<div class='card center padding-xs'>Nav Item 3</div>
 		</div>
 
 		<h4>Header with Logo and User Info</h4>
 		<p>Using `split` to distribute elements within a header.</p>
 		<div class='split'>
-			<div class='card'>Logo</div>
+			<div class='card center padding-xs'>Logo</div>
 			<div class='cluster gap-xs'>
-				<div class='card'>User Avatar</div>
-				<div class='card'>Settings</div>
+				<div class='card center padding-xs'>User Avatar</div>
+				<div class='card center padding-xs'>Settings</div>
 			</div>
 		</div>
 	</div>

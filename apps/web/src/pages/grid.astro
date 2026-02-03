@@ -45,19 +45,19 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 		</p>
 
 		<div class='grid'>
-			<div class='card o-cell-half'>Half</div>
-			<div class='card o-cell-half'>Half</div>
+			<div class='card center padding-xs o-cell-half'>Half</div>
+			<div class='card center padding-xs o-cell-half'>Half</div>
 		</div>
 		<div class='grid'>
-			<div class='card o-cell-one-third'>One third</div>
-			<div class='card o-cell-two-thirds'>Two thirds</div>
+			<div class='card center padding-xs o-cell-one-third'>One third</div>
+			<div class='card center padding-xs o-cell-two-thirds'>Two thirds</div>
 		</div>
 		<div class='grid'>
-			<div class='card o-cell-one-fourth'>One fourth</div>
-			<div class='card o-cell-three-fourths'>Three fourths</div>
+			<div class='card center padding-xs o-cell-one-fourth overflow-x-auto'>One fourth</div>
+			<div class='card center padding-xs o-cell-three-fourths'>Three fourths</div>
 		</div>
 		<div class='grid'>
-			<div class='card o-cell-full'>Full</div>
+			<div class='card center padding-xs o-cell-full'>Full</div>
 		</div>
 
 		<h3>Auto Grid</h3>
@@ -74,14 +74,14 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 		</p>
 
 		<div class='grid grid-auto'>
-			<div class='card'>1</div>
-			<div class='card'>2</div>
-			<div class='card'>3</div>
-			<div class='card'>4</div>
-			<div class='card'>5</div>
-			<div class='card'>6</div>
-			<div class='card'>7</div>
-			<div class='card'>8</div>
+			<div class='card center padding-xs'>1</div>
+			<div class='card center padding-xs'>2</div>
+			<div class='card center padding-xs'>3</div>
+			<div class='card center padding-xs'>4</div>
+			<div class='card center padding-xs'>5</div>
+			<div class='card center padding-xs'>6</div>
+			<div class='card center padding-xs'>7</div>
+			<div class='card center padding-xs'>8</div>
 		</div>
 
 		<h3>Fixed Column Grids (Mobile-First)</h3>
@@ -97,19 +97,19 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 		</p>
 
 		<div class='grid grid-cols-1'>
-			<div class='card'>1</div>
-			<div class='card'>2</div>
-			<div class='card'>3</div>
-			<div class='card'>4</div>
+			<div class='card center padding-xs'>1</div>
+			<div class='card center padding-xs'>2</div>
+			<div class='card center padding-xs'>3</div>
+			<div class='card center padding-xs'>4</div>
 		</div>
 
 		<h4>Two columns</h4>
 		<p><code>.grid-cols-2</code> Forces the grid to display items in two columns.</p>
 		<div class='grid-tablet grid-cols-2'>
-			<div class='card'>1</div>
-			<div class='card'>2</div>
-			<div class='card'>3</div>
-			<div class='card'>4</div>
+			<div class='card center padding-xs'>1</div>
+			<div class='card center padding-xs'>2</div>
+			<div class='card center padding-xs'>3</div>
+			<div class='card center padding-xs'>4</div>
 		</div>
 
 		<h4>Three columns</h4>
@@ -117,19 +117,19 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 			<code>.grid-cols-3</code> Forces the grid to display items in three columns.
 		</p>
 		<div class='grid-tablet grid-cols-3'>
-			<div class='card'>1</div>
-			<div class='card'>2</div>
-			<div class='card'>3</div>
-			<div class='card'>4</div>
+			<div class='card center padding-xs'>1</div>
+			<div class='card center padding-xs'>2</div>
+			<div class='card center padding-xs'>3</div>
+			<div class='card center padding-xs'>4</div>
 		</div>
 
 		<h4>Four columns</h4>
 		<p><code>.grid-cols-4</code> Forces the grid to display items in four columns.</p>
 		<div class='grid-tablet grid-cols-4'>
-			<div class='card'>1</div>
-			<div class='card'>2</div>
-			<div class='card'>3</div>
-			<div class='card'>4</div>
+			<div class='card center padding-xs'>1</div>
+			<div class='card center padding-xs'>2</div>
+			<div class='card center padding-xs'>3</div>
+			<div class='card center padding-xs'>4</div>
 		</div>
 
 		<h3>Responsive Breakpoints</h3>
@@ -152,22 +152,22 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 			desktop.
 		</p>
 		<div class='grid grid-cols-1 grid-tablet-cols-2 grid-desktop-cols-4'>
-			<div class='card'>Card 1</div>
-			<div class='card'>Card 2</div>
-			<div class='card'>Card 3</div>
-			<div class='card'>Card 4</div>
-			<div class='card'>Card 5</div>
-			<div class='card'>Card 6</div>
+			<div class='card center padding-xs'>Card 1</div>
+			<div class='card center padding-xs'>Card 2</div>
+			<div class='card center padding-xs'>Card 3</div>
+			<div class='card center padding-xs'>Card 4</div>
+			<div class='card center padding-xs'>Card 5</div>
+			<div class='card center padding-xs'>Card 6</div>
 		</div>
 
 		<h4>Sidebar and Main Content</h4>
 		<p>A common layout where a main content area takes more space and a sidebar takes less.</p>
 		<div class='grid'>
 			<div class='o-cell-full o-cell-tablet-two-thirds o-cell-desktop-three-fourths'>
-				<div class='card'>Main Content Area</div>
+				<div class='card center padding-xs'>Main Content Area</div>
 			</div>
 			<div class='o-cell-full o-cell-tablet-one-third o-cell-desktop-one-fourth'>
-				<div class='card'>Sidebar</div>
+				<div class='card center padding-xs'>Sidebar</div>
 			</div>
 		</div>
 
@@ -179,11 +179,11 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 		</p>
 
 		<div class='grid grid-auto'>
-			<div class='card'>Item A</div>
-			<div class='card'>Item B</div>
-			<div class='card'>Item C</div>
-			<div class='card'>Item D</div>
-			<div class='card'>Item E</div>
+			<div class='card center padding-xs'>Item A</div>
+			<div class='card center padding-xs'>Item B</div>
+			<div class='card center padding-xs'>Item C</div>
+			<div class='card center padding-xs'>Item D</div>
+			<div class='card center padding-xs'>Item E</div>
 		</div>
 	</div>
 </ComponentLayout>

@@ -38,7 +38,14 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 				Open drawer
 			</button>
 			<dialog class='drawer' id='drawer-light-dismiss' closedby='any'>
-				<h2>Hello!</h2>
+				<div class='split'>
+					<h2>Hello!</h2>
+					<form method='dialog'>
+						<button class='ghost size-icon'>
+							<XIcon aria-hidden /><span class='visually-hidden'>Close drawer</span>
+						</button>
+					</form>
+				</div>
 				<p class='py-4'>Press outside the drawer to close</p>
 			</dialog>
 		</div>

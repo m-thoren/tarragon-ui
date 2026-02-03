@@ -8,13 +8,17 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 		Label text
 	</label>
 	<tui-until-selected data-tui-target='switch-80sqlb9' data-tui-focus-target='switch-80sqlb9'>
-		Visible when toggled on
+		<div class='cluster'>
+			Visible when toggled <span class='badge'>on</span>
+		</div>
 	</tui-until-selected>
 	<tui-until-selected
 		data-tui-target='switch-80sqlb9'
 		data-tui-focus-target='switch-80sqlb9'
 		data-tui-show-when='not-checked'
 	>
-		Visible when toggled off
+		<div class='cluster'>
+			Visible when toggled <span class='badge accent'>off</span>
+		</div>
 	</tui-until-selected>
 </ComponentLayout>

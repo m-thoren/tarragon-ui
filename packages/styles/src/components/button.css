@@ -32,7 +32,6 @@
 		font-weight: var(--font-weight-medium);
 		color: var(--_color);
 		text-decoration: none;
-		white-space: nowrap;
 
 		background-color: var(--_background-color);
 
