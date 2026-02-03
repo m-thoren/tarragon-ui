@@ -5,7 +5,10 @@ import { sections } from '@/scripts/constants'
 ---
 
 <ComponentLayout name='Search Filter'>
-	<tui-search-filter data-tui-target-selector='.navigation-card'>
+	<tui-search-filter
+		data-tui-target-selector='[data-tui-search-target]'
+		data-tui-collection-selector='[data-tui-section]'
+	>
 		<form action='/search-filter' method='Get' role='search' class='join'>
 			<div>
 				<label class='visually-hidden' for='component-search'>Search for components</label>
@@ -26,11 +29,11 @@ import { sections } from '@/scripts/constants'
 
 	{
 		sections.map((section) => (
-			<>
+			<div class='stack' data-tui-section>
 				<h2>{section.name}</h2>
 				<ul class='list-unstyled grid grid-cols-1 grid-tablet-cols-2 grid-desktop-cols-3 gap-3xl'>
 					{section.pages.map((page) => (
-						<li>
+						<li data-tui-search-target>
 							<article class='card navigation-card'>
 								<h3>
 									<a href={page.href} class='navigation-card-link'>
@@ -41,7 +44,7 @@ import { sections } from '@/scripts/constants'
 						</li>
 					))}
 				</ul>
-			</>
+			</div>
 		))
 	}
 </ComponentLayout>

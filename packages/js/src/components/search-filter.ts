@@ -1,15 +1,17 @@
 import { Component, NativeEvent, hiddenAttribute, tuiAttribute } from '../constants'
 import { debounce } from '../debounce'
 
+type TargetElement = { element: HTMLElement; text: string }
+
 customElements.define(
 	Component.SearchFilter.Name,
 	class extends HTMLElement {
 		// TODO Add an aria-live region to announce number of results found
-		// TODO Display a "no results found" message when appropriate
 		// TODO handle focus management for accessibility
 		private inputElement: HTMLInputElement | null = null
 		private searchButton: HTMLInputElement | null = null
-		private targetElements: Array<{ element: HTMLElement; text: string }> = []
+		private collections: Array<{ element: HTMLElement; targetElements: Array<TargetElement> }> =
+			[]
 		private debouncedFilterTargets: () => void
 
 		constructor() {
@@ -24,17 +26,42 @@ customElements.define(
 			if (!this.inputElement) return
 			if (!this.searchButton) return
 
-			const targetSelector = this.getAttribute(tuiAttribute('target-selector'))
-			if (targetSelector) {
-				const targetElements = Array.from(
-					document.querySelectorAll<HTMLElement>(targetSelector),
+			const collectionSelector = this.getAttribute(tuiAttribute('collection-selector'))
+			if (!collectionSelector) {
+				console.warn(
+					`${Component.SearchFilter.Name} requires a "collection-selector" attribute.`,
+					this,
 				)
-				this.targetElements = targetElements.map((element) => ({
-					element,
-					text: element.textContent.toLocaleLowerCase(),
-				}))
+				return
 			}
-			if (this.targetElements.length === 0) return
+
+			const targetSelector = this.getAttribute(tuiAttribute('target-selector'))
+			if (!targetSelector) {
+				console.warn(
+					`${Component.SearchFilter.Name} requires a "target-selector" attribute.`,
+					this,
+				)
+				return
+			}
+
+			const collections = Array.from(
+				document.querySelectorAll<HTMLElement>(collectionSelector),
+			)
+			if (collections.length === 0) return
+
+			for (const collection of collections) {
+				const targetElements = Array.from(
+					collection.querySelectorAll<HTMLElement>(targetSelector),
+				)
+				this.collections.push({
+					element: collection,
+					targetElements: targetElements.map((element) => ({
+						element,
+						text: element.textContent.toLocaleLowerCase(),
+					})),
+				})
+			}
+			if (this.collections.length === 0) return
 
 			this.inputElement.addEventListener(NativeEvent.Input, this.debouncedFilterTargets)
 			this.searchButton.addEventListener(NativeEvent.Click, this.onSearchClick)
@@ -55,17 +82,32 @@ customElements.define(
 			const query = this.inputElement.value.toLocaleLowerCase()
 
 			if (!query) {
-				for (const element of this.targetElements) {
-					element.element.removeAttribute(hiddenAttribute)
+				for (const collection of this.collections) {
+					collection.element.removeAttribute(hiddenAttribute)
+
+					for (const element of collection.targetElements) {
+						element.element.removeAttribute(hiddenAttribute)
+					}
 				}
 				return
 			}
 
-			this.targetElements.forEach((element) => {
-				if (element.text.includes(query)) {
-					element.element.removeAttribute(hiddenAttribute)
+			this.collections.forEach((collection) => {
+				let hasMatch = false
+
+				for (const element of collection.targetElements) {
+					if (element.text.includes(query)) {
+						element.element.removeAttribute(hiddenAttribute)
+						hasMatch = true
+					} else {
+						element.element.setAttribute(hiddenAttribute, '')
+					}
+				}
+
+				if (hasMatch) {
+					collection.element.removeAttribute(hiddenAttribute)
 				} else {
-					element.element.setAttribute(hiddenAttribute, '')
+					collection.element.setAttribute(hiddenAttribute, '')
 				}
 			})
 		}
