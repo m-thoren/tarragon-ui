@@ -5,7 +5,7 @@ import { buildUrl } from '@/scripts/constants'
 
 <ComponentLayout name='Ajax Form'>
 	<tui-ajax-form data-tui-query-key='/api/messages'>
-		<form method='POST' action={buildUrl('/api/messages')}>
+		<form method='PUT' action={buildUrl('/api/messages')}>
 			<div class='form-group'>
 				<label for='input-username'>
 					Username

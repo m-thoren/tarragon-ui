@@ -73,8 +73,9 @@ export class FetchClient {
 		}
 	}
 
-	public async send(url: string, method: Method, parameters: FetchParameters): FetchResult {
+	public async send(url: string, methodParam: Method, parameters: FetchParameters): FetchResult {
 		try {
+			const method = methodParam.toUpperCase()
 			const queryParameters = this.buildQueryString(parameters.queryParameters)
 			const fullUrl = `${url}${queryParameters}`
 
