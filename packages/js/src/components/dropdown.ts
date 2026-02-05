@@ -47,6 +47,8 @@ customElements.define(
 
 			this.addEventListener(NativeEvent.KeyDown, this.handleKeydown)
 			this.popoverElement.addEventListener(NativeEvent.Toggle, this.handleToggle)
+
+			this.setAttribute(tuiAttribute('state'), 'ready')
 		}
 
 		disconnectedCallback() {
@@ -101,18 +103,18 @@ customElements.define(
 				case ' ':
 				case 'ArrowDown':
 					e.preventDefault()
-					this.openSelect()
+					this.openPopover()
 					this.focusOptionByIndex(0)
 					break
 				case 'ArrowUp':
 					e.preventDefault()
-					this.openSelect()
+					this.openPopover()
 					this.focusOptionByIndex(this.focusableElements.length - 1)
 					break
 				default:
 					if (/^[a-zA-Z0-9]$/.test(e.key)) {
 						e.preventDefault()
-						this.openSelect()
+						this.openPopover()
 						this.handleSearchString(e.key)
 					}
 					break
@@ -127,7 +129,11 @@ customElements.define(
 					this.triggerAction(e)
 					break
 				case 'Tab':
-					this.closeSelect()
+					this.closePopover()
+					if (e.shiftKey) {
+						e.preventDefault()
+						this.trigger?.focus()
+					}
 					break
 				case 'ArrowDown':
 					if (
@@ -164,16 +170,16 @@ customElements.define(
 			}
 		}
 
-		private openSelect = (): void => {
+		private openPopover = (): void => {
 			if (!this.trigger) return
 			if (this.isOpen()) return
 			this.trigger.click()
 		}
 
-		private closeSelect = (): void => {
-			if (!this.trigger) return
+		private closePopover = (): void => {
+			if (!this.popoverElement) return
 			if (!this.isOpen()) return
-			this.trigger.click()
+			this.popoverElement.hidePopover()
 		}
 
 		private triggerAction = (e: Event) => {
