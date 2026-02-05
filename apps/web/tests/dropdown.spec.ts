@@ -40,21 +40,25 @@ test.describe('Dropdown', () => {
 		const trigger = dropdownWrapper.getByRole('button', { name: 'Open Dropdown' })
 		const dropdown = dropdownWrapper.locator('[popover]')
 
+		await expect(async () => {
+			const openAttribute = await dropdown.getAttribute('data-tui-state')
+			expect(openAttribute).toBe('closed')
+		}).toPass()
+
 		await trigger.click()
 		await expect(dropdown).toBeVisible()
 
 		await expect(async () => {
-			const openAttribute = await trigger.getAttribute('data-tui-open')
-			expect(openAttribute).toBe('')
+			const openAttribute = await dropdown.getAttribute('data-tui-state')
+			expect(openAttribute).toBe('open')
 		}).toPass()
 	})
 
-	test('should trap focus', async ({ page }) => {
+	test('should close with tab', async ({ page }) => {
 		const dropdownWrapper = page.locator('tui-dropdown')
 		const trigger = dropdownWrapper.getByRole('button', { name: 'Open Dropdown' })
 		const dropdown = dropdownWrapper.locator('[popover]')
 		const firstDropdownButton = dropdown.locator('button').first()
-		const lastDropdownButton = dropdown.locator('button').last()
 
 		await trigger.focus()
 		await page.keyboard.press('Enter')
@@ -64,9 +68,63 @@ test.describe('Dropdown', () => {
 		await page.keyboard.down('Shift')
 		await page.keyboard.press('Tab')
 		await page.keyboard.up('Shift')
-		await expect(lastDropdownButton).toBeFocused()
+		await expect(dropdown).toBeHidden()
 
-		await page.keyboard.press('Tab')
+		await trigger.focus()
+		await page.keyboard.press('Enter')
+		await expect(dropdown).toBeVisible()
 		await expect(firstDropdownButton).toBeFocused()
+		await page.keyboard.press('Tab')
+		await expect(dropdown).toBeHidden()
+	})
+
+	test('should navigate down with ArrowDown key', async ({ page }) => {
+		const dropdownWrapper = page.locator('tui-dropdown')
+		const trigger = dropdownWrapper.getByRole('button', { name: 'Open Dropdown' })
+		const dropdown = dropdownWrapper.locator('[popover]')
+
+		const option1 = dropdown.locator('a[href], button:not([disabled])').first()
+		const option2 = dropdown.locator('a[href], button:not([disabled])').nth(1)
+		const option3 = dropdown.locator('a[href], button:not([disabled])').nth(2)
+
+		await trigger.focus()
+		await page.keyboard.press('ArrowDown')
+		await expect(dropdown).toBeVisible()
+
+		await expect(option1).toBeFocused()
+
+		await page.keyboard.press('ArrowDown')
+		await expect(option2).toBeFocused()
+
+		await page.keyboard.press('ArrowDown')
+		await expect(option3).toBeFocused()
+
+		await page.keyboard.press('ArrowDown')
+		await expect(option1).toBeFocused()
+	})
+
+	test('should navigate up with ArrowUp key', async ({ page }) => {
+		const dropdownWrapper = page.locator('tui-dropdown')
+		const trigger = dropdownWrapper.getByRole('button', { name: 'Open Dropdown' })
+		const dropdown = dropdownWrapper.locator('[popover]')
+
+		const option1 = dropdown.locator('a[href], button:not([disabled])').first()
+		const option2 = dropdown.locator('a[href], button:not([disabled])').nth(1)
+		const option3 = dropdown.locator('a[href], button:not([disabled])').nth(2)
+
+		await trigger.focus()
+		await page.keyboard.press('ArrowUp')
+		await expect(dropdown).toBeVisible()
+
+		await expect(option3).toBeFocused()
+
+		await page.keyboard.press('ArrowUp')
+		await expect(option2).toBeFocused()
+
+		await page.keyboard.press('ArrowUp')
+		await expect(option1).toBeFocused()
+
+		await page.keyboard.press('ArrowUp')
+		await expect(option3).toBeFocused()
 	})
 })
