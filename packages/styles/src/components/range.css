@@ -7,59 +7,89 @@
 		--radius-track: var(--radius-default);
 		--color-thumb: var(--color-primary);
 		--color-track: var(--color-background-interactive);
+		--_transition: background-color 0.2s, box-shadow 0.2s, border-color 0.2s, color 0.2s;
 
 		width: 100%; /* Specific width is required for Firefox. */
 		border-radius: var(--radius-default);
 		appearance: none; /* Hides the slider so that custom slider can be made */
 		background: transparent; /* Otherwise white in Chrome */
-	}
 
-	input[type='range']:focus-visible {
-		outline: var(--outline-default);
-		outline-offset: var(--outline-offset);
-	}
+		/* Special styling for WebKit/Blink */
+		&::-webkit-slider-thumb {
+			width: var(--size-thumb-size);
+			height: var(--size-thumb-size);
 
-	/* Special styling for WebKit/Blink */
-	input[type='range']::-webkit-slider-thumb {
-		width: var(--size-thumb-size);
-		height: var(--size-thumb-size);
-		margin-top: -5px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
-		border-color: var(--color-thumb);
-		border-radius: var(--radius-thumb);
+			/* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+			margin-top: calc(var(--size-2xs) * -1);
+			border-color: var(--color-thumb);
+			border-radius: var(--radius-thumb);
 
-		appearance: none;
-		background: var(--color-thumb);
-	}
+			appearance: none;
+			background: var(--color-thumb);
 
-	/* All the same stuff for Firefox */
-	input[type='range']::-moz-range-thumb {
-		width: var(--size-thumb-size);
-		height: var(--size-thumb-size);
-		border-color: var(--color-thumb);
-		border-radius: var(--radius-thumb);
+			transition: var(--_transition);
+		}
 
-		background: var(--color-thumb);
-	}
+		/* All the same stuff for Firefox */
+		&::-moz-range-thumb {
+			width: var(--size-thumb-size);
+			height: var(--size-thumb-size);
+			border-color: var(--color-thumb);
+			border-radius: var(--radius-thumb);
 
-	input[type='range']::-webkit-slider-runnable-track {
-		width: 100%;
-		height: var(--size-track-height);
-		border: var(--color-track-border);
-		border-radius: var(--radius-track);
+			background: var(--color-thumb);
 
-		background: var(--color-track);
-	}
+			transition: var(--_transition);
+		}
 
-	input[type='range']:focus::-webkit-slider-runnable-track {
-		background: var(--color-track);
-	}
+		&::-webkit-slider-runnable-track {
+			width: 100%;
+			height: var(--size-track-height);
+			border: var(--color-track-border);
+			border-radius: var(--radius-track);
 
-	input[type='range']::-moz-range-track {
-		width: 100%;
-		height: var(--size-track-height);
-		border: var(--color-track-border);
-		border-radius: var(--radius-track);
+			background: var(--color-track);
 
-		background: var(--color-track);
+			transition: var(--_transition);
+		}
+
+		&::-moz-range-track {
+			width: 100%;
+			height: var(--size-track-height);
+			border: var(--color-track-border);
+			border-radius: var(--radius-track);
+
+			background: var(--color-track);
+
+			transition: var(--_transition);
+		}
+
+		&:hover,
+		&:focus-visible {
+			&::-webkit-slider-runnable-track {
+				box-shadow: var(--shadow-default);
+			}
+
+			&::-moz-range-track {
+				box-shadow: var(--shadow-default);
+			}
+
+			&::-webkit-slider-thumb {
+				background: var(--color-primary-hover);
+			}
+
+			&::-moz-range-thumb {
+				background: var(--color-primary-hover);
+			}
+		}
+
+		&:focus-visible {
+			outline: var(--outline-default);
+			outline-offset: var(--outline-offset);
+		}
+
+		&:focus::-webkit-slider-runnable-track {
+			background: var(--color-track);
+		}
 	}
 }
