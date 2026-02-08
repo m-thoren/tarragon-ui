@@ -1,0 +1,66 @@
+name: Publish @tarragon-ui/styles
+
+on:
+    push:
+        tags:
+            - 'styles-v*'
+    workflow_dispatch:
+
+permissions:
+    id-token: write
+    contents: write
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v3
+              with:
+                  version: 10
+                  run_install: false
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '24'
+                  registry-url: 'https://registry.npmjs.org'
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Test @tarragon-ui/styles
+              run: pnpm --filter @tarragon-ui/styles test
+
+            - name: Build @tarragon-ui/styles
+              run: pnpm --filter @tarragon-ui/styles build
+
+            - name: Get package version from tag
+              id: get_version_from_tag
+              run: |
+                  TAG_NAME="${{ github.ref_name }}"
+                  PACKAGE_VERSION="${TAG_NAME#styles-v}"
+                  echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
+                  NPM_PACKAGE_VERSION=$(node -p "require('./packages/styles/package.json').version")
+                  if [ "$NPM_PACKAGE_VERSION" != "$PACKAGE_VERSION" ]; then
+                    echo "Error: Package version in packages/styles/package.json ($NPM_PACKAGE_VERSION) does not match tag version ($PACKAGE_VERSION)."
+                    exit 1
+                  fi
+
+            - name: Publish to npm with Trusted Publishing
+              run: |
+                  cd packages/styles
+                  npm publish --access public --tag latest
+
+            - name: Create GitHub Release
+              uses: softprops/action-gh-release@v2
+              with:
+                  tag_name: ${{ github.ref_name }}
+                  name: '@tarragon-ui/styles ${{ github.ref_name }}'
+                  body: Release of @tarragon-ui/styles version ${{ steps.get_version_from_tag.outputs.PACKAGE_VERSION }}
+                  files: packages/styles/dist/tarragon-ui.css
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
