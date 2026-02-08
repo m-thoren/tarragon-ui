@@ -1,5 +1,5 @@
 ---
-import { type Page, buildUrl } from '@/scripts/constants'
+import { type Page, buildUrl, siteTitle } from '@/scripts/constants'
 import BrandIcon from '../assets/brand-icon.svg'
 import DialogNavigation from './DialogNavigation.astro'
 import { SearchIcon } from '@lucide/astro'
@@ -15,7 +15,7 @@ const { currentPage } = Astro.props
 <header>
 	<a href={buildUrl('/')} class='btn ghost' aria-label='Home'>
 		<BrandIcon aria-hidden />
-		<span class='visually-hidden-below-tablet'>Tarragon-UI</span>
+		<span class='visually-hidden-below-tablet'>{siteTitle}</span>
 	</a>
 	<div class='cluster'>
 		<a href={buildUrl('/search-filter')} class='btn ghost size-icon-below-tablet'>

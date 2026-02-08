@@ -12,6 +12,6 @@ test.describe('Start Page', () => {
 
 	test('link should navigate to the correct page', async ({ page }) => {
 		await page.getByRole('link', { name: 'Get started' }).click()
-		await expect(page).toHaveURL(/\/introduction/)
+		await expect(page).toHaveURL(/\/installation/)
 	})
 })

@@ -1,12 +1,12 @@
 ---
+import { buildUrl, siteTitle } from '@/scripts/constants'
 import RootLayout from '@/layouts/RootLayout.astro'
-import { buildUrl } from '@/scripts/constants'
 ---
 
 <RootLayout currentPage={undefined}>
 	<main id='main' class='stack center gap-3xl padding-3xl flex-1'>
-		<h1 class='text-center w-full'>Tarragon-UI</h1>
+		<h1 class='text-center w-full'>{siteTitle}</h1>
 		<p>Lightweight CSS and WebComponents for performant and accessible applications</p>
-		<a href={buildUrl('/introduction')} class='btn'>Get started</a>
+		<a href={buildUrl('/installation')} class='btn'>Get started</a>
 	</main>
 </RootLayout>

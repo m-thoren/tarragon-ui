@@ -3,7 +3,7 @@ import { buildUrl } from './utils'
 
 test.describe('Navigation Accordion', () => {
 	test.beforeEach(async ({ page }) => {
-		await page.goto(buildUrl('/introduction'))
+		await page.goto(buildUrl('/installation'))
 	})
 
 	test('should show current section as expanded', async ({ page }) => {

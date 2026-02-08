@@ -1,0 +1,12 @@
+---
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+import { buildUrl } from '@/scripts/constants'
+---
+
+<ComponentLayout name='Padding'>
+	<p>
+		Combine the <code>.padding-{`{size}`}</code> class with the <a href={buildUrl('/size')}>
+			size values
+		</a>
+	</p>
+</ComponentLayout>

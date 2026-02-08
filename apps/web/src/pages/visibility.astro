@@ -1,0 +1,45 @@
+---
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+---
+
+<ComponentLayout name='Visibility'>
+	<div class='prose'>
+		<h2>The [hidden] attribute</h2>
+		<pre><code>&lt;div hidden
+  This element is hidden on all screen sizes.
+&lt;/div&gt;</code></pre>
+
+		<h2>Hide above</h2>
+		<pre><code>&lt;div class="hide-above-tablet"&gt;
+  This element is hidden on tablet and larger screens.
+&lt;/div&gt;
+&lt;div class="hide-above-desktop"&gt;
+  This element is hidden on desktop and larger screens.
+&lt;/div&gt;</code></pre>
+
+		<h2>Show Above</h2>
+		<pre><code>&lt;div class="show-above-tablet"&gt;
+  This element is shown on tablet and larger screens.
+&lt;/div&gt;
+&lt;div class="show-above-desktop"&gt;
+  This element is shown on desktop and larger screens.
+&lt;/div&gt;</code></pre>
+
+		<h2>Visually Hidden</h2>
+		<p>
+			Use the <code>visually-hidden</code> class to hide an element visually but keep it accessible
+			to screen readers.
+		</p>
+		<pre><code>&lt;div class="visually-hidden"&gt;
+  This element is hidden visually but accessible to screen readers.
+&lt;/div&gt;</code></pre>
+
+		<h2>Visually Hidden Below</h2>
+		<pre><code>&lt;div class="visually-hidden-below-tablet"&gt;
+  This element is hidden visually but accessible to screen readers. Above tablet size, it is visible.
+&lt;/div&gt;
+&lt;div class="visually-hidden-below-desktop"&gt;
+  This element is hidden visually but accessible to screen readers. Above desktop size, it is visible.
+&lt;/div&gt;</code></pre>
+	</div>
+</ComponentLayout>

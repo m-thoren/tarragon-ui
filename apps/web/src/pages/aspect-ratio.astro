@@ -1,0 +1,25 @@
+---
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+
+const ratios = ['1x1', '3x2', '4x3', '16x9', '21x9']
+---
+
+<ComponentLayout name='Aspect Ratio'>
+	<div class='prose'>
+		<p>
+			Use the <code>.aspect-ratio-{`{ratio}`}</code> classes to set the aspect ratio of an element.
+		</p>
+
+		{
+			ratios.map((ratio) => (
+				<>
+					<h2>{ratio}</h2>
+					<div
+						class={`aspect-ratio-${ratio}`}
+						style='width: var(--size-5xl); background-color: var(--color-primary); border-radius: var(--radius-default);'
+					/>
+				</>
+			))
+		}
+	</div>
+</ComponentLayout>

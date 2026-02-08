@@ -1,0 +1,49 @@
+---
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+import { buildUrl } from '@/scripts/constants'
+
+const sizes = [
+	{ name: '4xs', value: '0.0625rem' },
+	{ name: '3xs', value: '0.125rem' },
+	{ name: '2xs', value: '0.25rem' },
+	{ name: 'xs', value: '0.5rem' },
+	{ name: 'sm', value: '0.75rem' },
+	{ name: 'md', value: '1rem' },
+	{ name: 'lg', value: '1.25rem' },
+	{ name: 'xl', value: '1.5rem' },
+	{ name: '2xl', value: '1.75rem' },
+	{ name: '3xl', value: '2rem' },
+	{ name: '4xl', value: '4rem' },
+	{ name: '5xl', value: '8rem' },
+	{ name: '6xl', value: '16rem' },
+	{ name: '7xl', value: '32rem' },
+	{ name: '8xl', value: '64rem' },
+] as const
+---
+
+<ComponentLayout name='Size'>
+	<div class='prose'>
+		<p>
+			Use with <a href={buildUrl('/gap')}>gap</a>, <a href={buildUrl('/padding')}>padding</a>,
+			and <a href={buildUrl('/margin')}>margin</a> utilities.
+		</p>
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Value</th>
+			</tr>
+		</thead>
+		<tbody>
+			{
+				sizes.map((size) => (
+					<tr>
+						<td>{size.name}</td>
+						<td>{size.value}</td>
+					</tr>
+				))
+			}
+		</tbody>
+	</table>
+</ComponentLayout>

@@ -1,6 +1,6 @@
 ---
 import '@tarragon-ui/styles/dev'
-import { type Page, buildUrl } from '@/scripts/constants'
+import { type Page, buildUrl, siteTitle } from '@/scripts/constants'
 import Footer from '@/components/Footer.astro'
 import Header from '@/components/Header.astro'
 
@@ -18,7 +18,7 @@ const { currentPage } = Astro.props
 		<meta name='viewport' content='width=device-width' />
 		<link rel='icon' type='image/svg+xml' href={buildUrl('/favicon.svg')} />
 		<meta name='generator' content={Astro.generator} />
-		<title>Tarragon-UI</title>
+		<title>{siteTitle}</title>
 	</head>
 	<body id='body' class='stack gap-0'>
 		<a href='#main' class='visually-hidden-focusable'>Skip to main content</a>
