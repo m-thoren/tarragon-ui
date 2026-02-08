@@ -1,12 +1,17 @@
 {
 	"name": "@tarragon-ui/styles",
 	"type": "module",
-	"version": "0.7.0",
+	"version": "0.7.1",
 	"description": "Simple and opinionated CSS styles for Tarragon UI.",
 	"style": "dist/tarragon-ui.css",
 	"files": [
 		"dist"
 	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/m-thoren/tarragon-ui.git",
+		"directory": "packages/styles"
+	},
 	"scripts": {
 		"build": "mkdir -p dist/fonts && cp -R src/fonts/*.woff2 dist/fonts && postcss src/tarragon-ui.css -o dist/tarragon-ui.css",
 		"clean": "rm -rf dist",

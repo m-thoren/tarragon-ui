@@ -1,13 +1,18 @@
 {
 	"name": "@tarragon-ui/js",
 	"type": "module",
-	"version": "0.7.0",
+	"version": "0.7.1",
 	"description": "Lightweight and simple Web Components for Tarragon UI.",
 	"main": "dist/tarragon-ui.js",
 	"module": "dist/tarragon-ui.js",
 	"files": [
 		"dist"
 	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/m-thoren/tarragon-ui.git",
+		"directory": "packages/js"
+	},
 	"scripts": {
 		"build": "vite build",
 		"clean": "rm -rf dist",
