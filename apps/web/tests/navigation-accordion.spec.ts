@@ -16,7 +16,7 @@ test.describe('Navigation Accordion', () => {
 	test('should show current page as active', async ({ page }) => {
 		const accordion = page.locator('aside .accordion-group')
 
-		await expect(accordion.getByRole('link', { name: 'Introduction' })).toHaveAttribute(
+		await expect(accordion.getByRole('link', { name: 'Installation' })).toHaveAttribute(
 			'aria-current',
 			'page',
 		)
@@ -26,7 +26,7 @@ test.describe('Navigation Accordion', () => {
 		const accordion = page.locator('aside .accordion-group')
 
 		await expect(accordion.locator('details').first()).toHaveAttribute('open', '')
-		await expect(accordion.getByRole('link', { name: 'Introduction' })).toHaveAttribute(
+		await expect(accordion.getByRole('link', { name: 'Installation' })).toHaveAttribute(
 			'aria-current',
 			'page',
 		)
@@ -34,7 +34,7 @@ test.describe('Navigation Accordion', () => {
 		await page.goto(buildUrl('/button'))
 
 		await expect(accordion.locator('details').first()).not.toHaveAttribute('open', '')
-		await expect(accordion.getByRole('link', { name: 'Introduction' })).toBeHidden()
+		await expect(accordion.getByRole('link', { name: 'Installation' })).toBeHidden()
 		await expect(accordion.locator('details').nth(3)).toHaveAttribute('open', '')
 		await expect(accordion.getByRole('link', { name: 'Button' })).toHaveAttribute(
 			'aria-current',
