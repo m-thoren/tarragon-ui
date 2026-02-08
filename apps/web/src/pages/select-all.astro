@@ -3,25 +3,27 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Select All'>
-	<fieldset class='choice-group' data-testid='select-all-checkbox'>
-		<legend>Select all</legend>
-		<tui-select-all data-tui-target-name='select-all' data-tui-state='not-ready'>
-			<label for='checkbox-select-all-1'>
-				<input id='checkbox-select-all-1' type='checkbox' />
-				Select all
+	<div>
+		<fieldset class='choice-group' data-testid='select-all-checkbox'>
+			<legend>Select all</legend>
+			<tui-select-all data-tui-target-name='select-all' data-tui-state='not-ready'>
+				<label for='checkbox-select-all-1'>
+					<input id='checkbox-select-all-1' type='checkbox' />
+					Select all
+				</label>
+			</tui-select-all>
+			<label for='checkbox-select-all-2'>
+				<input id='checkbox-select-all-2' type='checkbox' name='select-all' />
+				Label text
 			</label>
-		</tui-select-all>
-		<label for='checkbox-select-all-2'>
-			<input id='checkbox-select-all-2' type='checkbox' name='select-all' />
-			Label text
-		</label>
-		<label for='checkbox-select-all-3'>
-			<input id='checkbox-select-all-3' type='checkbox' name='select-all' />
-			Label text
-		</label>
-		<label for='checkbox-select-all-4'>
-			<input id='checkbox-select-all-4' type='checkbox' name='select-all' />
-			Label text
-		</label>
-	</fieldset>
+			<label for='checkbox-select-all-3'>
+				<input id='checkbox-select-all-3' type='checkbox' name='select-all' />
+				Label text
+			</label>
+			<label for='checkbox-select-all-4'>
+				<input id='checkbox-select-all-4' type='checkbox' name='select-all' />
+				Label text
+			</label>
+		</fieldset>
+	</div>
 </ComponentLayout>

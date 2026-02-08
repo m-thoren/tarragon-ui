@@ -4,21 +4,18 @@ import { siteTitle } from '@/scripts/constants'
 ---
 
 <ComponentLayout name='View Transitions'>
-	<div class='prose'>
-		<p>
-			{siteTitle} ships with built-in support for View Transitions that respect the user's animation
-			preferences. Automatic transitions are enabled between navigations
-		</p>
+	<p>
+		{siteTitle} ships with built-in support for View Transitions that respect the user's animation
+		preferences. Automatic transitions are enabled between navigations
+	</p>
 
-		<h2>Add transitions on elements</h2>
-		<p>
-			Use the <code>view-transition-name</code> CSS property to add transitions to specific elements.
-			The value needs to be unique within the page and on the next page needs to have a matching
-			value. For example:
-		</p>
-		<pre><code>&lt;div style="view-transition-name: my-element;"&gt;
+	<h2>Add transitions on elements</h2>
+	<p>
+		Use the <code>view-transition-name</code> CSS property to add transitions to specific elements.
+		The value needs to be unique within the page and on the next page needs to have a matching value.
+		For example:
+	</p>
+	<pre><code>&lt;div style="view-transition-name: my-element;"&gt;
   This element will transition between pages, when a matching view-transition-name is found.
-&lt;/div&gt;
-		</code></pre>
-	</div>
+&lt;/div&gt;</code></pre>
 </ComponentLayout>

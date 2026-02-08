@@ -3,34 +3,37 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Radio'>
-	<fieldset class='choice-group'>
-		<legend>Standard</legend>
-		<label for='radio-xaa9dv8'>
-			<input
-				type='radio'
-				id='radio-xaa9dv8'
-				name='example-radio'
-				aria-describedby='radio-description'
-			/>
-			Label text
-		</label>
-		<label for='radio-xaa9dv9'>
-			<input
-				type='radio'
-				id='radio-xaa9dv9'
-				name='example-radio'
-				aria-describedby='radio-description'
-			/>
-			Label text
-		</label>
-		<label for='radio-xaa9dv1'>
-			<input
-				type='radio'
-				id='radio-xaa9dv1'
-				name='example-radio'
-				aria-describedby='radio-description'
-			/>
-			Label text
-		</label>
-	</fieldset>
+	<div>
+		<fieldset class='choice-group'>
+			<legend>Label</legend>
+			<label for='radio-xaa9dv8'>
+				<input
+					checked
+					type='radio'
+					id='radio-xaa9dv8'
+					name='example-radio'
+					aria-describedby='radio-description'
+				/>
+				Label text
+			</label>
+			<label for='radio-xaa9dv9'>
+				<input
+					type='radio'
+					id='radio-xaa9dv9'
+					name='example-radio'
+					aria-describedby='radio-description'
+				/>
+				Label text
+			</label>
+			<label for='radio-xaa9dv1'>
+				<input
+					type='radio'
+					id='radio-xaa9dv1'
+					name='example-radio'
+					aria-describedby='radio-description'
+				/>
+				Label text
+			</label>
+		</fieldset>
+	</div>
 </ComponentLayout>

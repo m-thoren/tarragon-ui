@@ -23,7 +23,7 @@ const nextComponent = allPages.at(componentIndex + 1 > allPages.length - 1 ? 0 :
 <title>{component ? component.name : 'Page not found'} | {siteTitle}</title>
 
 <Layout currentPage={component}>
-	<div class='stack'>
+	<div class='prose'>
 		<div class='split'>
 			<h1
 				style={`view-transition-name: component-${component?.name.toLowerCase() ?? 'none'};`}
@@ -56,6 +56,6 @@ const nextComponent = allPages.at(componentIndex + 1 > allPages.length - 1 ? 0 :
 			}
 		</div>
 		{component?.description && <p class='text-muted'>{component.description}</p>}
+		<slot />
 	</div>
-	<slot />
 </Layout>

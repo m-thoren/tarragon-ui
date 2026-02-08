@@ -4,40 +4,38 @@ import { siteTitle } from '@/scripts/constants'
 ---
 
 <ComponentLayout name='Installation'>
-	<div class='prose'>
-		<h2>Install using a package manager:</h2>
-		<pre><code>npm install @tarragon-ui/js @tarragon-ui/css
+	<h2>Install using a package manager:</h2>
+	<pre><code>npm install @tarragon-ui/js @tarragon-ui/css
 # or
 yarn add @tarragon-ui/js @tarragon-ui/css
 # or
 pnpm add @tarragon-ui/js @tarragon-ui/css</code></pre>
 
-		<h3>Importing CSS and Javascript</h3>
-		<p>After installing the packages, import them in your project:</p>
-		<pre><code>@import '@tarragon-ui/css'
+	<h3>Importing CSS and Javascript</h3>
+	<p>After installing the packages, import them in your project:</p>
+	<pre><code>@import '@tarragon-ui/css'
 @import '@tarragon-ui/js'</code></pre>
 
-		<h2>Without a package manager</h2>
-		<p>
-			You can also download the CSS and JavaScript files directly from github and include them
-			in your project.
-		</p>
+	<h2>Without a package manager</h2>
+	<p>
+		You can also download the CSS and JavaScript files directly from github and include them in
+		your project.
+	</p>
 
-		<h2>Using only CSS or JavaScript</h2>
-		<p>
-			{siteTitle} is built to be used with both CSS and JavaScript packages, but you can also use
-			only one of them. So if you only want to use CSS, you can skip importing the JavaScript package.
-			Similarly, if you only want to use JavaScript, you can skip importing the CSS package.
-		</p>
+	<h2>Using only CSS or JavaScript</h2>
+	<p>
+		{siteTitle} is built to be used with both CSS and JavaScript packages, but you can also use only
+		one of them. So if you only want to use CSS, you can skip importing the JavaScript package. Similarly,
+		if you only want to use JavaScript, you can skip importing the CSS package.
+	</p>
 
-		<p>
-			If you decide to only use the JavaScript package, make sure the following styles are in
-			yor css:
-		</p>
+	<p>
+		If you decide to only use the JavaScript package, make sure the following styles are in yor
+		css:
+	</p>
 
-		<pre><code>{`[hidden],
+	<pre><code>{`[hidden],
 [data-tui-state='not-ready'] {
 	display: none;
 }`}</code></pre>
-	</div>
 </ComponentLayout>

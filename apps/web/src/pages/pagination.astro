@@ -4,93 +4,82 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Pagination'>
-	<div class='stack'>
-		<h2>Three pages or less</h2>
-		<nav aria-label='Pagination Navigation'>
-			<ul class='list-unstyled cluster gap-xs'>
-				<li>
-					<a
-						href='#test'
-						class='btn outline size-icon-below-tablet'
-						aria-label='Previous Page'
-					>
-						<ChevronLeftIcon aria-hidden />
-						<span class='visually-hidden-below-tablet'>Previous</span>
-					</a>
-				</li>
-				<li class='show-above-tablet'>
-					<a href='#test' class='btn outline' aria-label='Page 1'>1</a>
-				</li>
-				<li>
-					<a
-						href='#test'
-						class='btn primary'
-						aria-current='page'
-						aria-label='Current page, Page 2 of 4'
-					>
-						2
-					</a>
-				</li>
-				<li class='show-above-tablet'>
-					<a href='#test' class='btn outline' aria-label='Page 4'>3</a>
-				</li>
-				<li>
-					<a
-						href='#test'
-						class='btn outline size-icon-below-tablet'
-						aria-label='Next Page'
-					>
-						<span class='visually-hidden-below-tablet'>Next</span>
-						<ChevronRightIcon aria-hidden />
-					</a>
-				</li>
-			</ul>
-		</nav>
-	</div>
-	<div class='stack'>
-		<h2>More than three pages</h2>
-		<nav class='pagination'>
-			<ul class='list-unstyled cluster gap-xs'>
-				<li>
-					<a
-						href='#test'
-						class='btn outline size-icon-below-tablet'
-						aria-label='Previous Page'
-					>
-						<ChevronLeftIcon aria-hidden />
-						<span class='visually-hidden-below-tablet'>Previous</span>
-					</a>
-				</li>
-				<li class='show-above-tablet'>
-					<a href='#test' class='btn outline' aria-label='Page 1'>1</a>
-				</li>
-				<li>
-					<a
-						href='#test'
-						class='btn primary'
-						aria-current='page'
-						aria-label='Current page, Page 2 of 100'
-					>
-						2
-					</a>
-				</li>
-				<li class='show-above-tablet' aria-hidden='true'>
-					<span class='btn outline is-disabled'>...</span>
-				</li>
-				<li class='show-above-tablet'>
-					<a href='#test' class='btn outline' aria-label='Page 99'>99</a>
-				</li>
-				<li>
-					<a
-						href='#test'
-						class='btn outline size-icon-below-tablet'
-						aria-label='Next Page'
-					>
-						<span class='visually-hidden-below-tablet'>Next</span>
-						<ChevronRightIcon aria-hidden />
-					</a>
-				</li>
-			</ul>
-		</nav>
-	</div>
+	<h2>Three pages or less</h2>
+	<nav aria-label='Pagination Navigation'>
+		<ul class='list-unstyled cluster gap-xs'>
+			<li>
+				<a
+					href='#test'
+					class='btn outline size-icon-below-tablet'
+					aria-label='Previous Page'
+				>
+					<ChevronLeftIcon aria-hidden />
+					<span class='visually-hidden-below-tablet'>Previous</span>
+				</a>
+			</li>
+			<li class='show-above-tablet'>
+				<a href='#test' class='btn outline' aria-label='Page 1'>1</a>
+			</li>
+			<li>
+				<a
+					href='#test'
+					class='btn primary'
+					aria-current='page'
+					aria-label='Current page, Page 2 of 4'
+				>
+					2
+				</a>
+			</li>
+			<li class='show-above-tablet'>
+				<a href='#test' class='btn outline' aria-label='Page 4'>3</a>
+			</li>
+			<li>
+				<a href='#test' class='btn outline size-icon-below-tablet' aria-label='Next Page'>
+					<span class='visually-hidden-below-tablet'>Next</span>
+					<ChevronRightIcon aria-hidden />
+				</a>
+			</li>
+		</ul>
+	</nav>
+
+	<h2>More than three pages</h2>
+	<nav class='pagination'>
+		<ul class='list-unstyled cluster gap-xs'>
+			<li>
+				<a
+					href='#test'
+					class='btn outline size-icon-below-tablet'
+					aria-label='Previous Page'
+				>
+					<ChevronLeftIcon aria-hidden />
+					<span class='visually-hidden-below-tablet'>Previous</span>
+				</a>
+			</li>
+			<li class='show-above-tablet'>
+				<a href='#test' class='btn outline' aria-label='Page 1'>1</a>
+			</li>
+			<li>
+				<a
+					href='#test'
+					class='btn primary'
+					aria-current='page'
+					aria-label='Current page, Page 2 of 100'
+				>
+					2
+				</a>
+			</li>
+			<li class='show-above-tablet' aria-hidden='true'>
+				<span class='btn outline is-disabled'>...</span>
+			</li>
+			<li class='show-above-tablet'>
+				<a href='#test' class='btn outline' aria-label='Page 99'>99</a>
+			</li>
+			<li>
+				<a href='#test' class='btn outline size-icon-below-tablet' aria-label='Next Page'>
+					<span class='visually-hidden-below-tablet'>Next</span>
+					<ChevronRightIcon aria-hidden />
+				</a>
+			</li>
+		</ul>
+	</nav>
 </ComponentLayout>

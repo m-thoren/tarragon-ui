@@ -1,11 +1,16 @@
 ---
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
+
+const progressValues = [0, 10, 25, 40, 70, 100]
 ---
 
 <ComponentLayout name='Progress'>
-	<progress value='0' max='100'></progress>
-	<progress value='10' max='100'></progress>
-	<progress value='40' max='100'></progress>
-	<progress value='70' max='100'></progress>
-	<progress value='100' max='100'></progress>
+	{
+		progressValues.map((value) => (
+			<div class='stack gap-2xs'>
+				<p id={`progress-${value}`}>Progress {value}%</p>
+				<progress value={value} max='100' aria-describedby={`progress-${value}`} />
+			</div>
+		))
+	}
 </ComponentLayout>

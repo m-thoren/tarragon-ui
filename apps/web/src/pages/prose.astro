@@ -3,29 +3,26 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Prose'>
-	<div class='prose'>
-		<h2>Prose Documentation</h2>
-		<p>
-			The <code>.prose</code> class is a utility wrapper designed to provide consistent and readable
-			typography styles for long-form text content, such as articles, blog posts, documentation
-			pages, or any content primarily composed of standard HTML text elements. It ensures a clear
-			visual hierarchy and optimal vertical rhythm for improved readability without requiring specific
-			classes on every individual element.
-		</p>
-		<p>
-			It is particularly useful for content generated from a rich text editor (WYSIWYG) or
-			markdown, where direct control over individual element classes might be limited.
-		</p>
+	<h2>Prose Documentation</h2>
+	<p>
+		The <code>.prose</code> class is a utility wrapper designed to provide consistent and readable
+		typography styles for long-form text content, such as articles, blog posts, documentation pages,
+		or any content primarily composed of standard HTML text elements. It ensures a clear visual hierarchy
+		and optimal vertical rhythm for improved readability without requiring specific classes on every
+		individual element.
+	</p>
+	<p>
+		It is particularly useful for content generated from a rich text editor (WYSIWYG) or
+		markdown, where direct control over individual element classes might be limited.
+	</p>
 
-		<h3>Usage</h3>
-		<p>
-			To apply the prose styles, simply wrap your text-heavy content in a <code>
-				&lt;div&gt;
-			</code>
-			or other block-level element with the <code>.prose</code> class.
-		</p>
+	<h3>Usage</h3>
+	<p>
+		To apply the prose styles, simply wrap your text-heavy content in a <code>&lt;div&gt;</code>
+		or other block-level element with the <code>.prose</code> class.
+	</p>
 
-		<pre><code>&lt;div class="prose"&gt;
+	<pre><code>&lt;div class="prose"&gt;
   &lt;h1&gt;Your Page Title&lt;/h1&gt;
   &lt;p&gt;This is a paragraph of content.&lt;/p&gt;
   &lt;h2&gt;A Section Heading&lt;/h2&gt;
@@ -36,15 +33,15 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
   &lt;/ul&gt;
 &lt;/div&gt;</code></pre>
 
-		<h3>Styling Applied</h3>
-		<p>
-			The <code>.prose</code> class primarily manages vertical spacing (<code>
-				margin-block-start
-			</code>) between block-level elements within its scope, respecting a consistent rhythm
-			and creating appropriate separation for headings. It uses the following logic:
-		</p>
+	<h3>Styling Applied</h3>
+	<p>
+		The <code>.prose</code> class primarily manages vertical spacing (<code>
+			margin-block-start
+		</code>) between block-level elements within its scope, respecting a consistent rhythm and
+		creating appropriate separation for headings. It uses the following logic:
+	</p>
 
-		<pre><code is:raw>.prose {
+	<pre><code is:raw>.prose {
   &gt; :not(:first-child) {
     margin-block-start: 1em; /* Base vertical spacing between elements */
 
@@ -54,78 +51,77 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
   }
 }</code></pre>
 
-		<h4>Key Features:</h4>
-		<ul>
-			<li>
-				<strong>Smart Vertical Rhythm:</strong> Automatically applies a base
-				<code>1em</code> top margin to all child elements except the very first one, preventing
-				unnecessary space at the top of the prose block.
-			</li>
-			<li>
-				<strong>Heading Hierarchy:</strong> Headings (<code>h1</code>-<code>h6</code>, and
-				their corresponding <code>.h1</code>-<code>.h6</code> classes) receive an increased
-				<code>1.5em</code> top margin, providing greater visual separation and emphasizing the
-				start of new sections.
-			</li>
-			<li>
-				<strong>Em-based Spacing:</strong> Spacing is defined in <code>em</code> units, meaning
-				it scales relative to the <code>font-size</code> of the parent element, ensuring consistent
-				proportions even if font sizes change within the content.
-			</li>
-			<li>
-				<strong>Flexibility:</strong> Works seamlessly with any standard HTML block-level elements,
-				including paragraphs, lists, blockquotes, images, and other custom components that are
-				direct children of the <code>.prose</code> container.
-			</li>
-		</ul>
+	<h4>Key Features:</h4>
+	<ul>
+		<li>
+			<strong>Smart Vertical Rhythm:</strong> Automatically applies a base
+			<code>1em</code> top margin to all child elements except the very first one, preventing unnecessary
+			space at the top of the prose block.
+		</li>
+		<li>
+			<strong>Heading Hierarchy:</strong> Headings (<code>h1</code>-<code>h6</code>, and their
+			corresponding <code>.h1</code>-<code>.h6</code> classes) receive an increased
+			<code>1.5em</code> top margin, providing greater visual separation and emphasizing the start
+			of new sections.
+		</li>
+		<li>
+			<strong>Em-based Spacing:</strong> Spacing is defined in <code>em</code> units, meaning it
+			scales relative to the <code>font-size</code> of the parent element, ensuring consistent
+			proportions even if font sizes change within the content.
+		</li>
+		<li>
+			<strong>Flexibility:</strong> Works seamlessly with any standard HTML block-level elements,
+			including paragraphs, lists, blockquotes, images, and other custom components that are direct
+			children of the <code>.prose</code> container.
+		</li>
+	</ul>
 
-		<h3>Example of Applied Styling</h3>
-		<div class='prose padding-md' style='border: 1px dashed var(--color-border);'>
-			<h1>A Top-Level Heading</h1>
-			<p>
-				This is the first paragraph. Notice it does not have a top margin pushing it away
-				from the container's top edge. This text simulates rich content, ensuring that it's
-				fully responsive and accessible across various devices.
-			</p>
-			<h2>A Secondary Heading</h2>
-			<p>
-				Following the secondary heading, this paragraph begins. It has a
-				<code>1em</code> margin above it, and the heading itself has a <code>1.5em</code>
-				margin above it, creating a clear break from the previous content.
-			</p>
-			<h3>A Tertiary Heading</h3>
-			<ul>
-				<li>List item one.</li>
-				<li>List item two.</li>
-				<li>List item three.</li>
-			</ul>
-			<p>Another paragraph, demonstrating consistent spacing below a list.</p>
-			<h4>A Fourth-Level Heading</h4>
-			<p>
-				Even for smaller headings, the increased `margin-block-start` helps visually
-				separate sections.
-			</p>
-		</div>
-
-		<h3>Best Practices</h3>
+	<h3>Example of Applied Styling</h3>
+	<div class='prose padding-md' style='border: 1px dashed var(--color-border);'>
+		<h1>A Top-Level Heading</h1>
+		<p>
+			This is the first paragraph. Notice it does not have a top margin pushing it away from
+			the container's top edge. This text simulates rich content, ensuring that it's fully
+			responsive and accessible across various devices.
+		</p>
+		<h2>A Secondary Heading</h2>
+		<p>
+			Following the secondary heading, this paragraph begins. It has a
+			<code>1em</code> margin above it, and the heading itself has a <code>1.5em</code>
+			margin above it, creating a clear break from the previous content.
+		</p>
+		<h3>A Tertiary Heading</h3>
 		<ul>
-			<li>
-				<strong>Use as a Wrapper:</strong> Always apply <code>.prose</code> as a wrapper around
-				a block of content, not directly to individual elements within the content.
-			</li>
-			<li>
-				<strong>Avoid Overlapping Styles:</strong> Be mindful of other global CSS rules or utility
-				classes that might unintentionally override the spacing provided by
-				<code>.prose</code> for its direct children.
-			</li>
-			<li>
-				<strong>Semantic HTML:</strong> The effectiveness of <code>.prose</code> relies on using
-				semantic HTML elements (<code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code>-<code>
-					&lt;h6&gt;
-				</code>,
-				<code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;blockquote&gt;</code>,
-				etc.) for your content structure.
-			</li>
+			<li>List item one.</li>
+			<li>List item two.</li>
+			<li>List item three.</li>
 		</ul>
+		<p>Another paragraph, demonstrating consistent spacing below a list.</p>
+		<h4>A Fourth-Level Heading</h4>
+		<p>
+			Even for smaller headings, the increased `margin-block-start` helps visually separate
+			sections.
+		</p>
 	</div>
+
+	<h3>Best Practices</h3>
+	<ul>
+		<li>
+			<strong>Use as a Wrapper:</strong> Always apply <code>.prose</code> as a wrapper around a
+			block of content, not directly to individual elements within the content.
+		</li>
+		<li>
+			<strong>Avoid Overlapping Styles:</strong> Be mindful of other global CSS rules or utility
+			classes that might unintentionally override the spacing provided by
+			<code>.prose</code> for its direct children.
+		</li>
+		<li>
+			<strong>Semantic HTML:</strong> The effectiveness of <code>.prose</code> relies on using
+			semantic HTML elements (<code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code>-<code>
+				&lt;h6&gt;
+			</code>,
+			<code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;blockquote&gt;</code>, etc.)
+			for your content structure.
+		</li>
+	</ul>
 </ComponentLayout>

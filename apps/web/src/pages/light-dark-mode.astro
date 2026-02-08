@@ -4,26 +4,24 @@ import { siteTitle } from '@/scripts/constants'
 ---
 
 <ComponentLayout name='Light and Dark Mode'>
-	<div class='prose'>
-		<p>
-			{siteTitle} uses dark mode as default, but users can switch to light mode using the
-			<code>.light</code> class
-		</p>
+	<p>
+		{siteTitle} uses dark mode as default, but users can switch to light mode using the
+		<code>.light</code> class
+	</p>
 
-		<p>
-			There is not a built-in theme toggle, but you can implement one yourself using
-			JavaScript.
-		</p>
+	<p>
+		There is not a built-in theme toggle, but you can implement one yourself using JavaScript.
+	</p>
 
-		<label for='switch-theme-toggle'>
-			<input id='switch-theme-toggle' role='switch' type='checkbox' />
-			Show an example implementation
-		</label>
-		<tui-until-selected
-			data-tui-target='switch-theme-toggle'
-			data-tui-focus-target='switch-theme-toggle'
-		>
-			<pre><code>
+	<label for='switch-theme-toggle'>
+		<input id='switch-theme-toggle' role='switch' type='checkbox' />
+		Show an example implementation
+	</label>
+	<tui-until-selected
+		data-tui-target='switch-theme-toggle'
+		data-tui-focus-target='switch-theme-toggle'
+	>
+		<pre><code>
 {`<button id='themeToggle' class='ghost size-icon'>
 	<span data-theme='dark'>
 		<MoonIcon aria-hidden />
@@ -81,24 +79,21 @@ import { siteTitle } from '@/scripts/constants'
 	document.getElementById('themeToggle')?.addEventListener('click', handleToggleClick)
 </script>`}
 			</code></pre>
-		</tui-until-selected>
+	</tui-until-selected>
 
-		<p>
-			You want to make sure that the script runs before the user sees the page to prevent a
-			flash of unstyled content (FOUC) where the page briefly appears in the wrong theme
-			before switching to the correct one. To achieve this, you can place the script in the <code
-			>
-				&lt;head&gt;
-			</code> of your HTML document or use a small inline script that runs immediately.
-		</p>
+	<p>
+		You want to make sure that the script runs before the user sees the page to prevent a flash
+		of unstyled content (FOUC) where the page briefly appears in the wrong theme before
+		switching to the correct one. To achieve this, you can place the script in the <code>
+			&lt;head&gt;
+		</code> of your HTML document or use a small inline script that runs immediately.
+	</p>
 
-		<h2>Why not include a theme switch?</h2>
-		<p>
-			Theme toggles can vary greatly in design and functionality depending on many different
-			factors, such as frameworks, libraries, and specific project requirements. By not
-			including a built-in theme switch, we allow developers the flexibility to implement
-			their own custom solution that best fits their application's needs and design
-			preferences.
-		</p>
-	</div>
+	<h2>Why not include a theme switch?</h2>
+	<p>
+		Theme toggles can vary greatly in design and functionality depending on many different
+		factors, such as frameworks, libraries, and specific project requirements. By not including
+		a built-in theme switch, we allow developers the flexibility to implement their own custom
+		solution that best fits their application's needs and design preferences.
+	</p>
 </ComponentLayout>

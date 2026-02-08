@@ -4,54 +4,50 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Drawer'>
-	<div class='prose'>
-		<h2>Standard drawer</h2>
-		<div data-testid='default-drawer'>
-			<button type='button' commandfor='drawer-default' command='show-modal'>
-				Open drawer
-			</button>
-			<dialog class='drawer' id='drawer-default'>
-				<div class='split'>
-					<h2>Hello!</h2>
-					<form method='dialog'>
-						<button class='ghost size-icon'>
-							<XIcon aria-hidden /><span class='visually-hidden'>Close drawer</span>
-						</button>
-					</form>
-				</div>
-				<p class='py-4'>Press ESC key or click the button below to close</p>
-				<div class='action-footer'>
-					<form method='dialog'>
-						<button class='outline'>Close</button>
-					</form>
-				</div>
-			</dialog>
-		</div>
-		<h2>Press outside the dialog to close it</h2>
-		<div data-testid='light-dismiss-drawer'>
-			<button
-				type='button'
-				class='outline'
-				commandfor='drawer-light-dismiss'
-				command='show-modal'
-			>
-				Open drawer
-			</button>
-			<dialog class='drawer' id='drawer-light-dismiss' closedby='any'>
-				<div class='split'>
-					<h2>Hello!</h2>
-					<form method='dialog'>
-						<button class='ghost size-icon'>
-							<XIcon aria-hidden /><span class='visually-hidden'>Close drawer</span>
-						</button>
-					</form>
-				</div>
-				<p class='py-4'>Press outside the drawer to close</p>
-			</dialog>
-		</div>
-		<div class='alert warning'>
-			<TriangleAlertIcon aria-hidden />
-			<h3 class='alert-title'>Might not be supported in all browsers</h3>
-		</div>
+	<h2>Standard drawer</h2>
+	<div data-testid='default-drawer'>
+		<button type='button' commandfor='drawer-default' command='show-modal'>Open drawer</button>
+		<dialog class='drawer' id='drawer-default'>
+			<div class='split'>
+				<h2>Hello!</h2>
+				<form method='dialog'>
+					<button class='ghost size-icon'>
+						<XIcon aria-hidden /><span class='visually-hidden'>Close drawer</span>
+					</button>
+				</form>
+			</div>
+			<p class='py-4'>Press ESC key or click the button below to close</p>
+			<div class='action-footer'>
+				<form method='dialog'>
+					<button class='outline'>Close</button>
+				</form>
+			</div>
+		</dialog>
+	</div>
+	<h2>Press outside the dialog to close it</h2>
+	<div data-testid='light-dismiss-drawer'>
+		<button
+			type='button'
+			class='outline'
+			commandfor='drawer-light-dismiss'
+			command='show-modal'
+		>
+			Open drawer
+		</button>
+		<dialog class='drawer' id='drawer-light-dismiss' closedby='any'>
+			<div class='split'>
+				<h2>Hello!</h2>
+				<form method='dialog'>
+					<button class='ghost size-icon'>
+						<XIcon aria-hidden /><span class='visually-hidden'>Close drawer</span>
+					</button>
+				</form>
+			</div>
+			<p class='py-4'>Press outside the drawer to close</p>
+		</dialog>
+	</div>
+	<div class='alert warning'>
+		<TriangleAlertIcon aria-hidden />
+		<h3 class='alert-title'>Might not be supported in all browsers</h3>
 	</div>
 </ComponentLayout>

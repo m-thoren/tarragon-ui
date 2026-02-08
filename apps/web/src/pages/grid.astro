@@ -3,187 +3,181 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Grid'>
-	<div class='prose'>
-		<h2>Grid System Documentation</h2>
-		<p>
-			This utility-first grid system provides a flexible way to create responsive layouts
-			using CSS Grid. It offers a 12-column foundation for precise control, along with
-			auto-fitting and fixed-column options for various layout needs.
-		</p>
+	<h2>Grid System Documentation</h2>
+	<p>
+		This utility-first grid system provides a flexible way to create responsive layouts using
+		CSS Grid. It offers a 12-column foundation for precise control, along with auto-fitting and
+		fixed-column options for various layout needs.
+	</p>
 
-		<h3>Core Grid Classes</h3>
-		<pre><code>.grid</code></pre>
-		<p>
-			The fundamental class to initiate a CSS Grid container. By default, on smaller screens
-			(mobile-first), it behaves as a column-stacked layout (`flex-direction: column`) and
-			sets up a 12-column grid system for its children.
-		</p>
+	<h3>Core Grid Classes</h3>
+	<pre><code>.grid</code></pre>
+	<p>
+		The fundamental class to initiate a CSS Grid container. By default, on smaller screens
+		(mobile-first), it behaves as a column-stacked layout (`flex-direction: column`) and sets up
+		a 12-column grid system for its children.
+	</p>
 
-		<h3>Spacing</h3>
-		<pre><code>.gap-[size]</code></pre>
-		<p>Applies consistent spacing (gap) between grid items.</p>
+	<h3>Spacing</h3>
+	<pre><code>.gap-[size]</code></pre>
+	<p>Applies consistent spacing (gap) between grid items.</p>
 
-		<h3>Standard 12-Column Layout</h3>
-		<p>
-			The <code>.grid</code> class establishes a 12-column track. You can control the width of
-			individual grid items using the following span utility classes. These classes are mobile-first,
-			meaning they apply to all screen sizes by default, and can be overridden at larger breakpoints.
-		</p>
+	<h3>Standard 12-Column Layout</h3>
+	<p>
+		The <code>.grid</code> class establishes a 12-column track. You can control the width of individual
+		grid items using the following span utility classes. These classes are mobile-first, meaning
+		they apply to all screen sizes by default, and can be overridden at larger breakpoints.
+	</p>
 
-		<p><code>.o-cell-full</code> Makes an item span all 12 columns.</p>
+	<p><code>.o-cell-full</code> Makes an item span all 12 columns.</p>
 
-		<p><code>.o-cell-half</code> Makes an item span 6 columns (half width).</p>
+	<p><code>.o-cell-half</code> Makes an item span 6 columns (half width).</p>
 
-		<p><code>.o-cell-one-third</code> Makes an item span 4 columns (one-third width).</p>
+	<p><code>.o-cell-one-third</code> Makes an item span 4 columns (one-third width).</p>
 
-		<p><code>.o-cell-two-thirds</code> Makes an item span 8 columns (two-thirds width).</p>
+	<p><code>.o-cell-two-thirds</code> Makes an item span 8 columns (two-thirds width).</p>
 
-		<p><code>.o-cell-one-fourth</code> Makes an item span 3 columns (one-fourth width).</p>
+	<p><code>.o-cell-one-fourth</code> Makes an item span 3 columns (one-fourth width).</p>
 
-		<p>
-			<code>.o-cell-three-fourths</code> Makes an item span 9 columns (three-fourths width).
-		</p>
+	<p>
+		<code>.o-cell-three-fourths</code> Makes an item span 9 columns (three-fourths width).
+	</p>
 
-		<div class='grid'>
-			<div class='card center padding-xs o-cell-half'>Half</div>
-			<div class='card center padding-xs o-cell-half'>Half</div>
+	<div class='grid'>
+		<div class='card center padding-xs o-cell-half'>Half</div>
+		<div class='card center padding-xs o-cell-half'>Half</div>
+	</div>
+	<div class='grid'>
+		<div class='card center padding-xs o-cell-one-third'>One third</div>
+		<div class='card center padding-xs o-cell-two-thirds'>Two thirds</div>
+	</div>
+	<div class='grid'>
+		<div class='card center padding-xs o-cell-one-fourth overflow-x-auto'>One fourth</div>
+		<div class='card center padding-xs o-cell-three-fourths'>Three fourths</div>
+	</div>
+	<div class='grid'>
+		<div class='card center padding-xs o-cell-full'>Full</div>
+	</div>
+
+	<h3>Auto Grid</h3>
+
+	<p>
+		The auto grid is useful for layouts where you want items to automatically fit and fill
+		available space, wrapping to the next line as needed.
+	</p>
+
+	<p>
+		<code>.grid-auto</code> Creates an auto-fitting grid. Items will automatically adjust their width
+		and wrap based on the <code>--size-width</code> variable, ensuring a responsive layout without
+		needing explicit column spans.
+	</p>
+
+	<div class='grid grid-auto'>
+		<div class='card center padding-xs'>1</div>
+		<div class='card center padding-xs'>2</div>
+		<div class='card center padding-xs'>3</div>
+		<div class='card center padding-xs'>4</div>
+		<div class='card center padding-xs'>5</div>
+		<div class='card center padding-xs'>6</div>
+		<div class='card center padding-xs'>7</div>
+		<div class='card center padding-xs'>8</div>
+	</div>
+
+	<h3>Fixed Column Grids (Mobile-First)</h3>
+
+	<p>
+		For situations where you need a fixed number of columns regardless of the content, these
+		classes provide direct control.
+	</p>
+
+	<h4>Single column</h4>
+	<p>
+		<code>.grid-cols-1</code> Forces the grid to display items in a single column.
+	</p>
+
+	<div class='grid grid-cols-1'>
+		<div class='card center padding-xs'>1</div>
+		<div class='card center padding-xs'>2</div>
+		<div class='card center padding-xs'>3</div>
+		<div class='card center padding-xs'>4</div>
+	</div>
+
+	<h4>Two columns</h4>
+	<p><code>.grid-cols-2</code> Forces the grid to display items in two columns.</p>
+	<div class='grid-tablet grid-cols-2'>
+		<div class='card center padding-xs'>1</div>
+		<div class='card center padding-xs'>2</div>
+		<div class='card center padding-xs'>3</div>
+		<div class='card center padding-xs'>4</div>
+	</div>
+
+	<h4>Three columns</h4>
+	<p>
+		<code>.grid-cols-3</code> Forces the grid to display items in three columns.
+	</p>
+	<div class='grid-tablet grid-cols-3'>
+		<div class='card center padding-xs'>1</div>
+		<div class='card center padding-xs'>2</div>
+		<div class='card center padding-xs'>3</div>
+		<div class='card center padding-xs'>4</div>
+	</div>
+
+	<h4>Four columns</h4>
+	<p><code>.grid-cols-4</code> Forces the grid to display items in four columns.</p>
+	<div class='grid-tablet grid-cols-4'>
+		<div class='card center padding-xs'>1</div>
+		<div class='card center padding-xs'>2</div>
+		<div class='card center padding-xs'>3</div>
+		<div class='card center padding-xs'>4</div>
+	</div>
+
+	<h3>Responsive Breakpoints</h3>
+	<p>
+		These breakpoints allow you to change grid behavior and column spans based on screen size.
+	</p>
+
+	<p><code>.grid-tablet-</code> Use grid on tablets and larger</p>
+	<p><code>.grid-desktop-</code> Use grid on desktop and larger</p>
+	<p><code>.o-cell-tablet-</code> Use width on tablets and larger</p>
+	<p><code>.o-cell-desktop-</code> Use width on desktop and larger</p>
+
+	<h3>Example Usage</h3>
+	<p>Here are a few common scenarios and how to implement them with this grid system:</p>
+
+	<h4>Responsive Card Layout</h4>
+	<p>
+		Display cards in a single column on mobile, two columns on tablet, and four columns on
+		desktop.
+	</p>
+	<div class='grid grid-cols-1 grid-tablet-cols-2 grid-desktop-cols-4'>
+		<div class='card center padding-xs'>Card 1</div>
+		<div class='card center padding-xs'>Card 2</div>
+		<div class='card center padding-xs'>Card 3</div>
+		<div class='card center padding-xs'>Card 4</div>
+		<div class='card center padding-xs'>Card 5</div>
+		<div class='card center padding-xs'>Card 6</div>
+	</div>
+
+	<h4>Sidebar and Main Content</h4>
+	<p>A common layout where a main content area takes more space and a sidebar takes less.</p>
+	<div class='grid'>
+		<div class='o-cell-full o-cell-tablet-two-thirds o-cell-desktop-three-fourths'>
+			<div class='card center padding-xs'>Main Content Area</div>
 		</div>
-		<div class='grid'>
-			<div class='card center padding-xs o-cell-one-third'>One third</div>
-			<div class='card center padding-xs o-cell-two-thirds'>Two thirds</div>
+		<div class='o-cell-full o-cell-tablet-one-third o-cell-desktop-one-fourth'>
+			<div class='card center padding-xs'>Sidebar</div>
 		</div>
-		<div class='grid'>
-			<div class='card center padding-xs o-cell-one-fourth overflow-x-auto'>One fourth</div>
-			<div class='card center padding-xs o-cell-three-fourths'>Three fourths</div>
-		</div>
-		<div class='grid'>
-			<div class='card center padding-xs o-cell-full'>Full</div>
-		</div>
+	</div>
 
-		<h3>Auto Grid</h3>
+	<h4>Auto-filling Components</h4>
 
-		<p>
-			The auto grid is useful for layouts where you want items to automatically fit and fill
-			available space, wrapping to the next line as needed.
-		</p>
+	<p>Components that should fill available space and wrap without explicit column definitions.</p>
 
-		<p>
-			<code>.grid-auto</code> Creates an auto-fitting grid. Items will automatically adjust their
-			width and wrap based on the <code>--size-width</code> variable, ensuring a responsive layout
-			without needing explicit column spans.
-		</p>
-
-		<div class='grid grid-auto'>
-			<div class='card center padding-xs'>1</div>
-			<div class='card center padding-xs'>2</div>
-			<div class='card center padding-xs'>3</div>
-			<div class='card center padding-xs'>4</div>
-			<div class='card center padding-xs'>5</div>
-			<div class='card center padding-xs'>6</div>
-			<div class='card center padding-xs'>7</div>
-			<div class='card center padding-xs'>8</div>
-		</div>
-
-		<h3>Fixed Column Grids (Mobile-First)</h3>
-
-		<p>
-			For situations where you need a fixed number of columns regardless of the content, these
-			classes provide direct control.
-		</p>
-
-		<h4>Single column</h4>
-		<p>
-			<code>.grid-cols-1</code> Forces the grid to display items in a single column.
-		</p>
-
-		<div class='grid grid-cols-1'>
-			<div class='card center padding-xs'>1</div>
-			<div class='card center padding-xs'>2</div>
-			<div class='card center padding-xs'>3</div>
-			<div class='card center padding-xs'>4</div>
-		</div>
-
-		<h4>Two columns</h4>
-		<p><code>.grid-cols-2</code> Forces the grid to display items in two columns.</p>
-		<div class='grid-tablet grid-cols-2'>
-			<div class='card center padding-xs'>1</div>
-			<div class='card center padding-xs'>2</div>
-			<div class='card center padding-xs'>3</div>
-			<div class='card center padding-xs'>4</div>
-		</div>
-
-		<h4>Three columns</h4>
-		<p>
-			<code>.grid-cols-3</code> Forces the grid to display items in three columns.
-		</p>
-		<div class='grid-tablet grid-cols-3'>
-			<div class='card center padding-xs'>1</div>
-			<div class='card center padding-xs'>2</div>
-			<div class='card center padding-xs'>3</div>
-			<div class='card center padding-xs'>4</div>
-		</div>
-
-		<h4>Four columns</h4>
-		<p><code>.grid-cols-4</code> Forces the grid to display items in four columns.</p>
-		<div class='grid-tablet grid-cols-4'>
-			<div class='card center padding-xs'>1</div>
-			<div class='card center padding-xs'>2</div>
-			<div class='card center padding-xs'>3</div>
-			<div class='card center padding-xs'>4</div>
-		</div>
-
-		<h3>Responsive Breakpoints</h3>
-		<p>
-			These breakpoints allow you to change grid behavior and column spans based on screen
-			size.
-		</p>
-
-		<p><code>.grid-tablet-</code> Use grid on tablets and larger</p>
-		<p><code>.grid-desktop-</code> Use grid on desktop and larger</p>
-		<p><code>.o-cell-tablet-</code> Use width on tablets and larger</p>
-		<p><code>.o-cell-desktop-</code> Use width on desktop and larger</p>
-
-		<h3>Example Usage</h3>
-		<p>Here are a few common scenarios and how to implement them with this grid system:</p>
-
-		<h4>Responsive Card Layout</h4>
-		<p>
-			Display cards in a single column on mobile, two columns on tablet, and four columns on
-			desktop.
-		</p>
-		<div class='grid grid-cols-1 grid-tablet-cols-2 grid-desktop-cols-4'>
-			<div class='card center padding-xs'>Card 1</div>
-			<div class='card center padding-xs'>Card 2</div>
-			<div class='card center padding-xs'>Card 3</div>
-			<div class='card center padding-xs'>Card 4</div>
-			<div class='card center padding-xs'>Card 5</div>
-			<div class='card center padding-xs'>Card 6</div>
-		</div>
-
-		<h4>Sidebar and Main Content</h4>
-		<p>A common layout where a main content area takes more space and a sidebar takes less.</p>
-		<div class='grid'>
-			<div class='o-cell-full o-cell-tablet-two-thirds o-cell-desktop-three-fourths'>
-				<div class='card center padding-xs'>Main Content Area</div>
-			</div>
-			<div class='o-cell-full o-cell-tablet-one-third o-cell-desktop-one-fourth'>
-				<div class='card center padding-xs'>Sidebar</div>
-			</div>
-		</div>
-
-		<h4>Auto-filling Components</h4>
-
-		<p>
-			Components that should fill available space and wrap without explicit column
-			definitions.
-		</p>
-
-		<div class='grid grid-auto'>
-			<div class='card center padding-xs'>Item A</div>
-			<div class='card center padding-xs'>Item B</div>
-			<div class='card center padding-xs'>Item C</div>
-			<div class='card center padding-xs'>Item D</div>
-			<div class='card center padding-xs'>Item E</div>
-		</div>
+	<div class='grid grid-auto'>
+		<div class='card center padding-xs'>Item A</div>
+		<div class='card center padding-xs'>Item B</div>
+		<div class='card center padding-xs'>Item C</div>
+		<div class='card center padding-xs'>Item D</div>
+		<div class='card center padding-xs'>Item E</div>
 	</div>
 </ComponentLayout>

@@ -3,26 +3,28 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Exclusive Checkbox'>
-	<fieldset class='choice-group' data-testid='exclusive-checkbox'>
-		<legend>Exclusive checkbox</legend>
-		<label for='checkbox-exclusive-1'>
-			<input id='checkbox-exclusive-1' type='checkbox' name='exclusive' />
-			Label text
-		</label>
-		<label for='checkbox-exclusive-2'>
-			<input id='checkbox-exclusive-2' type='checkbox' name='exclusive' />
-			Label text
-		</label>
-		<label for='checkbox-exclusive-3'>
-			<input id='checkbox-exclusive-3' type='checkbox' name='exclusive' />
-			Label text
-		</label>
-		<p class='text-muted text-sm'>Or</p>
-		<tui-exclusive-checkbox data-tui-target-name='exclusive'>
-			<label for='checkbox-exclusive-4'>
-				<input id='checkbox-exclusive-4' type='checkbox' />
-				None of the above
+	<div>
+		<fieldset class='choice-group' data-testid='exclusive-checkbox'>
+			<legend>Exclusive checkbox</legend>
+			<label for='checkbox-exclusive-1'>
+				<input id='checkbox-exclusive-1' type='checkbox' name='exclusive' />
+				Label text
 			</label>
-		</tui-exclusive-checkbox>
-	</fieldset>
+			<label for='checkbox-exclusive-2'>
+				<input id='checkbox-exclusive-2' type='checkbox' name='exclusive' />
+				Label text
+			</label>
+			<label for='checkbox-exclusive-3'>
+				<input id='checkbox-exclusive-3' type='checkbox' name='exclusive' />
+				Label text
+			</label>
+			<p class='text-muted text-sm'>Or</p>
+			<tui-exclusive-checkbox data-tui-target-name='exclusive'>
+				<label for='checkbox-exclusive-4'>
+					<input id='checkbox-exclusive-4' type='checkbox' />
+					None of the above
+				</label>
+			</tui-exclusive-checkbox>
+		</fieldset>
+	</div>
 </ComponentLayout>

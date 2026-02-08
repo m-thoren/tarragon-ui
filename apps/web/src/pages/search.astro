@@ -1,6 +1,7 @@
 ---
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
 import { SearchIcon } from '@lucide/astro'
+import { buildUrl } from '@/scripts/constants'
 ---
 
 <ComponentLayout name='Search'>
@@ -22,4 +23,6 @@ import { SearchIcon } from '@lucide/astro'
 			<span class='visually-hidden-below-tablet'>Search</span>
 		</button>
 	</form>
+
+	<p>Uses the <a href={buildUrl('/join')}>.join</a> utility class</p>
 </ComponentLayout>

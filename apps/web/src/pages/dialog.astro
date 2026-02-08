@@ -4,71 +4,67 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Dialog'>
-	<div class='prose'>
-		<h2>Standard dialog</h2>
-		<div data-testid='default-dialog'>
-			<button commandfor='dialog-default' command='show-modal'>Open dialog</button>
-			<dialog id='dialog-default' closedby='any'>
-				<div class='split'>
-					<h2>Hello!</h2>
-					<form method='dialog'>
-						<button class='ghost size-icon'>
-							<XIcon aria-hidden />
-							<span class='visually-hidden'>Close dialog</span>
-						</button>
-					</form>
-				</div>
+	<h2>Standard dialog</h2>
+	<div data-testid='default-dialog'>
+		<button commandfor='dialog-default' command='show-modal'>Open dialog</button>
+		<dialog id='dialog-default' closedby='any'>
+			<div class='split'>
+				<h2>Hello!</h2>
+				<form method='dialog'>
+					<button class='ghost size-icon'>
+						<XIcon aria-hidden />
+						<span class='visually-hidden'>Close dialog</span>
+					</button>
+				</form>
+			</div>
+			<p class='py-4'>Press ESC key or click the button below to close</p>
+			<div class='action-footer'>
+				<form method='dialog'>
+					<button class='outline'>Close</button>
+				</form>
+				<button>Save</button>
+			</div>
+		</dialog>
+	</div>
+
+	<h2>Press outside the dialog to close it</h2>
+	<div data-testid='light-dismiss-dialog'>
+		<button class='outline' commandfor='dialog-light-dismiss' command='show-modal'>
+			Open dialog
+		</button>
+		<dialog id='dialog-light-dismiss' closedby='any'>
+			<div class='split'>
+				<h2>Hello!</h2>
+				<form method='dialog'>
+					<button class='ghost size-icon'>
+						<XIcon aria-hidden />
+						<span class='visually-hidden'>Close dialog</span>
+					</button>
+				</form>
+			</div>
+			<p class='py-4'>Press outside the dialog to close</p>
+			<div class='action-footer'>
+				<button>Save</button>
+			</div>
+		</dialog>
+	</div>
+	<div class='alert warning'>
+		<TriangleAlertIcon aria-hidden />
+		<h3 class='alert-title'>Might not be supported in all browsers</h3>
+	</div>
+
+	<h2>Full screen dialog</h2>
+	<div data-testid='full-screen-dialog'>
+		<button class='accent' commandfor='dialog-full' command='show-modal'>Open dialog</button>
+		<dialog class='full' id='dialog-full'>
+			<div class='stack'>
+				<h2>Hello!</h2>
 				<p class='py-4'>Press ESC key or click the button below to close</p>
-				<div class='action-footer'>
-					<form method='dialog'>
-						<button class='outline'>Close</button>
-					</form>
-					<button>Save</button>
-				</div>
-			</dialog>
-		</div>
-
-		<h2>Press outside the dialog to close it</h2>
-		<div data-testid='light-dismiss-dialog'>
-			<button class='outline' commandfor='dialog-light-dismiss' command='show-modal'>
-				Open dialog
-			</button>
-			<dialog id='dialog-light-dismiss' closedby='any'>
-				<div class='split'>
-					<h2>Hello!</h2>
-					<form method='dialog'>
-						<button class='ghost size-icon'>
-							<XIcon aria-hidden />
-							<span class='visually-hidden'>Close dialog</span>
-						</button>
-					</form>
-				</div>
-				<p class='py-4'>Press outside the dialog to close</p>
-				<div class='action-footer'>
-					<button>Save</button>
-				</div>
-			</dialog>
-		</div>
-		<div class='alert warning'>
-			<TriangleAlertIcon aria-hidden />
-			<h3 class='alert-title'>Might not be supported in all browsers</h3>
-		</div>
-
-		<h2>Full screen dialog</h2>
-		<div data-testid='full-screen-dialog'>
-			<button class='accent' commandfor='dialog-full' command='show-modal'>
-				Open dialog
-			</button>
-			<dialog class='full' id='dialog-full'>
-				<div class='stack'>
-					<h2>Hello!</h2>
-					<p class='py-4'>Press ESC key or click the button below to close</p>
-				</div>
-				<div class='action-footer'>
-					<button class='outline' commandfor='dialog-full' command='close'>Close</button>
-					<button>Save</button>
-				</div>
-			</dialog>
-		</div>
+			</div>
+			<div class='action-footer'>
+				<button class='outline' commandfor='dialog-full' command='close'>Close</button>
+				<button>Save</button>
+			</div>
+		</dialog>
 	</div>
 </ComponentLayout>

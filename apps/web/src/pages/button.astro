@@ -4,58 +4,56 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Button'>
-	<div class='prose'>
-		<h2>Default</h2>
-		<div class='cluster' data-testid='button-variants-default'>
-			<button>Default</button>
-			<button class='accent'>Accent</button>
-			<button class='info'>Info</button>
-			<button class='warning'>Warning</button>
-			<button class='success'>Success</button>
-			<button class='danger'>Danger</button>
-			<button class='size-icon'>
-				<SaveIcon aria-hidden /><span class='visually-hidden'>Icon button</span>
-			</button>
-			<button class='size-icon danger'>
-				<TrashIcon aria-hidden /><span class='visually-hidden'>Icon button</span>
-			</button>
-		</div>
+	<h2>Default</h2>
+	<div class='cluster' data-testid='button-variants-default'>
+		<button>Default</button>
+		<button class='accent'>Accent</button>
+		<button class='info'>Info</button>
+		<button class='warning'>Warning</button>
+		<button class='success'>Success</button>
+		<button class='danger'>Danger</button>
+		<button class='size-icon'>
+			<SaveIcon aria-hidden /><span class='visually-hidden'>Icon button</span>
+		</button>
+		<button class='size-icon danger'>
+			<TrashIcon aria-hidden /><span class='visually-hidden'>Icon button</span>
+		</button>
+	</div>
 
-		<h2>Outline</h2>
-		<div class='cluster' data-testid='button-variants-outline'>
-			<button class='outline'>Default</button>
-			<button class='outline accent'>Accent</button>
-			<button class='outline info'>Info</button>
-			<button class='outline warning'>Warning</button>
-			<button class='outline success'>Success</button>
-			<button class='outline danger'>Danger</button>
-			<button class='size-icon outline success'>
-				<SaveIcon aria-hidden /><span class='visually-hidden'>Icon button</span>
-			</button>
-			<button class='size-icon outline danger'>
-				<TrashIcon aria-hidden /><span class='visually-hidden'>Icon button</span>
-			</button>
-		</div>
-		<h2>Ghost</h2>
-		<div class='cluster' data-testid='button-variants-ghost'>
-			<button class='ghost'>Default</button>
-			<button class='ghost accent'>Accent</button>
-			<button class='ghost info'>Info</button>
-			<button class='ghost warning'>Warning</button>
-			<button class='ghost success'>Success</button>
-			<button class='ghost danger'>Danger</button>
-			<button class='size-icon ghost success'>
-				<SaveIcon aria-hidden /><span class='visually-hidden'>Icon button</span>
-			</button>
-			<button class='size-icon ghost danger'>
-				<TrashIcon aria-hidden /><span class='visually-hidden'>Icon button</span>
-			</button>
-		</div>
-		<h2>Link</h2>
-		<div class='cluster' data-testid='button-variants-link'>
-			<a href='#test' class='btn'>Link</a>
-			<a href='#test' class='btn outline'>Link</a>
-			<a href='#test' class='btn ghost'>Link</a>
-		</div>
+	<h2>Outline</h2>
+	<div class='cluster' data-testid='button-variants-outline'>
+		<button class='outline'>Default</button>
+		<button class='outline accent'>Accent</button>
+		<button class='outline info'>Info</button>
+		<button class='outline warning'>Warning</button>
+		<button class='outline success'>Success</button>
+		<button class='outline danger'>Danger</button>
+		<button class='size-icon outline success'>
+			<SaveIcon aria-hidden /><span class='visually-hidden'>Icon button</span>
+		</button>
+		<button class='size-icon outline danger'>
+			<TrashIcon aria-hidden /><span class='visually-hidden'>Icon button</span>
+		</button>
+	</div>
+	<h2>Ghost</h2>
+	<div class='cluster' data-testid='button-variants-ghost'>
+		<button class='ghost'>Default</button>
+		<button class='ghost accent'>Accent</button>
+		<button class='ghost info'>Info</button>
+		<button class='ghost warning'>Warning</button>
+		<button class='ghost success'>Success</button>
+		<button class='ghost danger'>Danger</button>
+		<button class='size-icon ghost success'>
+			<SaveIcon aria-hidden /><span class='visually-hidden'>Icon button</span>
+		</button>
+		<button class='size-icon ghost danger'>
+			<TrashIcon aria-hidden /><span class='visually-hidden'>Icon button</span>
+		</button>
+	</div>
+	<h2>Link</h2>
+	<div class='cluster' data-testid='button-variants-link'>
+		<a href='#test' class='btn'>Link</a>
+		<a href='#test' class='btn outline'>Link</a>
+		<a href='#test' class='btn ghost'>Link</a>
 	</div>
 </ComponentLayout>

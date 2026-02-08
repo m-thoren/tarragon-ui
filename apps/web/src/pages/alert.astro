@@ -4,79 +4,77 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Alert'>
-	<div class='prose'>
-		<h2>Default alert</h2>
-		<div class='alert'>
-			<InfoIcon aria-hidden />
-			<h2>This is an alert</h2>
-			<p class='alert-description'>With a description.</p>
-		</div>
-		<div class='alert'>
-			<InfoIcon aria-hidden />
-			<h2>This Alert has only a title</h2>
-		</div>
-		<div class='alert'>
-			<h2>This Alert does not have an icon</h2>
-		</div>
+	<h2>Default alert</h2>
+	<div class='alert'>
+		<InfoIcon aria-hidden />
+		<h2>This is an alert</h2>
+		<p class='alert-description'>With a description.</p>
+	</div>
+	<div class='alert'>
+		<InfoIcon aria-hidden />
+		<h2>This Alert has only a title</h2>
+	</div>
+	<div class='alert'>
+		<h2>This Alert does not have an icon</h2>
+	</div>
 
-		<h2>Alert with links</h2>
-		<p>Could be used for form summaries</p>
-		<div class='alert danger'>
-			<CircleAlertIcon aria-hidden />
-			<h2>Unable to process your payment.</h2>
-			<p>Please verify your billing information and try again.</p>
-			<ul>
-				<li>Check your card details</li>
-				<li>Ensure sufficient funds</li>
-				<li>Verify billing address</li>
-				<li><a href='#test'>Input must have value</a></li>
-			</ul>
-		</div>
+	<h2>Alert with links</h2>
+	<p>Could be used for form summaries</p>
+	<div class='alert danger'>
+		<CircleAlertIcon aria-hidden />
+		<h2>Unable to process your payment.</h2>
+		<p>Please verify your billing information and try again.</p>
+		<ul>
+			<li>Check your card details</li>
+			<li>Ensure sufficient funds</li>
+			<li>Verify billing address</li>
+			<li><a href='#test'>Input must have value</a></li>
+		</ul>
+	</div>
 
-		<h2>Variants</h2>
-		<p>
-			Use the variant classes info, success, warning or danger to change the color of the
-			alert. Combine with outline to make an outline alert
-		</p>
+	<h2>Variants</h2>
+	<p>
+		Use the variant classes info, success, warning or danger to change the color of the alert.
+		Combine with outline to make an outline alert
+	</p>
 
-		<h3>Info</h3>
-		<div class='alert info'>
-			<InfoIcon aria-hidden />
-			<h2>Default info alert</h2>
-		</div>
-		<div class='alert info outline'>
-			<InfoIcon aria-hidden />
-			<h2>Outline info alert</h2>
-		</div>
+	<h3>Info</h3>
+	<div class='alert info'>
+		<InfoIcon aria-hidden />
+		<h2>Default info alert</h2>
+	</div>
+	<div class='alert info outline'>
+		<InfoIcon aria-hidden />
+		<h2>Outline info alert</h2>
+	</div>
 
-		<h3>Success</h3>
-		<div class='alert success'>
-			<CircleCheckBigIcon aria-hidden />
-			<h2>Success! Your changes have been saved</h2>
-		</div>
-		<div class='alert success outline'>
-			<CircleCheckBigIcon aria-hidden />
-			<h2>Success! Your changes have been saved</h2>
-		</div>
+	<h3>Success</h3>
+	<div class='alert success'>
+		<CircleCheckBigIcon aria-hidden />
+		<h2>Success! Your changes have been saved</h2>
+	</div>
+	<div class='alert success outline'>
+		<CircleCheckBigIcon aria-hidden />
+		<h2>Success! Your changes have been saved</h2>
+	</div>
 
-		<h3>Warning</h3>
-		<div class='alert warning'>
-			<TriangleAlertIcon aria-hidden />
-			<h2>This Alert is a warning</h2>
-		</div>
-		<div class='alert warning outline'>
-			<TriangleAlertIcon aria-hidden />
-			<h2>This Alert is a warning</h2>
-		</div>
+	<h3>Warning</h3>
+	<div class='alert warning'>
+		<TriangleAlertIcon aria-hidden />
+		<h2>This Alert is a warning</h2>
+	</div>
+	<div class='alert warning outline'>
+		<TriangleAlertIcon aria-hidden />
+		<h2>This Alert is a warning</h2>
+	</div>
 
-		<h3>Danger</h3>
-		<div class='alert danger'>
-			<CircleAlertIcon aria-hidden />
-			<h2>An error occurred</h2>
-		</div>
-		<div class='alert danger outline'>
-			<CircleAlertIcon aria-hidden />
-			<h2>An error occurred</h2>
-		</div>
+	<h3>Danger</h3>
+	<div class='alert danger'>
+		<CircleAlertIcon aria-hidden />
+		<h2>An error occurred</h2>
+	</div>
+	<div class='alert danger outline'>
+		<CircleAlertIcon aria-hidden />
+		<h2>An error occurred</h2>
 	</div>
 </ComponentLayout>
