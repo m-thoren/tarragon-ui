@@ -32,7 +32,6 @@
 @import url('./components/breadcrumb.css');
 @import url('./components/card.css');
 @import url('./components/checkbox.css');
-@import url('./components/dropdown.css');
 @import url('./components/dialog.css');
 @import url('./components/drawer.css');
 @import url('./components/figure.css');
@@ -56,6 +55,7 @@
 @import url('./components/text.css');
 @import url('./components/textarea.css');
 @import url('./components/wc-ajax-form.css');
+@import url('./components/wc-dropdown.css');
 
 /* @import url('./components/tooltip.css'); */
 

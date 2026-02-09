@@ -1,0 +1,13 @@
+@layer tarragon-ui.components {
+	tui-dropdown {
+		&:has(:popover-open) svg {
+			transform: rotate(180deg);
+		}
+
+		ul {
+			margin: 0;
+			padding: var(--size-2xs);
+			list-style: none;
+		}
+	}
+}
