@@ -2,8 +2,10 @@ name: Publish @tarragon-ui/js
 
 on:
     push:
+        branches:
+            - main
         tags:
-            - 'js-v*'
+            - 'v*'
     workflow_dispatch:
 
 permissions:
@@ -17,17 +19,49 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v4
 
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '24'
+                  registry-url: 'https://registry.npmjs.org'
+
+            - name: Get package version from tag and update @tarragon-ui/js package.json
+              id: set_package_version
+              run: |
+                  TAG_NAME="${{ github.ref_name }}"
+                  PACKAGE_VERSION="${TAG_NAME#v}"
+                  echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> "$GITHUB_OUTPUT"
+                  echo "Updating packages/js/package.json to version $PACKAGE_VERSION"
+                  sudo apt-get update && sudo apt-get install -y jq
+                  jq ".version = \"$PACKAGE_VERSION\"" packages/js/package.json > packages/js/package.json.tmp && mv packages/js/package.json.tmp packages/js/package.json
+
+                  # Verify the update (optional)
+                  UPDATED_VERSION=$(node -p "require('./packages/js/package.json').version")
+                  echo "Updated package.json version: $UPDATED_VERSION"
+                  if [ "$UPDATED_VERSION" != "$PACKAGE_VERSION" ]; then
+                    echo "Error: Failed to update package version to $PACKAGE_VERSION."
+                    exit 1
+                  fi
+
             - name: Setup pnpm
               uses: pnpm/action-setup@v3
               with:
                   version: 10
                   run_install: false
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
+            - name: Get pnpm store directory
+              id: pnpm-cache
+              shell: bash
+              run: |
+                  echo "STORE_PATH=$(pnpm store path)" >> "$GITHUB_OUTPUT"
+
+            - name: Setup pnpm cache
+              uses: actions/cache@v4
               with:
-                  node-version: '24'
-                  registry-url: 'https://registry.npmjs.org'
+                  path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+                  key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+                  restore-keys: |
+                      ${{ runner.os }}-pnpm-
 
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
@@ -37,18 +71,6 @@ jobs:
 
             - name: Build @tarragon-ui/js
               run: pnpm --filter @tarragon-ui/js build
-
-            - name: Get package version from tag
-              id: get_version_from_tag
-              run: |
-                  TAG_NAME="${{ github.ref_name }}"
-                  PACKAGE_VERSION="${TAG_NAME#js-v}"
-                  echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
-                  NPM_PACKAGE_VERSION=$(node -p "require('./packages/js/package.json').version")
-                  if [ "$NPM_PACKAGE_VERSION" != "$PACKAGE_VERSION" ]; then
-                    echo "Error: Package version in packages/js/package.json ($NPM_PACKAGE_VERSION) does not match tag version ($PACKAGE_VERSION)."
-                    exit 1
-                  fi
 
             - name: Publish to npm with Trusted Publishing
               run: |
@@ -60,7 +82,7 @@ jobs:
               with:
                   tag_name: ${{ github.ref_name }}
                   name: '@tarragon-ui/js ${{ github.ref_name }}'
-                  body: Release of @tarragon-ui/js version ${{ steps.get_version_from_tag.outputs.PACKAGE_VERSION }}
+                  body: Release of @tarragon-ui/js version ${{ steps.set_package_version.outputs.PACKAGE_VERSION }}
                   files: packages/js/dist/tarragon-ui.js
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
