@@ -6,7 +6,6 @@
 
 		ul {
 			margin: 0;
-			margin-top: var(--size-xs);
 			padding: var(--size-2xs);
 			list-style: none;
 		}

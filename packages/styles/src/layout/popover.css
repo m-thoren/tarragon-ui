@@ -1,9 +1,6 @@
-@layer tarragon-ui.layout {
+@layer tarragon-ui.components {
 	[popover] {
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
+		overflow: auto;
 
 		min-width: var(--size-6xl);
 		max-width: 100vw;
@@ -28,6 +25,11 @@
 			background-color: var(--color-backdrop);
 		}
 
+		&:focus-visible {
+			outline: var(--outline-default);
+			outline-offset: var(--outline-offset);
+		}
+
 		&:popover-open {
 			opacity: 1;
 
@@ -46,10 +48,9 @@
 			inset: auto;
 			inset-block-start: anchor(bottom);
 			inset-inline-start: anchor(left);
-			transform: none;
 			position-try-fallbacks:
-				--position-top-left, --position-bottom-right, --position-top-right,
-				--position-middle;
+				--position-top-right, --position-bottom-right, --position-top-left,
+				--position-middle-middle;
 
 			margin-top: var(--size-2xs);
 
@@ -59,18 +60,27 @@
 		}
 	}
 
-	@position-try --position-top-left {
+	@position-try --position-bottom-left {
 		inset: auto;
-		inset-block-end: anchor(top);
+		inset-block-start: anchor(bottom);
 		inset-inline-start: anchor(left);
-		margin-bottom: var(--size-2xs);
+		margin-top: var(--size-2xs);
 	}
 
 	@position-try --position-bottom-right {
 		inset: auto;
 		inset-block-start: anchor(bottom);
 		inset-inline-end: anchor(right);
+
+		margin: 0;
 		margin-top: var(--size-2xs);
+	}
+
+	@position-try --position-top-left {
+		inset: auto;
+		inset-block-end: anchor(top);
+		inset-inline-start: anchor(left);
+		margin-bottom: var(--size-2xs);
 	}
 
 	@position-try --position-top-right {
@@ -80,10 +90,9 @@
 		margin-bottom: var(--size-2xs);
 	}
 
-	@position-try --position-middle {
-		inset: auto;
-		inset-block-start: 25%;
-		inset-inline-start: 0;
-		margin-bottom: var(--size-2xs);
+	@position-try --position-middle-middle {
+		/* stylelint-disable-next-line at-rule-descriptor-value-no-unknown */
+		inset: revert;
+		margin: auto;
 	}
 }
