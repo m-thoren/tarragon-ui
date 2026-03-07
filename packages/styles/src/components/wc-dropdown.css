@@ -8,6 +8,11 @@
 			margin: 0;
 			padding: var(--size-2xs);
 			list-style: none;
+
+			button,
+			a {
+				width: 100%;
+			}
 		}
 	}
 }

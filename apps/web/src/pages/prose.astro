@@ -1,4 +1,6 @@
 ---
+import { Code } from 'astro/components'
+import CodeExample from '@/components/CodeExample.astro'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
@@ -22,16 +24,18 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 		or other block-level element with the <code>.prose</code> class.
 	</p>
 
-	<pre><code>&lt;div class="prose"&gt;
-  &lt;h1&gt;Your Page Title&lt;/h1&gt;
-  &lt;p&gt;This is a paragraph of content.&lt;/p&gt;
-  &lt;h2&gt;A Section Heading&lt;/h2&gt;
-  &lt;p&gt;Another paragraph, naturally flowing below.&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;List item 1&lt;/li&gt;
-    &lt;li&gt;List item 2&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/div&gt;</code></pre>
+	<CodeExample onlyCode>
+		<div class='prose'>
+			<h1>Your Page Title</h1>
+			<p>This is a paragraph of content.</p>
+			<h2>A Section Heading</h2>
+			<p>Another paragraph, naturally flowing below.</p>
+			<ul>
+				<li>List item 1</li>
+				<li>List item 2</li>
+			</ul>
+		</div>
+	</CodeExample>
 
 	<h3>Styling Applied</h3>
 	<p>
@@ -41,15 +45,18 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 		creating appropriate separation for headings. It uses the following logic:
 	</p>
 
-	<pre><code is:raw>.prose {
-  &gt; :not(:first-child) {
+	<Code
+		code={`.prose {
+  > :not(:first-child) {
     margin-block-start: 1em; /* Base vertical spacing between elements */
 
     &amp;:where(h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6) {
       margin-block-start: 1.5em; /* Increased spacing before headings */
     }
   }
-}</code></pre>
+}`}
+		lang='css'
+	/>
 
 	<h4>Key Features:</h4>
 	<ul>

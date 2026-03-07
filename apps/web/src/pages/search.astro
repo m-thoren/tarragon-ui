@@ -1,28 +1,31 @@
 ---
+import CodeExample from '@/components/CodeExample.astro'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
 import { SearchIcon } from '@lucide/astro'
 import { buildUrl } from '@/scripts/constants'
 ---
 
 <ComponentLayout name='Search'>
-	<form method='GET' role='search' class='join'>
-		<div>
-			<label class='visually-hidden' for='component-search-header'>
-				Search for components
-			</label>
-			<input
-				type='search'
-				name='search'
-				placeholder='Search for components'
-				id='component-search-header'
-				class='join-item'
-			/>
-		</div>
-		<button type='submit' class='outline'>
-			<SearchIcon aria-hidden />
-			<span class='visually-hidden-below-tablet'>Search</span>
-		</button>
-	</form>
+	<CodeExample>
+		<form method='GET' role='search' class='join'>
+			<div>
+				<label class='visually-hidden' for='component-search-header'>
+					Search for components
+				</label>
+				<input
+					type='search'
+					name='search'
+					placeholder='Search for components'
+					id='component-search-header'
+					class='join-item'
+				/>
+			</div>
+			<button type='submit' class='outline'>
+				<SearchIcon aria-hidden />
+				<span class='visually-hidden-below-tablet'>Search</span>
+			</button>
+		</form>
+	</CodeExample>
 
 	<p>Uses the <a href={buildUrl('/join')}>.join</a> utility class</p>
 </ComponentLayout>

@@ -1,10 +1,19 @@
 ---
+import CodeExample from '@/components/CodeExample.astro'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Switch'>
-	<label for='switch-80sqlb9'>
-		<input id='switch-80sqlb9' role='switch' type='checkbox' value='yes' name='label-text' />
-		Label text
-	</label>
+	<CodeExample>
+		<label for='switch-80sqlb9'>
+			<input
+				id='switch-80sqlb9'
+				role='switch'
+				type='checkbox'
+				value='yes'
+				name='label-text'
+			/>
+			Label text
+		</label>
+	</CodeExample>
 </ComponentLayout>

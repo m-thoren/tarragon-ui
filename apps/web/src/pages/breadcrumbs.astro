@@ -1,43 +1,48 @@
 ---
+import CodeExample from '@/components/CodeExample.astro'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Breadcrumbs'>
 	<h2>Basic Breadcrumbs</h2>
-	<nav aria-label='Breadcrumb' class='breadcrumb'>
-		<ul>
-			<li>
-				<a class='link-subtle' href='#test'>Home</a>
-			</li>
-			<li>
-				<a class='link-subtle' href='#test'>Documents</a>
-			</li>
-			<li aria-current='page'>Add Document</li>
-		</ul>
-	</nav>
+	<CodeExample>
+		<nav aria-label='Breadcrumb' class='breadcrumb'>
+			<ul>
+				<li>
+					<a class='link-subtle' href='#test'>Home</a>
+				</li>
+				<li>
+					<a class='link-subtle' href='#test'>Documents</a>
+				</li>
+				<li aria-current='page'>Add Document</li>
+			</ul>
+		</nav>
+	</CodeExample>
 
 	<h2>Long Breadcrumbs</h2>
-	<nav aria-label='Breadcrumb long' class='breadcrumb'>
-		<ul>
-			<li>
-				<a class='link-subtle' href='#test'>Home</a>
-			</li>
-			<li>
-				<a class='link-subtle' href='#test'>User</a>
-			</li>
-			<li>
-				<a class='link-subtle' href='#test'>Information</a>
-			</li>
-			<li>
-				<a class='link-subtle' href='#test'>Archive</a>
-			</li>
-			<li>
-				<a class='link-subtle' href='#test'>Confidential</a>
-			</li>
-			<li>
-				<a class='link-subtle' href='#test'>Documents</a>
-			</li>
-			<li aria-current='page'>Add Document</li>
-		</ul>
-	</nav>
+	<CodeExample>
+		<nav aria-label='Breadcrumb long' class='breadcrumb'>
+			<ul>
+				<li>
+					<a class='link-subtle' href='#test'>Home</a>
+				</li>
+				<li>
+					<a class='link-subtle' href='#test'>User</a>
+				</li>
+				<li>
+					<a class='link-subtle' href='#test'>Information</a>
+				</li>
+				<li>
+					<a class='link-subtle' href='#test'>Archive</a>
+				</li>
+				<li>
+					<a class='link-subtle' href='#test'>Confidential</a>
+				</li>
+				<li>
+					<a class='link-subtle' href='#test'>Documents</a>
+				</li>
+				<li aria-current='page'>Add Document</li>
+			</ul>
+		</nav>
+	</CodeExample>
 </ComponentLayout>

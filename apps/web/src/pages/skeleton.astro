@@ -1,12 +1,15 @@
 ---
+import CodeExample from '@/components/CodeExample.astro'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Skeleton'>
-	<div class='skeleton'></div>
-	<div
-		class='skeleton'
-		style='border-radius: var(--radius-full); width: var(--minimum-clickable-size); height: var(--minimum-clickable-size)'
-	>
-	</div>
+	<CodeExample>
+		<div class='skeleton'></div>
+		<div
+			class='skeleton'
+			style='border-radius: var(--radius-full); width: var(--minimum-clickable-size); height: var(--minimum-clickable-size)'
+		>
+		</div>
+	</CodeExample>
 </ComponentLayout>

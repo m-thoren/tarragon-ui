@@ -1,4 +1,5 @@
 ---
+import CodeExample from '@/components/CodeExample.astro'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
 
 type Status = 'Paid' | 'Unpaid' | 'Pending'
@@ -70,42 +71,44 @@ const total = list.reduce((previousValue, row) => previousValue + row.total, 0)
 ---
 
 <ComponentLayout name='Table'>
-	<div class='overflow-x-auto'>
-		<table>
-			<caption>A list of your recent invoices.</caption>
-			<thead>
-				<tr>
-					<th>Invoice</th>
-					<th>Status</th>
-					<th class='text-center'>Action</th>
-					<th>Method</th>
-					<th class='text-right'>Amount</th>
-				</tr>
-			</thead>
-			<tbody>
-				{
-					list.map((row) => (
-						<tr>
-							<td>{row.id}</td>
-							<td>{row.status}</td>
-							<td class='text-center'>
-								{row.status === 'Unpaid' && <button>Pay</button>}
-								{row.status === 'Pending' && (
-									<button class='outline danger'>Cancel</button>
-								)}
-							</td>
-							<td>{row.method}</td>
-							<td class='text-right'>${row.total}</td>
-						</tr>
-					))
-				}
-			</tbody>
-			<tfoot>
-				<tr>
-					<td colspan='4'>Total</td>
-					<td class='text-right'>${total}</td>
-				</tr>
-			</tfoot>
-		</table>
-	</div>
+	<CodeExample>
+		<div class='overflow-x-auto'>
+			<table>
+				<caption>A list of your recent invoices.</caption>
+				<thead>
+					<tr>
+						<th>Invoice</th>
+						<th>Status</th>
+						<th class='text-center'>Action</th>
+						<th>Method</th>
+						<th class='text-right'>Amount</th>
+					</tr>
+				</thead>
+				<tbody>
+					{
+						list.map((row) => (
+							<tr>
+								<td>{row.id}</td>
+								<td>{row.status}</td>
+								<td class='text-center'>
+									{row.status === 'Unpaid' && <button>Pay</button>}
+									{row.status === 'Pending' && (
+										<button class='outline danger'>Cancel</button>
+									)}
+								</td>
+								<td>{row.method}</td>
+								<td class='text-right'>${row.total}</td>
+							</tr>
+						))
+					}
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan='4'>Total</td>
+						<td class='text-right'>${total}</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</CodeExample>
 </ComponentLayout>

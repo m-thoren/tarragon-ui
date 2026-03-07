@@ -1,21 +1,26 @@
 ---
+import CodeExample from '@/components/CodeExample.astro'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Steps'>
 	<h2>Horizontal</h2>
-	<ul class='steps'>
-		<li class='step-complete'>Register</li>
-		<li class='step-complete'>Choose plan</li>
-		<li>Purchase</li>
-		<li>Receive Product</li>
-	</ul>
+	<CodeExample>
+		<ul class='steps'>
+			<li class='step-complete'>Register</li>
+			<li class='step-complete'>Choose plan</li>
+			<li>Purchase</li>
+			<li>Receive Product</li>
+		</ul>
+	</CodeExample>
 
 	<h2>Vertical</h2>
-	<ul class='steps steps-vertical'>
-		<li class='step-complete'>Register</li>
-		<li class='step-complete'>Choose plan</li>
-		<li>Purchase</li>
-		<li>Receive Product</li>
-	</ul>
+	<CodeExample>
+		<ul class='steps steps-vertical'>
+			<li class='step-complete'>Register</li>
+			<li class='step-complete'>Choose plan</li>
+			<li>Purchase</li>
+			<li>Receive Product</li>
+		</ul>
+	</CodeExample>
 </ComponentLayout>

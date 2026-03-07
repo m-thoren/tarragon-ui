@@ -1,0 +1,33 @@
+---
+import * as HTMLParser from 'prettier/parser-html'
+import { Code } from 'astro:components'
+import prettier from 'prettier'
+
+type Props = {
+	onlyCode?: boolean
+}
+
+const { onlyCode } = Astro.props
+
+const code = await Astro.slots.render('default', [])
+
+const withoutAttrsAndSvg = code
+	.replace(/\sdata-astro-[^\s=]+="[^"]*"/g, '')
+	.replace(/\sdata-testid="[^"]*"/g, '')
+	.replace(/<svg\b[^>]*>[\s\S]*?<\/svg>/gi, '<Icon aria-hidden="true" />')
+
+const formatted = await prettier.format(withoutAttrsAndSvg, {
+	parser: 'html',
+	plugins: [HTMLParser],
+	htmlWhitespaceSensitivity: 'ignore',
+})
+---
+
+{!onlyCode && <slot />}
+<Code code={formatted} lang='html' />
+
+<style>
+	pre {
+		user-select: all;
+	}
+</style>

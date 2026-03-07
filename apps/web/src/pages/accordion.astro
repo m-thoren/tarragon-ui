@@ -1,44 +1,49 @@
 ---
 import { ChevronDownIcon } from '@lucide/astro'
+import CodeExample from '@/components/CodeExample.astro'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Accordion'>
 	<h2>Multi Accordion</h2>
-	<div class='accordion-group'>
-		<details data-testid='multi-accordion-1'>
-			<summary>Graduation Requirements <ChevronDownIcon aria-hidden /></summary>
-			<p class='accordion-content'>
-				Requires 40 credits, including a passing grade in health, geography, history,
-				economics, and wood shop.
-			</p>
-		</details>
-		<details data-testid='multi-accordion-2'>
-			<summary>System Requirements <ChevronDownIcon aria-hidden /></summary>
-			<p class='accordion-content'>
-				Requires a computer running an operating system. The computer must have some memory
-				and ideally some kind of long-term storage. An input device as well as some form of
-				output device is recommended.
-			</p>
-		</details>
-		<details data-testid='multi-accordion-3'>
-			<summary>Job Requirements <ChevronDownIcon aria-hidden /></summary>
-			<p class='accordion-content'>
-				Requires knowledge of HTML, CSS, JavaScript, accessibility, web performance,
-				privacy, security, and internationalization, as well as a dislike of broccoli.
-			</p>
-		</details>
-	</div>
+	<CodeExample>
+		<div class='accordion-group'>
+			<details data-testid='multi-accordion-1'>
+				<summary>Graduation Requirements <ChevronDownIcon aria-hidden /></summary>
+				<p class='accordion-content'>
+					Requires 40 credits, including a passing grade in health, geography, history,
+					economics, and wood shop.
+				</p>
+			</details>
+			<details data-testid='multi-accordion-2'>
+				<summary>System Requirements <ChevronDownIcon aria-hidden /></summary>
+				<p class='accordion-content'>
+					Requires a computer running an operating system. The computer must have some
+					memory and ideally some kind of long-term storage. An input device as well as
+					some form of output device is recommended.
+				</p>
+			</details>
+			<details data-testid='multi-accordion-3'>
+				<summary>Job Requirements <ChevronDownIcon aria-hidden /></summary>
+				<p class='accordion-content'>
+					Requires knowledge of HTML, CSS, JavaScript, accessibility, web performance,
+					privacy, security, and internationalization, as well as a dislike of broccoli.
+				</p>
+			</details>
+		</div>
+	</CodeExample>
 
 	<h2>Single Accordion</h2>
-	<div class='accordion-group'>
-		<details data-testid='single-accordion'>
-			<summary>Single accordion <ChevronDownIcon aria-hidden /></summary>
-			<p class='accordion-content'>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ipsam natus
-				possimus. Unde, iusto. Asperiores ullam veritatis rem nemo beatae, repudiandae
-				earum? Excepturi obcaecati, maxime ea qui laudantium corrupti ad.
-			</p>
-		</details>
-	</div>
+	<CodeExample>
+		<div class='accordion-group'>
+			<details data-testid='single-accordion'>
+				<summary>Single accordion <ChevronDownIcon aria-hidden /></summary>
+				<p class='accordion-content'>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ipsam
+					natus possimus. Unde, iusto. Asperiores ullam veritatis rem nemo beatae,
+					repudiandae earum? Excepturi obcaecati, maxime ea qui laudantium corrupti ad.
+				</p>
+			</details>
+		</div>
+	</CodeExample>
 </ComponentLayout>

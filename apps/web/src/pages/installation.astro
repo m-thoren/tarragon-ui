@@ -1,20 +1,27 @@
 ---
+import { Code } from 'astro/components'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
 import { siteTitle } from '@/scripts/constants'
 ---
 
 <ComponentLayout name='Installation'>
 	<h2>Install using a package manager:</h2>
-	<pre><code>npm install @tarragon-ui/js @tarragon-ui/css
+	<Code
+		code={`npm install @tarragon-ui/js @tarragon-ui/css
 # or
 yarn add @tarragon-ui/js @tarragon-ui/css
 # or
-pnpm add @tarragon-ui/js @tarragon-ui/css</code></pre>
+pnpm add @tarragon-ui/js @tarragon-ui/css`}
+		lang='bash'
+	/>
 
 	<h3>Importing CSS and Javascript</h3>
 	<p>After installing the packages, import them in your project:</p>
-	<pre><code>@import '@tarragon-ui/css'
-@import '@tarragon-ui/js'</code></pre>
+	<Code
+		code={`@import '@tarragon-ui/css'
+@import '@tarragon-ui/js'`}
+		lang='javascript'
+	/>
 
 	<h2>Without a package manager</h2>
 	<p>
@@ -34,8 +41,11 @@ pnpm add @tarragon-ui/js @tarragon-ui/css</code></pre>
 		css:
 	</p>
 
-	<pre><code>{`[hidden],
+	<Code
+		code={`[hidden],
 [data-tui-state='not-ready'] {
 	display: none;
-}`}</code></pre>
+}`}
+		lang='css'
+	/>
 </ComponentLayout>

@@ -1,24 +1,27 @@
 ---
+import CodeExample from '@/components/CodeExample.astro'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Until Selected'>
-	<label for='switch-80sqlb9'>
-		<input id='switch-80sqlb9' role='switch' type='checkbox' />
-		Label text
-	</label>
-	<tui-until-selected data-tui-target='switch-80sqlb9' data-tui-focus-target='switch-80sqlb9'>
-		<div class='cluster'>
-			Visible when toggled <span class='badge'>on</span>
-		</div>
-	</tui-until-selected>
-	<tui-until-selected
-		data-tui-target='switch-80sqlb9'
-		data-tui-focus-target='switch-80sqlb9'
-		data-tui-show-when='not-checked'
-	>
-		<div class='cluster'>
-			Visible when toggled <span class='badge accent'>off</span>
-		</div>
-	</tui-until-selected>
+	<CodeExample>
+		<label for='switch-80sqlb9'>
+			<input id='switch-80sqlb9' role='switch' type='checkbox' />
+			Label text
+		</label>
+		<tui-until-selected data-tui-target='switch-80sqlb9' data-tui-focus-target='switch-80sqlb9'>
+			<div class='cluster'>
+				Visible when toggled <span class='badge'>on</span>
+			</div>
+		</tui-until-selected>
+		<tui-until-selected
+			data-tui-target='switch-80sqlb9'
+			data-tui-focus-target='switch-80sqlb9'
+			data-tui-show-when='not-checked'
+		>
+			<div class='cluster'>
+				Visible when toggled <span class='badge accent'>off</span>
+			</div>
+		</tui-until-selected>
+	</CodeExample>
 </ComponentLayout>

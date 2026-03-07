@@ -1,4 +1,5 @@
 ---
+import { Code } from 'astro:components'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
 import { siteTitle } from '@/scripts/constants'
 ---
@@ -21,8 +22,9 @@ import { siteTitle } from '@/scripts/constants'
 		data-tui-target='switch-theme-toggle'
 		data-tui-focus-target='switch-theme-toggle'
 	>
-		<pre><code>
-{`<button id='themeToggle' class='ghost size-icon'>
+		<Code
+			lang={'html'}
+			code={`<button id='themeToggle' class='ghost size-icon'>
 	<span data-theme='dark'>
 		<MoonIcon aria-hidden />
 	</span>
@@ -78,7 +80,7 @@ import { siteTitle } from '@/scripts/constants'
 
 	document.getElementById('themeToggle')?.addEventListener('click', handleToggleClick)
 </script>`}
-			</code></pre>
+		/>
 	</tui-until-selected>
 
 	<p>
