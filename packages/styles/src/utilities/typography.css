@@ -24,12 +24,36 @@
 		line-height: var(--line-height-md);
 	}
 
+	.text-standard {
+		color: var(--color-text);
+	}
+
 	.text-muted {
 		color: var(--color-text-muted);
 	}
 
+	.text-info {
+		color: var(--color-info);
+	}
+
+	.text-warning {
+		color: var(--color-warning);
+	}
+
 	.text-danger {
 		color: var(--color-danger);
+	}
+
+	.text-success {
+		color: var(--color-success);
+	}
+
+	.text-primary {
+		color: var(--color-primary);
+	}
+
+	.text-accent {
+		color: var(--color-accent);
 	}
 
 	.text-center {

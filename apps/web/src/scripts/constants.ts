@@ -81,7 +81,7 @@ export const sections: Array<Sections> = [
 				name: 'Link',
 				href: buildUrl('/link'),
 				description:
-					'An interactive text element that navigates the user to another page or section when clicked. It is fundamental for web navigation and content cross-referencing.',
+					'An interactive text element that navigates the user to another page or section when clicked.',
 			},
 			{
 				name: 'Prose',
@@ -121,7 +121,7 @@ export const sections: Array<Sections> = [
 				name: 'Checkbox',
 				href: buildUrl('/checkbox'),
 				description:
-					'A form control that allows users to select one or more options from a set. It represents a binary state of either checked or unchecked.',
+					'Allows users to select one or more options from a set. It represents a binary state of either checked or unchecked.',
 			},
 			{
 				name: 'Exclusive Checkbox',
@@ -133,13 +133,13 @@ export const sections: Array<Sections> = [
 				name: 'Input',
 				href: buildUrl('/input'),
 				description:
-					'A fundamental form control for single-line text input from the user. It supports various types for different data formats like text, number, email, and password.',
+					'Get single-line text input from the user. It supports various types for different data formats like text, number, email, and password.',
 			},
 			{
 				name: 'Radio',
 				href: buildUrl('/radio'),
 				description:
-					'A form control that allows users to select only one option from a mutually exclusive set. Each radio button typically belongs to a group. An option should always be selected by default to prevent an invalid state where no options are chosen.',
+					'A form control that allows users to select only one option from a mutually exclusive set. An option should always be selected by default to prevent an invalid state where no options are chosen.',
 			},
 			{
 				name: 'Search',

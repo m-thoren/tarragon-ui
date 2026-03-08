@@ -1,4 +1,5 @@
 ---
+import CodeExample from '@/components/CodeExample.astro'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
@@ -8,13 +9,16 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 		Use the <code>.text-*</code> classes to set the font size of an element. The available sizes
 		are:
 	</p>
-	<ul>
-		<li><code>.text-2xl</code></li>
-		<li><code>.text-xl</code></li>
-		<li><code>.text-lg</code></li>
-		<li><code>.text-sm</code></li>
-		<li><code>.text-xs</code></li>
-	</ul>
+	<CodeExample>
+		<ul>
+			<li><p class='text-2xl'>.text-2xl</p></li>
+			<li><p class='text-xl'>.text-xl</p></li>
+			<li><p class='text-lg'>.text-lg</p></li>
+			<li><p class='text-sm'>.text-sm</p></li>
+			<li><p class='text-xs'>.text-xs</p></li>
+			<li><p class='text-lead'>.text-lead</p></li>
+		</ul>
+	</CodeExample>
 	<p>
 		You can also use the <code>.text-lead</code> class to create a lead paragraph, which is typically
 		used for introductory text.
@@ -25,41 +29,55 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 		Use the <code>.text-*</code> classes to set the text color of an element. The available colors
 		are:
 	</p>
-	<ul>
-		<li><code>.text-muted</code></li>
-		<li><code>.text-danger</code></li>
-	</ul>
+	<CodeExample>
+		<ul>
+			<li><p class='text-standard'>.text-standard</p></li>
+			<li><p class='text-muted'>.text-muted</p></li>
+			<li><p class='text-info'>.text-info</p></li>
+			<li><p class='text-warning'>.text-warning</p></li>
+			<li><p class='text-danger'>.text-danger</p></li>
+			<li><p class='text-success'>.text-success</p></li>
+			<li><p class='text-primary'>.text-primary</p></li>
+			<li><p class='text-accent'>.text-accent</p></li>
+		</ul>
+	</CodeExample>
 
 	<h2>Text alignment</h2>
 	<p>
 		Use the <code>.text-*</code> classes to set the text alignment of an element. The available alignments
 		are:
 	</p>
-	<ul>
-		<li><code>.text-left</code></li>
-		<li><code>.text-center</code></li>
-		<li><code>.text-right</code></li>
-	</ul>
+	<CodeExample>
+		<ul>
+			<li><p class='text-left'>.text-left</p></li>
+			<li><p class='text-center'>.text-center</p></li>
+			<li><p class='text-right'>.text-right</p></li>
+		</ul>
+	</CodeExample>
 
 	<h2>Text transformation</h2>
 	<p>
 		Use the <code>.text-*</code> classes to set the text transformation of an element. The available
 		transformations are:
 	</p>
-	<ul>
-		<li><code>.text-capitalize</code></li>
-		<li><code>.text-uppercase</code></li>
-		<li><code>.text-lowercase</code></li>
-	</ul>
+	<CodeExample>
+		<ul>
+			<li><p class='text-capitalize'>.text-capitalize</p></li>
+			<li><p class='text-uppercase'>.text-uppercase</p></li>
+			<li><p class='text-lowercase'>.text-lowercase</p></li>
+		</ul>
+	</CodeExample>
 
 	<h2>Font style</h2>
 	<p>
 		Use the <code>.font-*</code> classes to set the font style of an element. The available styles
 		are:
 	</p>
-	<ul>
-		<li><code>.font-italic</code></li>
-		<li><code>.font-medium</code></li>
-		<li><code>.font-bold</code></li>
-	</ul>
+	<CodeExample>
+		<ul>
+			<li><p class='font-italic'>.font-italic</p></li>
+			<li><p class='font-medium'>.font-medium</p></li>
+			<li><p class='font-bold'>.font-bold</p></li>
+		</ul>
+	</CodeExample>
 </ComponentLayout>
