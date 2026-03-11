@@ -37,6 +37,26 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 		</div>
 	</CodeExample>
 
+	<h2>Status Banner</h2>
+	<p>Use for site wide alerts</p>
+	<CodeExample>
+		<div class='alert status-banner'>
+			<InfoIcon aria-hidden='true' />
+			<h2>This is a status banner</h2>
+			<p class='alert-description'>With a description.</p>
+		</div>
+		<div class='alert warning status-banner'>
+			<TriangleAlertIcon aria-hidden='true' />
+			<h2>This is a status banner</h2>
+			<p class='alert-description'>With a description.</p>
+		</div>
+		<div class='alert danger status-banner container'>
+			<CircleAlertIcon aria-hidden='true' />
+			<h2>This is a status banner</h2>
+			<p class='alert-description'>With a description.</p>
+		</div>
+	</CodeExample>
+
 	<h2>Variants</h2>
 	<p>
 		Use the variant classes info, success, warning or danger to change the color of the alert.

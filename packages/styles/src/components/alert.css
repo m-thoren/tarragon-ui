@@ -61,4 +61,9 @@
 		grid-column-start: 2;
 		font-size: var(--text-sm);
 	}
+
+	.status-banner {
+		border-radius: 0;
+		box-shadow: none;
+	}
 }
