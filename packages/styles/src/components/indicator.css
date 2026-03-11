@@ -1,0 +1,13 @@
+@layer tarragon-ui.components {
+	.indicator {
+		position: relative;
+	}
+
+	.indicator-item {
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		right: 0;
+		transform: translate(50%, -50%);
+	}
+}

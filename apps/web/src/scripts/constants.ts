@@ -268,6 +268,11 @@ export const sections: Array<Sections> = [
 					'Provides contextual feedback messages for users, typically used to display success, error, warning, or informational notifications.',
 			},
 			{
+				name: 'Indicator',
+				href: buildUrl('/indicator'),
+				description: 'Place an element at the corner of another element',
+			},
+			{
 				name: 'Progress',
 				href: buildUrl('/progress'),
 				description:
