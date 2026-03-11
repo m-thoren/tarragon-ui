@@ -51,9 +51,6 @@
 			box-shadow: var(--shadow-default);
 		}
 
-		/* --- Error State Styling --- */
-
-		/* When the input has the aria-invalid="true" attribute */
 		&[aria-invalid='true'] {
 			border-color: var(--color-danger);
 		}
@@ -63,7 +60,6 @@
 			outline-offset: var(--outline-offset);
 		}
 
-		/* Optional: Keep the error border on hover/focus if it's invalid */
 		&[aria-invalid='true']:hover:not([disabled]) {
 			border-color: var(--color-danger-hover);
 			box-shadow: var(--shadow-danger);

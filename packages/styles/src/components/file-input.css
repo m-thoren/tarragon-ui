@@ -1,0 +1,90 @@
+@layer tarragon-ui.components {
+	input[type='file'] {
+		--_internal-background-color: var(--color-primary);
+		--_internal-background-color-hover: var(--color-primary-hover);
+		--_internal-color: var(--color-on-primary);
+		--_internal-color-hover: var(--_color);
+		--_internal-box-shadow: var(--shadow-primary);
+		--_internal-border-color: transparent;
+		--_internal-border-color-hover: transparent;
+		--_background-color: var(--_internal-background-color);
+		--_background-color-hover: var(--_internal-background-color-hover);
+		--_color: var(--_internal-color);
+		--_color-hover: var(--_internal-color-hover);
+		--_box-shadow: var(--_internal-box-shadow);
+		--_border-color: var(--_internal-border-color);
+		--_border-color-hover: var(--_internal-border-color-hover);
+
+		width: 100%;
+		min-width: 0;
+		padding: var(--size-3xs);
+		border-radius: var(--radius-default);
+
+		font-size: var(--text-md);
+
+		appearance: none;
+
+		&::file-selector-button {
+			min-width: var(--minimum-clickable-size);
+			min-height: var(--minimum-clickable-size);
+			margin-inline-end: var(--size-md);
+			padding: var(--size-xs) var(--size-md);
+			border: var(--size-border-width) solid var(--_border-color);
+			border-radius: var(--radius-default);
+
+			font-size: var(--text-sm);
+			font-weight: var(--font-weight-medium);
+			color: var(--_color);
+			text-decoration: none;
+
+			background-color: var(--_background-color);
+
+			transition:
+				background-color 0.2s,
+				box-shadow 0.2s,
+				border-color 0.2s,
+				color 0.2s;
+
+			&:focus-visible,
+			&:hover {
+				border-color: var(--_border-color-hover);
+				color: var(--_color-hover);
+				background-color: var(--_background-color-hover);
+				box-shadow: var(--_box-shadow);
+			}
+		}
+
+		&:focus-visible,
+		&:hover {
+			&::file-selector-button {
+				border-color: var(--_border-color-hover);
+				color: var(--_color-hover);
+				background-color: var(--_background-color-hover);
+				box-shadow: var(--_box-shadow);
+			}
+		}
+
+		&:focus-visible {
+			outline: var(--outline-default);
+			outline-offset: var(--outline-offset);
+		}
+
+		&:disabled {
+			pointer-events: none;
+			opacity: 0.5;
+		}
+
+		&[aria-invalid='true'] {
+			border: 1px solid var(--color-danger);
+		}
+
+		&[aria-invalid='true']:focus-visible {
+			outline: 2px solid var(--color-danger);
+			outline-offset: var(--outline-offset);
+		}
+
+		&[aria-invalid='true']:hover:not([disabled]) {
+			border-color: var(--color-danger-hover);
+		}
+	}
+}
