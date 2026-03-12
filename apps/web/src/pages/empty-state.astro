@@ -1,0 +1,26 @@
+---
+import CodeExample from '@/components/CodeExample.astro'
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+import { ShoppingCartIcon } from '@lucide/astro'
+---
+
+<ComponentLayout name='Empty State'>
+	<h2>Default</h2>
+	<CodeExample>
+		<div class='empty-state'>
+			<ShoppingCartIcon aria-hidden='true' />
+			<h3>Your cart is empty</h3>
+			<p>Explore our products and add items to your cart</p>
+		</div>
+	</CodeExample>
+
+	<h2>With button</h2>
+	<CodeExample>
+		<div class='empty-state'>
+			<ShoppingCartIcon aria-hidden='true' />
+			<h3>Your cart is empty</h3>
+			<p>Explore our products and add items to your cart</p>
+			<a href='#test' class='btn'>Browse products</a>
+		</div>
+	</CodeExample>
+</ComponentLayout>

@@ -25,9 +25,7 @@ const nextComponent = allPages.at(componentIndex + 1 > allPages.length - 1 ? 0 :
 <Layout currentPage={component}>
 	<div class='prose'>
 		<div class='split'>
-			<h1
-				style={`view-transition-name: component-${component?.name.toLowerCase() ?? 'none'};`}
-			>
+			<h1 style={`view-transition-name: component-${component?.href ?? 'none'};`}>
 				{component?.name ?? name}
 			</h1>
 			{

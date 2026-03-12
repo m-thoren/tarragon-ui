@@ -253,7 +253,7 @@ export const sections: Array<Sections> = [
 			{
 				name: 'Tabs',
 				href: buildUrl('/tabs'),
-				description: '',
+				description: 'Used to display content in a tabbed interface',
 			},
 			{
 				name: 'Until Selected',
@@ -271,6 +271,11 @@ export const sections: Array<Sections> = [
 				href: buildUrl('/alert'),
 				description:
 					'Provides contextual feedback messages for users, typically used to display success, error, warning, or informational notifications.',
+			},
+			{
+				name: 'Empty State',
+				href: buildUrl('/empty-state'),
+				description: 'Used to indicate when a resource is empty or unavailable.',
 			},
 			{
 				name: 'Indicator',

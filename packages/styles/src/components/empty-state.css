@@ -1,0 +1,14 @@
+@layer tarragon-ui.components {
+	.empty-state {
+		display: flex;
+		flex-direction: column;
+		gap: var(--size-sm);
+		align-items: center;
+
+		padding: var(--size-xs);
+
+		@media (width > 640px) {
+			padding: var(--size-lg);
+		}
+	}
+}
