@@ -1,0 +1,54 @@
+---
+import CodeExample from '@/components/CodeExample.astro'
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+---
+
+<ComponentLayout name='Tabs'>
+	<CodeExample>
+		<tui-tabs>
+			<h2 id='tabs-example'>Tabs example</h2>
+			<ul class='tablist' aria-labelledby='tabs-example'>
+				<li>
+					<a id='tab-1' href='#tabpanel-1'>Tab 1</a>
+				</li>
+				<li>
+					<a id='tab-2' href='#tabpanel-2'>Tab 2</a>
+				</li>
+				<li>
+					<a id='tab-3' href='#tabpanel-3'>Tab 3</a>
+				</li>
+			</ul>
+			<div id='tabpanel-1' aria-labelledby='tab-1' class='tabpanel prose'>
+				<h3>Panel 1</h3>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam faucibus
+					sollicitudin ultricies. Curabitur cursus vehicula lacus, et malesuada lectus
+					vulputate at.iLorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+					faucibus sollicitudin ultricies. Curabitur cursus vehicula lacus, et malesuada
+					lectus vulputate at.
+				</p>
+			</div>
+			<div id='tabpanel-2' aria-labelledby='tab-2' class='tabpanel prose'>
+				<h3>Panel 2</h3>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam faucibus
+					sollicitudin ultricies. Curabitur cursus vehicula lacus, et malesuada lectus
+					vulputate at.iLorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+					faucibus sollicitudin ultricies. Curabitur cursus vehicula lacus, et malesuada
+					lectus vulputate at.
+				</p>
+				<button>Focusable</button>
+			</div>
+			<div id='tabpanel-3' aria-labelledby='tab-3' class='tabpanel prose'>
+				<h3>Panel 3</h3>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam faucibus
+					sollicitudin ultricies. Curabitur cursus vehicula lacus, et malesuada lectus
+					vulputate at.iLorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+					faucibus sollicitudin ultricies. Curabitur cursus vehicula lacus, et malesuada
+					lectus vulputate at.
+				</p>
+			</div>
+		</tui-tabs>
+	</CodeExample>
+</ComponentLayout>

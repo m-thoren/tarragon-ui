@@ -82,6 +82,7 @@ export const Component = {
 	},
 	SelectAll: { Name: `${libNamePrefix}select-all`, Event: { Toggle: 'toggle' } },
 	SearchFilter: { Name: `${libNamePrefix}search-filter` },
+	Tabs: { Name: `${libNamePrefix}tabs` },
 	UntilSelected: { Name: `${libNamePrefix}until-selected`, Event: { Toggle: 'toggle' } },
 	ValidateForm: {
 		Name: `${libNamePrefix}validate-form`,

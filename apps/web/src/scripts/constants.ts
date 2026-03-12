@@ -251,6 +251,11 @@ export const sections: Array<Sections> = [
 					'Guides users through a multi-stage process by indicating their current position and overall progress. It helps manage complex workflows or onboarding sequences.',
 			},
 			{
+				name: 'Tabs',
+				href: buildUrl('/tabs'),
+				description: '',
+			},
+			{
 				name: 'Until Selected',
 				href: buildUrl('/until-selected'),
 				description:
