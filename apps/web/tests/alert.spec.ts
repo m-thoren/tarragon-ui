@@ -13,6 +13,6 @@ test.describe('Alert', () => {
 	test('should render all alert variants', async ({ page }) => {
 		const alerts = page.locator('.alert')
 
-		await expect(alerts).toHaveCount(12)
+		await expect(alerts).toHaveCount(15)
 	})
 })
