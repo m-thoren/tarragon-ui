@@ -1,7 +1,47 @@
 ---
+import CodeExample from '@/components/CodeExample.astro'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Container'>
-	<p>Use the <code>.container</code> class to center content and set a maximum width.</p>
+	<p>
+		Use the <code>.container</code> class to center content and set a maximum width.
+	</p>
+	<p>To change the max-width of a container, change the <code>--_max-width</code> css variable</p>
+	<p>
+		To change the inline padding of a container, change the <code>--_viewport-padding</code> css
+		variable
+	</p>
+	<CodeExample>
+		<div
+			class='container'
+			style='border: 2px solid var(--color-border);--_max-width: var(--size-6xl);'
+		>
+			<div style='background-color: var(--color-info); color: var(--color-on-info)'>
+				Content
+			</div>
+		</div>
+	</CodeExample>
+
+	<h2>Bleeding content</h2>
+	<p>
+		Make an element break out of the container with bleed. Can for example be used for hero
+		images
+	</p>
+	<CodeExample>
+		<div
+			class='container'
+			style='border: 2px solid var(--color-border);--_max-width: var(--size-6xl);'
+		>
+			<div
+				class='bleed'
+				style='background-color: var(--color-danger); color: var(--color-on-danger)'
+			>
+				Bleed
+			</div>
+			<div style='background-color: var(--color-info); color: var(--color-on-info)'>
+				Content
+			</div>
+		</div>
+	</CodeExample>
 </ComponentLayout>

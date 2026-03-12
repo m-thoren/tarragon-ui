@@ -3,6 +3,22 @@
 		padding: 0;
 	}
 
+	.padding-block-0 {
+		padding-block: 0;
+	}
+
+	.padding-block-start-0 {
+		padding-block-start: 0;
+	}
+
+	.padding-block-end-0 {
+		padding-block-end: 0;
+	}
+
+	.padding-inline-0 {
+		padding-inline: 0;
+	}
+
 	.padding-inline-start-0 {
 		padding-inline-start: 0;
 	}
@@ -13,6 +29,22 @@
 
 	.padding-3xs {
 		padding: var(--size-3xs);
+	}
+
+	.padding-block-3xs {
+		padding-block: var(--size-3xs);
+	}
+
+	.padding-block-start-3xs {
+		padding-block-start: var(--size-3xs);
+	}
+
+	.padding-block-end-3xs {
+		padding-block-end: var(--size-3xs);
+	}
+
+	.padding-inline-3xs {
+		padding-inline: var(--size-3xs);
 	}
 
 	.padding-inline-start-3xs {
@@ -27,6 +59,22 @@
 		padding: var(--size-2xs);
 	}
 
+	.padding-block-2xs {
+		padding-block: var(--size-2xs);
+	}
+
+	.padding-block-start-2xs {
+		padding-block-start: var(--size-2xs);
+	}
+
+	.padding-block-end-2xs {
+		padding-block-end: var(--size-2xs);
+	}
+
+	.padding-inline-2xs {
+		padding-inline: var(--size-2xs);
+	}
+
 	.padding-inline-start-2xs {
 		padding-inline-start: var(--size-2xs);
 	}
@@ -37,6 +85,22 @@
 
 	.padding-xs {
 		padding: var(--size-xs);
+	}
+
+	.padding-block-xs {
+		padding-block: var(--size-xs);
+	}
+
+	.padding-block-start-xs {
+		padding-block-start: var(--size-xs);
+	}
+
+	.padding-block-end-xs {
+		padding-block-end: var(--size-xs);
+	}
+
+	.padding-inline-xs {
+		padding-inline: var(--size-xs);
 	}
 
 	.padding-inline-start-xs {
@@ -51,6 +115,22 @@
 		padding: var(--size-sm);
 	}
 
+	.padding-block-sm {
+		padding-block: var(--size-sm);
+	}
+
+	.padding-block-start-sm {
+		padding-block-start: var(--size-sm);
+	}
+
+	.padding-block-end-sm {
+		padding-block-end: var(--size-sm);
+	}
+
+	.padding-inline-sm {
+		padding-inline: var(--size-sm);
+	}
+
 	.padding-inline-start-sm {
 		padding-inline-start: var(--size-sm);
 	}
@@ -61,6 +141,22 @@
 
 	.padding-md {
 		padding: var(--size-md);
+	}
+
+	.padding-block-md {
+		padding-block: var(--size-md);
+	}
+
+	.padding-block-start-md {
+		padding-block-start: var(--size-md);
+	}
+
+	.padding-block-end-md {
+		padding-block-end: var(--size-md);
+	}
+
+	.padding-inline-md {
+		padding-inline: var(--size-md);
 	}
 
 	.padding-inline-start-md {
@@ -75,6 +171,22 @@
 		padding: var(--size-lg);
 	}
 
+	.padding-block-lg {
+		padding-block: var(--size-lg);
+	}
+
+	.padding-block-start-lg {
+		padding-block-start: var(--size-lg);
+	}
+
+	.padding-block-end-lg {
+		padding-block-end: var(--size-lg);
+	}
+
+	.padding-inline-lg {
+		padding-inline: var(--size-lg);
+	}
+
 	.padding-inline-start-lg {
 		padding-inline-start: var(--size-lg);
 	}
@@ -85,6 +197,22 @@
 
 	.padding-xl {
 		padding: var(--size-xl);
+	}
+
+	.padding-block-xl {
+		padding-block: var(--size-xl);
+	}
+
+	.padding-block-start-xl {
+		padding-block-start: var(--size-xl);
+	}
+
+	.padding-block-end-xl {
+		padding-block-end: var(--size-xl);
+	}
+
+	.padding-inline-xl {
+		padding-inline: var(--size-xl);
 	}
 
 	.padding-inline-start-xl {
@@ -99,6 +227,22 @@
 		padding: var(--size-2xl);
 	}
 
+	.padding-block-2xl {
+		padding-block: var(--size-2xl);
+	}
+
+	.padding-block-start-2xl {
+		padding-block-start: var(--size-2xl);
+	}
+
+	.padding-block-end-2xl {
+		padding-block-end: var(--size-2xl);
+	}
+
+	.padding-inline-2xl {
+		padding-inline: var(--size-2xl);
+	}
+
 	.padding-inline-start-2xl {
 		padding-inline-start: var(--size-2xl);
 	}
@@ -111,6 +255,22 @@
 		padding: var(--size-3xl);
 	}
 
+	.padding-block-3xl {
+		padding-block: var(--size-3xl);
+	}
+
+	.padding-block-start-3xl {
+		padding-block-start: var(--size-3xl);
+	}
+
+	.padding-block-end-3xl {
+		padding-block-end: var(--size-3xl);
+	}
+
+	.padding-inline-3xl {
+		padding-inline: var(--size-3xl);
+	}
+
 	.padding-inline-start-3xl {
 		padding-inline-start: var(--size-3xl);
 	}
@@ -121,6 +281,22 @@
 
 	.padding-4xl {
 		padding: var(--size-4xl);
+	}
+
+	.padding-block-4xl {
+		padding-block: var(--size-4xl);
+	}
+
+	.padding-block-start-4xl {
+		padding-block-start: var(--size-4xl);
+	}
+
+	.padding-block-end-4xl {
+		padding-block-end: var(--size-4xl);
+	}
+
+	.padding-inline-4xl {
+		padding-inline: var(--size-4xl);
 	}
 
 	.padding-inline-start-4xl {

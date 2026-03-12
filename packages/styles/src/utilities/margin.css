@@ -1,9 +1,29 @@
 @layer tarragon-ui.utilities {
-	.margin-top-auto {
-		margin-top: auto;
+	.margin-auto {
+		margin: auto;
 	}
 
-	.margin-left-auto {
-		margin-left: auto;
+	.margin-block-auto {
+		margin-block: auto;
+	}
+
+	.margin-block-start-auto {
+		margin-block-start: auto;
+	}
+
+	.margin-block-end-auto {
+		margin-block-end: auto;
+	}
+
+	.margin-inline-auto {
+		margin-inline: auto;
+	}
+
+	.margin-inline-start-auto {
+		margin-inline-start: auto;
+	}
+
+	.margin-inline-end-auto {
+		margin-inline-end: auto;
 	}
 }
