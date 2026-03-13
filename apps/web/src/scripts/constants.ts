@@ -242,7 +242,7 @@ export const sections: Array<Sections> = [
 			{
 				name: 'Search Filter',
 				href: buildUrl('/search-filter'),
-				description: '',
+				description: 'A client side filtering with debounce and section functionality',
 			},
 			{
 				name: 'Steps',

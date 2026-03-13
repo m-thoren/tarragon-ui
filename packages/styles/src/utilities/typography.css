@@ -98,4 +98,21 @@
 		line-height: var(--line-height-sm);
 		color: var(--color-text);
 	}
+
+	.max-lines {
+		--_max-lines: 4;
+
+		overflow: hidden;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: var(--_max-lines);
+		line-clamp: var(--_max-lines);
+
+		hyphens: auto;
+		text-overflow: ellipsis;
+		word-break: normal;
+		overflow-wrap: anywhere;
+
+		hyphenate-limit-chars: 15;
+	}
 }

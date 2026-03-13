@@ -25,6 +25,12 @@
 
 	.navigation-card {
 		position: relative;
+
+		&:has(.navigation-card-link:focus-visible) {
+			border-radius: var(--radius-default);
+			outline: var(--outline-default);
+			outline-offset: var(--outline-offset);
+		}
 	}
 
 	.navigation-card-link {
@@ -45,12 +51,7 @@
 		&:hover,
 		&:focus-visible {
 			text-decoration: underline;
-		}
-
-		&:focus-visible {
-			border-radius: var(--radius-default);
-			outline: var(--outline-default);
-			outline-offset: var(--outline-offset);
+			outline: none;
 		}
 	}
 }

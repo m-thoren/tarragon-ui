@@ -80,4 +80,44 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 			<li><p class='font-bold'>.font-bold</p></li>
 		</ul>
 	</CodeExample>
+
+	<h2>Max lines</h2>
+	<p>
+		Use the <code>.max-lines</code> class to set the maximum amount of lines of text to show.
+	</p>
+	<CodeExample>
+		<p class='max-lines'>
+			Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius voluptas dolor unde fugit
+			distinctio maxime. Provident ducimus eligendi facilis alias, maxime quae quaerat qui
+			magni, sequi omnis perspiciatis aliquid beatae! Velit id mollitia quos nobis obcaecati,
+			ipsum eius ut ullam assumenda vitae voluptatum maxime praesentium sed excepturi
+			inventore neque consequatur quas. Tenetur, a distinctio soluta nemo eos dolorum numquam
+			accusamus. Eius totam ut minima delectus alias consequatur, harum consectetur adipisci
+			sint unde quae dignissimos laboriosam, est explicabo at illum, quo deserunt ipsum
+			tempora perferendis? Dolore asperiores quia accusamus quae voluptatibus. Quae quia
+			architecto odit provident maxime cumque, animi vero accusantium velit temporibus, eos
+			est, soluta possimus assumenda. Quod fugiat numquam possimus fugit! Assumenda qui
+			corrupti quo magnam aliquid eum earum.
+		</p>
+	</CodeExample>
+
+	<h3>Change max amount of lines</h3>
+	<p>
+		The amount of lines default to 4, but can be changed with the <code>--_max-lines</code> css variable.
+	</p>
+	<CodeExample>
+		<p class='max-lines' style='--_max-lines: 2'>
+			Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius voluptas dolor unde fugit
+			distinctio maxime. Provident ducimus eligendi facilis alias, maxime quae quaerat qui
+			magni, sequi omnis perspiciatis aliquid beatae! Velit id mollitia quos nobis obcaecati,
+			ipsum eius ut ullam assumenda vitae voluptatum maxime praesentium sed excepturi
+			inventore neque consequatur quas. Tenetur, a distinctio soluta nemo eos dolorum numquam
+			accusamus. Eius totam ut minima delectus alias consequatur, harum consectetur adipisci
+			sint unde quae dignissimos laboriosam, est explicabo at illum, quo deserunt ipsum
+			tempora perferendis? Dolore asperiores quia accusamus quae voluptatibus. Quae quia
+			architecto odit provident maxime cumque, animi vero accusantium velit temporibus, eos
+			est, soluta possimus assumenda. Quod fugiat numquam possimus fugit! Assumenda qui
+			corrupti quo magnam aliquid eum earum.
+		</p>
+	</CodeExample>
 </ComponentLayout>
