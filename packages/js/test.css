@@ -1,0 +1,7 @@
+[hidden] {
+	display: none;
+}
+
+tui-select-all:not([data-tui-ready]) {
+	visibility: hidden;
+}

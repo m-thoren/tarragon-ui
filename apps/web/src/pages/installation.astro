@@ -42,9 +42,12 @@ pnpm add @tarragon-ui/js @tarragon-ui/css`}
 	</p>
 
 	<Code
-		code={`[hidden],
-[data-tui-state='not-ready'] {
+		code={`[hidden] {
 	display: none;
+}
+
+tui-select-all:not([data-tui-ready]) {
+	visibility: hidden;
 }`}
 		lang='css'
 	/>

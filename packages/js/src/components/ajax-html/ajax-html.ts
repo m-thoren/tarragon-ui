@@ -1,5 +1,5 @@
-import { Component, tuiAttribute } from '../constants'
-import { QueryResult, queryCache } from '../query-cache'
+import { Component, tuiAttribute } from '../../constants'
+import { QueryResult, queryCache } from '../../query-cache'
 
 customElements.define(
 	Component.AjaxHtml.Name,

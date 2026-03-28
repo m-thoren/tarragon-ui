@@ -1,4 +1,5 @@
-import { Component, NativeEvent, hiddenAttribute, tuiAttribute } from '../constants'
+import { Component, NativeEvent, hiddenAttribute, tuiAttribute } from '../../constants'
+import { ready } from '../../ready'
 
 customElements.define(
 	Component.UntilSelected.Name,
@@ -20,6 +21,7 @@ customElements.define(
 					return
 				}
 				this.targetElement = element
+				this.focusTargetElement = this.targetElement
 			} catch (error) {
 				console.warn('Could not select element', error)
 			}
@@ -50,6 +52,7 @@ customElements.define(
 				this.showWhen === 'checked' ? !isChecked : isChecked,
 			)
 
+			ready(this)
 			this.addEvents()
 		}
 

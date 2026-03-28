@@ -4,10 +4,10 @@ import {
 	hiddenAttribute,
 	tuiAttribute,
 	tuiAttributeSelector,
-} from '../constants'
-import { emitEvent } from '../emitEvent'
-import { fetchClient } from '../fetch'
-import { queryCache } from '../query-cache'
+} from '../../constants'
+import { emitEvent } from '../../emitEvent'
+import { fetchClient } from '../../fetch'
+import { queryCache } from '../../query-cache'
 
 customElements.define(
 	Component.AjaxForm.Name,

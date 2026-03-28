@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" type="text/css" href="../../../../test.css" />
+	</head>
+	<body>
+		<main>
+			<fieldset class="choice-group">
+				<legend>Exclusive checkbox</legend>
+				<label for="checkbox-exclusive-1">
+					<input id="checkbox-exclusive-1" type="checkbox" name="exclusive" />
+					Label text
+				</label>
+				<label for="checkbox-exclusive-2">
+					<input id="checkbox-exclusive-2" type="checkbox" name="exclusive" />
+					Label text
+				</label>
+				<label for="checkbox-exclusive-3">
+					<input id="checkbox-exclusive-3" type="checkbox" name="exclusive" />
+					Label text
+				</label>
+				<p class="text-muted text-sm">Or</p>
+				<tui-exclusive-checkbox data-tui-target-name="exclusive">
+					<label for="checkbox-exclusive-4">
+						<input id="checkbox-exclusive-4" type="checkbox" />
+						None of the above
+					</label>
+				</tui-exclusive-checkbox>
+			</fieldset>
+		</main>
+	</body>
+</html>

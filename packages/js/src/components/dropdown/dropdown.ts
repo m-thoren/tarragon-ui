@@ -1,4 +1,5 @@
-import { Component, NativeEvent, focusableElementsSelector, tuiAttribute } from '../constants'
+import { Component, NativeEvent, focusableElementsSelector, tuiAttribute } from '../../constants'
+import { ready } from '../../ready'
 
 const SELECTOR_POPOVER = '[popover]'
 const SELECTOR_TRIGGER = (id: string) => `[popovertarget="${id}"]`
@@ -48,7 +49,7 @@ customElements.define(
 			this.addEventListener(NativeEvent.KeyDown, this.handleKeydown)
 			this.popoverElement.addEventListener(NativeEvent.Toggle, this.handleToggle)
 
-			this.setAttribute(tuiAttribute('state'), 'ready')
+			ready(this)
 		}
 
 		disconnectedCallback() {

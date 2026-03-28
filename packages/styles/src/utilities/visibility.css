@@ -1,7 +1,10 @@
 @layer tarragon-ui.utilities {
-	[hidden],
-	[data-tui-state='not-ready'] {
+	[hidden] {
 		display: none;
+	}
+
+	tui-select-all:not([data-tui-ready]) {
+		visibility: hidden;
 	}
 
 	.visually-hidden {

@@ -1,5 +1,5 @@
-import { Component, NativeEvent, hiddenAttribute, tuiAttribute } from '../constants'
-import { debounce } from '../debounce'
+import { Component, NativeEvent, hiddenAttribute, tuiAttribute } from '../../constants'
+import { debounce } from '../../debounce'
 
 type TargetElement = { element: HTMLElement; text: string }
 

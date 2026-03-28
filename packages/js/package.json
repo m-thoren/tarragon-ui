@@ -20,15 +20,17 @@
 		"lint": "eslint . --max-warnings 0 --config ../../eslint.config.mts",
 		"lint:fix": "prettier . --write && eslint . --fix --config ../../eslint.config.mts",
 		"type-check": "tsc --noEmit --composite false --project tsconfig.json",
-		"test": "vitest"
+		"test": "playwright test",
+		"test:ui": "playwright test --ui",
+		"start": "http-server"
 	},
 	"dependencies": {
 		"invokers-polyfill": "^0.6.1"
 	},
 	"devDependencies": {
+		"http-server": "^14.1.1",
 		"typescript": "^5.9.3",
-		"vite": "^7.1.9",
-		"vitest": "^4.0.16"
+		"vite": "^7.1.9"
 	},
 	"exports": {
 		".": {

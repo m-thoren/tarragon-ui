@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" type="text/css" href="../../../../test.css" />
+	</head>
+	<body>
+		<main>
+			<tui-dropdown class="block">
+				<button type="button" class="outline" popovertarget="dropdown">
+					Open dropdown
+					<ChevronDownIcon aria-hidden="true" />
+				</button>
+				<ul popover id="dropdown">
+					<li><button class="ghost">Edit</button></li>
+					<li><a href="#dropdown" class="btn ghost">Options</a></li>
+					<li><button class="danger">Delete</button></li>
+				</ul>
+			</tui-dropdown>
+		</main>
+	</body>
+</html>

@@ -1,5 +1,6 @@
-import { Component, NativeEvent, tuiAttribute } from '../constants'
-import { emitEvent } from '../emitEvent'
+import { Component, NativeEvent, tuiAttribute } from '../../constants'
+import { emitEvent } from '../../emitEvent'
+import { ready } from '../../ready'
 
 customElements.define(
 	Component.SelectAll.Name,
@@ -7,6 +8,7 @@ customElements.define(
 		private targetName: string | null = null
 		private selectAllCheckbox: HTMLInputElement | null = null
 		private checkboxes: Array<HTMLInputElement> | null = null
+		private checkboxClass: string | null = null
 
 		connectedCallback() {
 			this.targetName = this.getAttribute(tuiAttribute('target-name'))
@@ -23,7 +25,9 @@ customElements.define(
 			]
 			if (this.checkboxes.length === 0) return
 
-			this.ready()
+			this.checkboxClass = this.getAttribute(tuiAttribute('checkbox-class'))
+
+			ready(this)
 			this.addEvents()
 		}
 
@@ -41,10 +45,6 @@ customElements.define(
 			}
 		}
 
-		private ready() {
-			this.setAttribute(tuiAttribute('state'), 'ready')
-		}
-
 		private addEvents() {
 			if (
 				!this.selectAllCheckbox ||
@@ -57,7 +57,9 @@ customElements.define(
 			this.selectAllCheckbox.addEventListener('change', this.handleSelectAllChange)
 			for (const checkbox of this.checkboxes) {
 				if (checkbox.disabled) continue
-				checkbox.parentElement?.classList.add('padding-inline-start-lg')
+				if (this.checkboxClass) {
+					checkbox.parentElement?.classList.add(this.checkboxClass)
+				}
 				checkbox.addEventListener(NativeEvent.Change, this.handleCheckboxChange)
 			}
 		}

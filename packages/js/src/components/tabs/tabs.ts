@@ -1,4 +1,5 @@
-import { Component, NativeEvent, focusableElementsSelector, tuiAttribute } from '../constants'
+import { Component, NativeEvent, focusableElementsSelector, tuiAttribute } from '../../constants'
+import { ready } from '../../ready'
 
 customElements.define(
 	Component.Tabs.Name,
@@ -24,7 +25,7 @@ customElements.define(
 				return
 			}
 
-			this.ready()
+			ready(this)
 			this.setTabListAttributes()
 			this.setTabsAttributes()
 			this.setPanelsAttributes()
@@ -43,10 +44,6 @@ customElements.define(
 				tab.addEventListener(NativeEvent.Click, this.handleTabClick)
 				tab.addEventListener(NativeEvent.KeyDown, this.onKeyDown)
 			}
-		}
-
-		private ready() {
-			this.setAttribute(tuiAttribute('state'), 'ready')
 		}
 
 		private setTabListAttributes(): void {

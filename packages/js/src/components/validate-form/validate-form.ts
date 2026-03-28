@@ -1,5 +1,5 @@
-import { Component, libNamePrefix, tuiAttribute, tuiAttributeSelector } from '../constants.js'
-import { emitEvent } from '../emitEvent.js'
+import { Component, libNamePrefix, tuiAttribute, tuiAttributeSelector } from '../../constants'
+import { emitEvent } from '../../emitEvent'
 
 const groupValidationAttribute = 'validate-group'
 

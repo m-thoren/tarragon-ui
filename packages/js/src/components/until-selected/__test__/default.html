@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script type="module" src="../../../../dist/tarragon-ui.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../../../test.css" />
+	</head>
+	<body>
+		<main>
+			<label for="switch-80sqlb9">
+				<input id="switch-80sqlb9" role="switch" type="checkbox" />
+				Label text
+			</label>
+			<tui-until-selected
+				data-tui-target="switch-80sqlb9"
+				data-tui-focus-target="switch-80sqlb9"
+			>
+				<div class="cluster">
+					Visible when toggled
+					<span class="badge">on</span>
+				</div>
+			</tui-until-selected>
+		</main>
+	</body>
+</html>
