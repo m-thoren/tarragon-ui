@@ -11,7 +11,9 @@ test.describe('Select All', () => {
 	})
 
 	test('select-all is visible', async ({ page }) => {
-		const selectAll = page.getByRole('group').locator('tui-select-all')
+		const selectAll = page
+			.getByRole('group', { name: 'Select all', exact: true })
+			.locator('tui-select-all')
 		await expect(selectAll).toBeVisible()
 	})
 })
