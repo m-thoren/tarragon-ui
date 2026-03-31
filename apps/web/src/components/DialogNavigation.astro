@@ -16,7 +16,7 @@ const { currentPage } = Astro.props
 		commandfor='mobile-menu'
 		command='show-modal'
 	>
-		<MenuIcon aria-hidden />
+		<MenuIcon aria-hidden='true' />
 		<span class='visually-hidden'>Open navigation</span>
 	</button>
 
@@ -25,7 +25,8 @@ const { currentPage } = Astro.props
 			<h2>Pages</h2>
 			<form method='dialog'>
 				<button class='ghost size-icon'>
-					<XIcon aria-hidden /><span class='visually-hidden'>Close navigation</span>
+					<XIcon aria-hidden='true' />
+					<span class='visually-hidden'>Close navigation</span>
 				</button>
 			</form>
 		</div>
