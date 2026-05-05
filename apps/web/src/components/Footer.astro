@@ -4,16 +4,16 @@ import BrandIcon from '../assets/brand-icon.svg'
 ---
 
 <footer>
-	<div class='stack max-w-7xl'>
-		<div class='cluster'>
-			<BrandIcon aria-hidden='true' />
-			{siteTitle}
+	<div class='footer-content'>
+		<div class='footer-brand stack max-w-7xl'>
+			<div class='cluster'>
+				<BrandIcon aria-hidden='true' />
+				{siteTitle}
+			</div>
+			<p>Lightweight CSS and WebComponents for performant and accessible applications</p>
 		</div>
-		<p>Lightweight CSS and WebComponents for performant and accessible applications</p>
-	</div>
-	<div class='cluster gap-4xl items-start'>
-		<nav class='stack gap-xs' aria-labelledby='footer-nav-code'>
-			<h2 class='h4' id='footer-nav-code'>Code</h2>
+		<section class='stack gap-xs'>
+			<h2 class='h4'>Code</h2>
 			<ul class='list-none padding-0'>
 				<li>
 					<a href='https://github.com/m-thoren/tarragon-ui' class='link-subtle'>Github</a>
@@ -29,9 +29,9 @@ import BrandIcon from '../assets/brand-icon.svg'
 					</a>
 				</li>
 			</ul>
-		</nav>
-		<nav class='stack gap-xs' aria-labelledby='footer-nav-docs'>
-			<h2 class='h4' id='footer-nav-docs'>Docs</h2>
+		</section>
+		<section class='stack gap-xs'>
+			<h2 class='h4'>Docs</h2>
 			<ul class='list-none padding-0'>
 				<li><a href={buildUrl('/search-filter')} class='link-subtle'>Search</a></li>
 				<li>
@@ -41,6 +41,6 @@ import BrandIcon from '../assets/brand-icon.svg'
 					<a href={buildUrl('/changelog')} class='link-subtle'>Changelog</a>
 				</li>
 			</ul>
-		</nav>
+		</section>
 	</div>
 </footer>

@@ -1,16 +1,21 @@
 @layer tarragon-ui.components {
 	header {
+		border-bottom: 1px solid var(--color-border);
+		color: var(--color-on-background-base);
+		background-color: var(--color-background-base);
+
+		&:not(.container) {
+			padding-inline: var(--size-md);
+		}
+	}
+
+	.header-content {
 		display: flex;
 		flex-direction: row;
 		gap: var(--size-md);
 		align-items: center;
 		justify-content: space-between;
 
-		padding: var(--size-2xl) var(--size-md);
-		border-bottom: 1px solid var(--color-border);
-
-		color: var(--color-on-background-base);
-
-		background-color: var(--color-background-base);
+		padding-block: var(--size-2xl);
 	}
 }

@@ -1,6 +1,6 @@
 @layer tarragon-ui.normalize {
 	body {
-		min-height: 100dvh;
+		min-block-size: 100svh;
 
 		font-family: var(--font-body);
 		font-weight: var(--font-weight-normal);
