@@ -1,6 +1,6 @@
 @layer tarragon-ui.layout {
 	.container {
-		--_max-width: var(--size-8xl);
+		--_max-width: var(--size-container);
 		--_viewport-padding: var(--size-xl);
 
 		display: grid;

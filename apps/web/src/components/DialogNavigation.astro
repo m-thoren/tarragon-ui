@@ -10,26 +10,20 @@ type Props = {
 const { currentPage } = Astro.props
 ---
 
-<div data-testid='dialog-navigation'>
-	<button
-		class='ghost size-icon hide-above-desktop'
-		commandfor='mobile-menu'
-		command='show-modal'
-	>
-		<MenuIcon aria-hidden='true' />
-		<span class='visually-hidden'>Open navigation</span>
-	</button>
+<button class='ghost size-icon hide-above-desktop' commandfor='mobile-menu' command='show-modal'>
+	<MenuIcon aria-hidden='true' />
+	<span class='visually-hidden'>Open navigation</span>
+</button>
 
-	<dialog class='drawer' id='mobile-menu' closedby='any'>
-		<div class='split'>
-			<h2>Pages</h2>
-			<form method='dialog'>
-				<button class='ghost size-icon'>
-					<XIcon aria-hidden='true' />
-					<span class='visually-hidden'>Close navigation</span>
-				</button>
-			</form>
-		</div>
-		<NavigationAccordion currentPage={currentPage} />
-	</dialog>
-</div>
+<dialog class='drawer' id='mobile-menu' closedby='any'>
+	<div class='split'>
+		<h2>Pages</h2>
+		<form method='dialog'>
+			<button class='ghost size-icon'>
+				<XIcon aria-hidden='true' />
+				<span class='visually-hidden'>Close navigation</span>
+			</button>
+		</form>
+	</div>
+	<NavigationAccordion currentPage={currentPage} />
+</dialog>

@@ -60,6 +60,7 @@
 
 		/** Outline */
 		--outline-default: var(--size-3xs) solid var(--color-primary);
+		--outline-danger: var(--size-3xs) solid var(--color-danger);
 		--outline-offset: var(--size-3xs);
 
 		/** Shadow */

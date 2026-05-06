@@ -17,7 +17,7 @@
 		margin: 0;
 		padding: var(--size-3xl);
 		border: none;
-		border-left: 1px solid var(--color-border);
+		border-left: var(--size-border-width) solid var(--color-border);
 		border-radius: 0;
 
 		color: var(--color-on-background-raised);
