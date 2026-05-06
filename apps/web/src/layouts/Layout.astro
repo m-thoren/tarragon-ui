@@ -12,11 +12,11 @@ const { currentPage } = Astro.props
 
 <RootLayout currentPage={currentPage}>
 	<div class='flex-1 container'>
-		<div class='grid-desktop'>
-			<aside class='show-above-desktop padding-block-3xl padding-inline-md cell-one-fourth'>
+		<div class='grid-desktop gap-xl padding-block-3xl'>
+			<aside class='show-above-desktop cell-one-fourth'>
 				<NavigationAccordion currentPage={currentPage} />
 			</aside>
-			<main id='main' class='cell-three-fourths padding-block-3xl'>
+			<main id='main' tabindex='-1' class='cell-three-fourths'>
 				<slot />
 			</main>
 		</div>
