@@ -1,9 +1,8 @@
 @layer tarragon-ui.components {
 	dialog {
-		overflow: hidden;
+		overflow: hidden auto;
 
-		width: 90%;
-		max-width: var(--size-7xl);
+		max-width: min(var(--size-7xl), 100vw);
 		max-height: 100vh;
 		margin: auto;
 		padding: var(--size-3xl);
@@ -14,6 +13,11 @@
 
 		background-color: var(--color-background-raised);
 		box-shadow: var(--shadow-default);
+
+		@media (width > 640px) {
+			width: 90%;
+			max-height: 90vh;
+		}
 	}
 
 	dialog[open] {
@@ -53,5 +57,10 @@
 		height: 100%;
 		border: none;
 		border-radius: 0;
+	}
+
+	dialog:focus-visible {
+		outline: var(--outline-default);
+		outline-offset: var(--outline-offset);
 	}
 }
