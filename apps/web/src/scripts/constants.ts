@@ -75,14 +75,8 @@ export const sections: Array<Sections> = [
 		].toSorted((a, b) => a.name.localeCompare(b.name)),
 	},
 	{
-		name: 'Typography',
+		name: 'Text',
 		pages: [
-			{
-				name: 'Link',
-				href: buildUrl('/link'),
-				description:
-					'An interactive text element that navigates the user to another page or section when clicked.',
-			},
 			{
 				name: 'Prose',
 				href: buildUrl('/prose'),
@@ -188,6 +182,12 @@ export const sections: Array<Sections> = [
 		name: 'Overlays',
 		pages: [
 			{
+				name: 'Cookie Banner',
+				href: buildUrl('/cookie-banner'),
+				description:
+					'Allow users to accept or reject cookies which are not essential to making your service work.',
+			},
+			{
 				name: 'Dialog',
 				href: buildUrl('/dialog'),
 				description:
@@ -214,6 +214,44 @@ export const sections: Array<Sections> = [
 		].toSorted((a, b) => a.name.localeCompare(b.name)),
 	},
 	{
+		name: 'Media',
+		pages: [
+			{
+				name: 'Avatar',
+				href: buildUrl('/avatar'),
+				description:
+					'Make an image rounded and give it a 1/1 aspect ratio. Often used for profile images',
+			},
+			{
+				name: 'Figure',
+				href: buildUrl('/figure'),
+				description: 'Display an image with a caption and source',
+			},
+		].toSorted((a, b) => a.name.localeCompare(b.name)),
+	},
+	{
+		name: 'Navigation',
+		pages: [
+			{
+				name: 'Breadcrumbs',
+				href: buildUrl('/breadcrumbs'),
+				description:
+					'A navigation aid that indicates the user’s current location within a hierarchical structure. It helps users understand where they are and easily navigate back to previous pages.',
+			},
+			{
+				name: 'Link',
+				href: buildUrl('/link'),
+				description:
+					'An interactive text element that navigates the user to another page or section when clicked.',
+			},
+			{
+				name: 'Pagination',
+				href: buildUrl('/pagination'),
+				description: 'Controls to jump to specific pages or move sequentially.',
+			},
+		].toSorted((a, b) => a.name.localeCompare(b.name)),
+	},
+	{
 		name: 'Disclosure',
 		pages: [
 			{
@@ -223,32 +261,9 @@ export const sections: Array<Sections> = [
 					'A vertically stacked list of items that can be expanded or collapsed to reveal content. Ideal for organizing large amounts of information in a compact space.',
 			},
 			{
-				name: 'Breadcrumbs',
-				href: buildUrl('/breadcrumbs'),
-				description:
-					'A navigation aid that indicates the user’s current location within a hierarchical structure. It helps users understand where they are and easily navigate back to previous pages.',
-			},
-			{
-				name: 'Cookie Banner',
-				href: buildUrl('/cookie-banner'),
-				description:
-					'Allow users to accept or reject cookies which are not essential to making your service work.',
-			},
-			{
-				name: 'Pagination',
-				href: buildUrl('/pagination'),
-				description: 'Controls to jump to specific pages or move sequentially.',
-			},
-			{
 				name: 'Search Filter',
 				href: buildUrl('/search-filter'),
 				description: 'A client side filtering with debounce and section functionality',
-			},
-			{
-				name: 'Steps',
-				href: buildUrl('/steps'),
-				description:
-					'Guides users through a multi-stage process by indicating their current position and overall progress. It helps manage complex workflows or onboarding sequences.',
 			},
 			{
 				name: 'Tabs',
@@ -293,29 +308,23 @@ export const sections: Array<Sections> = [
 				href: buildUrl('/skeleton'),
 				description: 'A placeholder for content that is not loaded yet',
 			},
+			{
+				name: 'Steps',
+				href: buildUrl('/steps'),
+				description:
+					'Guides users through a multi-stage process by indicating their current position and overall progress. It helps manage complex workflows or onboarding sequences.',
+			},
 		].toSorted((a, b) => a.name.localeCompare(b.name)),
 	},
 	{
 		name: 'Data Display',
 		pages: [
 			{
-				name: 'Avatar',
-				href: buildUrl('/avatar'),
-				description:
-					'Make an image rounded and give it a 1/1 aspect ratio. Often used for profile images',
-			},
-			{
 				name: 'Badge',
 				href: buildUrl('/badge'),
 				description:
 					'Small, non-interactive visual indicators used to highlight an item, denote a count, or categorize status. Often seen in notifications, labels, or tags.',
 			},
-			{
-				name: 'Figure',
-				href: buildUrl('/figure'),
-				description: 'Display an image with a caption and source',
-			},
-
 			{
 				name: 'Table',
 				href: buildUrl('/table'),
