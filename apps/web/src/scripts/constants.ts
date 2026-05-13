@@ -223,6 +223,11 @@ export const sections: Array<Sections> = [
 					'Make an image rounded and give it a 1/1 aspect ratio. Often used for profile images',
 			},
 			{
+				name: 'Carousel',
+				href: buildUrl('/carousel'),
+				description: 'Display a series of images or content in a rotating slideshow.',
+			},
+			{
 				name: 'Figure',
 				href: buildUrl('/figure'),
 				description: 'Display an image with a caption and source',
