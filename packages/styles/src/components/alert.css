@@ -1,13 +1,9 @@
 @layer tarragon-ui.components {
 	.alert {
-		--_internal-border-color: var(--color-info);
-		--_internal-background-color: var(--color-info);
-		--_internal-color: var(--color-on-info);
-		--_internal-box-shadow: var(--shadow-info);
-		--_border-color: var(--_internal-border-color);
-		--_background-color: var(--_internal-background-color);
-		--_color: var(--_internal-color);
-		--_box-shadow: var(--_internal-box-shadow);
+		--_border-color: var(--override--border-color, var(--color-info));
+		--_background-color: var(--override--background-color, var(--color-info));
+		--_color: var(--override--color, var(--color-on-info));
+		--_box-shadow: var(--override--box-shadow, var(--shadow-info));
 
 		display: grid;
 		grid-template-columns: var(--size-md) 1fr;
