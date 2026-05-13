@@ -1,5 +1,6 @@
 import { tuiAttribute } from './constants'
 
 export function ready(component: HTMLElement) {
-	component.setAttribute(tuiAttribute('ready'), '')
+	console.debug('🚀 ~ ready ~ component:', component)
+	component.setAttribute(tuiAttribute('state'), 'ready')
 }

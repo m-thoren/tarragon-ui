@@ -16,7 +16,7 @@ test.describe(componentName, () => {
 		const tabs = await tabList.getByRole('tab').all()
 		const tabPanels = await tabElement.locator('.tabpanel').all()
 
-		await expect(tabElement).toHaveAttribute('data-tui-ready', '')
+		await expect(tabElement).toHaveAttribute('data-tui-state', 'ready')
 		expect(await tabList.getAttribute('aria-labelledby')).toBe(
 			await tabsTitle.getAttribute('id'),
 		)
@@ -152,7 +152,7 @@ test.describe(`${componentName} - no-js`, () => {
 		await page.goto(`${testPath}/no-js.html`)
 
 		const component = page.locator(componentName)
-		await expect(component).not.toHaveAttribute('data-tui-ready')
+		await expect(component).not.toHaveAttribute('data-tui-state', 'ready')
 		await expect(component).toBeVisible()
 	})
 })

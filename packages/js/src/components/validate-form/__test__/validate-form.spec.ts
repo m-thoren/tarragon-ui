@@ -68,7 +68,7 @@ test.describe(`${componentName} - no-js`, () => {
 		await page.goto(`${testPath}/no-js.html`)
 
 		const component = page.locator(componentName)
-		await expect(component).not.toHaveAttribute('data-tui-ready')
+		await expect(component).not.toHaveAttribute('data-tui-state', 'ready')
 		await expect(component).toBeVisible()
 	})
 })

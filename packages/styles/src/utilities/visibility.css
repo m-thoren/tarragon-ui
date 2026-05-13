@@ -3,7 +3,7 @@
 		display: none;
 	}
 
-	tui-select-all:not([data-tui-ready]) {
+	tui-select-all:not([data-tui-state='ready']) {
 		visibility: hidden;
 	}
 

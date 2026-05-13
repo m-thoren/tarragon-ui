@@ -10,7 +10,7 @@ test.describe(componentName, () => {
 
 	test('should initialize', async ({ page }) => {
 		const component = page.locator(componentName)
-		await expect(component).toHaveAttribute('data-tui-ready')
+		await expect(component).toHaveAttribute('data-tui-state', 'ready')
 		await expect(component).toBeHidden()
 	})
 
@@ -31,7 +31,7 @@ test.describe(`${componentName} - show when not checked`, () => {
 		await page.goto(`${testPath}/show-when-not-checked.html`)
 
 		const component = page.locator(componentName)
-		await expect(component).toHaveAttribute('data-tui-ready')
+		await expect(component).toHaveAttribute('data-tui-state', 'ready')
 		await expect(component).toBeVisible()
 	})
 })
@@ -41,7 +41,7 @@ test.describe(`${componentName} - no-js`, () => {
 		await page.goto(`${testPath}/no-js.html`)
 
 		const component = page.locator(componentName)
-		await expect(component).not.toHaveAttribute('data-tui-ready')
+		await expect(component).not.toHaveAttribute('data-tui-state', 'ready')
 		await expect(component).toBeVisible()
 	})
 })

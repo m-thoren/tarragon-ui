@@ -17,7 +17,7 @@ test.describe(componentName, () => {
 
 	test('select-all should initialize', async ({ page }) => {
 		const selectAll = page.getByRole('group').locator(componentName)
-		await expect(selectAll).toHaveAttribute('data-tui-ready', '')
+		await expect(selectAll).toHaveAttribute('data-tui-state', 'ready')
 	})
 
 	test('select-all toggles all checkboxes', async ({ page }) => {
@@ -154,7 +154,7 @@ test.describe(`${componentName} - no-js`, () => {
 		await page.goto(`${testPath}/no-js.html`)
 
 		const component = page.locator(componentName)
-		await expect(component).not.toHaveAttribute('data-tui-ready')
+		await expect(component).not.toHaveAttribute('data-tui-state', 'ready')
 		await expect(component).toBeHidden()
 	})
 })

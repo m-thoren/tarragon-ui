@@ -8,7 +8,7 @@ test.describe(componentName, () => {
 		await page.goto(`${testPath}/default.html`)
 
 		const dropdownWrapper = page.locator(componentName)
-		await expect(dropdownWrapper).toHaveAttribute('data-tui-ready')
+		await expect(dropdownWrapper).toHaveAttribute('data-tui-state', 'ready')
 	})
 
 	test('should open and close the dropdown with keyboard', async ({ page }) => {
@@ -154,7 +154,7 @@ test.describe(`${componentName} - no-js`, () => {
 		await page.goto(`${testPath}/no-js.html`)
 
 		const component = page.locator(componentName)
-		await expect(component).not.toHaveAttribute('data-tui-ready')
+		await expect(component).not.toHaveAttribute('data-tui-state', 'ready')
 		await expect(component).toBeVisible()
 	})
 })
