@@ -1,11 +1,12 @@
 ---
 import CodeExample from '@/components/CodeExample.astro'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
+import { XIcon } from '@lucide/astro'
 ---
 
 <ComponentLayout name='Cookie Banner'>
 	<CodeExample>
-		<div role='region' class='card padding-lg'>
+		<div role='region' class='cookie-banner'>
 			<h2>Cookies on [site name]</h2>
 			<div class='stack gap-xs'>
 				<p>This site uses cookies to work</p>
@@ -13,8 +14,100 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 			</div>
 			<div class='cluster gap-xs'>
 				<button class='outline'>Reject</button>
+				<button class='outline' commandfor='dialog-default' command='show-modal'>
+					More options
+				</button>
+				<dialog id='dialog-default' closedby='any'>
+					<div class='split'>
+						<h2>Cookies</h2>
+						<form method='dialog'>
+							<button class='ghost size-icon'>
+								<XIcon aria-hidden='true' />
+								<span class='visually-hidden'>Close dialog</span>
+							</button>
+						</form>
+					</div>
+					<div class='prose'>
+						<h3>Necessary cookies</h3>
+						<p>
+							These cookies are necessary for the website to function and cannot be
+							switched off in our systems.
+						</p>
+						<label for='switch-necessary'>
+							<input
+								id='switch-necessary'
+								role='switch'
+								type='checkbox'
+								name='necessary'
+							/>
+							Accept necessary cookies
+						</label>
+						<h3>Analytics cookies</h3>
+						<p>
+							These cookies allow us to count visits and traffic sources so we can
+							measure and improve the performance of our site.
+						</p>
+						<p>
+							These cookies allow us to count visits and traffic sources so we can
+							measure and improve the performance of our site.
+						</p>
+						<p>
+							These cookies allow us to count visits and traffic sources so we can
+							measure and improve the performance of our site.
+						</p>
+						<label for='switch-analytics'>
+							<input
+								id='switch-analytics'
+								role='switch'
+								type='checkbox'
+								name='analytics'
+							/>
+							Accept analytics cookies
+						</label>
+						<h3>Advertising cookies</h3>
+						<p>
+							These cookies may be set through our site by our advertising partners.
+							They may be used by those companies to build a profile of your interests
+							and show you relevant adverts on other sites.
+						</p>
+						<label for='switch-advertising'>
+							<input
+								id='switch-advertising'
+								role='switch'
+								type='checkbox'
+								name='advertising'
+							/>
+							Accept advertising cookies
+						</label>
+					</div>
+					<div class='action-footer'>
+						<form method='dialog'>
+							<button class='outline'>Cancel</button>
+						</form>
+						<button>Save selection</button>
+					</div>
+				</dialog>
 				<button>Accept</button>
 			</div>
 		</div>
 	</CodeExample>
 </ComponentLayout>
+
+<style>
+	.cookie-banner {
+		position: fixed;
+		inset-block-end: 0;
+		inset-inline-start: 0;
+
+		display: flex;
+		flex-direction: column;
+		gap: var(--size-md);
+		z-index: 10;
+
+		padding: var(--size-3xl);
+		border-top: var(--size-border-width) solid var(--color-border);
+		width: 100%;
+
+		background: var(--color-background-raised);
+	}
+</style>

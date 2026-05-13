@@ -1,4 +1,10 @@
 @layer tarragon-ui.components {
+	@keyframes slide-in-from-right {
+		from {
+			transform: translateX(100%);
+		}
+	}
+
 	.drawer {
 		inset-inline: auto 0;
 
@@ -11,12 +17,16 @@
 		margin: 0;
 		padding: var(--size-3xl);
 		border: none;
-		border-left: 1px solid var(--color-border);
+		border-left: var(--size-border-width) solid var(--color-border);
 		border-radius: 0;
 
 		color: var(--color-on-background-raised);
 
 		background-color: var(--color-background-raised);
 		box-shadow: none;
+
+		&[open] {
+			animation: slide-in-from-right ease-out 0.3s;
+		}
 	}
 }

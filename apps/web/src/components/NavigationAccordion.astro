@@ -14,7 +14,7 @@ const { currentPage } = Astro.props
 		sections.map((section) => (
 			<details open={section.pages.some((page) => page.href === currentPage?.href)}>
 				<summary>
-					{section.name} <ChevronDownIcon aria-hidden />
+					{section.name} <ChevronDownIcon aria-hidden='true' />
 				</summary>
 				<ul class='list-none padding-xs'>
 					{section.pages.map((page) => (

@@ -1,11 +1,8 @@
 @layer tarragon-ui.components {
 	.badge {
-		--_internal-background-color: var(--color-primary);
-		--_internal-border-color: transparent;
-		--_internal-color: var(--color-on-primary);
-		--_background-color: var(--_internal-background-color);
-		--_border-color: var(--_internal-border-color);
-		--_color: var(--_internal-color);
+		--_background-color: var(--override--background-color, var(--color-primary));
+		--_border-color: var(--override--border-color, transparent);
+		--_color: var(--override--color, var(--color-on-primary));
 
 		overflow: hidden;
 		display: inline-flex;

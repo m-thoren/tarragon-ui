@@ -22,6 +22,6 @@ export default {
 			},
 		],
 		'custom-property-pattern':
-			'^((color|shadow|outline|radius|text|line-height|size|font|maximum|minimum|breakpoint)-|_)[a-z0-9-]+$',
+			'^((color|shadow|outline|radius|text|line-height|size|font|maximum|minimum|breakpoint|override-)-|_)[a-z0-9-]+$',
 	},
 }

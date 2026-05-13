@@ -1,19 +1,15 @@
 @layer tarragon-ui.components {
 	input[type='file'] {
-		--_internal-background-color: var(--color-primary);
-		--_internal-background-color-hover: var(--color-primary-hover);
-		--_internal-color: var(--color-on-primary);
-		--_internal-color-hover: var(--_color);
-		--_internal-box-shadow: var(--shadow-primary);
-		--_internal-border-color: transparent;
-		--_internal-border-color-hover: transparent;
-		--_background-color: var(--_internal-background-color);
-		--_background-color-hover: var(--_internal-background-color-hover);
-		--_color: var(--_internal-color);
-		--_color-hover: var(--_internal-color-hover);
-		--_box-shadow: var(--_internal-box-shadow);
-		--_border-color: var(--_internal-border-color);
-		--_border-color-hover: var(--_internal-border-color-hover);
+		--_background-color: var(--override--background-color, var(--color-primary));
+		--_background-color-hover: var(
+			--override--background-color-hover,
+			var(--color-primary-hover)
+		);
+		--_color: var(--override--color, var(--color-on-primary));
+		--_color-hover: var(--override--color-hover, var(--_color));
+		--_box-shadow: var(--override--box-shadow, var(--shadow-primary));
+		--_border-color: var(--override--border-color, transparent);
+		--_border-color-hover: var(--override--border-color-hover, transparent);
 
 		width: 100%;
 		min-width: 0;
@@ -75,11 +71,11 @@
 		}
 
 		&[aria-invalid='true'] {
-			border: 1px solid var(--color-danger);
+			border: var(--size-border-width) solid var(--color-danger);
 		}
 
 		&[aria-invalid='true']:focus-visible {
-			outline: 2px solid var(--color-danger);
+			outline: var(--outline-danger);
 			outline-offset: var(--outline-offset);
 		}
 

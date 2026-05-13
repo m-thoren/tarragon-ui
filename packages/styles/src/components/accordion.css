@@ -10,7 +10,7 @@
 		box-shadow: var(--shadow-default);
 
 		details {
-			border-bottom: 1px solid var(--color-border);
+			border-bottom: var(--size-border-width) solid var(--color-border);
 
 			&:last-child,
 			&:last-of-type {

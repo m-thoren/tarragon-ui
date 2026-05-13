@@ -60,6 +60,7 @@
 
 		/** Outline */
 		--outline-default: var(--size-3xs) solid var(--color-primary);
+		--outline-danger: var(--size-3xs) solid var(--color-danger);
 		--outline-offset: var(--size-3xs);
 
 		/** Shadow */
@@ -253,8 +254,8 @@
 			0px 2px 2px oklch(from var(--color-primary) l c h / 15%),
 			0px 4px 4px oklch(from var(--color-primary) l c h / 30%);
 		--shadow-accent:
-			0px 2px 2px oklch(from var(--color-primary) l c h / 15%),
-			0px 4px 4px oklch(from var(--color-primary) l c h / 30%);
+			0px 2px 2px oklch(from var(--color-accent) l c h / 15%),
+			0px 4px 4px oklch(from var(--color-accent) l c h / 30%);
 		--shadow-danger:
 			0px 2px 2px oklch(from var(--color-danger) l c h / 15%),
 			0px 4px 4px oklch(from var(--color-danger) l c h / 30%);

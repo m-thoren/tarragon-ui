@@ -9,9 +9,8 @@ test.describe('Dialog Navigation', () => {
 	})
 
 	test('should open and close the dialog navigation on mobile', async ({ page }) => {
-		const dialogNavigation = page.getByTestId('dialog-navigation')
-		const openButton = dialogNavigation.getByRole('button', { name: 'Open navigation' })
-		const drawer = dialogNavigation.getByRole('dialog')
+		const openButton = page.getByRole('button', { name: 'Open navigation' })
+		const drawer = page.getByRole('dialog').first()
 
 		await openButton.click()
 		await expect(drawer).toBeVisible()
@@ -22,11 +21,10 @@ test.describe('Dialog Navigation', () => {
 	})
 
 	test('should navigate to a page from the dialog navigation', async ({ page }) => {
-		const dialogNavigation = page.getByTestId('dialog-navigation')
-		const openButton = dialogNavigation.getByRole('button', { name: 'Open navigation' })
+		const openButton = page.getByRole('button', { name: 'Open navigation' })
 		await openButton.click()
 
-		const drawer = dialogNavigation.getByRole('dialog')
+		const drawer = page.getByRole('dialog').first()
 		const accordion = drawer.locator('.accordion-group')
 		await accordion.locator('details').nth(3).click()
 		const link = drawer.getByRole('link', { name: 'Button' })
