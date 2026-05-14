@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test'
 
-const baseURL = 'http://localhost:4321'
+const baseURL = 'http://localhost:8080'
 
 /**
  * Read environment variables from file.
@@ -73,9 +73,9 @@ export default defineConfig({
 	],
 
 	/* Run your local dev server before starting the tests */
-	// webServer: {
-	// 	command: 'pnpm dev',
-	// 	url: baseURL,
-	// 	reuseExistingServer: !process.env.CI,
-	// },
+	webServer: {
+		command: 'pnpm start',
+		url: baseURL,
+		reuseExistingServer: !process.env.CI,
+	},
 })

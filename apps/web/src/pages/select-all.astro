@@ -6,9 +6,9 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 <ComponentLayout name='Select All'>
 	<CodeExample>
 		<div>
-			<fieldset class='choice-group' data-testid='select-all-checkbox'>
+			<fieldset class='choice-group'>
 				<legend>Select all</legend>
-				<tui-select-all data-tui-target-name='select-all' data-tui-state='not-ready'>
+				<tui-select-all data-tui-target-name='select-all'>
 					<label for='checkbox-select-all-1'>
 						<input id='checkbox-select-all-1' type='checkbox' />
 						Select all
@@ -24,6 +24,36 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 				</label>
 				<label for='checkbox-select-all-4'>
 					<input id='checkbox-select-all-4' type='checkbox' name='select-all' />
+					Label text
+				</label>
+			</fieldset>
+		</div>
+	</CodeExample>
+
+	<h2>Add a class to checkboxes</h2>
+	<p>
+		Optionally add a class to checkboxes to show that they are a coupled to the select all
+		checkbox
+	</p>
+	<CodeExample>
+		<div>
+			<fieldset class='choice-group'>
+				<legend>Select all indented</legend>
+				<tui-select-all
+					data-tui-target-name='select-all'
+					data-tui-checkbox-class='padding-inline-start-lg'
+				>
+					<label for='checkbox-select-all-indent-1'>
+						<input id='checkbox-select-all-indent-1' type='checkbox' />
+						Select all
+					</label>
+				</tui-select-all>
+				<label for='checkbox-select-all-indent-2'>
+					<input id='checkbox-select-all-indent-2' type='checkbox' name='select-all' />
+					Label text
+				</label>
+				<label for='checkbox-select-all-indent-3'>
+					<input id='checkbox-select-all-indent-3' type='checkbox' name='select-all' />
 					Label text
 				</label>
 			</fieldset>
