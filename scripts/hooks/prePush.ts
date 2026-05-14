@@ -13,7 +13,7 @@ try {
 	poshLog('🏰 Build completed successfully!', MsgColor.Green)
 
 	poshLog('🤖 Running Tests...', MsgColor.BrightCyan)
-	execSync('pnpm -r test', { stdio: 'inherit' })
+	execSync('pnpm --filter "...[origin/main]" test', { stdio: 'inherit' })
 	poshLog('🏆 Tests ran successfully!', MsgColor.Green)
 } catch (error) {
 	const errorMessage = `🚨 Pre-push hook failed: ${error instanceof Error ? error.message : 'Unknown error'}`

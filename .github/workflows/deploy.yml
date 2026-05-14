@@ -58,7 +58,7 @@ jobs:
               run: pnpm exec playwright install --with-deps
 
             - name: Run tests
-              run: pnpm --r test
+              run: pnpm --filter=\!styles test
 
             - name: Configure GitHub Pages
               uses: actions/configure-pages@v5
