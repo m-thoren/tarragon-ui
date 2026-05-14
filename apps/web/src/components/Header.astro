@@ -14,8 +14,8 @@ const { currentPage } = Astro.props
 
 <header class='container'>
 	<div class='header-content'>
-		<a href={buildUrl('/')} class='btn ghost' aria-label='Home'>
-			<BrandIcon aria-hidden='true' />
+		<a href={buildUrl('/')} class='btn ghost size-icon-below-tablet' aria-label='Home'>
+			<BrandIcon width={24} aria-hidden='true' class='text-primary' />
 			<span class='visually-hidden-below-tablet'>{siteTitle}</span>
 		</a>
 		<div class='cluster'>

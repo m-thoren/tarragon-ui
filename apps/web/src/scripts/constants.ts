@@ -1,4 +1,4 @@
-export const siteTitle = 'Tarragon-UI'
+export const siteTitle = 'TarragonUI'
 
 export const buildUrl = (path: string) => `${import.meta.env.BASE_URL}${path}`
 
