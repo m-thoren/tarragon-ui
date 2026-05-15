@@ -7,6 +7,14 @@
 		align-items: start;
 	}
 
+	.items-center {
+		align-items: center;
+	}
+
+	.justify-center {
+		justify-content: center;
+	}
+
 	.flex-1 {
 		flex: 1 0 0;
 	}

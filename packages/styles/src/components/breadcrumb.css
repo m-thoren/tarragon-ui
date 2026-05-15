@@ -1,8 +1,6 @@
 @layer tarragon-ui.components {
 	.breadcrumb {
-		padding: var(--size-lg) var(--size-3xl);
-
-		ul {
+		ol {
 			display: flex;
 			flex-flow: row wrap;
 			gap: var(--size-sm) 0;
@@ -28,7 +26,7 @@
 		li:not(:first-of-type)::before {
 			content: '';
 
-			rotate: 45deg;
+			rotate: 225deg;
 
 			display: block;
 
@@ -41,6 +39,16 @@
 
 			opacity: 0.4;
 			background-color: #0000;
+
+			@media (width > 640px) {
+				rotate: 45deg;
+			}
+		}
+
+		li:not(:nth-child(2)) {
+			@media (width <= calc(640px - 1px)) {
+				display: none;
+			}
 		}
 
 		span {
