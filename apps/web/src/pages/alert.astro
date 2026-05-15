@@ -5,7 +5,6 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
 
 <ComponentLayout name='Alert'>
-	<h2>Default alert</h2>
 	<CodeExample>
 		<div class='alert'>
 			<InfoIcon aria-hidden='true' />
@@ -37,51 +36,20 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 		</div>
 	</CodeExample>
 
-	<h2>Status Banner</h2>
-	<p>Use for site wide alerts</p>
-	<CodeExample>
-		<div class='alert status-banner'>
-			<InfoIcon aria-hidden='true' />
-			<h2>This is a status banner</h2>
-			<p class='alert-description'>With a description.</p>
-		</div>
-		<div class='alert warning status-banner'>
-			<TriangleAlertIcon aria-hidden='true' />
-			<h2>This is a status banner</h2>
-			<p class='alert-description'>With a description.</p>
-		</div>
-		<div class='alert danger status-banner'>
-			<CircleAlertIcon aria-hidden='true' />
-			<h2>This is a status banner</h2>
-			<p class='alert-description'>With a description.</p>
-		</div>
-	</CodeExample>
-
 	<h2>Variants</h2>
-	<p>
-		Use the variant classes info, success, warning or danger to change the color of the alert.
-		Combine with outline to make an outline alert
-	</p>
+	<p>Use the variant classes success, warning or danger to change the color of the alert.</p>
 
 	<h3>Info</h3>
 	<CodeExample>
-		<div class='alert info'>
+		<div class='alert'>
 			<InfoIcon aria-hidden='true' />
 			<h2>Default info alert</h2>
-		</div>
-		<div class='alert info outline'>
-			<InfoIcon aria-hidden='true' />
-			<h2>Outline info alert</h2>
 		</div>
 	</CodeExample>
 
 	<h3>Success</h3>
 	<CodeExample>
 		<div class='alert success'>
-			<CircleCheckBigIcon aria-hidden='true' />
-			<h2>Success! Your changes have been saved</h2>
-		</div>
-		<div class='alert success outline'>
 			<CircleCheckBigIcon aria-hidden='true' />
 			<h2>Success! Your changes have been saved</h2>
 		</div>
@@ -93,10 +61,6 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 			<TriangleAlertIcon aria-hidden='true' />
 			<h2>This Alert is a warning</h2>
 		</div>
-		<div class='alert warning outline'>
-			<TriangleAlertIcon aria-hidden='true' />
-			<h2>This Alert is a warning</h2>
-		</div>
 	</CodeExample>
 
 	<h3>Danger</h3>
@@ -105,9 +69,51 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 			<CircleAlertIcon aria-hidden='true' />
 			<h2>An error occurred</h2>
 		</div>
-		<div class='alert danger outline'>
+	</CodeExample>
+
+	<h3>Accent</h3>
+	<CodeExample>
+		<div class='alert accent'>
 			<CircleAlertIcon aria-hidden='true' />
-			<h2>An error occurred</h2>
+			<h2>This is an accent alert</h2>
+		</div>
+	</CodeExample>
+
+	<h2>Accessibility</h2>
+	<p>
+		To make the alert accessible to screen readers, use appropriate ARIA roles and properties.
+		The alert should have a role of "region" and an aria-live attribute to announce updates.
+	</p>
+	<CodeExample>
+		<div
+			class='alert'
+			aria-live='polite'
+			aria-atomic='true'
+			role='region'
+			aria-labelledby='alert-title'
+		>
+			<InfoIcon aria-hidden='true' />
+			<h2 id='alert-title'>This is an alert</h2>
+			<p class='alert-description'>With a description.</p>
+		</div>
+	</CodeExample>
+
+	<h3>Danger Status</h3>
+	<p>
+		For an alert with a danger status, use aria-live="assertive" to ensure that screen readers
+		announce the update immediately.
+	</p>
+	<CodeExample>
+		<div
+			class='alert danger'
+			aria-live='assertive'
+			aria-atomic='true'
+			role='region'
+			aria-labelledby='alert-danger-title'
+		>
+			<CircleAlertIcon aria-hidden='true' />
+			<h2 id='alert-danger-title'>This is an alert</h2>
+			<p class='alert-description'>With a description.</p>
 		</div>
 	</CodeExample>
 </ComponentLayout>

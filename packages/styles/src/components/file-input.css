@@ -1,15 +1,15 @@
 @layer tarragon-ui.components {
 	input[type='file'] {
-		--_background-color: var(--override--background-color, var(--color-primary));
-		--_background-color-hover: var(
+		--_file-input-background-color: var(--override--background-color, var(--color-primary));
+		--_file-input-background-color-hover: var(
 			--override--background-color-hover,
 			var(--color-primary-hover)
 		);
-		--_color: var(--override--color, var(--color-on-primary));
-		--_color-hover: var(--override--color-hover, var(--_color));
-		--_box-shadow: var(--override--box-shadow, var(--shadow-primary));
-		--_border-color: var(--override--border-color, transparent);
-		--_border-color-hover: var(--override--border-color-hover, transparent);
+		--_file-input-color: var(--override--color, var(--color-on-primary));
+		--_file-input-color-hover: var(--override--color-hover, var(--_file-input-color));
+		--_file-input-box-shadow: var(--override--box-shadow, var(--shadow-primary));
+		--_file-input-border-color: var(--override--border-color, transparent);
+		--_file-input-border-color-hover: var(--override--border-color-hover, transparent);
 
 		width: 100%;
 		min-width: 0;
@@ -25,15 +25,15 @@
 			min-height: var(--minimum-clickable-size);
 			margin-inline-end: var(--size-md);
 			padding: var(--size-xs) var(--size-md);
-			border: var(--size-border-width) solid var(--_border-color);
+			border: var(--size-border-width) solid var(--_file-input-border-color);
 			border-radius: var(--radius-default);
 
 			font-size: var(--text-sm);
 			font-weight: var(--font-weight-medium);
-			color: var(--_color);
+			color: var(--_file-input-color);
 			text-decoration: none;
 
-			background-color: var(--_background-color);
+			background-color: var(--_file-input-background-color);
 
 			transition:
 				background-color 0.2s,
@@ -43,20 +43,20 @@
 
 			&:focus-visible,
 			&:hover {
-				border-color: var(--_border-color-hover);
-				color: var(--_color-hover);
-				background-color: var(--_background-color-hover);
-				box-shadow: var(--_box-shadow);
+				border-color: var(--_file-input-border-color-hover);
+				color: var(--_file-input-color-hover);
+				background-color: var(--_file-input-background-color-hover);
+				box-shadow: var(--_file-input-box-shadow);
 			}
 		}
 
 		&:focus-visible,
 		&:hover {
 			&::file-selector-button {
-				border-color: var(--_border-color-hover);
-				color: var(--_color-hover);
-				background-color: var(--_background-color-hover);
-				box-shadow: var(--_box-shadow);
+				border-color: var(--_file-input-border-color-hover);
+				color: var(--_file-input-color-hover);
+				background-color: var(--_file-input-background-color-hover);
+				box-shadow: var(--_file-input-box-shadow);
 			}
 		}
 
@@ -81,6 +81,37 @@
 
 		&[aria-invalid='true']:hover:not([disabled]) {
 			border-color: var(--color-danger-hover);
+		}
+	}
+}
+
+@layer tarragon-ui.utilities {
+	input[type='file'] {
+		&.outline {
+			--override--color-outline: var(--color-text);
+			--override--color-outline-hover: var(--color-text);
+			--override--background-color-hover: var(--color-muted);
+			--override--border-color: var(--color-border);
+			--override--border-color-hover: var(--color-border);
+			--override--box-shadow: var(--shadow-default);
+			--_file-input-border: var(--override--border-color);
+			--_file-input-color: var(--override--color-outline);
+			--_file-input-background-color: transparent;
+			--_file-input-border-hover: var(--override--border-color-hover);
+			--_file-input-color-hover: var(--override--color-outline-hover);
+			--_file-input-background-color-hover: var(--override--background-color-hover);
+			--_file-input-box-shadow: var(--override--box-shadow);
+		}
+
+		&.accent {
+			--override--background-color: var(--color-accent);
+			--override--background-color-hover: var(--color-accent-hover);
+			--override--border-color: var(--color-accent);
+			--override--border-color-hover: var(--color-accent-hover);
+			--override--color: var(--color-on-accent);
+			--override--color-outline: var(--color-accent);
+			--override--color-outline-hover: var(--color-on-accent);
+			--override--box-shadow: var(--shadow-accent);
 		}
 	}
 }

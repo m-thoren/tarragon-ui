@@ -1,16 +1,16 @@
 @layer tarragon-ui.components {
 	button,
 	.btn {
-		--_background-color: var(--override--background-color, var(--color-primary));
-		--_background-color-hover: var(
+		--_button-background-color: var(--override--background-color, var(--color-primary));
+		--_button-background-color-hover: var(
 			--override--background-color-hover,
 			var(--color-primary-hover)
 		);
-		--_color: var(--override--color, var(--color-on-primary));
-		--_color-hover: var(--override--color-hover, var(--_color));
-		--_box-shadow: var(--override--box-shadow, var(--shadow-primary));
-		--_border-color: var(--override--border-color, transparent);
-		--_border-color-hover: var(--override--border-color-hover, transparent);
+		--_button-color: var(--override--color, var(--color-on-primary));
+		--_button-color-hover: var(--override--color-hover, var(--_button-color));
+		--_button-box-shadow: var(--override--box-shadow, var(--shadow-primary));
+		--_button-border-color: var(--override--border-color, transparent);
+		--_button-border-color-hover: var(--override--border-color-hover, transparent);
 
 		display: inline-flex;
 		flex-shrink: 0;
@@ -21,15 +21,15 @@
 		min-width: var(--minimum-clickable-size);
 		min-height: var(--minimum-clickable-size);
 		padding: var(--size-xs) var(--size-md);
-		border: var(--size-border-width) solid var(--_border-color);
+		border: var(--size-border-width) solid var(--_button-border-color);
 		border-radius: var(--radius-default);
 
 		font-size: var(--text-sm);
 		font-weight: var(--font-weight-medium);
-		color: var(--_color);
+		color: var(--_button-color);
 		text-decoration: none;
 
-		background-color: var(--_background-color);
+		background-color: var(--_button-background-color);
 
 		transition:
 			background-color 0.2s,
@@ -39,10 +39,10 @@
 
 		&:focus-visible,
 		&:hover {
-			border-color: var(--_border-color-hover);
-			color: var(--_color-hover);
-			background-color: var(--_background-color-hover);
-			box-shadow: var(--_box-shadow);
+			border-color: var(--_button-border-color-hover);
+			color: var(--_button-color-hover);
+			background-color: var(--_button-background-color-hover);
+			box-shadow: var(--_button-box-shadow);
 		}
 
 		&:focus-visible {
@@ -63,135 +63,85 @@
 			max-height: 40px;
 		}
 	}
-
-	.size-icon {
-		width: var(--minimum-clickable-size);
-		height: var(--minimum-clickable-size);
-		padding: var(--size-sm);
-	}
-
-	.fill {
-		--override--background-color: var(--color-primary);
-		--override--color: var(--color-on-primary);
-		--override--box-shadow: var(--shadow-primary);
-		--override--border-color: transparent;
-		--_background-color: var(--override--background-color);
-		--_color: var(--override--color);
-		--_box-shadow: var(--override--box-shadow);
-		--_border-color: var(--override--border-color);
-
-		border: var(--size-border-width) solid var(--_border);
-		border-radius: var(--radius-default);
-
-		color: var(--_color);
-
-		background-color: var(--_background-color);
-		box-shadow: var(--_box-shadow);
-	}
-
-	@media (width <= calc(640px - 1px)) {
-		.size-icon-below-tablet {
-			width: var(--minimum-clickable-size);
-			height: var(--minimum-clickable-size);
-			padding: var(--size-sm);
-		}
-	}
-
-	@media (width <= calc(1024px - 1px)) {
-		.size-icon-below-desktop {
-			width: var(--minimum-clickable-size);
-			height: var(--minimum-clickable-size);
-			padding: var(--size-sm);
-		}
-	}
 }
 
 @layer tarragon-ui.utilities {
-	.outline {
-		--override--color-outline: var(--color-text);
-		--override--color-outline-hover: var(--color-text);
-		--override--background-color-hover: var(--color-muted);
-		--override--border-color: var(--color-border);
-		--override--border-color-hover: var(--color-border);
-		--override--box-shadow: var(--shadow-default);
-		--_border: var(--override--border-color);
-		--_color: var(--override--color-outline);
-		--_background-color: transparent;
-		--_border-hover: var(--override--border-color-hover);
-		--_color-hover: var(--override--color-outline-hover);
-		--_background-color-hover: var(--override--background-color-hover);
-		--_box-shadow: var(--override--box-shadow);
-	}
+	button,
+	.btn {
+		&.outline {
+			--override--color-outline: var(--color-text);
+			--override--color-outline-hover: var(--color-text);
+			--override--background-color-hover: var(--color-muted);
+			--override--border-color: var(--color-border);
+			--override--border-color-hover: var(--color-border);
+			--override--box-shadow: var(--shadow-default);
+			--_button-border: var(--override--border-color);
+			--_button-color: var(--override--color-outline);
+			--_button-background-color: transparent;
+			--_button-border-hover: var(--override--border-color-hover);
+			--_button-color-hover: var(--override--color-outline-hover);
+			--_button-background-color-hover: var(--override--background-color-hover);
+			--_button-box-shadow: var(--override--box-shadow);
+		}
 
-	button:where(.ghost),
-	.btn:where(.ghost) {
-		--override--color-outline: inherit;
-		--override--color-outline-hover: inherit;
-		--override--background-color-hover: var(--color-muted);
-		--override--border-color-hover: var(--color-border);
-		--override--box-shadow: var(--shadow-default);
-		--_color: var(--override--color-outline);
-		--_color-hover: var(--override--color-outline-hover);
-		--_background-color: transparent;
-		--_background-color-hover: var(--override--background-color-hover);
-		--_border-color: transparent;
-		--_border-color-hover: var(--override--border-color-hover);
-		--_box-shadow: var(--override--box-shadow);
-	}
+		&.ghost {
+			--override--color-outline: inherit;
+			--override--color-outline-hover: inherit;
+			--override--background-color-hover: var(--color-muted);
+			--override--border-color-hover: var(--color-border);
+			--override--box-shadow: var(--shadow-default);
+			--_button-color: var(--override--color-outline);
+			--_button-color-hover: var(--override--color-outline-hover);
+			--_button-background-color: transparent;
+			--_button-background-color-hover: var(--override--background-color-hover);
+			--_button-border-color: transparent;
+			--_button-border-color-hover: var(--override--border-color-hover);
+			--_button-box-shadow: var(--override--box-shadow);
+		}
 
-	/* * Variants */
-	.danger {
-		--override--background-color: var(--color-danger);
-		--override--background-color-hover: var(--color-danger-hover);
-		--override--color: var(--color-on-danger);
-		--override--color-outline: var(--color-danger);
-		--override--color-outline-hover: var(--color-on-danger);
-		--override--border-color: var(--color-danger);
-		--override--border-color-hover: var(--color-danger-hover);
-		--override--box-shadow: var(--shadow-danger);
-	}
+		/* * Variants */
+		&.danger {
+			--override--background-color: var(--color-danger);
+			--override--background-color-hover: var(--color-danger-hover);
+			--override--color: var(--color-on-danger);
+			--override--color-outline: var(--color-danger);
+			--override--color-outline-hover: var(--color-on-danger);
+			--override--border-color: var(--color-danger);
+			--override--border-color-hover: var(--color-danger-hover);
+			--override--box-shadow: var(--shadow-danger);
+		}
 
-	.info {
-		--override--background-color: var(--color-info);
-		--override--background-color-hover: var(--color-info-hover);
-		--override--border-color: var(--color-info);
-		--override--border-color-hover: var(--color-info-hover);
-		--override--color: var(--color-on-info);
-		--override--color-outline: var(--color-info);
-		--override--color-outline-hover: var(--color-on-info);
-		--override--box-shadow: var(--shadow-info);
-	}
+		&.accent {
+			--override--background-color: var(--color-accent);
+			--override--background-color-hover: var(--color-accent-hover);
+			--override--border-color: var(--color-accent);
+			--override--border-color-hover: var(--color-accent-hover);
+			--override--color: var(--color-on-accent);
+			--override--color-outline: var(--color-accent);
+			--override--color-outline-hover: var(--color-on-accent);
+			--override--box-shadow: var(--shadow-accent);
+		}
 
-	.success {
-		--override--background-color: var(--color-success);
-		--override--background-color-hover: var(--color-success-hover);
-		--override--border-color: var(--color-success);
-		--override--border-color-hover: var(--color-success-hover);
-		--override--color: var(--color-on-success);
-		--override--color-outline: var(--color-success);
-		--override--color-outline-hover: var(--color-on-success);
-		--override--box-shadow: var(--shadow-success);
-	}
+		&.size-icon {
+			width: var(--minimum-clickable-size);
+			height: var(--minimum-clickable-size);
+			padding: var(--size-sm);
+		}
 
-	.warning {
-		--override--background-color: var(--color-warning);
-		--override--background-color-hover: var(--color-warning-hover);
-		--override--border-color: var(--color-warning);
-		--override--border-color-hover: var(--color-warning-hover);
-		--override--color: var(--color-on-warning);
-		--override--color-outline: var(--color-warning);
-		--override--color-outline-hover: var(--color-on-warning);
-		--override--box-shadow: var(--shadow-warning);
-	}
+		@media (width <= calc(640px - 1px)) {
+			&.size-icon-below-tablet {
+				width: var(--minimum-clickable-size);
+				height: var(--minimum-clickable-size);
+				padding: var(--size-sm);
+			}
+		}
 
-	.accent {
-		--override--background-color: var(--color-accent);
-		--override--background-color-hover: var(--color-accent-hover);
-		--override--border-color: var(--color-accent);
-		--override--border-color-hover: var(--color-accent-hover);
-		--override--color: var(--color-on-accent);
-		--override--color-outline: var(--color-accent);
-		--override--color-outline-hover: var(--color-on-accent);
-		--override--box-shadow: var(--shadow-accent);
+		@media (width <= calc(1024px - 1px)) {
+			&.size-icon-below-desktop {
+				width: var(--minimum-clickable-size);
+				height: var(--minimum-clickable-size);
+				padding: var(--size-sm);
+			}
+		}
 	}
 }

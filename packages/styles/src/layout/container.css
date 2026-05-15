@@ -1,12 +1,12 @@
 @layer tarragon-ui.layout {
 	.container {
-		--_max-width: var(--size-container);
-		--_viewport-padding: var(--size-xl);
+		--_container-max-width: var(--size-container);
+		--_container-viewport-padding: var(--size-xl);
 
 		display: grid;
 		grid-template-columns:
 			1fr
-			min(var(--_max-width), calc(100% - var(--_viewport-padding) * 2))
+			min(var(--_container-max-width), calc(100% - var(--_container-viewport-padding) * 2))
 			1fr;
 		width: 100%;
 
@@ -15,7 +15,7 @@
 		}
 
 		@media (width > 640px) {
-			--_viewport-padding: var(--size-3xl);
+			--_container-viewport-padding: var(--size-3xl);
 		}
 	}
 

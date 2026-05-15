@@ -1,9 +1,9 @@
 @layer tarragon-ui.components {
 	.alert {
-		--_border-color: var(--override--border-color, var(--color-info));
-		--_background-color: var(--override--background-color, var(--color-info));
-		--_color: var(--override--color, var(--color-on-info));
-		--_box-shadow: var(--override--box-shadow, var(--shadow-info));
+		--_alert-border-color: var(--override--border-color, var(--color-info));
+		--_alert-background-color: var(--override--background-color, var(--color-info));
+		--_alert-color: var(--override--color, var(--color-on-info));
+		--_alert-box-shadow: var(--override--box-shadow, var(--shadow-info));
 
 		display: grid;
 		grid-template-columns: var(--size-md) 1fr;
@@ -12,14 +12,14 @@
 
 		width: 100%;
 		padding: var(--size-xs) var(--size-md);
-		border: var(--size-border-width) solid var(--_border-color);
+		border: var(--size-border-width) solid var(--_alert-border-color);
 		border-radius: var(--radius-default);
 
 		font-size: var(--text-sm);
-		color: var(--_color);
+		color: var(--_alert-color);
 
-		background-color: var(--_background-color);
-		box-shadow: var(--_box-shadow);
+		background-color: var(--_alert-background-color);
+		box-shadow: var(--_alert-box-shadow);
 	}
 
 	.alert > svg {
@@ -57,9 +57,43 @@
 		grid-column-start: 2;
 		font-size: var(--text-sm);
 	}
+}
 
-	.status-banner {
-		border-radius: 0;
-		box-shadow: none;
+@layer tarragon-ui.utilities {
+	.alert {
+		&.danger {
+			--override--background-color: var(--color-danger);
+			--override--color: var(--color-on-danger);
+			--override--border-color: var(--color-danger);
+			--override--box-shadow: var(--shadow-danger);
+		}
+
+		&.info {
+			--override--background-color: var(--color-info);
+			--override--border-color: var(--color-info);
+			--override--color: var(--color-on-info);
+			--override--box-shadow: var(--shadow-info);
+		}
+
+		&.success {
+			--override--background-color: var(--color-success);
+			--override--border-color: var(--color-success);
+			--override--color: var(--color-on-success);
+			--override--box-shadow: var(--shadow-success);
+		}
+
+		&.warning {
+			--override--background-color: var(--color-warning);
+			--override--border-color: var(--color-warning);
+			--override--color: var(--color-on-warning);
+			--override--box-shadow: var(--shadow-warning);
+		}
+
+		&.accent {
+			--override--background-color: var(--color-accent);
+			--override--border-color: var(--color-accent);
+			--override--color: var(--color-on-accent);
+			--override--box-shadow: var(--shadow-accent);
+		}
 	}
 }
