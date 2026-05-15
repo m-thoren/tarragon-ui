@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename)
 /** @type {import("stylelint").Config} */
 export default {
 	extends: ['stylelint-config-standard', 'stylelint-config-clean-order/error'],
-	ignoreFiles: ['dist/**', 'node_modules/**'],
+	ignoreFiles: ['dist/**', 'node_modules/**', 'playwright-report/**'],
 	plugins: ['stylelint-value-no-unknown-custom-properties'],
 	rules: {
 		'csstools/value-no-unknown-custom-properties': [

@@ -38,7 +38,7 @@ test.describe(componentName, () => {
 			expect(await tab.getAttribute('role')).toBe('tab')
 			expect(await tab.getAttribute('aria-controls')).toBe(await tabPanel.getAttribute('id'))
 			expect(await tab.getAttribute('aria-selected')).toBe(index === 0 ? 'true' : 'false')
-			expect(await tab.getAttribute('tabindex')).toBe(index === 0 ? null : '-1')
+			expect(await tab.getAttribute('tabindex')).toBe(index === 0 ? '0' : '-1')
 
 			expect(await tabPanel.getAttribute('aria-labelledby')).toBe(
 				await tab.getAttribute('id'),
@@ -144,6 +144,29 @@ test.describe(componentName, () => {
 		await expect(tabPanel2).toBeVisible()
 		await page.keyboard.press('Tab')
 		await expect(tabPanel2Button).toBeFocused()
+	})
+})
+
+test.describe(`${componentName} - with start index`, () => {
+	test('should initialize with the correct tab focused', async ({ page }) => {
+		await page.goto(`${testPath}/with-start-index.html`)
+
+		const component = page.locator(componentName)
+		await expect(component).toHaveAttribute('data-tui-state', 'ready')
+		const tabList = component.getByRole('tablist')
+		const tab1 = tabList.getByRole('tab').first()
+		const tab2 = tabList.getByRole('tab').nth(1)
+		const tab3 = tabList.getByRole('tab').last()
+		const tabPanel1 = component.locator('.tabpanel').first()
+		const tabPanel2 = component.locator('.tabpanel').nth(1)
+		const tabPanel3 = component.locator('.tabpanel').last()
+
+		expect(await tab1.getAttribute('aria-selected')).toBe('false')
+		expect(await tab2.getAttribute('aria-selected')).toBe('true')
+		expect(await tab3.getAttribute('aria-selected')).toBe('false')
+		await expect(tabPanel1).toBeHidden()
+		await expect(tabPanel2).toBeVisible()
+		await expect(tabPanel3).toBeHidden()
 	})
 })
 

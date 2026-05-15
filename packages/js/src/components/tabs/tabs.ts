@@ -1,4 +1,4 @@
-import { Component, NativeEvent, focusableElementsSelector, tuiAttribute } from '../../constants'
+import { Component, NativeEvent, focusableElementsSelector } from '../../constants'
 import { ready } from '../../ready'
 
 customElements.define(
@@ -25,11 +25,11 @@ customElements.define(
 				return
 			}
 
-			ready(this)
 			this.setTabListAttributes()
 			this.setTabsAttributes()
 			this.setPanelsAttributes()
 			this.setEventListeners()
+			ready(this)
 		}
 
 		disconnectedCallback() {
@@ -58,13 +58,20 @@ customElements.define(
 		}
 
 		private setTabsAttributes(): void {
-			const startIndex = parseInt(this.getAttribute(tuiAttribute('start-index')) ?? '0')
+			const hasInitialSelected = this.tabs.some(
+				(tab) => tab.getAttribute('aria-selected') === 'true',
+			)
 
 			this.tabs.forEach((tab, index) => {
 				tab.setAttribute('role', 'tab')
-				if (index === startIndex) {
+
+				if (!hasInitialSelected && index === 0) {
 					tab.setAttribute('aria-selected', 'true')
-				} else {
+					tab.setAttribute('tabindex', '0')
+					this.tabPanels[index]?.removeAttribute('hidden')
+				}
+
+				if (tab.getAttribute('aria-selected') !== 'true') {
 					tab.setAttribute('aria-selected', 'false')
 					tab.setAttribute('tabindex', '-1')
 					this.tabPanels[index]?.setAttribute('hidden', '')

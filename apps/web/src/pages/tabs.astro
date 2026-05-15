@@ -1,6 +1,19 @@
 ---
 import CodeExample from '@/components/CodeExample.astro'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
+
+const tabs = Array.from({ length: 5 }, (_, i) => ({
+	id: `tab-${i + 1}`,
+	label: `Tab ${i + 1}`,
+	panelId: `tabpanel-${i + 1}`,
+	panelLabel: `Panel ${i + 1}`,
+}))
+const tabsWithStartIndex = Array.from({ length: 3 }, (_, i) => ({
+	id: `tab-start-index-${i + 1}`,
+	label: `Tab ${i + 1}`,
+	panelId: `tabpanel-start-index-${i + 1}`,
+	panelLabel: `Panel ${i + 1}`,
+}))
 ---
 
 <ComponentLayout name='Tabs'>
@@ -8,52 +21,80 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 		<tui-tabs>
 			<h2 id='tabs-example'>Tabs example</h2>
 			<ul class='tablist' aria-labelledby='tabs-example'>
-				<li>
-					<a id='tab-1' href='#tabpanel-1'>Tab 1</a>
-				</li>
-				<li>
-					<a id='tab-2' href='#tabpanel-2'>Tab 2</a>
-				</li>
-				<li>
-					<a id='tab-3' href='#tabpanel-3'>Tab 3</a>
-				</li>
+				{
+					tabs.map((tab) => (
+						<li>
+							<a id={tab.id} href={`#${tab.panelId}`}>
+								{tab.label}
+							</a>
+						</li>
+					))
+				}
 			</ul>
-			<div id='tabpanel-1' aria-labelledby='tab-1' class='tabpanel prose'>
-				<h3>Panel 1</h3>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam faucibus
-					sollicitudin ultricies. Curabitur cursus vehicula lacus, et malesuada lectus
-					vulputate at.iLorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-					faucibus sollicitudin ultricies. Curabitur cursus vehicula lacus, et malesuada
-					lectus vulputate at.
-				</p>
-			</div>
-			<div id='tabpanel-2' aria-labelledby='tab-2' class='tabpanel prose'>
-				<h3>Panel 2</h3>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam faucibus
-					sollicitudin ultricies. Curabitur cursus vehicula lacus, et malesuada lectus
-					vulputate at.iLorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-					faucibus sollicitudin ultricies. Curabitur cursus vehicula lacus, et malesuada
-					lectus vulputate at.
-				</p>
-				<button>Focusable</button>
-			</div>
-			<div id='tabpanel-3' aria-labelledby='tab-3' class='tabpanel prose'>
-				<h3>Panel 3</h3>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam faucibus
-					sollicitudin ultricies. Curabitur cursus vehicula lacus, et malesuada lectus
-					vulputate at.iLorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-					faucibus sollicitudin ultricies. Curabitur cursus vehicula lacus, et malesuada
-					lectus vulputate at.
-				</p>
-			</div>
+			{
+				tabs.map((tab, index) => (
+					<div id={tab.panelId} aria-labelledby={tab.id} class='tabpanel prose'>
+						<h3>{tab.panelLabel}</h3>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+							faucibus sollicitudin ultricies. Curabitur cursus vehicula lacus, et
+							malesuada lectus vulputate at.iLorem ipsum dolor sit amet, consectetur
+							adipiscing elit. Aliquam faucibus sollicitudin ultricies. Curabitur
+							cursus vehicula lacus, et malesuada lectus vulputate at.
+						</p>
+						{index === 1 && <button>Focusable</button>}
+					</div>
+				))
+			}
 		</tui-tabs>
 	</CodeExample>
 
 	<h2>Set a start index</h2>
+	<p>
+		Use <code>aria-selected="true"</code> to set the initial active tab.
+	</p>
+	<p>
+		Observe that <code>role="tab"</code> must be specified on the tab.
+	</p>
+
+	<tui-tabs>
+		<h3 id='tabs-start-index'>Tabs with a start index</h3>
+		<ul class='tablist' aria-labelledby='tabs-start-index'>
+			{
+				tabsWithStartIndex.map((tab, index) => (
+					<li>
+						<a
+							id={tab.id}
+							href={`#${tab.panelId}`}
+							role='tab'
+							aria-selected={index === 1 ? 'true' : 'false'}
+						>
+							{tab.label}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+		{
+			tabsWithStartIndex.map((tab) => (
+				<div id={tab.panelId} aria-labelledby={tab.id} class='tabpanel prose'>
+					<h3>{tab.panelLabel}</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+				</div>
+			))
+		}
+	</tui-tabs>
 	<CodeExample onlyCode>
-		<tui-tabs data-tui-start-index='2'></tui-tabs>
+		<tui-tabs>
+			<h3 id='tabs-start-index'>Tabs with a start index</h3>
+			<ul class='tablist' aria-labelledby='tabs-start-index'>
+				...
+				<li>
+					<a id='tab-2' href='#panel-2' role='tab' aria-selected='true'>Tab 2</a>
+				</li>
+				...
+			</ul>
+			...
+		</tui-tabs>
 	</CodeExample>
 </ComponentLayout>
