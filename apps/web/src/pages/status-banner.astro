@@ -1,0 +1,90 @@
+---
+import { CircleAlertIcon, InfoIcon, TriangleAlertIcon } from '@lucide/astro'
+import CodeExample from '@/components/CodeExample.astro'
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+import { buildUrl } from '@/scripts/constants'
+---
+
+<ComponentLayout name='Status Banner'>
+	<CodeExample>
+		<div class='status-banner'>
+			<div class='status-banner-content'>
+				<InfoIcon aria-hidden='true' />
+				<h2>This is a status banner</h2>
+				<p class='status-banner-description'>With a description.</p>
+			</div>
+		</div>
+		<div class='status-banner warning'>
+			<div class='status-banner-content'>
+				<TriangleAlertIcon aria-hidden='true' />
+				<h2>This is a status banner</h2>
+				<p class='status-banner-description'>With a description.</p>
+			</div>
+		</div>
+		<div class='status-banner danger'>
+			<div class='status-banner-content'>
+				<CircleAlertIcon aria-hidden='true' />
+				<h2>This is a status banner</h2>
+				<p class='status-banner-description'>With a description.</p>
+			</div>
+		</div>
+	</CodeExample>
+
+	<h2>With Container</h2>
+	<p>
+		Combine the status banner with <a href={buildUrl('/container')}>container</a> to create a containerized
+		status banner.
+	</p>
+	<CodeExample>
+		<div class='status-banner container'>
+			<div class='status-banner-content'>
+				<InfoIcon aria-hidden='true' />
+				<h2>This is a status banner</h2>
+				<p class='status-banner-description'>With a description.</p>
+			</div>
+		</div>
+	</CodeExample>
+
+	<h2>Accessibility</h2>
+	<p>
+		To make the status banner accessible to screen readers, use appropriate ARIA roles and
+		properties. The banner should have a role of "region" and an aria-live attribute to announce
+		updates.
+	</p>
+	<CodeExample>
+		<div
+			class='status-banner'
+			aria-live='polite'
+			aria-atomic='true'
+			role='region'
+			aria-labelledby='status-banner-title'
+		>
+			<div class='status-banner-content'>
+				<InfoIcon aria-hidden='true' />
+				<h2 id='status-banner-title'>This is a status banner</h2>
+				<p class='status-banner-description'>With a description.</p>
+			</div>
+		</div>
+	</CodeExample>
+
+	<h3>Danger Status</h3>
+	<p>
+		For a status banner with a danger status, use aria-live="assertive" to ensure that screen
+		readers announce the update immediately.
+	</p>
+	<CodeExample>
+		<div
+			class='status-banner danger'
+			aria-live='assertive'
+			aria-atomic='true'
+			role='region'
+			aria-labelledby='status-banner-danger-title'
+		>
+			<div class='status-banner-content'>
+				<CircleAlertIcon aria-hidden='true' />
+				<h2 id='status-banner-danger-title'>This is a status banner</h2>
+				<p class='status-banner-description'>With a description.</p>
+			</div>
+		</div>
+	</CodeExample>
+</ComponentLayout>

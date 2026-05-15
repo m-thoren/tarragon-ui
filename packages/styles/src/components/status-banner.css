@@ -1,0 +1,101 @@
+@layer tarragon-ui.components {
+	.status-banner {
+		--_status-banner-background-color: var(--override--background-color, var(--color-info));
+		--_status-banner-color: var(--override--color, var(--color-on-info));
+
+		width: 100%;
+		color: var(--_status-banner-color);
+		background-color: var(--_status-banner-background-color);
+
+		&:not(.container) {
+			padding-inline: var(--size-md);
+		}
+	}
+
+	.status-banner-content {
+		display: grid;
+		grid-template-columns: var(--size-md) 1fr;
+		gap: var(--size-xs);
+		align-items: center;
+
+		width: 100%;
+		padding-block: var(--size-xs);
+
+		font-size: var(--text-sm);
+	}
+
+	.status-banner > svg {
+		width: var(--size-md);
+		height: var(--size-md);
+	}
+
+	.status-banner a {
+		color: inherit;
+
+		&:hover,
+		&:focus-visible {
+			color: inherit;
+		}
+	}
+
+	.status-banner h2,
+	.status-banner-title {
+		grid-column-start: 2;
+
+		font-family: var(--font-heading);
+		font-size: var(--text-lg);
+		font-weight: var(--font-weight-semibold);
+		line-height: var(--line-height-md);
+		color: inherit;
+	}
+
+	.status-banner p,
+	.status-banner-description {
+		grid-column-start: 2;
+		font-size: var(--text-sm);
+	}
+
+	.status-banner ul {
+		grid-column-start: 2;
+		font-size: var(--text-sm);
+	}
+}
+
+@layer tarragon-ui.utilities {
+	.status-banner {
+		&.danger {
+			--override--background-color: var(--color-danger);
+			--override--color: var(--color-on-danger);
+			--override--border-color: var(--color-danger);
+			--override--box-shadow: var(--shadow-danger);
+		}
+
+		&.info {
+			--override--background-color: var(--color-info);
+			--override--border-color: var(--color-info);
+			--override--color: var(--color-on-info);
+			--override--box-shadow: var(--shadow-info);
+		}
+
+		&.success {
+			--override--background-color: var(--color-success);
+			--override--border-color: var(--color-success);
+			--override--color: var(--color-on-success);
+			--override--box-shadow: var(--shadow-success);
+		}
+
+		&.warning {
+			--override--background-color: var(--color-warning);
+			--override--border-color: var(--color-warning);
+			--override--color: var(--color-on-warning);
+			--override--box-shadow: var(--shadow-warning);
+		}
+
+		&.accent {
+			--override--background-color: var(--color-accent);
+			--override--border-color: var(--color-accent);
+			--override--color: var(--color-on-accent);
+			--override--box-shadow: var(--shadow-accent);
+		}
+	}
+}

@@ -309,6 +309,12 @@ export const sections: Array<Sections> = [
 				description: 'A placeholder for content that is not loaded yet',
 			},
 			{
+				name: 'Status Banner',
+				href: buildUrl('/status-banner'),
+				description:
+					'A banner that appears at the top of the page to provide important information or updates about the system status, such as maintenance notifications or service disruptions.',
+			},
+			{
 				name: 'Steps',
 				href: buildUrl('/steps'),
 				description:
