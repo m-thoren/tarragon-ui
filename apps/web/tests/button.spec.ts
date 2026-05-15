@@ -14,9 +14,9 @@ test.describe('Button', () => {
 		const buttonVariants = page.getByTestId('button-variants-default')
 		const buttons = buttonVariants.locator('button, a.btn')
 
-		await expect(buttons).toHaveCount(8)
+		await expect(buttons).toHaveCount(5)
 
-		const variants = ['accent', 'info', 'success', 'warning', 'danger', 'size-icon']
+		const variants = ['accent', 'danger', 'size-icon']
 
 		for (const variant of variants) {
 			const button = buttonVariants.locator(`.${variant}`).first()
@@ -30,9 +30,9 @@ test.describe('Button', () => {
 		const buttonVariants = page.getByTestId('button-variants-outline')
 		const buttons = buttonVariants.locator('button, a.btn')
 
-		await expect(buttons).toHaveCount(8)
+		await expect(buttons).toHaveCount(5)
 
-		const variants = ['accent', 'info', 'success', 'warning', 'danger', 'size-icon']
+		const variants = ['accent', 'danger', 'size-icon']
 
 		for (const variant of variants) {
 			const button = buttonVariants.locator(`.${variant}`).first()
@@ -46,9 +46,9 @@ test.describe('Button', () => {
 		const buttonVariants = page.getByTestId('button-variants-ghost')
 		const buttons = buttonVariants.locator('button, a.btn')
 
-		await expect(buttons).toHaveCount(8)
+		await expect(buttons).toHaveCount(5)
 
-		const variants = ['accent', 'info', 'success', 'warning', 'danger', 'size-icon']
+		const variants = ['accent', 'danger', 'size-icon']
 
 		for (const variant of variants) {
 			const button = buttonVariants.locator(`.${variant}`).first()

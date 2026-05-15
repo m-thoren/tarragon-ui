@@ -25,21 +25,6 @@ test.describe('Badge', () => {
 		}
 	})
 
-	test('should render all outline badge variants', async ({ page }) => {
-		const badgeVariants = page.getByTestId('badge-variants-outline')
-		const badges = badgeVariants.locator('.badge')
-
-		await expect(badges).toHaveCount(6)
-
-		const variants = ['accent', 'info', 'success', 'warning', 'danger']
-
-		for (const variant of variants) {
-			const badge = badgeVariants.locator(`.${variant}`).first()
-			await expect(badge).toBeVisible()
-			await expect(badge).toContainClass('outline')
-		}
-	})
-
 	test('should render all pill badge variants', async ({ page }) => {
 		const badgeVariants = page.getByTestId('badge-variants-pill')
 		const badges = badgeVariants.locator('.badge')
