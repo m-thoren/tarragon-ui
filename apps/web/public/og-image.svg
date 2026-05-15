@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="100%" height="100%" fill="#09090b"/>
+  <g fill="#ffffff" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial" text-anchor="middle">
+    <text x="50%" y="45%" font-size="64" font-weight="700" fill="#00be7d">TarragonUI</text>
+    <text x="50%" y="60%" font-size="28" fill="#f5f5f6">Lightweight CSS and WebComponents</text>
+  </g>
+</svg>

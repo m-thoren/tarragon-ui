@@ -1,5 +1,5 @@
 ---
-import { buildUrl, siteTitle } from '@/scripts/constants'
+import { buildUrl, siteDescription, siteTitle } from '@/scripts/constants'
 import { ArrowRightIcon } from '@lucide/astro'
 import BrandIcon from '../assets/brand-icon.svg'
 import RootLayout from '@/layouts/RootLayout.astro'
@@ -9,9 +9,7 @@ import RootLayout from '@/layouts/RootLayout.astro'
 	<main id='main' class='stack center gap-3xl padding-3xl flex-1'>
 		<BrandIcon aria-hidden='true' class='tarragon-icon text-primary' />
 		<h1 class='text-center w-full'>{siteTitle}</h1>
-		<p class='text-center'>
-			Lightweight CSS and WebComponents for performant and accessible applications
-		</p>
+		<p class='text-center'>{siteDescription}</p>
 		<a href={buildUrl('/installation')} class='btn'>
 			Get started <ArrowRightIcon aria-hidden='true' />
 		</a>

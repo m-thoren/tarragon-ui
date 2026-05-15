@@ -1,5 +1,10 @@
 export const siteTitle = 'TarragonUI'
 
+export const siteDescription =
+	'Lightweight CSS and WebComponents for performant and accessible applications'
+
+export const siteOrigin = import.meta.env.SITE
+
 export const buildUrl = (path: string) => `${import.meta.env.BASE_URL}${path}`
 
 export type Sections = {

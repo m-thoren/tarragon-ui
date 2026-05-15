@@ -1,6 +1,6 @@
 ---
 import '@tarragon-ui/styles/dev'
-import { type Page, buildUrl, siteTitle } from '@/scripts/constants'
+import { type Page, buildUrl, siteDescription, siteOrigin, siteTitle } from '@/scripts/constants'
 import Footer from '@/components/Footer.astro'
 import Header from '@/components/Header.astro'
 
@@ -9,6 +9,13 @@ type Props = {
 }
 
 const { currentPage } = Astro.props
+
+const pageTitle = currentPage ? `${currentPage.name} | ${siteTitle}` : siteTitle
+const pageDescription = currentPage?.description ?? siteDescription
+const canonical = buildUrl(Astro.url?.pathname ?? '/')
+const absoluteCanonical = siteOrigin ? `${siteOrigin}${Astro.url?.pathname ?? '/'}` : canonical
+const ogImagePath = buildUrl('/og-image.svg')
+const ogImage = siteOrigin ? `${siteOrigin}${ogImagePath}` : ogImagePath
 ---
 
 <!doctype html>
@@ -18,7 +25,19 @@ const { currentPage } = Astro.props
 		<meta name='viewport' content='width=device-width' />
 		<link rel='icon' type='image/svg+xml' href={buildUrl('/favicon.svg')} />
 		<meta name='generator' content={Astro.generator} />
-		<title>{siteTitle}</title>
+		<title>{pageTitle}</title>
+		<meta name='description' content={pageDescription} />
+		<link rel='canonical' href={absoluteCanonical} />
+		<meta property='og:type' content='website' />
+		<meta property='og:title' content={pageTitle} />
+		<meta property='og:description' content={pageDescription} />
+		<meta property='og:url' content={absoluteCanonical} />
+		<meta property='og:image' content={ogImage} />
+		<meta property='og:image:alt' content={siteTitle} />
+		<meta name='twitter:card' content='summary_large_image' />
+		<meta name='twitter:title' content={pageTitle} />
+		<meta name='twitter:description' content={pageDescription} />
+		<meta name='twitter:image' content={ogImage} />
 	</head>
 	<body id='body' class='stack gap-0'>
 		<a href='#main' class='visually-hidden-focusable'>Skip to main content</a>

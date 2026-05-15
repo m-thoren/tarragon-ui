@@ -1,6 +1,6 @@
 ---
 import { ArrowLeftIcon, ArrowRightIcon } from '@lucide/astro'
-import { type Page, sections, siteTitle } from '@/scripts/constants'
+import { type Page, sections } from '@/scripts/constants'
 import Layout from '@/layouts/Layout.astro'
 
 type Props = {
@@ -19,8 +19,6 @@ const component = allPages[componentIndex]
 const prevComponent = allPages.at(componentIndex - 1)
 const nextComponent = allPages.at(componentIndex + 1 > allPages.length - 1 ? 0 : componentIndex + 1)
 ---
-
-<title>{component ? component.name : 'Page not found'} | {siteTitle}</title>
 
 <Layout currentPage={component}>
 	<div class='prose'>
