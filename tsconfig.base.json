@@ -19,8 +19,7 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
-		"noFallthroughCasesInSwitch": true,
-		"baseUrl": "./"
+		"noFallthroughCasesInSwitch": true
 	},
 	"include": ["./eslint.config.mts"]
 }

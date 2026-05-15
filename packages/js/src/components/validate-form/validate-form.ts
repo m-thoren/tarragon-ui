@@ -125,7 +125,7 @@ customElements.define(
 			const firstInvalidField: HTMLElement | null | undefined = this.form?.querySelector(
 				'input:invalid, [aria-invalid="true"] :is([type="checkbox"], [type="radio"])',
 			)
-			// @ts-expect-error focusVisible is not universally supported. Used as a progressive enhancement.
+
 			firstInvalidField?.focus({ focusVisible: true })
 
 			// Emit error

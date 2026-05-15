@@ -3,7 +3,6 @@
 	"include": ["**/*.ts"],
 	"exclude": ["dist"],
 	"compilerOptions": {
-		"baseUrl": ".",
 		"module": "preserve",
 		"moduleResolution": "bundler"
 	}
