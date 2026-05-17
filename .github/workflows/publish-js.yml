@@ -63,11 +63,14 @@ jobs:
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
 
-            - name: Test @tarragon-ui/js
-              run: pnpm --filter @tarragon-ui/js test
-
             - name: Build @tarragon-ui/js
               run: pnpm --filter @tarragon-ui/js build
+
+            - name: Install playwright browsers
+              run: pnpm exec playwright install --with-deps
+
+            - name: Test @tarragon-ui/js
+              run: pnpm --filter @tarragon-ui/js test
 
             - name: Publish to npm with Trusted Publishing
               run: |
