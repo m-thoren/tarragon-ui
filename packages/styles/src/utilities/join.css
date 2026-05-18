@@ -1,9 +1,9 @@
 @layer tarragon-ui.utilities {
 	.join {
-		--_join-border-radius-start-start: 0;
-		--_join-border-radius-start-end: 0;
-		--_join-border-radius-end-start: 0;
-		--_join-border-radius-end-end: 0;
+		--_join--border-radius-start-start: 0;
+		--_join--border-radius-start-end: 0;
+		--_join--border-radius-end-start: 0;
+		--_join--border-radius-end-end: 0;
 
 		display: inline-flex;
 		flex-direction: row;
@@ -13,25 +13,25 @@
 
 	.join > :where(:first-child),
 	.join :first-child:not(:last-child) :where(.join-item) {
-		--_join-border-radius-start-start: var(--radius-default);
-		--_join-border-radius-start-end: 0;
-		--_join-border-radius-end-start: var(--radius-default);
-		--_join-border-radius-end-end: 0;
+		--_join--border-radius-start-start: var(--radius-default);
+		--_join--border-radius-start-end: 0;
+		--_join--border-radius-end-start: var(--radius-default);
+		--_join--border-radius-end-end: 0;
 	}
 
 	.join > :where(:last-child),
 	.join :last-child:not(:first-child) :where(.join-item) {
-		--_join-border-radius-start-start: 0;
-		--_join-border-radius-start-end: var(--radius-default);
-		--_join-border-radius-end-start: 0;
-		--_join-border-radius-end-end: var(--radius-default);
+		--_join--border-radius-start-start: 0;
+		--_join--border-radius-start-end: var(--radius-default);
+		--_join--border-radius-end-start: 0;
+		--_join--border-radius-end-end: var(--radius-default);
 	}
 
 	.join > :not(:has(.join-item)),
 	.join :where(.join-item) {
-		border-start-start-radius: var(--_join-border-radius-start-start, 0);
-		border-start-end-radius: var(--_join-border-radius-start-end, 0);
-		border-end-start-radius: var(--_join-border-radius-end-start, 0);
-		border-end-end-radius: var(--_join-border-radius-end-end, 0);
+		border-start-start-radius: var(--_join--border-radius-start-start, 0);
+		border-start-end-radius: var(--_join--border-radius-start-end, 0);
+		border-end-start-radius: var(--_join--border-radius-end-start, 0);
+		border-end-end-radius: var(--_join--border-radius-end-end, 0);
 	}
 }

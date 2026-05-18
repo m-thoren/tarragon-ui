@@ -100,13 +100,13 @@
 	}
 
 	.max-lines {
-		--_max-lines: 4;
+		--_max-lines--amount: var(--max-lines--amount, 4);
 
 		overflow: hidden;
 		display: -webkit-box;
 		-webkit-box-orient: vertical;
-		-webkit-line-clamp: var(--_max-lines);
-		line-clamp: var(--_max-lines);
+		-webkit-line-clamp: var(--_max-lines--amount);
+		line-clamp: var(--_max-lines--amount);
 
 		hyphens: auto;
 		text-overflow: ellipsis;

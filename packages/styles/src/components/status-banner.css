@@ -1,11 +1,14 @@
 @layer tarragon-ui.components {
 	.status-banner {
-		--_status-banner-background-color: var(--override--background-color, var(--color-info));
-		--_status-banner-color: var(--override--color, var(--color-on-info));
+		--_status-banner--background-color: var(
+			--status-banner--background-color,
+			var(--color-info)
+		);
+		--_status-banner--color: var(--status-banner--color, var(--color-on-info));
 
 		width: 100%;
-		color: var(--_status-banner-color);
-		background-color: var(--_status-banner-background-color);
+		color: var(--_status-banner--color);
+		background-color: var(--_status-banner--background-color);
 
 		&:not(.container) {
 			padding-inline: var(--size-md);
@@ -64,38 +67,38 @@
 @layer tarragon-ui.utilities {
 	.status-banner {
 		&.danger {
-			--override--background-color: var(--color-danger);
-			--override--color: var(--color-on-danger);
-			--override--border-color: var(--color-danger);
-			--override--box-shadow: var(--shadow-danger);
+			--status-banner--background-color: var(--color-danger);
+			--status-banner--color: var(--color-on-danger);
+			--status-banner--border-color: var(--color-danger);
+			--status-banner--box-shadow: var(--shadow-danger);
 		}
 
 		&.info {
-			--override--background-color: var(--color-info);
-			--override--border-color: var(--color-info);
-			--override--color: var(--color-on-info);
-			--override--box-shadow: var(--shadow-info);
+			--status-banner--background-color: var(--color-info);
+			--status-banner--border-color: var(--color-info);
+			--status-banner--color: var(--color-on-info);
+			--status-banner--box-shadow: var(--shadow-info);
 		}
 
 		&.success {
-			--override--background-color: var(--color-success);
-			--override--border-color: var(--color-success);
-			--override--color: var(--color-on-success);
-			--override--box-shadow: var(--shadow-success);
+			--status-banner--background-color: var(--color-success);
+			--status-banner--border-color: var(--color-success);
+			--status-banner--color: var(--color-on-success);
+			--status-banner--box-shadow: var(--shadow-success);
 		}
 
 		&.warning {
-			--override--background-color: var(--color-warning);
-			--override--border-color: var(--color-warning);
-			--override--color: var(--color-on-warning);
-			--override--box-shadow: var(--shadow-warning);
+			--status-banner--background-color: var(--color-warning);
+			--status-banner--border-color: var(--color-warning);
+			--status-banner--color: var(--color-on-warning);
+			--status-banner--box-shadow: var(--shadow-warning);
 		}
 
 		&.accent {
-			--override--background-color: var(--color-accent);
-			--override--border-color: var(--color-accent);
-			--override--color: var(--color-on-accent);
-			--override--box-shadow: var(--shadow-accent);
+			--status-banner--background-color: var(--color-accent);
+			--status-banner--border-color: var(--color-accent);
+			--status-banner--color: var(--color-on-accent);
+			--status-banner--box-shadow: var(--shadow-accent);
 		}
 	}
 }

@@ -1,12 +1,12 @@
 @layer tarragon-ui.components {
 	.spinner {
-		--_spinner-color-outline: var(--color-primary);
-		--_spinner-font-size: var(--size-3xl);
-		--_spinner-border-width: max(var(--size-3xs), calc(var(--_spinner-font-size) / 12));
+		--_spinner--color-outline: var(--color-primary);
+		--_spinner--font-size: var(--size-3xl);
+		--_spinner--border-width: max(var(--size-3xs), calc(var(--_spinner--font-size) / 12));
 
 		display: grid;
 		aspect-ratio: 1;
-		width: var(--_spinner-font-size);
+		width: var(--_spinner--font-size);
 	}
 
 	.spinner,
@@ -19,7 +19,7 @@
 	.spinner::before,
 	.spinner::after {
 		content: '';
-		border: var(--_spinner-border-width) solid var(--_spinner-color-outline);
+		border: var(--_spinner--border-width) solid var(--_spinner--color-outline);
 	}
 
 	.spinner::before {
@@ -92,8 +92,8 @@
 @layer tarragon-ui.utilities {
 	@media (prefers-reduced-motion: reduce) {
 		.spinner {
-			--_spinner-color-outline: transparent;
-			--_spinner-border-width: transparent;
+			--_spinner--color-outline: transparent;
+			--_spinner--border-width: transparent;
 
 			display: block;
 			aspect-ratio: auto;

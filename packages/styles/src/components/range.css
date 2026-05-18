@@ -1,13 +1,13 @@
 @layer tarragon-ui.components {
 	input[type='range'] {
-		--_range-thumb-size: 20px;
-		--_range-radius-thumb: var(--radius-full);
-		--_range-track-height: var(--size-md);
-		--_range-track-border: var(--size-border-width) solid var(--color-border);
-		--_range-radius-track: var(--radius-default);
-		--_range-color-thumb: var(--color-primary);
-		--_range-color-track: var(--color-background-interactive);
-		--_range-transition: background-color 0.2s, box-shadow 0.2s, border-color 0.2s, color 0.2s;
+		--_range--thumb-size: 20px;
+		--_range--radius-thumb: var(--radius-full);
+		--_range--track-height: var(--size-md);
+		--_range--track-border: var(--size-border-width) solid var(--color-border);
+		--_range--radius-track: var(--radius-default);
+		--_range--color-thumb: var(--color-primary);
+		--_range--color-track: var(--color-background-interactive);
+		--_range--transition: background-color 0.2s, box-shadow 0.2s, border-color 0.2s, color 0.2s;
 
 		width: 100%; /* Specific width is required for Firefox. */
 		border-radius: var(--radius-default);
@@ -16,52 +16,52 @@
 
 		/* Special styling for WebKit/Blink */
 		&::-webkit-slider-thumb {
-			width: var(--_range-thumb-size);
-			height: var(--_range-thumb-size);
+			width: var(--_range--thumb-size);
+			height: var(--_range--thumb-size);
 
 			/* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
 			margin-top: calc(var(--size-2xs) * -1);
-			border-color: var(--_range-color-thumb);
-			border-radius: var(--_range-radius-thumb);
+			border-color: var(--_range--color-thumb);
+			border-radius: var(--_range--radius-thumb);
 
 			appearance: none;
-			background: var(--_range-color-thumb);
+			background: var(--_range--color-thumb);
 
-			transition: var(--_range-transition);
+			transition: var(--_range--transition);
 		}
 
 		/* All the same stuff for Firefox */
 		&::-moz-range-thumb {
-			width: var(--_range-thumb-size);
-			height: var(--_range-thumb-size);
-			border-color: var(--_range-color-thumb);
-			border-radius: var(--_range-radius-thumb);
+			width: var(--_range--thumb-size);
+			height: var(--_range--thumb-size);
+			border-color: var(--_range--color-thumb);
+			border-radius: var(--_range--radius-thumb);
 
-			background: var(--_range-color-thumb);
+			background: var(--_range--color-thumb);
 
-			transition: var(--_range-transition);
+			transition: var(--_range--transition);
 		}
 
 		&::-webkit-slider-runnable-track {
 			width: 100%;
-			height: var(--_range-track-height);
-			border: var(--_range-track-border);
-			border-radius: var(--_range-radius-track);
+			height: var(--_range--track-height);
+			border: var(--_range--track-border);
+			border-radius: var(--_range--radius-track);
 
-			background: var(--_range-color-track);
+			background: var(--_range--color-track);
 
-			transition: var(--_range-transition);
+			transition: var(--_range--transition);
 		}
 
 		&::-moz-range-track {
 			width: 100%;
-			height: var(--_range-track-height);
-			border: var(--_range-track-border);
-			border-radius: var(--_range-radius-track);
+			height: var(--_range--track-height);
+			border: var(--_range--track-border);
+			border-radius: var(--_range--radius-track);
 
-			background: var(--_range-color-track);
+			background: var(--_range--color-track);
 
-			transition: var(--_range-transition);
+			transition: var(--_range--transition);
 		}
 
 		&:hover,
@@ -89,7 +89,7 @@
 		}
 
 		&:focus::-webkit-slider-runnable-track {
-			background: var(--_range-color-track);
+			background: var(--_range--color-track);
 		}
 	}
 }
