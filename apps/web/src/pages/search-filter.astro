@@ -37,13 +37,15 @@ import { sections } from '@/scripts/constants'
 						{section.pages.map((page) => (
 							<li data-tui-search-target>
 								<article class='card navigation-card h-full'>
-									<h3>
-										<a href={page.href} class='navigation-card-link'>
-											{page.name}
-										</a>
-									</h3>
-									<div class='separator' />
-									<p class='max-lines'>{page.description}</p>
+									<div class='card-content'>
+										<h3>
+											<a href={page.href} class='navigation-card-link'>
+												{page.name}
+											</a>
+										</h3>
+										<hr />
+										<p class='max-lines'>{page.description}</p>
+									</div>
 								</article>
 							</li>
 						))}

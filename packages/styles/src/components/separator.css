@@ -1,5 +1,5 @@
 @layer tarragon-ui.components {
-	.separator {
+	hr {
 		width: 100%;
 		height: var(--size-border-width);
 		background-color: var(--color-border);

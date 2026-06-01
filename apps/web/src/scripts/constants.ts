@@ -337,6 +337,12 @@ export const sections: Array<Sections> = [
 					'Small, non-interactive visual indicators used to highlight an item, denote a count, or categorize status. Often seen in notifications, labels, or tags.',
 			},
 			{
+				name: 'Card',
+				href: buildUrl('/card'),
+				description:
+					'A flexible container for displaying content in a structured way. Often used to group related information or actions.',
+			},
+			{
 				name: 'Table',
 				href: buildUrl('/table'),
 				description:

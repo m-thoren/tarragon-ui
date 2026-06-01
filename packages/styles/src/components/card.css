@@ -1,12 +1,12 @@
 @layer tarragon-ui.components {
 	.card {
-		--size-card-padding: var(--size-3xl);
+		--_card--padding: var(--size-xl);
 
+		container-type: inline-size;
 		display: flex;
 		flex-direction: column;
-		gap: var(--size-md);
 
-		padding: var(--size-3xl);
+		padding: 0;
 		border: var(--size-border-width) solid var(--color-border);
 		border-radius: var(--radius-default);
 
@@ -14,13 +14,107 @@
 		box-shadow: var(--shadow-default);
 	}
 
-	.card-image {
-		--size-card-image-margin: calc(-1 * var(--size-card-padding));
+	.card-container {
+		display: flex;
+		flex-direction: column;
 
-		margin-top: var(--size-card-image-margin);
-		margin-inline: var(--size-card-image-margin);
-		border-bottom-right-radius: 0;
-		border-bottom-left-radius: 0;
+		@container (inline-size > 38rem) {
+			--_card--padding: var(--size-3xl);
+
+			flex-direction: row;
+		}
+	}
+
+	.card img {
+		width: 100%;
+		height: auto;
+		max-height: 300px;
+		border-start-start-radius: var(--radius-default);
+		border-start-end-radius: var(--radius-default);
+		border-end-start-radius: 0;
+		border-end-end-radius: 0;
+
+		object-fit: cover;
+
+		@container (inline-size > 38rem) {
+			min-width: 50%;
+			max-height: 100%;
+			border-start-start-radius: var(--radius-default);
+			border-start-end-radius: 0;
+			border-end-start-radius: var(--radius-default);
+			border-end-end-radius: 0;
+		}
+	}
+
+	.card-content {
+		display: flex;
+		flex-direction: column;
+		gap: var(--size-lg);
+		padding: var(--_card--padding);
+	}
+
+	.card-interactions {
+		display: flex;
+		flex-direction: column;
+		gap: var(--size-md);
+		align-items: center;
+
+		padding: var(--_card--padding);
+		border-top: var(--size-border-width) solid var(--color-border);
+
+		@container (inline-size > 38rem) {
+			flex-direction: row;
+		}
+
+		@container (inline-size <= 38rem) {
+			> .btn,
+			> button {
+				width: 100%;
+			}
+		}
+	}
+
+	.card-date-span {
+		display: flex;
+		flex-direction: row;
+		flex-shrink: 0;
+		gap: var(--size-md);
+		align-items: center;
+		justify-content: start;
+
+		padding: var(--size-sm) var(--size-md);
+		border-radius: var(--radius-default) var(--radius-default) none none;
+
+		font-size: var(--text-lg);
+		font-weight: var(--font-weight-bold);
+		font-style: normal;
+		line-height: var(--line-height-sm);
+		color: var(--color-text);
+		text-align: center;
+
+		background-color: oklch(from var(--color-primary) l c h / 30%);
+
+		@container (inline-size > 38rem) {
+			flex-direction: column;
+			justify-content: center;
+
+			width: var(--size-5xl);
+			padding: var(--size-md);
+			border-radius: var(--radius-default) var(--radius-default) none none;
+		}
+	}
+
+	.card-date-span-text {
+		display: inline-flex;
+		flex-direction: row;
+		gap: var(--size-2xs);
+		align-items: center;
+		justify-content: center;
+
+		@container (inline-size > 38rem) {
+			flex-direction: column;
+			gap: 0;
+		}
 	}
 
 	.navigation-card {

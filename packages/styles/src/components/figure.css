@@ -6,7 +6,7 @@
 		box-shadow: var(--shadow-default);
 	}
 
-	.image {
+	img {
 		aspect-ratio: 16 / 9;
 		max-width: 100%;
 		height: auto;
