@@ -28,8 +28,20 @@
 		background-color: var(--color-background-interactive);
 	}
 
+	tbody tr {
+		transition:
+			background-color 200ms,
+			color 200ms;
+	}
+
+	tbody tr:nth-child(even) {
+		color: var(--color-on-background-raised);
+		background-color: var(--color-background-raised);
+	}
+
 	tbody tr:hover {
-		background-color: var(--color-muted);
+		color: var(--color-on-hover);
+		background-color: var(--color-hover);
 	}
 
 	th,

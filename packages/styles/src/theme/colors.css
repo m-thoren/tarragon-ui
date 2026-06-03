@@ -246,6 +246,10 @@
 		/** Backdrop */
 		--color-backdrop: oklch(from var(--color-background-base) l c h / 70%);
 
+		/** Hover */
+		--color-hover: oklch(from var(--color-primary) l c h / 30%);
+		--color-on-hover: var(--color-text);
+
 		/** Shadow */
 		--shadow-default:
 			0px 2px 2px oklch(var(--shadow-default-lightness) 0 0deg / 7%),

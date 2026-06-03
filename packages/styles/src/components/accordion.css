@@ -34,12 +34,17 @@
 
 			background-color: var(--color-background-interactive);
 
+			transition:
+				background-color 200ms,
+				color 200ms;
+
+			&:focus-visible,
 			&:hover {
-				background-color: var(--color-muted);
+				color: var(--color-on-hover);
+				background-color: var(--color-hover);
 			}
 
 			&:focus-visible {
-				background-color: var(--color-muted);
 				outline: var(--outline-default);
 				outline-offset: calc(var(--outline-offset) * -1);
 			}

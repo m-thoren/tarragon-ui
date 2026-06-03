@@ -1,5 +1,7 @@
 @layer tarragon-ui.components {
 	[popover] {
+		position: absolute;
+
 		overflow: auto;
 
 		min-width: var(--size-6xl);

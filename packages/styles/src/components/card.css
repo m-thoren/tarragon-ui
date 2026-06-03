@@ -49,7 +49,9 @@
 	.card-content {
 		display: flex;
 		flex-direction: column;
+		flex-grow: 1;
 		gap: var(--size-lg);
+
 		padding: var(--_card--padding);
 	}
 
