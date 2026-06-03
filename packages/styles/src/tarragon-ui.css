@@ -24,45 +24,45 @@
 @import url('./layout/popover.css');
 
 /* Components */
-@import url('./components/avatar.css');
-@import url('./components/accordion.css');
-@import url('./components/alert.css');
-@import url('./components/badge.css');
-@import url('./components/button.css');
-@import url('./components/breadcrumb.css');
-@import url('./components/card.css');
-@import url('./components/checkbox.css');
-@import url('./components/dialog.css');
-@import url('./components/drawer.css');
-@import url('./components/empty-state.css');
-@import url('./components/indicator.css');
-@import url('./components/figure.css');
-@import url('./components/file-input.css');
-@import url('./components/form.css');
-@import url('./components/footer.css');
-@import url('./components/header.css');
-@import url('./components/headings.css');
-@import url('./components/input.css');
-@import url('./components/link.css');
-@import url('./components/list.css');
-@import url('./components/progress.css');
-@import url('./components/radio.css');
-@import url('./components/select.css');
-@import url('./components/range.css');
-@import url('./components/separator.css');
-@import url('./components/skeleton.css');
-@import url('./components/spinner.css');
-@import url('./components/status-banner.css');
-@import url('./components/steps.css');
-@import url('./components/switch.css');
-@import url('./components/table.css');
-@import url('./components/tabs.css');
-@import url('./components/text.css');
-@import url('./components/textarea.css');
-@import url('./components/wc-ajax-form.css');
-@import url('./components/wc-dropdown.css');
+@import url('./components/avatar/avatar.css');
+@import url('./components/accordion/accordion.css');
+@import url('./components/alert/alert.css');
+@import url('./components/badge/badge.css');
+@import url('./components/button/button.css');
+@import url('./components/breadcrumb/breadcrumb.css');
+@import url('./components/card/card.css');
+@import url('./components/checkbox/checkbox.css');
+@import url('./components/dialog/dialog.css');
+@import url('./components/drawer/drawer.css');
+@import url('./components/empty-state/empty-state.css');
+@import url('./components/indicator/indicator.css');
+@import url('./components/figure/figure.css');
+@import url('./components/file-input/file-input.css');
+@import url('./components/form/form.css');
+@import url('./components/footer/footer.css');
+@import url('./components/header/header.css');
+@import url('./components/headings/headings.css');
+@import url('./components/input/input.css');
+@import url('./components/link/link.css');
+@import url('./components/list/list.css');
+@import url('./components/progress/progress.css');
+@import url('./components/radio/radio.css');
+@import url('./components/select/select.css');
+@import url('./components/range/range.css');
+@import url('./components/separator/separator.css');
+@import url('./components/skeleton/skeleton.css');
+@import url('./components/spinner/spinner.css');
+@import url('./components/status-banner/status-banner.css');
+@import url('./components/steps/steps.css');
+@import url('./components/switch/switch.css');
+@import url('./components/table/table.css');
+@import url('./components/tabs/tabs.css');
+@import url('./components/text/text.css');
+@import url('./components/textarea/textarea.css');
+@import url('./components/wc-ajax-form/wc-ajax-form.css');
+@import url('./components/wc-dropdown/wc-dropdown.css');
 
-/* @import url('./components/tooltip.css'); */
+/* @import url('./components/tooltip/tooltip.css'); */
 
 /* Utilities */
 @import url('./utilities/animations.css');
