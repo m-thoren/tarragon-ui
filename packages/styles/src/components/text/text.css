@@ -31,7 +31,6 @@
 		display: block;
 
 		padding: var(--size-xs);
-		border: var(--size-border-width) solid var(--color-border);
 		border-radius: var(--radius-default);
 
 		font-size: var(--text-sm);
@@ -42,7 +41,7 @@
 		white-space: pre-wrap;
 
 		background-color: var(--color-muted);
-		box-shadow: var(--shadow-default);
+		box-shadow: var(--shadow-elevation-low);
 
 		&:focus-visible {
 			outline: var(--outline-default);

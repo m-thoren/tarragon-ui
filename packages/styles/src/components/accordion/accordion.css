@@ -5,9 +5,10 @@
 		align-items: stretch;
 
 		width: 100%;
+		border: var(--size-border-width) solid var(--color-border-overlay);
 		border-radius: var(--radius-default);
 
-		box-shadow: var(--shadow-default);
+		box-shadow: var(--shadow-elevation-low);
 
 		details {
 			border-bottom: var(--size-border-width) solid var(--color-border);
@@ -78,7 +79,7 @@
 		}
 
 		details:only-of-type {
-			box-shadow: var(--shadow-default);
+			box-shadow: var(--shadow-elevation-low);
 		}
 	}
 }

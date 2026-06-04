@@ -3,7 +3,7 @@
 		overflow: hidden;
 		margin: 0;
 		border-radius: var(--radius-default);
-		box-shadow: var(--shadow-default);
+		box-shadow: var(--shadow-elevation-low);
 	}
 
 	img {

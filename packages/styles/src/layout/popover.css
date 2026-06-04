@@ -9,14 +9,14 @@
 		min-height: var(--minimum-clickable-size);
 		max-height: 100vh;
 		padding: var(--size-2xs);
-		border: var(--size-border-width) solid var(--color-border);
+		border: var(--size-border-width) solid var(--color-border-overlay);
 		border-radius: var(--radius-default);
 
 		color: var(--color-on-background-raised);
 
 		opacity: 0;
 		background-color: var(--color-background-raised);
-		box-shadow: var(--shadow-default);
+		box-shadow: var(--shadow-elevation-high);
 
 		transition:
 			display 150ms ease-in-out,

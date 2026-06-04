@@ -6,13 +6,13 @@
 		max-height: 100vh;
 		margin: auto;
 		padding: var(--size-3xl);
-		border: var(--size-border-width) solid var(--color-border);
+		border: var(--size-border-width) solid var(--color-border-overlay);
 		border-radius: var(--radius-default);
 
 		color: var(--color-on-background-raised);
 
 		background-color: var(--color-background-raised);
-		box-shadow: var(--shadow-default);
+		box-shadow: var(--shadow-elevation-high);
 
 		@media (width > 640px) {
 			width: 90%;

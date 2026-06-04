@@ -67,8 +67,8 @@
 	.btn {
 		&.outline {
 			--button--color-outline: var(--color-text);
-			--button--color-outline-hover: var(--color-text);
-			--button--background-color-hover: var(--color-muted);
+			--button--color-outline-hover: var(--color-on-hover);
+			--button--background-color-hover: var(--color-hover);
 			--button--border-color: var(--color-border);
 			--button--border-color-hover: var(--color-border);
 			--_button--border: var(--button--border-color);
@@ -81,9 +81,9 @@
 
 		&.ghost {
 			--button--color-outline: inherit;
-			--button--color-outline-hover: inherit;
-			--button--background-color-hover: var(--color-muted);
-			--button--border-color-hover: var(--color-border);
+			--button--color-outline-hover: var(--color-on-hover);
+			--button--background-color-hover: var(--color-hover);
+			--button--border-color-hover: var(--color-hover);
 			--_button--color: var(--button--color-outline);
 			--_button--color-hover: var(--button--color-outline-hover);
 			--_button--background-color: transparent;

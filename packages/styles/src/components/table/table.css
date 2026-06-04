@@ -9,7 +9,6 @@
 		color: var(--color-text);
 
 		background-color: inherit;
-		box-shadow: var(--shadow-default);
 	}
 
 	caption {
