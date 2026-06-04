@@ -51,6 +51,10 @@
 		--color-warning-lightness--hover: 70%;
 		--color-warning-chroma: 0.1781;
 		--color-warning-hue: 92deg;
+		--color-on-warning: oklch(
+			var(--color-background-lightness) var(--color-background-chroma)
+				var(--color-background-hue)
+		);
 
 		/** Border */
 		--color-border-lightness: 50%;
@@ -116,6 +120,7 @@
 		--color-warning-lightness--hover: 60%;
 		--color-warning-chroma: 0.2;
 		--color-warning-hue: 46deg;
+		--color-on-warning: var(--color-text);
 
 		/** Border */
 		--color-border-lightness: 80%;
@@ -225,10 +230,6 @@
 		--color-warning-hover: oklch(
 			var(--color-warning-lightness--hover) var(--color-warning-chroma)
 				var(--color-warning-hue)
-		);
-		--color-on-warning: oklch(
-			var(--color-background-lightness) var(--color-background-chroma)
-				var(--color-background-hue)
 		);
 
 		/** Border */
