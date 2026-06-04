@@ -16,14 +16,13 @@
 		background-color: var(--color-background-interactive);
 
 		transition:
-			box-shadow 0.2s,
-			border-color 0.2s,
-			color 0.2s;
+			border-color 200ms,
+			color 200ms;
 	}
 
+	textarea:focus-visible,
 	textarea:hover {
 		border-color: var(--color-border-hover);
-		box-shadow: var(--shadow-default);
 	}
 
 	textarea:focus-visible {

@@ -7,12 +7,13 @@
 		);
 		--_file-input--color: var(--file-input--color, var(--color-on-primary));
 		--_file-input--color-hover: var(--file-input--color-hover, var(--_file-input--color));
-		--_file-input--box-shadow: var(--file-input--box-shadow, var(--shadow-primary));
 		--_file-input--border-color: var(--file-input--border-color, transparent);
 		--_file-input--border-color-hover: var(--file-input--border-color-hover, transparent);
 
 		width: 100%;
 		min-width: 0;
+		max-width: var(--maximum-input-width);
+		min-height: var(--minimum-clickable-size);
 		padding: var(--size-3xs);
 		border-radius: var(--radius-default);
 
@@ -36,17 +37,15 @@
 			background-color: var(--_file-input--background-color);
 
 			transition:
-				background-color 0.2s,
-				box-shadow 0.2s,
-				border-color 0.2s,
-				color 0.2s;
+				background-color 200ms,
+				border-color 200ms,
+				color 200ms;
 
 			&:focus-visible,
 			&:hover {
 				border-color: var(--_file-input--border-color-hover);
 				color: var(--_file-input--color-hover);
 				background-color: var(--_file-input--background-color-hover);
-				box-shadow: var(--_file-input--box-shadow);
 			}
 		}
 
@@ -56,7 +55,6 @@
 				border-color: var(--_file-input--border-color-hover);
 				color: var(--_file-input--color-hover);
 				background-color: var(--_file-input--background-color-hover);
-				box-shadow: var(--_file-input--box-shadow);
 			}
 		}
 
@@ -93,14 +91,12 @@
 			--file-input--background-color-hover: var(--color-muted);
 			--file-input--border-color: var(--color-border);
 			--file-input--border-color-hover: var(--color-border);
-			--file-input--box-shadow: var(--shadow-default);
 			--_file-input--border: var(--file-input--border-color);
 			--_file-input--color: var(--file-input--color-outline);
 			--_file-input--background-color: transparent;
 			--_file-input--border-hover: var(--file-input--border-color-hover);
 			--_file-input--color-hover: var(--file-input--color-outline-hover);
 			--_file-input--background-color-hover: var(--file-input--background-color-hover);
-			--_file-input--box-shadow: var(--file-input--box-shadow);
 		}
 
 		&.accent {
@@ -111,7 +107,6 @@
 			--file-input--color: var(--color-on-accent);
 			--file-input--color-outline: var(--color-accent);
 			--file-input--color-outline-hover: var(--color-on-accent);
-			--file-input--box-shadow: var(--shadow-accent);
 		}
 	}
 }

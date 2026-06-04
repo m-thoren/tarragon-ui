@@ -8,7 +8,6 @@
 		);
 		--_button--color: var(--button--color, var(--color-on-primary));
 		--_button--color-hover: var(--button--color-hover, var(--_button--color));
-		--_button--box-shadow: var(--button--box-shadow, var(--shadow-primary));
 		--_button--border-color: var(--button--border-color, transparent);
 		--_button--border-color-hover: var(--button--border-color-hover, transparent);
 
@@ -32,17 +31,15 @@
 		background-color: var(--_button--background-color);
 
 		transition:
-			background-color 0.2s,
-			box-shadow 0.2s,
-			border-color 0.2s,
-			color 0.2s;
+			background-color 200ms,
+			border-color 200ms,
+			color 200ms;
 
 		&:focus-visible,
 		&:hover {
 			border-color: var(--_button--border-color-hover);
 			color: var(--_button--color-hover);
 			background-color: var(--_button--background-color-hover);
-			box-shadow: var(--_button--box-shadow);
 		}
 
 		&:focus-visible {
@@ -74,14 +71,12 @@
 			--button--background-color-hover: var(--color-muted);
 			--button--border-color: var(--color-border);
 			--button--border-color-hover: var(--color-border);
-			--button--box-shadow: var(--shadow-default);
 			--_button--border: var(--button--border-color);
 			--_button--color: var(--button--color-outline);
 			--_button--background-color: transparent;
 			--_button--border-hover: var(--button--border-color-hover);
 			--_button--color-hover: var(--button--color-outline-hover);
 			--_button--background-color-hover: var(--button--background-color-hover);
-			--_button--box-shadow: var(--button--box-shadow);
 		}
 
 		&.ghost {
@@ -89,14 +84,12 @@
 			--button--color-outline-hover: inherit;
 			--button--background-color-hover: var(--color-muted);
 			--button--border-color-hover: var(--color-border);
-			--button--box-shadow: var(--shadow-default);
 			--_button--color: var(--button--color-outline);
 			--_button--color-hover: var(--button--color-outline-hover);
 			--_button--background-color: transparent;
 			--_button--background-color-hover: var(--button--background-color-hover);
 			--_button--border-color: transparent;
 			--_button--border-color-hover: var(--button--border-color-hover);
-			--_button--box-shadow: var(--button--box-shadow);
 		}
 
 		/* * Variants */
@@ -108,7 +101,6 @@
 			--button--color-outline-hover: var(--color-on-danger);
 			--button--border-color: var(--color-danger);
 			--button--border-color-hover: var(--color-danger-hover);
-			--button--box-shadow: var(--shadow-danger);
 		}
 
 		&.accent {
@@ -119,7 +111,6 @@
 			--button--color: var(--color-on-accent);
 			--button--color-outline: var(--color-accent);
 			--button--color-outline-hover: var(--color-on-accent);
-			--button--box-shadow: var(--shadow-accent);
 		}
 
 		&.size-icon {

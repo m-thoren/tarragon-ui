@@ -7,7 +7,7 @@
 		--_range--radius-track: var(--radius-default);
 		--_range--color-thumb: var(--color-primary);
 		--_range--color-track: var(--color-background-interactive);
-		--_range--transition: background-color 0.2s, box-shadow 0.2s, border-color 0.2s, color 0.2s;
+		--_range--transition: background-color 200ms, border-color 200ms, color 200ms;
 
 		width: 100%; /* Specific width is required for Firefox. */
 		border-radius: var(--radius-default);
@@ -67,11 +67,11 @@
 		&:hover,
 		&:focus-visible {
 			&::-webkit-slider-runnable-track {
-				box-shadow: var(--shadow-default);
+				border-color: var(--color-border-hover);
 			}
 
 			&::-moz-range-track {
-				box-shadow: var(--shadow-default);
+				border-color: var(--color-border-hover);
 			}
 
 			&::-webkit-slider-thumb {

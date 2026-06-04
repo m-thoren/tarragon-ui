@@ -21,12 +21,12 @@
 		background-clip: content-box;
 
 		transition:
-			box-shadow 0.2s,
-			border-color 0.2s,
-			color 0.2s;
+			border-color 200ms,
+			color 200ms;
 
+		&:focus-visible,
 		&:hover {
-			box-shadow: var(--shadow-default);
+			border-color: var(--color-border-hover);
 		}
 
 		&:checked {

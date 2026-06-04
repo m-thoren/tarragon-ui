@@ -85,7 +85,7 @@
 		justify-content: start;
 
 		padding: var(--size-sm) var(--size-md);
-		border-radius: var(--radius-default) var(--radius-default) none none;
+		border-radius: var(--radius-default) var(--radius-default) 0 0;
 
 		font-size: var(--text-lg);
 		font-weight: var(--font-weight-bold);
@@ -102,7 +102,7 @@
 
 			width: var(--size-5xl);
 			padding: var(--size-md);
-			border-radius: var(--radius-default) var(--radius-default) none none;
+			border-radius: var(--radius-default) var(--radius-default) 0 0;
 		}
 	}
 

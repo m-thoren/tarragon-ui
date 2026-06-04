@@ -23,9 +23,8 @@
 		background-color: var(--color-background-interactive);
 
 		transition:
-			box-shadow 0.2s,
-			border-color 0.2s,
-			color 0.2s;
+			border-color 200ms,
+			color 200ms;
 
 		&::placeholder {
 			color: var(--color-text-muted);
@@ -48,7 +47,6 @@
 
 		&:hover:not([disabled]) {
 			border-color: var(--color-border-hover);
-			box-shadow: var(--shadow-default);
 		}
 
 		&[aria-invalid='true'] {
@@ -62,7 +60,6 @@
 
 		&[aria-invalid='true']:hover:not([disabled]) {
 			border-color: var(--color-danger-hover);
-			box-shadow: var(--shadow-danger);
 		}
 	}
 }
