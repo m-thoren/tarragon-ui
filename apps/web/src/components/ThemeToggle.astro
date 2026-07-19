@@ -3,12 +3,14 @@ import { MoonIcon, SunIcon } from '@lucide/astro'
 ---
 
 <button id='themeToggle' class='ghost size-icon'>
-	<span data-theme='dark'>
-		<MoonIcon aria-hidden='true' />
-	</span>
-	<span data-theme='light' hidden>
-		<SunIcon aria-hidden='true' />
-	</span>
+	<tui-boop>
+		<span data-theme='dark'>
+			<MoonIcon aria-hidden='true' class='boop-spin' />
+		</span>
+		<span data-theme='light' hidden>
+			<SunIcon aria-hidden='true' class='boop-spin' />
+		</span>
+	</tui-boop>
 	<span class='visually-hidden'>Toggle theme</span>
 </button>
 

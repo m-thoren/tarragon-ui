@@ -15,12 +15,16 @@ const { currentPage } = Astro.props
 <header class='container'>
 	<div class='header-content'>
 		<a href={buildUrl('/')} class='btn ghost size-icon-below-tablet' aria-label='Home'>
-			<BrandIcon width={24} aria-hidden='true' class='text-primary' />
+			<tui-boop>
+				<BrandIcon width={24} aria-hidden='true' class='text-primary boop-spin' />
+			</tui-boop>
 			<span class='visually-hidden-below-tablet'>{siteTitle}</span>
 		</a>
 		<div class='cluster'>
 			<a href={buildUrl('/search-filter')} class='btn ghost size-icon-below-tablet'>
-				<SearchIcon aria-hidden='true' />
+				<tui-boop>
+					<SearchIcon aria-hidden='true' class='boop-spin' />
+				</tui-boop>
 				<span class='visually-hidden-below-tablet'>Search</span>
 			</a>
 			<ThemeToggle />

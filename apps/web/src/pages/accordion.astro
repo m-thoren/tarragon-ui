@@ -1,5 +1,5 @@
 ---
-import { ChevronDownIcon } from '@lucide/astro'
+import { ChevronDownIcon, ChevronUpIcon } from '@lucide/astro'
 import CodeExample from '@/components/CodeExample.astro'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
 ---
@@ -9,14 +9,22 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 	<CodeExample>
 		<div class='accordion-group'>
 			<details data-testid='multi-accordion-1'>
-				<summary>Graduation Requirements <ChevronDownIcon aria-hidden='true' /></summary>
+				<summary>
+					Graduation Requirements
+					<span data-icon-when-closed><ChevronDownIcon aria-hidden='true' /></span>
+					<span data-icon-when-open><ChevronUpIcon aria-hidden='true' /></span>
+				</summary>
 				<p class='accordion-content'>
 					Requires 40 credits, including a passing grade in health, geography, history,
 					economics, and wood shop.
 				</p>
 			</details>
 			<details data-testid='multi-accordion-2'>
-				<summary>System Requirements <ChevronDownIcon aria-hidden='true' /></summary>
+				<summary>
+					System Requirements
+					<span data-icon-when-closed><ChevronDownIcon aria-hidden='true' /></span>
+					<span data-icon-when-open><ChevronUpIcon aria-hidden='true' /></span>
+				</summary>
 				<p class='accordion-content'>
 					Requires a computer running an operating system. The computer must have some
 					memory and ideally some kind of long-term storage. An input device as well as
@@ -24,7 +32,11 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 				</p>
 			</details>
 			<details data-testid='multi-accordion-3'>
-				<summary>Job Requirements <ChevronDownIcon aria-hidden='true' /></summary>
+				<summary>
+					Job Requirements
+					<span data-icon-when-closed><ChevronDownIcon aria-hidden='true' /></span>
+					<span data-icon-when-open><ChevronUpIcon aria-hidden='true' /></span>
+				</summary>
 				<p class='accordion-content'>
 					Requires knowledge of HTML, CSS, JavaScript, accessibility, web performance,
 					privacy, security, and internationalization, as well as a dislike of broccoli.
@@ -37,7 +49,11 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 	<CodeExample>
 		<div class='accordion-group'>
 			<details data-testid='single-accordion'>
-				<summary>Single accordion <ChevronDownIcon aria-hidden='true' /></summary>
+				<summary>
+					Single accordion
+					<span data-icon-when-closed><ChevronDownIcon aria-hidden='true' /></span>
+					<span data-icon-when-open><ChevronUpIcon aria-hidden='true' /></span>
+				</summary>
 				<p class='accordion-content'>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ipsam
 					natus possimus. Unde, iusto. Asperiores ullam veritatis rem nemo beatae,

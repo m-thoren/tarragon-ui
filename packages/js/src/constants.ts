@@ -8,7 +8,7 @@ export const tuiAttributeSelector = (name: string, value?: string) =>
 export const hiddenAttribute = 'hidden'
 
 export const focusableElementsSelector =
-	'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+	'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]), summary'
 
 export const SECOND = 1000
 
@@ -23,6 +23,7 @@ export enum NativeEvent {
 	MouseOver = 'mouseover',
 	MouseOut = 'mouseout',
 	MouseMove = 'mousemove',
+	MouseEnter = 'mouseenter',
 	SelectStart = 'selectstart',
 	SelectEnd = 'selectend',
 	KeyDown = 'keydown',
@@ -72,6 +73,9 @@ export const Component = {
 	},
 	AjaxHtml: {
 		Name: `${libNamePrefix}ajax-html`,
+	},
+	Boop: {
+		Name: `${libNamePrefix}boop`,
 	},
 	Dropdown: {
 		Name: `${libNamePrefix}dropdown`,

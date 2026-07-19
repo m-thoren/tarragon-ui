@@ -58,8 +58,12 @@
 			background-color: var(--color-background-raised);
 		}
 
-		details:open svg {
-			transform: rotate(180deg);
+		details:not(:open) [data-icon-when-open] {
+			display: none;
+		}
+
+		details:open [data-icon-when-closed] {
+			display: none;
 		}
 
 		details:first-of-type summary {

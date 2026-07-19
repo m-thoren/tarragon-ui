@@ -1,6 +1,6 @@
 ---
+import { ChevronDownIcon, ChevronUpIcon } from '@lucide/astro'
 import { type Page, sections } from '@/scripts/constants'
-import { ChevronDownIcon } from '@lucide/astro'
 
 type Props = {
 	currentPage: Page | undefined
@@ -14,7 +14,19 @@ const { currentPage } = Astro.props
 		sections.map((section) => (
 			<details open={section.pages.some((page) => page.href === currentPage?.href)}>
 				<summary>
-					{section.name} <ChevronDownIcon aria-hidden='true' />
+					{section.name}
+					<tui-boop>
+						<ChevronDownIcon
+							aria-hidden='true'
+							data-icon-when-closed
+							class='boop-bounce-down'
+						/>
+						<ChevronUpIcon
+							aria-hidden='true'
+							data-icon-when-open
+							class='boop-bounce-up'
+						/>
+					</tui-boop>
 				</summary>
 				<ul class='list-none padding-xs'>
 					{section.pages.map((page) => (

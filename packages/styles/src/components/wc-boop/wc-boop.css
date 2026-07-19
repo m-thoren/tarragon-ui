@@ -1,0 +1,71 @@
+:root {
+	--_boop--spring: linear(
+		0,
+		0.011,
+		0.045 1.4%,
+		0.184 3%,
+		0.913 8.2%,
+		1.156,
+		1.304 12.3%,
+		1.345,
+		1.365,
+		1.367,
+		1.359 15.8%,
+		1.31 17.5%,
+		1.027 23.1%,
+		0.937 25.3%,
+		0.888 27.1%,
+		0.873,
+		0.866 29%,
+		0.867,
+		0.88,
+		0.905 33.5%,
+		0.982 37.5%,
+		1.014 39.4%,
+		1.038,
+		1.049 43.7% 45.2%,
+		1.044 46.7%,
+		0.995 54.2%,
+		0.986,
+		0.982 58.4%,
+		0.984 61.5%,
+		1.002 68.9%,
+		1.006 72.9%,
+		0.998 87.3%,
+		1.001
+	);
+	--_boop--spring-duration: 1.5s;
+	--_boop--bounce-delta: 3px;
+}
+
+tui-boop {
+	[class*='boop-'] {
+		transition: transform var(--_boop--spring) var(--_boop--spring-duration);
+	}
+
+	&.boop-active {
+		.boop-spin {
+			transform: rotate(20deg);
+		}
+
+		.boop-grow {
+			transform: scale(1.1);
+		}
+
+		.boop-bounce-up {
+			transform: translateY(calc(var(--_boop--bounce-delta) * -1));
+		}
+
+		.boop-bounce-down {
+			transform: translateY(var(--_boop--bounce-delta));
+		}
+
+		.boop-bounce-left {
+			transform: translateX(calc(var(--_boop--bounce-delta) * -1));
+		}
+
+		.boop-bounce-right {
+			transform: translateX(var(--_boop--bounce-delta));
+		}
+	}
+}
