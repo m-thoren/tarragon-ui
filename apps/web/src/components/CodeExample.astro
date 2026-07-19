@@ -12,7 +12,7 @@ const { onlyCode } = Astro.props
 const code = await Astro.slots.render('default', [])
 
 const withoutAttrsAndSvg = code
-	.replace(/\sdata-astro-[^\s=]+="[^"]*"/g, '')
+	.replace(/\sdata-astro-[\w-]+(?:="[^"]*"|='[^']*'|=[^\s>]+)?/g, '')
 	.replace(/\sdata-testid="[^"]*"/g, '')
 	.replace(/<svg\b[^>]*>[\s\S]*?<\/svg>/gi, '<Icon aria-hidden="true" />')
 

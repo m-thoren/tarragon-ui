@@ -26,8 +26,8 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 	<h3>Standard 12-Column Layout</h3>
 	<p>
 		The <code>.grid</code> class establishes a 12-column track. You can control the width of individual
-		grid items using the following span utility classes. These classes are mobile-first, meaning
-		they apply to all screen sizes by default, and can be overridden at larger breakpoints.
+		grid items using the following span utility classes. These classes are mobile-first, meaning they
+		apply to all screen sizes by default, and can be overridden at larger breakpoints.
 	</p>
 
 	<p><code>.cell-full</code> Makes an item span all 12 columns.</p>
@@ -46,19 +46,19 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 
 	<CodeExample>
 		<div class='grid'>
-			<div class='card center padding-xs cell-half'>Half</div>
-			<div class='card center padding-xs cell-half'>Half</div>
+			<div class='example-box cell-half'>Half</div>
+			<div class='example-box cell-half'>Half</div>
 		</div>
 		<div class='grid'>
-			<div class='card center padding-xs cell-one-third'>One third</div>
-			<div class='card center padding-xs cell-two-thirds'>Two thirds</div>
+			<div class='example-box cell-one-third'>One third</div>
+			<div class='example-box cell-two-thirds'>Two thirds</div>
 		</div>
 		<div class='grid'>
-			<div class='card center padding-xs cell-one-fourth overflow-x-auto'>One fourth</div>
-			<div class='card center padding-xs cell-three-fourths'>Three fourths</div>
+			<div class='example-box cell-one-fourth overflow-x-auto'>One fourth</div>
+			<div class='example-box cell-three-fourths'>Three fourths</div>
 		</div>
 		<div class='grid'>
-			<div class='card center padding-xs cell-full'>Full</div>
+			<div class='example-box cell-full'>Full</div>
 		</div>
 	</CodeExample>
 
@@ -77,14 +77,14 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 
 	<CodeExample>
 		<div class='grid grid-auto'>
-			<div class='card center padding-xs'>1</div>
-			<div class='card center padding-xs'>2</div>
-			<div class='card center padding-xs'>3</div>
-			<div class='card center padding-xs'>4</div>
-			<div class='card center padding-xs'>5</div>
-			<div class='card center padding-xs'>6</div>
-			<div class='card center padding-xs'>7</div>
-			<div class='card center padding-xs'>8</div>
+			<div class='example-box'>1</div>
+			<div class='example-box'>2</div>
+			<div class='example-box'>3</div>
+			<div class='example-box'>4</div>
+			<div class='example-box'>5</div>
+			<div class='example-box'>6</div>
+			<div class='example-box'>7</div>
+			<div class='example-box'>8</div>
 		</div>
 	</CodeExample>
 
@@ -102,10 +102,10 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 
 	<CodeExample>
 		<div class='grid grid-cols-1'>
-			<div class='card center padding-xs'>1</div>
-			<div class='card center padding-xs'>2</div>
-			<div class='card center padding-xs'>3</div>
-			<div class='card center padding-xs'>4</div>
+			<div class='example-box'>1</div>
+			<div class='example-box'>2</div>
+			<div class='example-box'>3</div>
+			<div class='example-box'>4</div>
 		</div>
 	</CodeExample>
 
@@ -113,10 +113,10 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 	<p><code>.grid-cols-2</code> Forces the grid to display items in two columns.</p>
 	<CodeExample>
 		<div class='grid-tablet grid-cols-2'>
-			<div class='card center padding-xs'>1</div>
-			<div class='card center padding-xs'>2</div>
-			<div class='card center padding-xs'>3</div>
-			<div class='card center padding-xs'>4</div>
+			<div class='example-box'>1</div>
+			<div class='example-box'>2</div>
+			<div class='example-box'>3</div>
+			<div class='example-box'>4</div>
 		</div>
 	</CodeExample>
 
@@ -126,10 +126,10 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 	</p>
 	<CodeExample>
 		<div class='grid-tablet grid-cols-3'>
-			<div class='card center padding-xs'>1</div>
-			<div class='card center padding-xs'>2</div>
-			<div class='card center padding-xs'>3</div>
-			<div class='card center padding-xs'>4</div>
+			<div class='example-box'>1</div>
+			<div class='example-box'>2</div>
+			<div class='example-box'>3</div>
+			<div class='example-box'>4</div>
 		</div>
 	</CodeExample>
 
@@ -137,10 +137,10 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 	<p><code>.grid-cols-4</code> Forces the grid to display items in four columns.</p>
 	<CodeExample>
 		<div class='grid-tablet grid-cols-4'>
-			<div class='card center padding-xs'>1</div>
-			<div class='card center padding-xs'>2</div>
-			<div class='card center padding-xs'>3</div>
-			<div class='card center padding-xs'>4</div>
+			<div class='example-box'>1</div>
+			<div class='example-box'>2</div>
+			<div class='example-box'>3</div>
+			<div class='example-box'>4</div>
 		</div>
 	</CodeExample>
 
@@ -164,12 +164,12 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 	</p>
 	<CodeExample>
 		<div class='grid grid-cols-1 grid-tablet-cols-2 grid-desktop-cols-4'>
-			<div class='card center padding-xs'>Card 1</div>
-			<div class='card center padding-xs'>Card 2</div>
-			<div class='card center padding-xs'>Card 3</div>
-			<div class='card center padding-xs'>Card 4</div>
-			<div class='card center padding-xs'>Card 5</div>
-			<div class='card center padding-xs'>Card 6</div>
+			<div class='example-box'>Card 1</div>
+			<div class='example-box'>Card 2</div>
+			<div class='example-box'>Card 3</div>
+			<div class='example-box'>Card 4</div>
+			<div class='example-box'>Card 5</div>
+			<div class='example-box'>Card 6</div>
 		</div>
 	</CodeExample>
 
@@ -178,10 +178,10 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 	<CodeExample>
 		<div class='grid'>
 			<div class='cell-full cell-tablet-two-thirds cell-desktop-three-fourths'>
-				<div class='card center padding-xs'>Main Content Area</div>
+				<div class='example-box'>Main Content Area</div>
 			</div>
 			<div class='cell-full cell-tablet-one-third cell-desktop-one-fourth'>
-				<div class='card center padding-xs'>Sidebar</div>
+				<div class='example-box'>Sidebar</div>
 			</div>
 		</div>
 	</CodeExample>
@@ -192,11 +192,26 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 
 	<CodeExample>
 		<div class='grid grid-auto'>
-			<div class='card center padding-xs'>Item A</div>
-			<div class='card center padding-xs'>Item B</div>
-			<div class='card center padding-xs'>Item C</div>
-			<div class='card center padding-xs'>Item D</div>
-			<div class='card center padding-xs'>Item E</div>
+			<div class='example-box'>Item A</div>
+			<div class='example-box'>Item B</div>
+			<div class='example-box'>Item C</div>
+			<div class='example-box'>Item D</div>
+			<div class='example-box'>Item E</div>
 		</div>
 	</CodeExample>
 </ComponentLayout>
+
+<style>
+	.example-box {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		padding: var(--size-xs);
+		border: var(--size-border-width) solid var(--color-border);
+		border-radius: var(--radius-default);
+
+		background: var(--color-background-raised);
+		box-shadow: var(--shadow-elevation-medium);
+	}
+</style>
