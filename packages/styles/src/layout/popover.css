@@ -18,9 +18,9 @@
 		background-color: var(--color-background-raised);
 		box-shadow: var(--shadow-elevation-high);
 
-		transition:
-			display 150ms ease-in-out,
-			opacity 150ms ease-in-out;
+		transition: display, opacity;
+		transition-timing-function: ease-in-out;
+		transition-duration: 250ms;
 		transition-behavior: allow-discrete;
 
 		&::backdrop {

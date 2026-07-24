@@ -1,6 +1,9 @@
 @layer tarragon-ui.components {
 	dialog {
 		overflow: hidden auto;
+		display: none;
+		flex-direction: column;
+		gap: var(--size-3xl);
 
 		max-width: min(var(--size-7xl), 100vw);
 		max-height: 100vh;
@@ -22,8 +25,6 @@
 
 	dialog[open] {
 		display: flex;
-		flex-direction: column;
-		gap: var(--size-3xl);
 	}
 
 	dialog::backdrop {
@@ -33,10 +34,9 @@
 	dialog,
 	dialog::backdrop {
 		opacity: 0;
-		transition:
-			display 0.3s allow-discrete,
-			overlay 0.3s allow-discrete,
-			opacity 0.3s allow-discrete;
+		transition: display, overlay, opacity;
+		transition-duration: 300ms;
+		transition-behavior: allow-discrete;
 	}
 
 	dialog[open],

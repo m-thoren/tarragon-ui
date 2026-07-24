@@ -5,6 +5,12 @@
 		}
 	}
 
+	@keyframes slide-out-to-right {
+		to {
+			transform: translateX(100%);
+		}
+	}
+
 	.drawer {
 		inset-inline: auto 0;
 
@@ -25,8 +31,10 @@
 		background-color: var(--color-background-raised);
 		box-shadow: none;
 
+		animation: slide-out-to-right ease-out 300ms forwards;
+
 		&[open] {
-			animation: slide-in-from-right ease-out 0.3s;
+			animation: slide-in-from-right ease-out 300ms backwards;
 		}
 	}
 }
