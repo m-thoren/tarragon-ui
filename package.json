@@ -7,26 +7,26 @@
 		"prepare": "husky"
 	},
 	"devDependencies": {
-		"@axe-core/playwright": "^4.11.3",
+		"@axe-core/playwright": "^4.12.1",
 		"@eslint/js": "^10.0.1",
-		"@playwright/test": "^1.60.0",
+		"@playwright/test": "^1.62.0",
 		"@types/eslint-config-prettier": "^6.11.3",
 		"@types/node": "^25.8.0",
-		"@typescript-eslint/eslint-plugin": "^8.59.3",
-		"@typescript-eslint/parser": "^8.59.3",
-		"eslint": "^10.4.0",
+		"@typescript-eslint/eslint-plugin": "^8.65.0",
+		"@typescript-eslint/parser": "^8.65.0",
+		"eslint": "^10.8.0",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-astro": "^1.7.0",
+		"eslint-plugin-astro": "^3.0.1",
 		"eslint-plugin-jsx-a11y": "^6.10.2",
 		"husky": "^9.1.7",
 		"jiti": "^2.7.0",
-		"lint-staged": "^17.0.4",
-		"prettier": "^3.8.3",
+		"lint-staged": "^17.2.0",
+		"prettier": "^3.9.6",
 		"prettier-plugin-astro": "^0.14.1",
 		"typescript": "6.0.3",
-		"typescript-eslint": "^8.59.3"
+		"typescript-eslint": "^8.65.0"
 	},
-	"packageManager": "pnpm@11.1.2",
+	"packageManager": "pnpm@11.17.0",
 	"engines": {
 		"node": ">=20"
 	}
