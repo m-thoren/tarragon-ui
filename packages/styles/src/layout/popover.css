@@ -18,10 +18,9 @@
 		background-color: var(--color-background-raised);
 		box-shadow: var(--shadow-elevation-high);
 
-		transition: display, opacity;
+		transition: opacity;
 		transition-timing-function: ease-in-out;
 		transition-duration: 250ms;
-		transition-behavior: allow-discrete;
 
 		&::backdrop {
 			background-color: var(--color-backdrop);
@@ -46,55 +45,13 @@
 			padding: var(--size-xs);
 		}
 
-		@supports (top: anchor(--any-name bottom)) {
-			inset: auto;
-			inset-block-start: anchor(bottom);
-			inset-inline-start: anchor(left);
-			position-try-fallbacks:
-				--position-top-right, --position-bottom-right, --position-top-left,
-				--position-middle-middle;
-
+		@supports (position-area: top) {
+			position-area: bottom;
 			margin-top: var(--size-2xs);
 
 			&::backdrop {
 				background-color: transparent;
 			}
 		}
-	}
-
-	@position-try --position-bottom-left {
-		inset: auto;
-		inset-block-start: anchor(bottom);
-		inset-inline-start: anchor(left);
-		margin-top: var(--size-2xs);
-	}
-
-	@position-try --position-bottom-right {
-		inset: auto;
-		inset-block-start: anchor(bottom);
-		inset-inline-end: anchor(right);
-
-		margin: 0;
-		margin-top: var(--size-2xs);
-	}
-
-	@position-try --position-top-left {
-		inset: auto;
-		inset-block-end: anchor(top);
-		inset-inline-start: anchor(left);
-		margin-bottom: var(--size-2xs);
-	}
-
-	@position-try --position-top-right {
-		inset: auto;
-		inset-block-end: anchor(top);
-		inset-inline-end: anchor(right);
-		margin-bottom: var(--size-2xs);
-	}
-
-	@position-try --position-middle-middle {
-		/* stylelint-disable-next-line at-rule-descriptor-value-no-unknown */
-		inset: revert;
-		margin: auto;
 	}
 }
