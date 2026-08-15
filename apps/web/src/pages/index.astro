@@ -6,7 +6,7 @@ import RootLayout from '@/layouts/RootLayout.astro'
 ---
 
 <RootLayout currentPage={undefined}>
-	<main id='main' class='stack center gap-3xl padding-3xl flex-1'>
+	<main id='main' tabindex='-1' class='stack center gap-3xl padding-3xl flex-1'>
 		<BrandIcon aria-hidden='true' class='tarragon-icon text-primary' />
 		<h1 class='text-center w-full'>{siteTitle}</h1>
 		<p class='text-center'>{siteDescription}</p>

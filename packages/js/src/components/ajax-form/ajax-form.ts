@@ -8,6 +8,7 @@ import {
 import { emitEvent } from '../../emitEvent'
 import { fetchClient } from '../../fetch'
 import { queryCache } from '../../query-cache'
+import { ready } from '../../ready'
 
 customElements.define(
 	Component.AjaxForm.Name,
@@ -67,6 +68,7 @@ customElements.define(
 
 			// Listen for events
 			this.form.addEventListener('submit', this)
+			ready(this)
 		}
 
 		disconnectedCallback() {
@@ -120,7 +122,7 @@ customElements.define(
 			}
 
 			if (this.actionOnSuccess === 'remove-form') {
-				this.form.remove()
+				this.remove()
 			}
 
 			if (!this.keepFields) {

@@ -8,7 +8,7 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 		<div>
 			<fieldset class='choice-group'>
 				<legend>Select all</legend>
-				<tui-select-all data-tui-target-name='select-all'>
+				<tui-select-all class='invisible-until-ready' data-tui-target-name='select-all'>
 					<label for='checkbox-select-all-1'>
 						<input id='checkbox-select-all-1' type='checkbox' />
 						Select all
@@ -40,6 +40,7 @@ import ComponentLayout from '@/layouts/ComponentLayout.astro'
 			<fieldset class='choice-group'>
 				<legend>Select all indented</legend>
 				<tui-select-all
+					class='invisible-until-ready'
 					data-tui-target-name='select-all'
 					data-tui-checkbox-class='padding-inline-start-lg'
 				>

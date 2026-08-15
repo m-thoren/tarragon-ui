@@ -1,5 +1,6 @@
 import { Component, tuiAttribute } from '../../constants'
 import { QueryResult, queryCache } from '../../query-cache'
+import { ready } from '../../ready'
 
 customElements.define(
 	Component.AjaxHtml.Name,
@@ -60,6 +61,7 @@ customElements.define(
 			} else {
 				this.initialFetchTriggered = true
 			}
+			ready(this)
 		}
 
 		disconnectedCallback() {
@@ -106,7 +108,7 @@ customElements.define(
 			const document = queryResult.data.document
 
 			const newElem = document.querySelector(`#${this.id}`)
-			if (newElem && newElem.id === this.id) {
+			if (newElem?.id === this.id) {
 				this.innerHTML = newElem.innerHTML
 				return
 			}
