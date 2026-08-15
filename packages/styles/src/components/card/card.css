@@ -1,18 +1,33 @@
 @layer tarragon-ui.components {
 	.card {
 		--_card--padding: var(--size-xl);
+		--_card--border-radius: var(--radius-default);
+		--_card--container-large-direction: row;
 
 		container-type: inline-size;
 		display: flex;
 		flex-direction: column;
+		flex-grow: 1;
 
+		min-width: var(--size-6xl);
 		height: 100%;
 		padding: 0;
 		border: var(--size-border-width) solid var(--color-border);
-		border-radius: var(--radius-default);
+		border-radius: var(--_card--border-radius);
 
 		background: var(--color-background-raised);
 		box-shadow: var(--shadow-elevation-medium);
+
+		&.hero {
+			--_card--border-radius: 0;
+
+			border: none;
+			box-shadow: none;
+		}
+
+		&.vertical-only {
+			--_card--container-large-direction: column;
+		}
 	}
 
 	.card-container {
@@ -23,7 +38,7 @@
 		@container (inline-size > 38rem) {
 			--_card--padding: var(--size-3xl);
 
-			flex-direction: row;
+			flex-direction: var(--_card--container-large-direction);
 		}
 	}
 
@@ -31,20 +46,13 @@
 		width: 100%;
 		height: auto;
 		max-height: 300px;
-		border-radius: var(--radius-default) var(--radius-default) 0 0;
+		border-radius: var(--_card--border-radius) var(--_card--border-radius) 0 0;
 
 		object-fit: cover;
 
 		@container (inline-size > 38rem) {
 			min-width: 50%;
 			max-height: 100%;
-			border-radius: var(--radius-default) 0 0 var(--radius-default);
-		}
-	}
-
-	.card:has(.card-interactions) img {
-		@container (inline-size > 38rem) {
-			border-radius: var(--radius-default) 0 0 0;
 		}
 	}
 
@@ -87,7 +95,7 @@
 		justify-content: start;
 
 		padding: var(--size-sm) var(--size-md);
-		border-radius: var(--radius-default) var(--radius-default) 0 0;
+		border-radius: var(--_card--border-radius) var(--_card--border-radius) 0 0;
 
 		font-size: var(--text-lg);
 		font-weight: var(--font-weight-bold);
@@ -99,18 +107,7 @@
 		background-color: oklch(from var(--color-primary) l c h / 30%);
 
 		@container (inline-size > 38rem) {
-			flex-direction: column;
-			justify-content: center;
-
-			width: var(--size-5xl);
 			padding: var(--size-md);
-			border-radius: var(--radius-default) 0 0 var(--radius-default);
-		}
-	}
-
-	.card:has(.card-interactions) .card-date-span {
-		@container (inline-size > 38rem) {
-			border-radius: var(--radius-default) 0 0 0;
 		}
 	}
 
@@ -120,10 +117,33 @@
 		gap: var(--size-2xs);
 		align-items: center;
 		justify-content: center;
+	}
 
+	.card:not(.vertical-only) {
 		@container (inline-size > 38rem) {
-			flex-direction: column;
-			gap: 0;
+			img {
+				border-radius: var(--_card--border-radius) 0 0 var(--_card--border-radius);
+			}
+
+			&:has(.card-interactions) img {
+				border-radius: var(--_card--border-radius) 0 0 0;
+			}
+
+			.card-date-span {
+				flex-direction: column;
+				justify-content: center;
+				width: var(--size-5xl);
+				border-radius: var(--_card--border-radius) 0 0 var(--_card--border-radius);
+			}
+
+			&:has(.card-interactions) .card-date-span {
+				border-radius: var(--_card--border-radius) 0 0 0;
+			}
+
+			.card-date-span-text {
+				flex-direction: column;
+				gap: 0;
+			}
 		}
 	}
 
@@ -131,7 +151,7 @@
 		position: relative;
 
 		&:has(.navigation-card-link:focus-visible) {
-			border-radius: var(--radius-default);
+			border-radius: var(--_card--border-radius);
 			outline: var(--outline-default);
 			outline-offset: var(--outline-offset);
 		}
