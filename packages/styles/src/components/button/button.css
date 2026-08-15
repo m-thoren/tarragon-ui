@@ -10,6 +10,7 @@
 		--_button--color-hover: var(--button--color-hover, var(--_button--color));
 		--_button--border-color: var(--button--border-color, transparent);
 		--_button--border-color-hover: var(--button--border-color-hover, transparent);
+		--_button--outline: var(--button--outline, var(--outline-default));
 
 		display: inline-flex;
 		flex-shrink: 0;
@@ -43,7 +44,7 @@
 		}
 
 		&:focus-visible {
-			outline: var(--outline-default);
+			outline: var(--_button--outline);
 			outline-offset: var(--outline-offset);
 		}
 
@@ -101,6 +102,7 @@
 			--button--color-outline-hover: var(--color-on-danger);
 			--button--border-color: var(--color-danger);
 			--button--border-color-hover: var(--color-danger-hover);
+			--button--outline: var(--outline-danger);
 		}
 
 		&.accent {

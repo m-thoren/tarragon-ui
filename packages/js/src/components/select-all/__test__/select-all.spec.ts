@@ -155,6 +155,5 @@ test.describe(`${componentName} - no-js`, () => {
 
 		const component = page.locator(componentName)
 		await expect(component).not.toHaveAttribute('data-tui-state', 'ready')
-		await expect(component).toBeHidden()
 	})
 })

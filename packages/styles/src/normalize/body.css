@@ -20,4 +20,10 @@
 			overflow: visible;
 		}
 	}
+
+	[tabindex='-1']:focus-visible {
+		border-radius: var(--radius-default);
+		outline: var(--outline-default);
+		outline-offset: var(--outline-offset);
+	}
 }

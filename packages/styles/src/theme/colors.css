@@ -7,61 +7,56 @@
 		/** Backgrounds */
 
 		/* Base */
-		--color-background-lightness: 14%;
-		--color-background-lightness--raised: 21%;
-		--color-background-lightness--interactive: 25%;
-		--color-background-chroma: 0.006;
-		--color-background-hue: 286deg;
+		--color-background-base: oklch(14% 0.006 286deg);
+		--color-on-background-base: var(--color-text);
+
+		/* Raised */
+		--color-background-raised: oklch(21% 0.006 286deg);
+		--color-on-background-raised: var(--color-text);
+
+		/* Interactive */
+		--color-background-interactive: oklch(25% 0.006 286deg);
+		--color-on-background-interactive: var(--color-text);
 
 		/** Primary */
-		--color-primary-lightness: 70%;
-		--color-primary-lightness--hover: 60%;
-		--color-primary-chroma: 0.17;
-		--color-primary-hue: 162deg;
+		--color-primary: oklch(70% 0.17 162deg);
+		--color-primary-hover: oklch(60% 0.17 162deg);
+		--color-on-primary: var(--color-background-base);
 
 		/** Muted */
 		--color-muted-lightness: 27%;
+		--color-muted: oklch(27% 0.006 286deg);
+		--color-on-muted: var(--color-text);
 
 		/** Accent */
-		--color-accent-lightness: 97%;
-		--color-accent-lightness--hover: 80%;
-		--color-accent-chroma: 0.001;
-		--color-accent-hue: 286deg;
+		--color-accent: oklch(97% 0.001 286deg);
+		--color-accent-hover: oklch(80% 0.001 286deg);
+		--color-on-accent: var(--color-background-raised);
 
 		/** Info */
-		--color-info-lightness: 70%;
-		--color-info-lightness--hover: 60%;
-		--color-info-chroma: 0.088;
-		--color-info-hue: 256deg;
+		--color-info: oklch(70% 0.088 256deg);
+		--color-info-hover: oklch(60% 0.088 256deg);
+		--color-on-info: var(--color-background-base);
 
 		/** Success */
-		--color-success-lightness: 70%;
-		--color-success-lightness--hover: 60%;
-		--color-success-chroma: 0.17;
-		--color-success-hue: 162deg;
+		--color-success: oklch(70% 0.17 162deg);
+		--color-success-hover: oklch(60% 0.17 162deg);
+		--color-on-success: var(--color-background-base);
 
 		/** Danger */
-		--color-danger-lightness: 60%;
-		--color-danger-lightness--hover: 50%;
-		--color-danger-chroma: 0.191;
-		--color-danger-hue: 22deg;
+		--color-danger: oklch(60% 0.191 22deg);
+		--color-danger-hover: oklch(50% 0.191 22deg);
+		--color-on-danger: var(--color-background-base);
 
 		/** Warning */
-		--color-warning-lightness: 80%;
-		--color-warning-lightness--hover: 70%;
-		--color-warning-chroma: 0.1781;
-		--color-warning-hue: 92deg;
-		--color-on-warning: oklch(
-			var(--color-background-lightness) var(--color-background-chroma)
-				var(--color-background-hue)
-		);
+		--color-warning: oklch(80% 0.1781 92deg);
+		--color-warning-hover: oklch(70% 0.1781 92deg);
+		--color-on-warning: var(--color-background-base);
 
 		/** Border */
-		--color-border-lightness: 50%;
-		--color-border-lightness--hover: 70%;
-		--color-border-lightness--overlays: 40%;
-		--color-border-chroma: 0;
-		--color-border-hue: 0deg;
+		--color-border: oklch(50% 0 0deg);
+		--color-border-hover: oklch(70% 0 0deg);
+		--color-border-overlay: oklch(40% 0 0deg);
 
 		/** Outline */
 		--outline-default: var(--size-3xs) solid var(--color-primary);
@@ -76,58 +71,55 @@
 		/** Backgrounds */
 
 		/* Base */
-		--color-background-lightness: 97%;
-		--color-background-lightness--raised: 95%;
-		--color-background-lightness--interactive: 92%;
-		--color-background-chroma: 0.004;
-		--color-background-hue: 56.38deg;
+		--color-background-base: oklch(97% 0.004 56.38deg);
+		--color-on-background-base: var(--color-text);
+
+		/* Raised */
+		--color-background-raised: oklch(95% 0.004 56.38deg);
+		--color-on-background-raised: var(--color-text);
+
+		/* Interactive */
+		--color-background-interactive: oklch(92% 0.004 56.38deg);
+		--color-on-background-interactive: var(--color-text);
 
 		/** Primary */
-		--color-primary-lightness: 35%;
-		--color-primary-lightness--hover: 60%;
-		--color-primary-chroma: 0.17;
-		--color-primary-hue: 162deg;
+		--color-primary: oklch(35% 0.17 162deg);
+		--color-primary-hover: oklch(60% 0.17 162deg);
+		--color-on-primary: var(--color-background-base);
 
 		/** Muted */
-		--color-muted-lightness: 82%;
+		--color-muted: oklch(82% 0.004 56.38deg);
+		--color-on-muted: var(--color-text);
 
 		/** Accent */
-		--color-accent-lightness: 27%;
-		--color-accent-lightness--hover: 40%;
-		--color-accent-chroma: 0.006;
-		--color-accent-hue: 286deg;
+		--color-accent: oklch(27% 0.006 286deg);
+		--color-accent-hover: oklch(40% 0.006 286deg);
+		--color-on-accent: var(--color-background-raised);
 
 		/** Info */
-		--color-info-lightness: 40%;
-		--color-info-lightness--hover: 50%;
-		--color-info-chroma: 0.088;
-		--color-info-hue: 256deg;
+		--color-info: oklch(40% 0.088 256deg);
+		--color-info-hover: oklch(50% 0.088 256deg);
+		--color-on-info: var(--color-background-base);
 
 		/** Success */
-		--color-success-lightness: 50%;
-		--color-success-lightness--hover: 60%;
-		--color-success-chroma: 0.17;
-		--color-success-hue: 162deg;
+		--color-success: oklch(50% 0.17 162deg);
+		--color-success-hover: oklch(60% 0.17 162deg);
+		--color-on-success: var(--color-background-base);
 
 		/** Danger */
-		--color-danger-lightness: 55%;
-		--color-danger-lightness--hover: 55%;
-		--color-danger-chroma: 0.245;
-		--color-danger-hue: 40deg;
+		--color-danger: oklch(55% 0.245 40deg);
+		--color-danger-hover: oklch(45% 0.245 40deg);
+		--color-on-danger: var(--color-background-base);
 
 		/** Warning */
-		--color-warning-lightness: 70%;
-		--color-warning-lightness--hover: 60%;
-		--color-warning-chroma: 0.2;
-		--color-warning-hue: 46deg;
+		--color-warning: oklch(70% 0.2 46deg);
+		--color-warning-hover: oklch(60% 0.2 46deg);
 		--color-on-warning: var(--color-text);
 
 		/** Border */
-		--color-border-lightness: 80%;
-		--color-border-lightness--hover: 60%;
-		--color-border-lightness--overlays: 90%;
-		--color-border-chroma: 0.004;
-		--color-border-hue: 286deg;
+		--color-border: oklch(80% 0.004 286deg);
+		--color-border-hover: oklch(60% 0.004 286deg);
+		--color-border-overlay: oklch(90% 0.004 286deg);
 	}
 }
 
@@ -135,115 +127,6 @@
 	:root,
 	.dark,
 	.light {
-		--color-background-base: oklch(
-			var(--color-background-lightness) var(--color-background-chroma)
-				var(--color-background-hue)
-		);
-		--color-on-background-base: var(--color-text);
-
-		/* Raised */
-		--color-background-raised: oklch(
-			var(--color-background-lightness--raised) var(--color-background-chroma)
-				var(--color-background-hue)
-		);
-		--color-on-background-raised: var(--color-text);
-
-		/* Interactive */
-		--color-background-interactive: oklch(
-			var(--color-background-lightness--interactive) var(--color-background-chroma)
-				var(--color-background-hue)
-		);
-		--color-on-background-interactive: var(--color-text);
-
-		/* .Primary */
-		--color-primary: oklch(
-			var(--color-primary-lightness) var(--color-primary-chroma) var(--color-primary-hue)
-		);
-		--color-primary-hover: oklch(
-			var(--color-primary-lightness--hover) var(--color-primary-chroma)
-				var(--color-primary-hue)
-		);
-		--color-on-primary: oklch(
-			var(--color-background-lightness) var(--color-background-chroma)
-				var(--color-background-hue)
-		);
-
-		/** Accent */
-		--color-accent: oklch(
-			var(--color-accent-lightness) var(--color-accent-chroma) var(--color-accent-hue)
-		);
-		--color-accent-hover: oklch(
-			var(--color-accent-lightness--hover) var(--color-accent-chroma) var(--color-accent-hue)
-		);
-		--color-on-accent: oklch(
-			var(--color-background-lightness--raised) var(--color-background-chroma)
-				var(--color-background-hue)
-		);
-
-		/** Muted */
-		--color-muted: oklch(
-			var(--color-muted-lightness) var(--color-background-chroma) var(--color-background-hue)
-		);
-		--color-on-muted: var(--color-text);
-
-		/** Info */
-		--color-info: oklch(
-			var(--color-info-lightness) var(--color-info-chroma) var(--color-info-hue)
-		);
-		--color-info-hover: oklch(
-			var(--color-info-lightness--hover) var(--color-info-chroma) var(--color-info-hue)
-		);
-		--color-on-info: oklch(
-			var(--color-background-lightness) var(--color-background-chroma)
-				var(--color-background-hue)
-		);
-
-		/** Success */
-		--color-success: oklch(
-			var(--color-success-lightness) var(--color-success-chroma) var(--color-success-hue)
-		);
-		--color-success-hover: oklch(
-			var(--color-success-lightness--hover) var(--color-success-chroma)
-				var(--color-success-hue)
-		);
-		--color-on-success: oklch(
-			var(--color-background-lightness) var(--color-background-chroma)
-				var(--color-background-hue)
-		);
-
-		/** Danger */
-		--color-danger: oklch(
-			var(--color-danger-lightness) var(--color-danger-chroma) var(--color-danger-hue)
-		);
-		--color-danger-hover: oklch(
-			var(--color-danger-lightness--hover) var(--color-danger-chroma) var(--color-danger-hue)
-		);
-		--color-on-danger: oklch(
-			var(--color-background-lightness) var(--color-background-chroma)
-				var(--color-background-hue)
-		);
-
-		/** Warning */
-		--color-warning: oklch(
-			var(--color-warning-lightness) var(--color-warning-chroma) var(--color-warning-hue)
-		);
-		--color-warning-hover: oklch(
-			var(--color-warning-lightness--hover) var(--color-warning-chroma)
-				var(--color-warning-hue)
-		);
-
-		/** Border */
-		--color-border: oklch(
-			var(--color-border-lightness) var(--color-border-chroma) var(--color-border-hue)
-		);
-		--color-border-hover: oklch(
-			var(--color-border-lightness--hover) var(--color-border-chroma) var(--color-border-hue)
-		);
-		--color-border-overlay: oklch(
-			var(--color-border-lightness--overlays) var(--color-border-chroma)
-				var(--color-border-hue)
-		);
-
 		/** Backdrop */
 		--color-backdrop: oklch(0% 0 0deg / 70%);
 
