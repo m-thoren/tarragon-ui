@@ -21,10 +21,26 @@ const formatted = await prettier.format(withoutAttrsAndSvg, {
 	plugins: [HTMLParser],
 	htmlWhitespaceSensitivity: 'ignore',
 })
+
+const uuid = crypto.randomUUID()
 ---
 
-{!onlyCode && <slot />}
-<Code code={formatted} lang='html' />
+{
+	onlyCode ? (
+		<Code code={formatted} lang='html' />
+	) : (
+		<>
+			<slot />
+			<label for={`code-example-${uuid}`}>
+				<input id={`code-example-${uuid}`} role='switch' type='checkbox' />
+				Show code
+			</label>
+			<tui-until-selected data-tui-target={`code-example-${uuid}`} class='hide-until-ready'>
+				<Code code={formatted} lang='html' />
+			</tui-until-selected>
+		</>
+	)
+}
 
 <style>
 	pre {

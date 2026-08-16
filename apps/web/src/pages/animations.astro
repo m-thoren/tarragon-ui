@@ -1,0 +1,61 @@
+---
+import CodeExample from '@/components/CodeExample.astro'
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+import { TriangleAlertIcon } from '@lucide/astro'
+---
+
+<ComponentLayout name='Animations'>
+	<h2>Fade in</h2>
+	<CodeExample>
+		<div class='fade-in example-box'></div>
+	</CodeExample>
+
+	<h2>Spin</h2>
+	<CodeExample>
+		<div class='spin example-box'></div>
+	</CodeExample>
+
+	<h2>Fade in on scroll</h2>
+	<div class='alert warning'>
+		<TriangleAlertIcon aria-hidden='true' />
+		<h3 class='alert-title'>Scroll animations are not supported in all browsers</h3>
+		<p class='alert-description'>Firefox does not support it yet</p>
+	</div>
+	<CodeExample>
+		<div class='fade-in-on-scroll example-box'></div>
+	</CodeExample>
+
+	<h2>Slide up on scroll</h2>
+	<CodeExample>
+		<div class='slide-up-on-scroll example-box'></div>
+	</CodeExample>
+
+	<h2>Slide in from left on scroll</h2>
+	<CodeExample>
+		<div class='slide-in-from-left-on-scroll example-box'></div>
+	</CodeExample>
+
+	<h2>Slide in from right on scroll</h2>
+	<CodeExample>
+		<div class='slide-in-from-right-on-scroll example-box'></div>
+	</CodeExample>
+
+	<h2>Blur in on scroll</h2>
+	<CodeExample>
+		<div class='blur-in-on-scroll example-box'></div>
+	</CodeExample>
+
+	<h2>Flip in on scroll</h2>
+	<CodeExample>
+		<div class='flip-in-on-scroll example-box'></div>
+	</CodeExample>
+</ComponentLayout>
+
+<style>
+	.example-box {
+		width: var(--size-4xl);
+		background-color: var(--color-primary);
+		border-radius: var(--radius-default);
+		aspect-ratio: 1 / 1;
+	}
+</style>

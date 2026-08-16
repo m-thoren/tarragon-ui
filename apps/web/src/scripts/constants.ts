@@ -354,6 +354,11 @@ export const sections: Array<Sections> = [
 		name: 'Utilities',
 		pages: [
 			{
+				name: 'Animations',
+				href: buildUrl('/animations'),
+				description: 'Simple animations that respect user motion preference',
+			},
+			{
 				name: 'Aspect Ratio',
 				href: buildUrl('/aspect-ratio'),
 				description:

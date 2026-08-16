@@ -1,25 +1,160 @@
 @layer tarragon-ui.utilities {
-	.animate-spin {
-		animation: spin 1s linear infinite;
-	}
-
 	@keyframes spin {
 		to {
 			transform: rotate(360deg);
 		}
 	}
 
-	.animate-fade {
-		animation: fade 0.3 ease both;
+	.spin {
+		@media (prefers-reduced-motion: no-preference) {
+			animation: spin 1s linear infinite;
+		}
 	}
 
-	@keyframes fade {
+	@keyframes fade-in {
 		from {
 			opacity: 0;
 		}
 
 		to {
 			opacity: 1;
+		}
+	}
+
+	.fade-in {
+		animation: fade-in 300ms ease both;
+	}
+
+	@keyframes scroll-fade-in {
+		from {
+			opacity: 0;
+		}
+
+		to {
+			opacity: 1;
+		}
+	}
+
+	.fade-in-on-scroll {
+		animation: scroll-fade-in linear;
+		animation-timeline: view();
+		animation-range: entry;
+	}
+
+	@keyframes scroll-slide-up {
+		from {
+			transform: translateY(40px);
+			opacity: 0;
+		}
+
+		to {
+			transform: none;
+			opacity: 1;
+		}
+	}
+
+	.slide-up-on-scroll {
+		animation: scroll-fade-in linear;
+		animation-timeline: view();
+		animation-range: entry;
+
+		@media (prefers-reduced-motion: no-preference) {
+			animation: scroll-slide-up;
+			animation-timeline: view();
+			animation-range: entry;
+		}
+	}
+
+	@keyframes scroll-slide-in-from-left {
+		0% {
+			transform: translateX(-100%);
+			opacity: 0;
+		}
+
+		100% {
+			transform: translateX(0%);
+			opacity: 1;
+		}
+	}
+
+	.slide-in-from-left-on-scroll {
+		animation: scroll-fade-in linear;
+		animation-timeline: view();
+		animation-range: entry;
+
+		@media (prefers-reduced-motion: no-preference) {
+			animation: scroll-slide-in-from-left backwards;
+			animation-timeline: view();
+			animation-range-start: cover 0%;
+			animation-range-end: cover 25%;
+		}
+	}
+
+	@keyframes scroll-slide-in-from-right {
+		0% {
+			transform: translateX(100%);
+			opacity: 0;
+		}
+
+		100% {
+			transform: translateX(0%);
+			opacity: 1;
+		}
+	}
+
+	.slide-in-from-right-on-scroll {
+		animation: scroll-fade-in linear;
+		animation-timeline: view();
+		animation-range: entry;
+
+		@media (prefers-reduced-motion: no-preference) {
+			animation: scroll-slide-in-from-right backwards;
+			animation-timeline: view();
+			animation-range-start: cover 0%;
+			animation-range-end: cover 25%;
+		}
+	}
+
+	@keyframes scroll-blur-in {
+		from {
+			opacity: 0;
+			filter: blur(5px);
+		}
+
+		to {
+			opacity: 1;
+			filter: blur(0);
+		}
+	}
+
+	.blur-in-on-scroll {
+		animation: scroll-blur-in linear;
+		animation-timeline: view();
+		animation-range: entry;
+	}
+
+	@keyframes scroll-flip-in {
+		from {
+			transform: perspective(800px) rotateX(60deg);
+			opacity: 0;
+		}
+
+		to {
+			transform: perspective(800px) rotateX(0deg);
+			opacity: 1;
+		}
+	}
+
+	.flip-in-on-scroll {
+		animation: scroll-fade-in linear;
+		animation-timeline: view();
+		animation-range: entry;
+
+		@media (prefers-reduced-motion: no-preference) {
+			animation: scroll-flip-in both;
+			animation-timeline: view();
+			animation-range-start: cover 10%;
+			animation-range-end: cover 50%;
 		}
 	}
 }
