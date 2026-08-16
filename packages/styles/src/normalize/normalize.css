@@ -64,9 +64,12 @@
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
-		::view-transition-old(root),
+		::view-transition-old(root)::view-transition-new(root) {
+			animation: fade-out 300ms ease both;
+		}
+
 		::view-transition-new(root) {
-			animation: fade-in 0.3s ease both;
+			animation: fade-in 300ms ease both;
 		}
 
 		html {
