@@ -42,7 +42,7 @@
 		}
 	}
 
-	.card img {
+	.card .card-image {
 		width: 100%;
 		height: auto;
 		max-height: 300px;
@@ -121,11 +121,11 @@
 
 	.card:not(.vertical-only) {
 		@container (inline-size > 38rem) {
-			img {
+			.card-image {
 				border-radius: var(--_card--border-radius) 0 0 var(--_card--border-radius);
 			}
 
-			&:has(.card-interactions) img {
+			&:has(.card-interactions) .card-image {
 				border-radius: var(--_card--border-radius) 0 0 0;
 			}
 
