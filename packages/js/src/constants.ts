@@ -67,12 +67,16 @@ export enum NativeEvent {
 }
 
 export const Component = {
+	AjaxFetch: {
+		Name: `${libNamePrefix}ajax-fetch`,
+	},
 	AjaxForm: {
 		Name: `${libNamePrefix}ajax-form`,
 		Event: { Form: 'form' },
 	},
 	AjaxHtml: {
 		Name: `${libNamePrefix}ajax-html`,
+		Event: { Render: 'render' },
 	},
 	Boop: {
 		Name: `${libNamePrefix}boop`,

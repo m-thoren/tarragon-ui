@@ -1,5 +1,6 @@
 import { Component, tuiAttribute } from '../../constants'
 import { QueryResult, queryCache } from '../../query-cache'
+import { emitEvent } from '../../emitEvent'
 import { ready } from '../../ready'
 
 customElements.define(
@@ -22,6 +23,8 @@ customElements.define(
 				console.warn(`${Component.AjaxHtml.Name} requires a "query-key" attribute.`, this)
 				return
 			}
+
+			this.setAttribute('aria-live', 'polite')
 
 			this.staleTime = this.hasAttribute(tuiAttribute('stale-time'))
 				? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -110,11 +113,13 @@ customElements.define(
 			const newElem = document.querySelector(`#${this.id}`)
 			if (newElem?.id === this.id) {
 				this.innerHTML = newElem.innerHTML
+				emitEvent(Component.AjaxHtml.Name, Component.AjaxHtml.Event.Render, this)
 				return
 			}
 
 			if (document.body.innerHTML.trim().length > 0) {
 				this.innerHTML = document.body.innerHTML
+				emitEvent(Component.AjaxHtml.Name, Component.AjaxHtml.Event.Render, this)
 				return
 			}
 

@@ -99,6 +99,12 @@ export const sections: Array<Sections> = [
 		name: 'Forms',
 		pages: [
 			{
+				name: 'Ajax Fetch',
+				href: buildUrl('/ajax-fetch'),
+				description:
+					'Fetch HTML from the server. Combine with Ajax HTML to update a section of the page',
+			},
+			{
 				name: 'Ajax Form',
 				href: buildUrl('/ajax-form'),
 				description:

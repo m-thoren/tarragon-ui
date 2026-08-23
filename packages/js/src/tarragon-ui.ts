@@ -1,4 +1,5 @@
 import './components/validate-form/validate-form'
+import './components/ajax-fetch/ajax-fetch'
 import './components/ajax-form/ajax-form'
 import './components/ajax-html/ajax-html'
 import './components/dropdown/dropdown'

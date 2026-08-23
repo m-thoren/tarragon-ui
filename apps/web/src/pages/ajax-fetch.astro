@@ -1,0 +1,25 @@
+---
+import CodeExample from '@/components/CodeExample.astro'
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+import { buildUrl } from '@/scripts/constants'
+---
+
+<ComponentLayout name='Ajax Fetch'>
+	<CodeExample>
+		<tui-ajax-fetch
+			data-tui-query-key='/api/messages'
+			data-tui-url={buildUrl('/api/messages')}
+			class='invisible-until-ready'
+		>
+			<button>Fetch HTML</button>
+		</tui-ajax-fetch>
+		<tui-ajax-html class='block' id='ajax-html-example' data-tui-query-key='/api/messages'>
+			<div class='card'>
+				<div class='card-content'>
+					<h2>Old HTML</h2>
+					<p>This HTML was rendered on the server and is now stale</p>
+				</div>
+			</div>
+		</tui-ajax-html>
+	</CodeExample>
+</ComponentLayout>
