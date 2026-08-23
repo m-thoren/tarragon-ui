@@ -272,11 +272,6 @@ export const sections: Array<Sections> = [
 					'A vertically stacked list of items that can be expanded or collapsed to reveal content. Ideal for organizing large amounts of information in a compact space.',
 			},
 			{
-				name: 'Search Filter',
-				href: buildUrl('/search-filter'),
-				description: 'A client side filtering with debounce and section functionality',
-			},
-			{
 				name: 'Tabs',
 				href: buildUrl('/tabs'),
 				description: 'Used to display content in a tabbed interface',

@@ -4,13 +4,9 @@ import { SearchIcon } from '@lucide/astro'
 import { sections } from '@/scripts/constants'
 ---
 
-<ComponentLayout name='Search Filter'>
-	<tui-search-filter
-		class='block'
-		data-tui-target-selector='[data-tui-search-target]'
-		data-tui-collection-selector='[data-tui-section]'
-	>
-		<form action='/search-filter' method='Get' role='search' class='join'>
+<ComponentLayout name='Search for component'>
+	<search-filter class='block'>
+		<form action='/search-filter' method='GET' role='search' class='join'>
 			<div>
 				<label class='visually-hidden' for='component-search'>Search for components</label>
 				<input
@@ -26,16 +22,16 @@ import { sections } from '@/scripts/constants'
 				<span class='visually-hidden-below-tablet'>Search</span>
 			</button>
 		</form>
-	</tui-search-filter>
+	</search-filter>
 
-	<div class='stack gap-4xl'>
+	<div class='stack gap-4xl padding-block-start-2xl'>
 		{
 			sections.map((section) => (
-				<section class='stack' data-tui-section>
+				<section class='stack' data-section>
 					<h2>{section.name}</h2>
 					<ul class='list-unstyled grid grid-cols-1 grid-tablet-cols-2 grid-desktop-cols-3 gap-3xl'>
 						{section.pages.map((page) => (
-							<li data-tui-search-target>
+							<li data-search-target>
 								<article class='card navigation-card h-full'>
 									<div class='card-content'>
 										<h3>
@@ -55,3 +51,122 @@ import { sections } from '@/scripts/constants'
 		}
 	</div>
 </ComponentLayout>
+
+<script>
+	const hiddenAttribute = 'hidden'
+	type TargetElement = { element: HTMLElement; text: string }
+
+	customElements.define(
+		'search-filter',
+		class extends HTMLElement {
+			// TODO Add an aria-live region to announce number of results found
+			// TODO handle focus management for accessibility
+			private inputElement: HTMLInputElement | null = null
+			private searchButton: HTMLInputElement | null = null
+			private collections: Array<{
+				element: HTMLElement
+				targetElements: Array<TargetElement>
+			}> = []
+			private debouncedFilterTargets: () => void
+
+			constructor() {
+				super()
+				this.debouncedFilterTargets = debounce(this.filterTargets, 300)
+			}
+
+			connectedCallback() {
+				this.inputElement = this.querySelector('input[type="search"]')
+				this.searchButton = this.querySelector('button[type="submit"]')
+
+				if (!this.inputElement) {
+					console.warn('search-filter requires an input element.', this)
+					return
+				}
+				if (!this.searchButton) {
+					console.warn('search-filter requires a button element', this)
+					return
+				}
+
+				const collections = Array.from(
+					document.querySelectorAll<HTMLElement>('[data-section]'),
+				)
+				if (collections.length === 0) return
+
+				for (const collection of collections) {
+					const targetElements = Array.from(
+						collection.querySelectorAll<HTMLElement>('[data-search-target]'),
+					)
+					this.collections.push({
+						element: collection,
+						targetElements: targetElements.map((element) => ({
+							element,
+							text: element.textContent.toLocaleLowerCase(),
+						})),
+					})
+				}
+				if (this.collections.length === 0) return
+
+				this.inputElement.addEventListener('input', this.debouncedFilterTargets)
+				this.searchButton.addEventListener('click', this.onSearchClick)
+			}
+
+			disconnectedCallback() {
+				this.inputElement?.removeEventListener('input', this.debouncedFilterTargets)
+				this.searchButton?.removeEventListener('click', this.onSearchClick)
+			}
+
+			private onSearchClick = (event: Event) => {
+				event.preventDefault()
+				this.filterTargets()
+			}
+
+			private filterTargets = () => {
+				if (!this.inputElement) return
+				const query = this.inputElement.value.toLocaleLowerCase()
+
+				if (!query) {
+					for (const collection of this.collections) {
+						collection.element.removeAttribute(hiddenAttribute)
+
+						for (const element of collection.targetElements) {
+							element.element.removeAttribute(hiddenAttribute)
+						}
+					}
+					return
+				}
+
+				this.collections.forEach((collection) => {
+					let hasMatch = false
+
+					for (const element of collection.targetElements) {
+						if (element.text.includes(query)) {
+							element.element.removeAttribute(hiddenAttribute)
+							hasMatch = true
+						} else {
+							element.element.setAttribute(hiddenAttribute, '')
+						}
+					}
+
+					if (hasMatch) {
+						collection.element.removeAttribute(hiddenAttribute)
+					} else {
+						collection.element.setAttribute(hiddenAttribute, '')
+					}
+				})
+			}
+		},
+	)
+
+	export function debounce<T extends (...args: Array<unknown>) => void>(
+		func: T,
+		delay: number,
+	): (...args: Parameters<T>) => void {
+		let timeout: ReturnType<typeof setTimeout> | undefined
+		return function (this: ThisParameterType<T>, ...args: Parameters<T>) {
+			clearTimeout(timeout)
+			timeout = setTimeout(() => {
+				func.apply(this, args)
+			}, delay)
+		}
+	}
+</script>

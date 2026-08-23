@@ -7,7 +7,6 @@ import './components/exclusive-checkbox/exclusive-checkbox'
 import './components/select-all/select-all'
 import './components/tabs/tabs'
 import './components/until-selected/until-selected'
-import './components/search-filter/search-filter'
 import './components/boop/boop'
 import { apply, isSupported } from 'invokers-polyfill/fn'
 if (!isSupported()) apply()
