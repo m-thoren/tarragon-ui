@@ -7,13 +7,17 @@ import { buildUrl } from '@/scripts/constants'
 <ComponentLayout name='Ajax Fetch'>
 	<CodeExample>
 		<tui-ajax-fetch
-			data-tui-query-key='/api/messages'
+			data-tui-query-key={buildUrl('/api/messages')}
 			data-tui-url={buildUrl('/api/messages')}
 			class='invisible-until-ready'
 		>
 			<button>Fetch HTML</button>
 		</tui-ajax-fetch>
-		<tui-ajax-html class='block' id='ajax-html-example' data-tui-query-key='/api/messages'>
+		<tui-ajax-html
+			class='block'
+			id='ajax-html-example'
+			data-tui-query-key={buildUrl('/api/messages')}
+		>
 			<div class='card'>
 				<div class='card-content'>
 					<h2>Old HTML</h2>
