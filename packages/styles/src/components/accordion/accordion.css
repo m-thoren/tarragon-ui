@@ -4,6 +4,7 @@
 		flex-direction: column;
 		align-items: stretch;
 
+		interpolate-size: allow-keywords;
 		width: 100%;
 		border: var(--size-border-width) solid var(--color-border-overlay);
 		border-radius: var(--radius-default);
@@ -17,6 +18,18 @@
 			&:last-of-type {
 				border-bottom: none;
 			}
+		}
+
+		details::details-content {
+			overflow: clip;
+			height: 0;
+			transition:
+				height 200ms,
+				content-visibility 300ms allow-discrete;
+		}
+
+		details[open]::details-content {
+			height: auto;
 		}
 
 		summary {
