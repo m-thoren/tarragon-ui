@@ -1,6 +1,6 @@
-import { Component, NativeEvent, focusableElementsSelector, tuiAttribute } from '../../constants'
-import { checkPrefersReducedMotion } from '../../reducedMotion'
-import { ready } from '../../ready'
+import { Component, NativeEvent, focusableElementsSelector, tuiAttribute } from '@/constants'
+import { checkPrefersReducedMotion } from '@/reducedMotion'
+import { ready } from '@/ready'
 
 customElements.define(
 	Component.Boop.Name,

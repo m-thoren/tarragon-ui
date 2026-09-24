@@ -12,7 +12,9 @@ export const testPageAccessibility = async (page: Page) => {
 	await themeButton.click()
 
 	await expect(async () => {
-		const darkModeScanResults = await new AxeBuilder({ page }).analyze()
+		const darkModeScanResults = await new AxeBuilder({ page })
+			.withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'])
+			.analyze()
 		expect(darkModeScanResults.violations).toEqual([])
 	}).toPass()
 }

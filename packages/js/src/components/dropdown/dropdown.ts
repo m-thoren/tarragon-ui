@@ -1,5 +1,5 @@
-import { Component, NativeEvent, focusableElementsSelector, tuiAttribute } from '../../constants'
-import { ready } from '../../ready'
+import { Component, NativeEvent, focusableElementsSelector, tuiAttribute } from '@/constants'
+import { ready } from '@/ready'
 
 const SELECTOR_POPOVER = '[popover]'
 const SELECTOR_TRIGGER = (id: string) => `[popovertarget="${id}"]`
@@ -86,7 +86,11 @@ customElements.define(
 
 		private isOpen(): boolean {
 			if (!this.popoverElement) return false
-			return this.popoverElement.getAttribute(tuiAttribute('state')) === state.open
+			try {
+				return this.popoverElement.matches(':popover-open')
+			} catch {
+				return this.popoverElement.getAttribute(tuiAttribute('state')) === state.open
+			}
 		}
 
 		private handleKeydown = (e: KeyboardEvent): void => {
@@ -126,8 +130,10 @@ customElements.define(
 			if (!this.isOpen()) return
 			switch (e.key) {
 				case ' ':
-					e.preventDefault()
-					this.triggerAction(e)
+					if (e.target instanceof HTMLAnchorElement) {
+						e.preventDefault()
+						e.target.click()
+					}
 					break
 				case 'Tab':
 					this.closePopover()
@@ -181,12 +187,6 @@ customElements.define(
 			if (!this.popoverElement) return
 			if (!this.isOpen()) return
 			this.popoverElement.hidePopover()
-		}
-
-		private triggerAction = (e: Event) => {
-			if (e.target instanceof HTMLAnchorElement) {
-				e.target.click()
-			}
 		}
 
 		private focusOptionByStep = (
@@ -263,12 +263,7 @@ customElements.define(
 		private getActiveOption(): ActionElement | null {
 			const activeElement = document.activeElement
 
-			if (
-				!activeElement ||
-				!(activeElement instanceof HTMLAnchorElement) ||
-				!(activeElement instanceof HTMLButtonElement)
-			)
-				return null
+			if (!activeElement || !(activeElement instanceof HTMLElement)) return null
 
 			return this.focusableElements.find((el) => el === activeElement) ?? null
 		}

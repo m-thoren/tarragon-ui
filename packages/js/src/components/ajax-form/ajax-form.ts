@@ -1,14 +1,8 @@
-import {
-	Component,
-	SECOND,
-	hiddenAttribute,
-	tuiAttribute,
-	tuiAttributeSelector,
-} from '../../constants'
-import { emitEvent } from '../../emitEvent'
-import { fetchClient } from '../../fetch'
-import { queryCache } from '../../query-cache'
-import { ready } from '../../ready'
+import { Component, SECOND, hiddenAttribute, tuiAttribute, tuiAttributeSelector } from '@/constants'
+import { emitEvent } from '@/emitEvent'
+import { fetchClient } from '@/fetch'
+import { queryCache } from '@/query-cache'
+import { ready } from '@/ready'
 
 customElements.define(
 	Component.AjaxForm.Name,

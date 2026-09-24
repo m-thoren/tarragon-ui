@@ -1,5 +1,5 @@
-import { Component, NativeEvent, hiddenAttribute, tuiAttribute } from '../../constants'
-import { ready } from '../../ready'
+import { Component, NativeEvent, hiddenAttribute, tuiAttribute } from '@/constants'
+import { ready } from '@/ready'
 
 customElements.define(
 	Component.UntilSelected.Name,

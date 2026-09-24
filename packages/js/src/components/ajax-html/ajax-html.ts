@@ -1,7 +1,7 @@
-import { Component, tuiAttribute } from '../../constants'
-import { QueryResult, queryCache } from '../../query-cache'
-import { emitEvent } from '../../emitEvent'
-import { ready } from '../../ready'
+import { Component, tuiAttribute } from '@/constants'
+import { QueryResult, queryCache } from '@/query-cache'
+import { emitEvent } from '@/emitEvent'
+import { ready } from '@/ready'
 
 customElements.define(
 	Component.AjaxHtml.Name,

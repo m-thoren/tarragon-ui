@@ -1,5 +1,5 @@
-import { Component, NativeEvent, focusableElementsSelector } from '../../constants'
-import { ready } from '../../ready'
+import { Component, NativeEvent, focusableElementsSelector } from '@/constants'
+import { ready } from '@/ready'
 
 customElements.define(
 	Component.Tabs.Name,
@@ -139,11 +139,13 @@ customElements.define(
 
 		private onKeyDown = (event: KeyboardEvent) => {
 			if ('ArrowLeft' === event.key) {
+				event.preventDefault()
 				this.moveTab(-1)
 				return
 			}
 
 			if ('ArrowRight' === event.key) {
+				event.preventDefault()
 				this.moveTab(1)
 				return
 			}

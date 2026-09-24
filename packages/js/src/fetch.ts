@@ -1,4 +1,4 @@
-import { Result } from './constants'
+import { Result } from '@/constants'
 
 type Method = 'GET' | 'PUT' | 'POST' | 'PATCH' | 'DELETE'
 

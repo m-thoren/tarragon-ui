@@ -55,8 +55,7 @@ test.describe(componentName, () => {
 		}).toPass()
 	})
 
-	// TODO these fail when not using ui for some reason
-	test.fixme('should close with tab', async ({ page }) => {
+	test('should close with tab', async ({ page }) => {
 		const dropdownWrapper = page.locator(componentName)
 		const trigger = dropdownWrapper.getByRole('button', { name: 'Open Dropdown' })
 		const dropdown = dropdownWrapper.locator('[popover]')
@@ -76,7 +75,7 @@ test.describe(componentName, () => {
 		await expect(dropdown).toBeHidden()
 	})
 
-	test.fixme('should close with shift + tab', async ({ page }) => {
+	test('should close with shift + tab', async ({ page }) => {
 		const dropdownWrapper = page.locator(componentName)
 		const trigger = dropdownWrapper.getByRole('button', { name: 'Open Dropdown' })
 		const dropdown = dropdownWrapper.locator('[popover]')
@@ -98,7 +97,7 @@ test.describe(componentName, () => {
 		await expect(dropdown).toBeHidden()
 	})
 
-	test.fixme('should navigate down with ArrowDown key', async ({ page }) => {
+	test('should navigate down with ArrowDown key', async ({ page }) => {
 		const dropdownWrapper = page.locator(componentName)
 		const trigger = dropdownWrapper.getByRole('button', { name: 'Open Dropdown' })
 		const dropdown = dropdownWrapper.locator('[popover]')
@@ -123,7 +122,7 @@ test.describe(componentName, () => {
 		await expect(option1).toBeFocused()
 	})
 
-	test.fixme('should navigate up with ArrowUp key', async ({ page }) => {
+	test('should navigate up with ArrowUp key', async ({ page }) => {
 		const dropdownWrapper = page.locator(componentName)
 		const trigger = dropdownWrapper.getByRole('button', { name: 'Open Dropdown' })
 		const dropdown = dropdownWrapper.locator('[popover]')

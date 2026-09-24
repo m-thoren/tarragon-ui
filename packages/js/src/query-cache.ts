@@ -1,4 +1,4 @@
-import { FetchSuccess, fetchClient } from './fetch'
+import { FetchSuccess, fetchClient } from '@/fetch'
 
 type QueryData = FetchSuccess | undefined
 type QueryMeta = {

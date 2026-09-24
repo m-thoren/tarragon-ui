@@ -3,10 +3,12 @@ export function emitEvent(
 	eventId: string,
 	element: Element,
 	cancelable = false,
+	detail?: unknown,
 ) {
-	const event = new Event(`${componentName}:${eventId}`, {
+	const event = new CustomEvent(`${componentName}:${eventId}`, {
 		bubbles: true,
 		cancelable,
+		detail,
 	})
 	return element.dispatchEvent(event)
 }

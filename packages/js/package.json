@@ -50,6 +50,14 @@
 		"design-system"
 	],
 	"publishConfig": {
-		"access": "public"
+		"access": "public",
+		"exports": {
+			".": {
+				"import": "./dist/tarragon-ui.js",
+				"require": "./dist/tarragon-ui.js",
+				"default": "./dist/tarragon-ui.js"
+			},
+			"./package.json": "./package.json"
+		}
 	}
 }

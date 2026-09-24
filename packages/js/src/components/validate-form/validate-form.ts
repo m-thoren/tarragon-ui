@@ -1,5 +1,6 @@
-import { Component, libNamePrefix, tuiAttribute, tuiAttributeSelector } from '../../constants'
-import { emitEvent } from '../../emitEvent'
+import { Component, libNamePrefix, tuiAttribute, tuiAttributeSelector } from '@/constants'
+import { emitEvent } from '@/emitEvent'
+import { ready } from '@/ready'
 
 const groupValidationAttribute = 'validate-group'
 
@@ -31,7 +32,7 @@ customElements.define(
 
 			// Ready
 			emitEvent(Component.ValidateForm.Name, Component.ValidateForm.Event.Validate, this)
-			this.setAttribute(tuiAttribute('is-ready'), '')
+			ready(this)
 		}
 
 		disconnectedCallback() {
