@@ -9,8 +9,17 @@ customElements.define(
 		private tabPanels: Array<HTMLDivElement> = []
 
 		connectedCallback() {
-			this.tabList = this.querySelector<HTMLUListElement>('.tablist')
-			this.tabs = Array.from(this.querySelectorAll('.tablist a'))
+			this.tabList = this.querySelector<HTMLUListElement>('ul, ol')
+			if (!this.tabList) {
+				console.error(`${Component.Tabs.Name} component: Missing list element`, this)
+				return
+			}
+
+			this.tabs = Array.from(this.tabList.querySelectorAll('a'))
+			if (this.tabs.length === 0) {
+				console.error(`${Component.Tabs.Name}} component: Missing tab links`, this)
+				return
+			}
 
 			this.tabPanels = this.tabs
 				.map((x) => {
@@ -19,9 +28,8 @@ customElements.define(
 					return document.querySelector(href)
 				})
 				.filter((x) => x != null) as Array<HTMLDivElement>
-
-			if (!this.tabList || this.tabs.length === 0 || this.tabPanels.length === 0) {
-				console.error(`Tabs component: Missing some of elements .tablist, .tabpanel`, this)
+			if (this.tabPanels.length === 0) {
+				console.error(`${Component.Tabs.Name}} component: Missing tab panels`, this)
 				return
 			}
 
