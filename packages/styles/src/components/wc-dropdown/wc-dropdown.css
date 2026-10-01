@@ -1,6 +1,6 @@
 @layer tarragon-ui.components {
 	tui-dropdown {
-		&:has(:popover-open) svg {
+		&:has(:popover-open) > button svg {
 			transform: rotate(180deg);
 		}
 

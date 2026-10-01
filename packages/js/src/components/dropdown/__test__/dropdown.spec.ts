@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { Component } from '@/constants'
+import { Component } from '@/utils/constants'
 
 const componentName = Component.Dropdown.Name
 const testPath = '/src/components/dropdown/__test__'

@@ -1,8 +1,9 @@
-import { Component, NativeEvent, focusableElementsSelector, tuiAttribute } from '@/constants'
-import { ready } from '@/ready'
+import { Component, NativeEvent, focusableElementsSelector, tuiAttribute } from '@/utils/constants'
+import { ready } from '@/utils/ready'
 
 const SELECTOR_POPOVER = '[popover]'
 const SELECTOR_TRIGGER = (id: string) => `[popovertarget="${id}"]`
+const SELECTOR_ITEM = 'a[href], button:not([disabled], [popovertarget])'
 
 const state = {
 	open: 'open',
@@ -48,6 +49,7 @@ customElements.define(
 
 			this.addEventListener(NativeEvent.KeyDown, this.handleKeydown)
 			this.popoverElement.addEventListener(NativeEvent.Toggle, this.handleToggle)
+			this.popoverElement.addEventListener(NativeEvent.Click, this.handleItemClick)
 
 			ready(this)
 		}
@@ -91,6 +93,13 @@ customElements.define(
 			} catch {
 				return this.popoverElement.getAttribute(tuiAttribute('state')) === state.open
 			}
+		}
+
+		private handleItemClick = (event: MouseEvent) => {
+			if (!(event.target instanceof Element)) return
+			const item = event.target.closest(SELECTOR_ITEM)
+			if (!item || !this.popoverElement?.contains(item)) return
+			this.closePopover()
 		}
 
 		private handleKeydown = (e: KeyboardEvent): void => {

@@ -1,4 +1,23 @@
-export type Result<Error, Value> = [Error, undefined] | [undefined, Value]
+export type Reason = {
+	message: string
+	data?: Readonly<Record<string, unknown>>
+}
+
+export type Result<Value> = [Reason, undefined] | [undefined, Value]
+
+export function ok(): [undefined, true]
+export function ok<Value>(value: Value): [undefined, Value]
+export function ok(value?: unknown): [undefined, unknown] {
+	return [undefined, value]
+}
+
+export function fail(reason: Reason): [Reason, undefined]
+export function fail(message: string, data?: Reason['data']): [Reason, undefined]
+export function fail(reasonOrMessage: Reason | string, data?: Reason['data']): [Reason, undefined] {
+	const reason =
+		typeof reasonOrMessage === 'string' ? { message: reasonOrMessage, data } : reasonOrMessage
+	return [reason, undefined]
+}
 
 export const libNamePrefix = 'tui-'
 export const dataAttributePrefix = `data-${libNamePrefix}`
@@ -88,8 +107,9 @@ export const Component = {
 		Name: `${libNamePrefix}exclusive-checkbox`,
 		Event: { Toggle: 'toggle' },
 	},
+	Popover: { Name: `${libNamePrefix}popover` },
 	SelectAll: { Name: `${libNamePrefix}select-all`, Event: { Toggle: 'toggle' } },
-	Tabs: { Name: `${libNamePrefix}tabs` },
+	Tabs: { Name: 'tabs' },
 	UntilSelected: { Name: `${libNamePrefix}until-selected`, Event: { Toggle: 'toggle' } },
 	ValidateForm: {
 		Name: `${libNamePrefix}validate-form`,

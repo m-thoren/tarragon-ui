@@ -1,4 +1,4 @@
-import { Result } from '@/constants'
+import { Result, fail, ok } from '@/utils/constants'
 
 type Method = 'GET' | 'PUT' | 'POST' | 'PATCH' | 'DELETE'
 
@@ -9,8 +9,6 @@ type FetchParameters = {
 	headers?: Headers
 	data?: BodyInit
 }
-
-type FetchError = { message: string; error?: Error; status?: number }
 
 export type FetchSuccess =
 	| {
@@ -24,7 +22,7 @@ export type FetchSuccess =
 			document: Document
 	  }
 
-type FetchResult = Promise<Result<FetchError, FetchSuccess>>
+type FetchResult = Promise<Result<FetchSuccess>>
 
 export class FetchClient {
 	private static instance: FetchClient | undefined = undefined
@@ -92,10 +90,8 @@ export class FetchClient {
 			const fetchResponse = await fetch(fullUrl, requestOptions)
 
 			if (!fetchResponse.ok) {
-				const errorData: FetchError = {
-					message: 'Request failed',
-					status: fetchResponse.status,
-				}
+				let errorMessage = 'Request failed'
+				let errorData = undefined
 
 				const contentType = fetchResponse.headers.get('content-type')
 				if (contentType?.includes('application/json')) {
@@ -104,12 +100,11 @@ export class FetchClient {
 							message?: string
 							error?: string
 						}
-						errorData.message =
-							jsonError.message ?? jsonError.error ?? errorData.message
+						errorMessage = jsonError.message ?? jsonError.error ?? errorMessage
 						// Optionally, you might want to include the raw error object if it's detailed
 					} catch (jsonParseError) {
-						errorData.message = `Failed to parse error JSON: ${errorData.message}`
-						errorData.error =
+						errorMessage = `Failed to parse error JSON: ${errorMessage}`
+						errorData =
 							jsonParseError instanceof Error
 								? jsonParseError
 								: new Error(String(jsonParseError))
@@ -118,32 +113,35 @@ export class FetchClient {
 					// For other content types (like text/html for errors), we might just get text
 					const errorText = await fetchResponse.text()
 					if (errorText) {
-						errorData.message = `Server responded with an error: ${errorText.substring(0, 100)}` // Truncate for brevity
+						errorMessage = `Server responded with an error: ${errorText.substring(0, 100)}` // Truncate for brevity
 					}
 				}
-				return [errorData, undefined]
+				return fail({
+					message: errorMessage,
+					data: { errorData, status: fetchResponse.status },
+				})
 			}
 
 			// If the response is OK, process the successful body
 			const contentType = fetchResponse.headers.get('content-type')
 			if (contentType?.includes('application/json')) {
 				const json = (await fetchResponse.json()) as FetchSuccess
-				return [undefined, json]
+				return ok(json)
 			} else if (contentType?.includes('text/html')) {
 				const htmlText = await fetchResponse.text()
 				const document = new DOMParser().parseFromString(htmlText, 'text/html')
-				return [undefined, { type: 'html', document }]
+				return ok({ type: 'html', document })
 			} else if (contentType?.includes('text/plain')) {
 				const text = await fetchResponse.text()
-				return [undefined, { type: 'json', message: text }] // Wrap plain text in FetchSuccess
+				return ok({ type: 'json', message: text }) // Wrap plain text in FetchSuccess
 			}
 			// If no specific content type, return an empty success or default message
-			return [undefined, { type: 'json', message: 'Request successful, no content.' }]
+			return ok({ type: 'json', message: 'Request successful, no content.' })
 		} catch (error: unknown) {
 			if (error instanceof Error) {
-				return [{ message: 'Network error', error }, undefined]
+				return fail({ message: 'Network error', data: { error } })
 			}
-			return [{ message: 'An unknown error occurred' }, undefined]
+			return fail('An unknown error occurred')
 		}
 	}
 

@@ -1,7 +1,7 @@
-import { Component, tuiAttribute } from '@/constants'
-import { fetchClient } from '@/fetch'
-import { queryCache } from '@/query-cache'
-import { ready } from '@/ready'
+import { Component, tuiAttribute } from '@/utils/constants'
+import { fetchClient } from '@/utils/fetch'
+import { queryCache } from '@/utils/query-cache'
+import { ready } from '@/utils/ready'
 
 customElements.define(
 	Component.AjaxFetch.Name,

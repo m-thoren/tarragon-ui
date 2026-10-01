@@ -1,6 +1,6 @@
-import { Component, NativeEvent, tuiAttribute } from '@/constants'
-import { emitEvent } from '@/emitEvent'
-import { ready } from '@/ready'
+import { Component, NativeEvent, tuiAttribute } from '@/utils/constants'
+import { emitEvent } from '@/utils/emitEvent'
+import { ready } from '@/utils/ready'
 
 customElements.define(
 	Component.SelectAll.Name,

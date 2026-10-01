@@ -1,5 +1,5 @@
-import { Component, NativeEvent, tuiAttribute } from '@/constants'
-import { emitEvent } from '@/emitEvent'
+import { Component, NativeEvent, tuiAttribute } from '@/utils/constants'
+import { emitEvent } from '@/utils/emitEvent'
 
 customElements.define(
 	Component.ExclusiveCheckbox.Name,

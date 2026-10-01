@@ -1,182 +1,172 @@
-import { Component, NativeEvent, focusableElementsSelector } from '@/constants'
-import { ready } from '@/ready'
+import { Component, NativeEvent, fail, focusableElementsSelector, ok } from '@/utils/constants'
+import { ComponentBase } from '../component-base'
 
-customElements.define(
-	Component.Tabs.Name,
-	class extends HTMLElement {
-		private tabs: Array<HTMLAnchorElement> = []
-		private tabList: HTMLUListElement | null = null
-		private tabPanels: Array<HTMLDivElement> = []
+class TUITabs extends ComponentBase {
+	static readonly componentName = Component.Tabs.Name
 
-		connectedCallback() {
-			this.tabList = this.querySelector<HTMLUListElement>('ul, ol')
-			if (!this.tabList) {
-				console.error(`${Component.Tabs.Name} component: Missing list element`, this)
-				return
-			}
+	private tabs: Array<HTMLAnchorElement> = []
+	private tabList: HTMLUListElement | null = null
+	private tabPanels: Array<HTMLDivElement> = []
 
-			this.tabs = Array.from(this.tabList.querySelectorAll('a'))
-			if (this.tabs.length === 0) {
-				console.error(`${Component.Tabs.Name}} component: Missing tab links`, this)
-				return
-			}
+	protected setup() {
+		const [reason, tabList] = this.require<HTMLUListElement>('ul, ol')
+		if (reason) {
+			return fail(reason)
+		}
+		this.tabList = tabList
 
-			this.tabPanels = this.tabs
-				.map((x) => {
-					const href = x.getAttribute('href')
-					if (href == null) return
-					return document.querySelector(href)
-				})
-				.filter((x) => x != null) as Array<HTMLDivElement>
-			if (this.tabPanels.length === 0) {
-				console.error(`${Component.Tabs.Name}} component: Missing tab panels`, this)
-				return
-			}
-
-			this.setTabListAttributes()
-			this.setTabsAttributes()
-			this.setPanelsAttributes()
-			this.setEventListeners()
-			ready(this)
+		this.tabs = Array.from(this.tabList.querySelectorAll('a'))
+		if (this.tabs.length === 0) {
+			return fail('Missing tab links')
 		}
 
-		disconnectedCallback() {
-			for (const tab of this.tabs) {
-				tab.removeEventListener(NativeEvent.Click, this.handleTabClick)
-				tab.removeEventListener(NativeEvent.KeyDown, this.onKeyDown)
-			}
-		}
-
-		private setEventListeners(): void {
-			for (const tab of this.tabs) {
-				tab.addEventListener(NativeEvent.Click, this.handleTabClick)
-				tab.addEventListener(NativeEvent.KeyDown, this.onKeyDown)
-			}
-		}
-
-		private setTabListAttributes(): void {
-			if (!this.tabList) return
-
-			this.tabList.setAttribute('role', 'tablist')
-
-			const liElements = this.tabList.querySelectorAll<HTMLLIElement>('li')
-			liElements.forEach((li) => {
-				li.setAttribute('role', 'presentation')
+		this.tabPanels = this.tabs
+			.map((x) => {
+				const href = x.getAttribute('href')
+				if (href == null) return
+				return document.querySelector(href)
 			})
+			.filter((x) => x != null) as Array<HTMLDivElement>
+		if (this.tabPanels.length === 0) {
+			return fail('Missing tab panels')
 		}
 
-		private setTabsAttributes(): void {
-			const hasInitialSelected = this.tabs.some(
-				(tab) => tab.getAttribute('aria-selected') === 'true',
-			)
+		this.setTabListAttributes()
+		this.setTabsAttributes()
+		this.setPanelsAttributes()
+		this.setEventListeners()
+		return ok()
+	}
 
-			this.tabs.forEach((tab, index) => {
-				tab.setAttribute('role', 'tab')
-
-				if (!hasInitialSelected && index === 0) {
-					tab.setAttribute('aria-selected', 'true')
-					tab.setAttribute('tabindex', '0')
-					this.tabPanels[index]?.removeAttribute('hidden')
-				}
-
-				if (tab.getAttribute('aria-selected') !== 'true') {
-					tab.setAttribute('aria-selected', 'false')
-					tab.setAttribute('tabindex', '-1')
-					this.tabPanels[index]?.setAttribute('hidden', '')
-				}
-
-				if (this.tabPanels[index]) {
-					tab.setAttribute('aria-controls', this.tabPanels[index].id)
-				}
-			})
+	private setEventListeners(): void {
+		for (const tab of this.tabs) {
+			this.listeners.add(tab, NativeEvent.Click, this.handleTabClick)
+			this.listeners.add(tab, NativeEvent.KeyDown, this.onKeyDown)
 		}
+	}
 
-		private setPanelsAttributes(): void {
-			this.tabPanels.forEach((panel) => {
-				panel.setAttribute('role', 'tabpanel')
-				const focusableElement = panel.querySelector(focusableElementsSelector)
-				if (!focusableElement) {
-					panel.setAttribute('tabindex', '0')
-				}
-			})
-		}
+	private setTabListAttributes(): void {
+		if (!this.tabList) return
 
-		private handleTabClick = (event: Event) => {
-			event.preventDefault()
-			const clickedTab = event.target as HTMLAnchorElement
-			this.changeTab(clickedTab)
-		}
+		this.tabList.setAttribute('role', 'tablist')
 
-		private changeTab(newTab: HTMLAnchorElement): void {
-			const activePanelId = newTab.getAttribute('href')?.substring(1)
-			const activePanel = this.tabPanels.find((panel) => panel.id == activePanelId)
+		const liElements = this.tabList.querySelectorAll<HTMLLIElement>('li')
+		liElements.forEach((li) => {
+			li.setAttribute('role', 'presentation')
+		})
+	}
 
-			this.tabs.forEach((tab) => {
+	private setTabsAttributes(): void {
+		const hasInitialSelected = this.tabs.some(
+			(tab) => tab.getAttribute('aria-selected') === 'true',
+		)
+
+		this.tabs.forEach((tab, index) => {
+			tab.setAttribute('role', 'tab')
+
+			if (!hasInitialSelected && index === 0) {
+				tab.setAttribute('aria-selected', 'true')
+				tab.setAttribute('tabindex', '0')
+				this.tabPanels[index]?.removeAttribute('hidden')
+			}
+
+			if (tab.getAttribute('aria-selected') !== 'true') {
 				tab.setAttribute('aria-selected', 'false')
 				tab.setAttribute('tabindex', '-1')
+				this.tabPanels[index]?.setAttribute('hidden', '')
+			}
+
+			if (this.tabPanels[index]) {
+				tab.setAttribute('aria-controls', this.tabPanels[index].id)
+			}
+		})
+	}
+
+	private setPanelsAttributes(): void {
+		this.tabPanels.forEach((panel) => {
+			panel.setAttribute('role', 'tabpanel')
+			const focusableElement = panel.querySelector(focusableElementsSelector)
+			if (!focusableElement) {
+				panel.setAttribute('tabindex', '0')
+			}
+		})
+	}
+
+	private handleTabClick = (event: Event) => {
+		event.preventDefault()
+		const clickedTab = event.target as HTMLAnchorElement
+		this.changeTab(clickedTab)
+	}
+
+	private changeTab(newTab: HTMLAnchorElement): void {
+		const activePanelId = newTab.getAttribute('href')?.substring(1)
+		const activePanel = this.tabPanels.find((panel) => panel.id == activePanelId)
+
+		this.tabs.forEach((tab) => {
+			tab.setAttribute('aria-selected', 'false')
+			tab.setAttribute('tabindex', '-1')
+		})
+
+		if (activePanel) {
+			this.tabPanels.forEach((panel) => {
+				panel.setAttribute('hidden', '')
 			})
 
-			if (activePanel) {
-				this.tabPanels.forEach((panel) => {
-					panel.setAttribute('hidden', '')
-				})
-
-				activePanel.removeAttribute('hidden')
-			}
-
-			newTab.setAttribute('aria-selected', 'true')
-			newTab.setAttribute('tabindex', '0')
-			newTab.focus()
+			activePanel.removeAttribute('hidden')
 		}
 
-		private moveTab(direction: 1 | -1): void {
-			const enabledTabs = this.tabs.filter(
+		newTab.setAttribute('aria-selected', 'true')
+		newTab.setAttribute('tabindex', '0')
+		newTab.focus()
+	}
+
+	private moveTab(direction: 1 | -1): void {
+		const enabledTabs = this.tabs.filter((tab) => tab.getAttribute('aria-disabled') !== 'true')
+		if (enabledTabs.length === 0) return
+
+		const activeIndex = enabledTabs.indexOf(document.activeElement as HTMLAnchorElement)
+		if (activeIndex === -1) return
+
+		const index = (activeIndex + direction + enabledTabs.length) % enabledTabs.length
+		const nextTab = enabledTabs[index]
+		if (!nextTab) return
+
+		this.changeTab(nextTab)
+	}
+
+	private onKeyDown = (event: KeyboardEvent) => {
+		if ('ArrowLeft' === event.key) {
+			event.preventDefault()
+			this.moveTab(-1)
+			return
+		}
+
+		if ('ArrowRight' === event.key) {
+			event.preventDefault()
+			this.moveTab(1)
+			return
+		}
+
+		if ('Home' === event.key) {
+			event.preventDefault()
+
+			const firstEnabled = this.tabs.find(
 				(tab) => tab.getAttribute('aria-disabled') !== 'true',
 			)
-			if (enabledTabs.length === 0) return
-
-			const activeIndex = enabledTabs.indexOf(document.activeElement as HTMLAnchorElement)
-			if (activeIndex === -1) return
-
-			const index = (activeIndex + direction + enabledTabs.length) % enabledTabs.length
-			const nextTab = enabledTabs[index]
-			if (!nextTab) return
-
-			this.changeTab(nextTab)
+			if (firstEnabled) this.changeTab(firstEnabled)
+			return
 		}
 
-		private onKeyDown = (event: KeyboardEvent) => {
-			if ('ArrowLeft' === event.key) {
-				event.preventDefault()
-				this.moveTab(-1)
-				return
-			}
+		if ('End' === event.key) {
+			event.preventDefault()
 
-			if ('ArrowRight' === event.key) {
-				event.preventDefault()
-				this.moveTab(1)
-				return
-			}
-
-			if ('Home' === event.key) {
-				event.preventDefault()
-
-				const firstEnabled = this.tabs.find(
-					(tab) => tab.getAttribute('aria-disabled') !== 'true',
-				)
-				if (firstEnabled) this.changeTab(firstEnabled)
-				return
-			}
-
-			if ('End' === event.key) {
-				event.preventDefault()
-
-				const lastEnabled = [...this.tabs]
-					.reverse()
-					.find((tab) => tab.getAttribute('aria-disabled') !== 'true')
-				if (lastEnabled) this.changeTab(lastEnabled)
-				return
-			}
+			const lastEnabled = [...this.tabs]
+				.reverse()
+				.find((tab) => tab.getAttribute('aria-disabled') !== 'true')
+			if (lastEnabled) this.changeTab(lastEnabled)
+			return
 		}
-	},
-)
+	}
+}
+
+TUITabs.define()

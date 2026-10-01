@@ -1,30 +1,20 @@
-import { FetchSuccess, fetchClient } from '@/fetch'
+import { FetchSuccess, fetchClient } from '@/utils/fetch'
 
 type QueryData = FetchSuccess | undefined
-type QueryMeta = {
-	staleTime: number // Time in ms after which data is considered stale. Default 0.
-}
 
 // QueryResult represents the complete state for a query
 export type QueryResult = {
 	data: QueryData // The actual fetched data (HTML Document or JSON), or null
 	isFetching: boolean // Specifically for when data is being fetched (can be loading for first time, or fetching a stale query)
 	error: string | null // Any error from the last fetch
-	meta: QueryMeta // The configuration for this query
 }
 
 type SubscriberCallback = (result: QueryResult) => void
-
-// Default values for meta, ensuring all properties are present
-const defaultQueryMeta: QueryMeta = {
-	staleTime: 0,
-}
 
 class QueryCache {
 	private static instance: QueryCache | undefined = undefined
 	private cache = new Map<string, QueryResult>()
 	private subscriptions = new Map<string, Set<SubscriberCallback>>()
-	private refetchIntervals = new Map<string, number>()
 
 	public static getInstance(): QueryCache {
 		QueryCache.instance ??= new QueryCache()
@@ -32,11 +22,7 @@ class QueryCache {
 	}
 
 	// Centralized state update logic
-	private updateQueryState(
-		key: string,
-		options: Partial<QueryResult>,
-		meta?: Partial<QueryMeta>,
-	): void {
+	private updateQueryState(key: string, options: Partial<QueryResult>): void {
 		const prevQueryResult = this.cache.get(key)
 
 		// Initialize with default state if no previous query exists
@@ -46,23 +32,12 @@ class QueryCache {
 					data: undefined,
 					isFetching: false,
 					error: null,
-					meta: { ...defaultQueryMeta },
 				}
-
-		if (meta) {
-			baseState.meta = { ...baseState.meta, ...meta }
-		}
 
 		const updatedState = { ...baseState, ...options }
 
-		updatedState.meta = {
-			...defaultQueryMeta,
-			...baseState.meta,
-		}
-
 		this.cache.set(key, updatedState)
 		this.notifySubscribers(key, updatedState)
-		this.manageRefetchInterval(key, updatedState.meta.staleTime)
 	}
 
 	private notifySubscribers(key: string, result: QueryResult) {
@@ -71,37 +46,13 @@ class QueryCache {
 		})
 	}
 
-	private manageRefetchInterval(key: string, interval: number) {
-		const currentIntervalId = this.refetchIntervals.get(key)
-		if (currentIntervalId) {
-			clearInterval(currentIntervalId)
-			this.refetchIntervals.delete(key)
-		}
-
-		if (interval && interval > 0) {
-			// Only start polling if there are active subscribers
-			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-			if (this.subscriptions.has(key) && this.subscriptions.get(key)!.size > 0) {
-				const newIntervalId = window.setInterval(() => {
-					this.invalidateQuery(key)
-				}, interval)
-				this.refetchIntervals.set(key, newIntervalId)
-			}
-		}
-	}
-
 	/**
 	 * Subscribes to a query key.
 	 * @param key The query key.
 	 * @param callback The function to call when the query's data or state updates.
-	 * @param options Query options that might affect initial state or refetch behavior.
 	 * @returns An unsubscribe function.
 	 */
-	public subscribe(
-		key: string,
-		callback: SubscriberCallback,
-		meta?: Partial<QueryMeta>,
-	): () => void {
+	public subscribe(key: string, callback: SubscriberCallback): () => void {
 		if (!this.subscriptions.has(key)) {
 			this.subscriptions.set(key, new Set())
 		}
@@ -111,7 +62,7 @@ class QueryCache {
 		subscription.add(callback)
 
 		// Ensure query state exists and options are applied, then fetch if needed
-		this.updateQueryState(key, {}, meta)
+		this.updateQueryState(key, {})
 
 		const currentState = this.cache.get(key)
 		if (currentState) {
@@ -119,15 +70,10 @@ class QueryCache {
 			callback(currentState)
 		}
 
-		// Re-manage interval in case subscription state changed (e.g., first subscriber)
-		this.manageRefetchInterval(key, currentState?.meta.staleTime ?? 0)
-
 		return () => {
 			this.subscriptions.get(key)?.delete(callback)
 			if (this.subscriptions.get(key)?.size === 0) {
 				this.subscriptions.delete(key)
-				// Stop polling if no more subscribers
-				this.manageRefetchInterval(key, 0)
 			}
 		}
 	}
@@ -150,23 +96,19 @@ class QueryCache {
 	 * @param data The data to set.
 	 * @param options Options for this query.
 	 */
-	public setQueryData(key: string, data: QueryData, meta?: Partial<QueryMeta>) {
-		this.updateQueryState(
-			key,
-			{
-				data: data,
-				error: null,
-				isFetching: false,
-			},
-			meta,
-		)
+	public setQueryData(key: string, data: QueryData) {
+		this.updateQueryState(key, {
+			data: data,
+			error: null,
+			isFetching: false,
+		})
 	}
 
 	/**
 	 * Fetches data for a query key. This is an internal method called by subscribe/invalidate.
 	 * It ensures only one fetch is active at a time for a given key.
 	 */
-	private async fetchQuery(key: string, meta?: Partial<QueryMeta>): Promise<void> {
+	private async fetchQuery(key: string): Promise<void> {
 		const existingQuery = this.cache.get(key)
 		if (!existingQuery) {
 			return
@@ -185,26 +127,18 @@ class QueryCache {
 		const [fetchError, fetchSuccess] = await fetchClient.get(key)
 
 		if (fetchError) {
-			this.updateQueryState(
-				key,
-				{
-					error: fetchError.message,
-					isFetching: false,
-				},
-				meta,
-			)
+			this.updateQueryState(key, {
+				error: fetchError.message,
+				isFetching: false,
+			})
 			return
 		}
 
-		this.updateQueryState(
-			key,
-			{
-				data: fetchSuccess,
-				isFetching: false,
-				error: null,
-			},
-			meta,
-		)
+		this.updateQueryState(key, {
+			data: fetchSuccess,
+			isFetching: false,
+			error: null,
+		})
 		return
 	}
 

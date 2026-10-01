@@ -1,7 +1,7 @@
-import { Component, tuiAttribute } from '@/constants'
-import { QueryResult, queryCache } from '@/query-cache'
-import { emitEvent } from '@/emitEvent'
-import { ready } from '@/ready'
+import { Component, tuiAttribute } from '@/utils/constants'
+import { QueryResult, queryCache } from '@/utils/query-cache'
+import { emitEvent } from '@/utils/emitEvent'
+import { ready } from '@/utils/ready'
 
 customElements.define(
 	Component.AjaxHtml.Name,
@@ -10,7 +10,6 @@ customElements.define(
 		private unsubscribe: (() => void) | null = null
 		private initialFetchTriggered = false // To prevent multiple fetch calls
 		private intersectionObserver: IntersectionObserver | null = null
-		private staleTime: number | undefined
 
 		connectedCallback() {
 			if (!this.id) {
@@ -26,18 +25,9 @@ customElements.define(
 
 			this.setAttribute('aria-live', 'polite')
 
-			this.staleTime = this.hasAttribute(tuiAttribute('stale-time'))
-				? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-					parseInt(this.getAttribute(tuiAttribute('stale-time'))!, 10)
-				: undefined
-
-			this.unsubscribe = queryCache.subscribe(
-				this.queryKey,
-				(queryResult) => {
-					this.renderContent(queryResult)
-				},
-				{ staleTime: this.staleTime },
-			)
+			this.unsubscribe = queryCache.subscribe(this.queryKey, (queryResult) => {
+				this.renderContent(queryResult)
+			})
 
 			const load = this.getAttribute(tuiAttribute('load-strategy'))
 			if (load) {

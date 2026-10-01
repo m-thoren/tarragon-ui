@@ -1,6 +1,6 @@
-import { Component, libNamePrefix, tuiAttribute, tuiAttributeSelector } from '@/constants'
-import { emitEvent } from '@/emitEvent'
-import { ready } from '@/ready'
+import { Component, libNamePrefix, tuiAttribute, tuiAttributeSelector } from '@/utils/constants'
+import { emitEvent } from '@/utils/emitEvent'
+import { ready } from '@/utils/ready'
 
 const groupValidationAttribute = 'validate-group'
 
