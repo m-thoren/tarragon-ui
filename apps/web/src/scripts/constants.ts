@@ -300,6 +300,12 @@ export const sections: Array<Sections> = [
 					'Provides contextual feedback messages for users, typically used to display success, error, warning, or informational notifications.',
 			},
 			{
+				name: 'Aura',
+				href: buildUrl('/aura'),
+				description:
+					'A visual effect that creates a glowing or halo-like appearance around an element, often used to draw attention.',
+			},
+			{
 				name: 'Empty State',
 				href: buildUrl('/empty-state'),
 				description: 'Used to indicate when a resource is empty or unavailable.',

@@ -1,0 +1,118 @@
+@layer tarragon-ui.components {
+	.aura {
+		--_aura--padding: var(--size-3xs);
+		--_aura--radius: var(--radius-default);
+		--_aura--color: var(--aura--color, var(--color-primary));
+		--_aura--color-hover: var(--aura--color-hover, var(--color-primary-hover));
+		--_aura--color-1: var(--_aura--color-hover);
+		--_aura--color-2: oklch(from var(--_aura--color) calc(l + 0.16) c h);
+		--_aura--color-3: oklch(from var(--_aura--color-hover) calc(l + 0.01) c h);
+		--_aura--color-4: oklch(from var(--_aura--color) calc(l + 0.16) c h);
+		--_aura--color-5: oklch(from var(--_aura--color-hover) calc(l - 0.09) c h);
+
+		position: relative;
+
+		display: inline-block;
+
+		padding: var(--_aura--padding);
+		border-radius: calc(var(--_aura--padding) + var(--_aura--radius, var(--radius-default)));
+
+		background-image: repeating-conic-gradient(
+			from var(--_aura--angle),
+			var(--_aura--color-1),
+			var(--_aura--color-2),
+			var(--_aura--color-3),
+			var(--_aura--color-4),
+			var(--_aura--color-5),
+			var(--_aura--color-1) 50%
+		);
+
+		animation: aura 6s linear infinite;
+
+		&::before,
+		&::after {
+			content: '';
+
+			position: absolute;
+			z-index: 0;
+			top: 50%;
+			left: 50%;
+			translate: -50% -50%;
+
+			display: block;
+
+			width: 100%;
+			height: 100%;
+			border-radius: inherit;
+
+			opacity: 0.7;
+			background-color: inherit;
+			background-image: inherit;
+			filter: blur(0.25rem);
+
+			animation: inherit;
+		}
+
+		&::after {
+			opacity: 0.3;
+			filter: blur(1rem);
+		}
+
+		&:has(.badge) {
+			--_aura--radius: var(--radius-full);
+		}
+
+		& > * {
+			position: relative;
+			z-index: 1;
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			animation-duration: calc(6s * 4);
+		}
+	}
+
+	@property --_aura--angle {
+		inherits: false;
+		initial-value: 0deg;
+		syntax: '<angle>';
+	}
+
+	@keyframes aura {
+		to {
+			--_aura--angle: 360deg;
+
+			/* force GPU acceleration, fixes Safari lag */
+			transform: translateZ(1px);
+		}
+	}
+}
+
+@layer tarragon-ui.utilities {
+	.aura {
+		&.info {
+			--aura--color: var(--color-info);
+			--aura--color-hover: var(--color-info-hover);
+		}
+
+		&.success {
+			--aura--color: var(--color-success);
+			--aura--color-hover: var(--color-success-hover);
+		}
+
+		&.danger {
+			--aura--color: var(--color-danger);
+			--aura--color-hover: var(--color-danger-hover);
+		}
+
+		&.accent {
+			--aura--color: var(--color-accent);
+			--aura--color-hover: var(--color-accent-hover);
+		}
+
+		&.warning {
+			--aura--color: var(--color-warning);
+			--aura--color-hover: var(--color-warning-hover);
+		}
+	}
+}

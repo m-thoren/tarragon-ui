@@ -1,0 +1,30 @@
+---
+import CodeExample from '@/components/CodeExample.astro'
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+---
+
+<ComponentLayout name='Aura'>
+	<h2>Variants</h2>
+	<p>Use a color class to change the aura.</p>
+	<CodeExample>
+		<div class='cluster'>
+			<div class='aura'><span class='badge'>Default</span></div>
+			<div class='aura warning'><span class='badge'>Warning</span></div>
+			<div class='aura info'><span class='badge'>Info</span></div>
+			<div class='aura success'><span class='badge'>Success</span></div>
+			<div class='aura danger'><span class='badge'>Danger</span></div>
+			<div class='aura accent'><span class='badge'>Accent</span></div>
+		</div>
+	</CodeExample>
+
+	<h2>Custom colors</h2>
+	<p>Set --aura--color and --aura--color-hover to theme tokens or custom colors.</p>
+	<CodeExample>
+		<div
+			class='aura'
+			style='--aura--color: var(--color-info); --aura--color-hover: var(--color-info-hover)'
+		>
+			<span class='badge'>Custom info colors</span>
+		</div>
+	</CodeExample>
+</ComponentLayout>
