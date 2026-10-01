@@ -1,0 +1,37 @@
+---
+import { ChevronDownIcon } from '@lucide/astro'
+import CodeExample from '@/components/CodeExample.astro'
+import ComponentLayout from '@/layouts/ComponentLayout.astro'
+---
+
+<ComponentLayout name='Popover'>
+	<CodeExample>
+		<tui-popover class='block'>
+			<button type='button' class='outline' popovertarget='popover'>
+				Open popover
+				<ChevronDownIcon aria-hidden='true' />
+			</button>
+			<div popover id='popover' class='prose padding-xl'>
+				<p>Some text</p>
+				<div>
+					<fieldset class='choice-group'>
+						<legend>Label</legend>
+						<label for='checkbox-standard-1'>
+							<input id='checkbox-standard-1' type='checkbox' />
+							Label text
+						</label>
+						<label for='checkbox-standard-2'>
+							<input id='checkbox-standard-2' type='checkbox' />
+							Label text
+						</label>
+						<label for='checkbox-standard-3'>
+							<input id='checkbox-standard-3' type='checkbox' />
+							Label text
+						</label>
+					</fieldset>
+				</div>
+				<button>Edit</button>
+			</div>
+		</tui-popover>
+	</CodeExample>
+</ComponentLayout>

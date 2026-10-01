@@ -107,7 +107,7 @@ export const Component = {
 		Name: `${libNamePrefix}exclusive-checkbox`,
 		Event: { Toggle: 'toggle' },
 	},
-	Popover: { Name: `${libNamePrefix}popover` },
+	Popover: { Name: 'popover' },
 	SelectAll: { Name: `${libNamePrefix}select-all`, Event: { Toggle: 'toggle' } },
 	Tabs: { Name: 'tabs' },
 	UntilSelected: { Name: `${libNamePrefix}until-selected`, Event: { Toggle: 'toggle' } },

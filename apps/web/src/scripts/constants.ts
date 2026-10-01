@@ -216,6 +216,12 @@ export const sections: Array<Sections> = [
 				description:
 					'A contextual menu that appears when a user interacts with a button or other control. It can be used for navigation or to display a list of actions.',
 			},
+			{
+				name: 'Popover',
+				href: buildUrl('/popover'),
+				description:
+					'A contextual element that appears when a user interacts with a button or other control. Can be used to display extra information, navigation or small forms.',
+			},
 			// {
 			// 	name: 'Tooltip',
 			// 	href: '/tooltip',

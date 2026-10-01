@@ -1,0 +1,7 @@
+@layer tarragon-ui.components {
+	tui-popover {
+		&:has(:popover-open) > button svg {
+			transform: rotate(180deg);
+		}
+	}
+}

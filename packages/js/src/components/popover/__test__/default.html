@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script type="module" src="../../../../dist/tarragon-ui.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../../../test.css" />
+	</head>
+	<body>
+		<main>
+			<button>before</button>
+			<tui-popover class="block">
+				<button type="button" class="outline" popovertarget="popover">Open Popover</button>
+				<div popover id="popover">
+					<button>Button 1</button>
+					<p>Some text</p>
+					<button>Button 2</button>
+				</div>
+			</tui-popover>
+			<button>after</button>
+		</main>
+	</body>
+</html>
