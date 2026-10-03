@@ -19,7 +19,8 @@ export function fail(reasonOrMessage: Reason | string, data?: Reason['data']): [
 	return [reason, undefined]
 }
 
-export const libNamePrefix = 'tui-'
+export const libName = 'tui'
+export const libNamePrefix = `${libName}-`
 export const dataAttributePrefix = `data-${libNamePrefix}`
 export const tuiAttribute = (name: string) => dataAttributePrefix + name
 export const tuiAttributeSelector = (name: string, value?: string) =>
@@ -87,32 +88,35 @@ export enum NativeEvent {
 
 export const Component = {
 	AjaxFetch: {
-		Name: `${libNamePrefix}ajax-fetch`,
+		Name: 'ajax-fetch',
 	},
 	AjaxForm: {
-		Name: `${libNamePrefix}ajax-form`,
-		Event: { Form: 'form' },
+		Name: 'ajax-form',
+		Event: { Form: `${libName}:ajax-form:form` },
 	},
 	AjaxHtml: {
-		Name: `${libNamePrefix}ajax-html`,
-		Event: { Render: 'render' },
+		Name: 'ajax-html',
+		Event: { Render: `${libName}:ajax-html:render` },
 	},
 	Boop: {
-		Name: `${libNamePrefix}boop`,
+		Name: 'boop',
 	},
 	Dropdown: {
-		Name: `${libNamePrefix}dropdown`,
+		Name: 'dropdown',
 	},
 	ExclusiveCheckbox: {
-		Name: `${libNamePrefix}exclusive-checkbox`,
-		Event: { Toggle: 'toggle' },
+		Name: 'exclusive-checkbox',
+		Event: { Toggle: `${libName}:exclusive-checkbox:toggle` },
 	},
 	Popover: { Name: 'popover' },
-	SelectAll: { Name: `${libNamePrefix}select-all`, Event: { Toggle: 'toggle' } },
+	SelectAll: { Name: 'select-all', Event: { Toggle: `${libName}:select-all:toggle` } },
 	Tabs: { Name: 'tabs' },
-	UntilSelected: { Name: `${libNamePrefix}until-selected`, Event: { Toggle: 'toggle' } },
+	UntilSelected: {
+		Name: 'until-selected',
+		Event: { Toggle: `${libName}:until-selected:toggle` },
+	},
 	ValidateForm: {
-		Name: `${libNamePrefix}validate-form`,
-		Event: { Validate: 'validate' },
+		Name: 'validate-form',
+		Event: { Validate: `${libName}:validate-form:validate` },
 	},
 } as const

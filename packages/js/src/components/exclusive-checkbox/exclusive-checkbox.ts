@@ -1,91 +1,71 @@
-import { Component, NativeEvent, tuiAttribute } from '@/utils/constants'
-import { emitEvent } from '@/utils/emitEvent'
+import { Component, NativeEvent, fail, ok, tuiAttribute } from '@/utils/constants'
+import { ComponentBase } from '../component-base'
 
-customElements.define(
-	Component.ExclusiveCheckbox.Name,
-	class extends HTMLElement {
-		private targetName: string | null = null
-		private exclusiveCheckbox: HTMLInputElement | null = null
-		private checkboxes: Array<HTMLInputElement> | null = null
+class TUIExclusiveCheckbox extends ComponentBase {
+	static readonly componentName = Component.ExclusiveCheckbox.Name
 
-		connectedCallback() {
-			this.targetName = this.getAttribute(tuiAttribute('target-name'))
-			this.exclusiveCheckbox = this.querySelector('input')
+	private targetName: string | null = null
+	private exclusiveCheckbox: HTMLInputElement | null = null
+	private checkboxes: Array<HTMLInputElement> | null = null
 
-			if (!this.targetName || !this.exclusiveCheckbox || !this.parentElement) {
-				return
-			}
+	protected setup() {
+		this.targetName = this.getAttribute(tuiAttribute('target-name'))
+		this.exclusiveCheckbox = this.querySelector('input')
 
-			this.checkboxes = [
-				...this.parentElement.querySelectorAll<HTMLInputElement>(
-					`[name="${this.targetName}"]`,
-				),
-			]
-			if (this.checkboxes.length === 0) return
-
-			this.addEvents()
+		if (!this.targetName || !this.exclusiveCheckbox || !this.parentElement) {
+			return fail('Missing required attributes or elements')
 		}
 
-		disconnectedCallback() {
-			if (this.exclusiveCheckbox) {
-				this.exclusiveCheckbox.removeEventListener(
-					NativeEvent.Change,
-					this.handleExclusiveChange,
-				)
-			}
-			if (this.checkboxes) {
-				for (const checkbox of this.checkboxes) {
-					checkbox.removeEventListener(NativeEvent.Change, this.handleCheckboxChange)
-				}
-			}
+		this.checkboxes = [
+			...this.parentElement.querySelectorAll<HTMLInputElement>(`[name="${this.targetName}"]`),
+		]
+		if (this.checkboxes.length === 0) {
+			return fail('No checkboxes found with the specified target name')
+		}
+		this.addEvents()
+		return ok()
+	}
+
+	private addEvents() {
+		if (
+			!this.exclusiveCheckbox ||
+			!this.targetName ||
+			!this.parentElement ||
+			!this.checkboxes
+		) {
+			return
 		}
 
-		private addEvents() {
-			if (
-				!this.exclusiveCheckbox ||
-				!this.targetName ||
-				!this.parentElement ||
-				!this.checkboxes
-			)
-				return
-
-			this.exclusiveCheckbox.addEventListener('change', this.handleExclusiveChange)
-			for (const checkbox of this.checkboxes) {
-				if (checkbox.disabled) continue
-				checkbox.addEventListener(NativeEvent.Change, this.handleCheckboxChange)
-			}
+		this.listeners.add(this.exclusiveCheckbox, NativeEvent.Change, this.handleExclusiveChange)
+		for (const checkbox of this.checkboxes) {
+			if (checkbox.disabled) continue
+			this.listeners.add(checkbox, NativeEvent.Change, this.handleCheckboxChange)
 		}
+	}
 
-		private handleExclusiveChange = () => {
-			if (!this.exclusiveCheckbox || !this.checkboxes || this.checkboxes.length === 0) return
-			const isChecked = this.exclusiveCheckbox.checked
+	private handleExclusiveChange = () => {
+		if (!this.exclusiveCheckbox || !this.checkboxes || this.checkboxes.length === 0) return
+		const isChecked = this.exclusiveCheckbox.checked
 
-			for (const checkbox of this.checkboxes) {
-				if (checkbox.disabled) continue
-				if (!isChecked) continue
-				checkbox.checked = false
-			}
-			this.exclusiveCheckbox.indeterminate = false
-			emitEvent(
-				Component.ExclusiveCheckbox.Name,
-				Component.ExclusiveCheckbox.Event.Toggle,
-				this.exclusiveCheckbox,
-			)
+		for (const checkbox of this.checkboxes) {
+			if (checkbox.disabled) continue
+			if (!isChecked) continue
+			checkbox.checked = false
 		}
+		this.exclusiveCheckbox.indeterminate = false
+		this.emit(Component.ExclusiveCheckbox.Event.Toggle)
+	}
 
-		private handleCheckboxChange = () => {
-			if (!this.exclusiveCheckbox || !this.checkboxes || this.checkboxes.length === 0) return
-			if (!this.exclusiveCheckbox.checked) return
+	private handleCheckboxChange = () => {
+		if (!this.exclusiveCheckbox || !this.checkboxes || this.checkboxes.length === 0) return
+		if (!this.exclusiveCheckbox.checked) return
 
-			const someChecked = this.checkboxes.some(
-				(checkbox) => !checkbox.disabled && checkbox.checked,
-			)
-			this.exclusiveCheckbox.checked = !someChecked
-			emitEvent(
-				Component.ExclusiveCheckbox.Name,
-				Component.ExclusiveCheckbox.Event.Toggle,
-				this.exclusiveCheckbox,
-			)
-		}
-	},
-)
+		const someChecked = this.checkboxes.some(
+			(checkbox) => !checkbox.disabled && checkbox.checked,
+		)
+		this.exclusiveCheckbox.checked = !someChecked
+		this.emit(Component.ExclusiveCheckbox.Event.Toggle)
+	}
+}
+
+TUIExclusiveCheckbox.define()

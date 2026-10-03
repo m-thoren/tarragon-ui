@@ -1,115 +1,85 @@
-import { Component, NativeEvent, hiddenAttribute, tuiAttribute } from '@/utils/constants'
-import { ready } from '@/utils/ready'
+import { Component, NativeEvent, fail, hiddenAttribute, ok, tuiAttribute } from '@/utils/constants'
+import { ComponentBase } from '../component-base'
 
-customElements.define(
-	Component.UntilSelected.Name,
-	class extends HTMLElement {
-		private target: string | null = null
-		private targetElement: HTMLInputElement | null = null
-		private focusTargetElement: HTMLElement | null = null
-		private events: Array<string> | null = null
-		private showWhen: 'checked' | 'not-checked' = 'checked'
+class TUIUntilSelected extends ComponentBase {
+	static readonly componentName = Component.UntilSelected.Name
+	private target: string | null = null
+	private targetElement: HTMLInputElement | null = null
+	private focusTargetElement: HTMLElement | null = null
+	private events: Array<string> | null = null
+	private showWhen: 'checked' | 'not-checked' = 'checked'
 
-		connectedCallback() {
-			this.target = this.getAttribute(tuiAttribute('target'))
-			if (!this.target) return
+	setup() {
+		this.target = this.getAttribute(tuiAttribute('target'))
+		if (!this.target) return fail('Missing target attribute')
 
+		try {
+			const element = document.getElementById(this.target)
+			if (!(element instanceof HTMLInputElement)) {
+				return fail('Element was not found')
+			}
+			this.targetElement = element
+			this.focusTargetElement = this.targetElement
+		} catch (error) {
+			return fail('Target element was not found', { error })
+		}
+
+		const focusTarget = this.getAttribute(tuiAttribute('focus-target'))
+		if (focusTarget) {
 			try {
-				const element = document.getElementById(this.target)
-				if (!(element instanceof HTMLInputElement)) {
-					console.warn('Element was not found')
-					return
-				}
-				this.targetElement = element
-				this.focusTargetElement = this.targetElement
+				this.focusTargetElement = document.getElementById(focusTarget)
 			} catch (error) {
-				console.warn('Could not select element', error)
-			}
-			if (!this.targetElement) return
-
-			const focusTarget = this.getAttribute(tuiAttribute('focus-target'))
-			if (focusTarget) {
-				try {
-					this.focusTargetElement = document.getElementById(focusTarget)
-				} catch (error) {
-					console.warn('Could not select focus target', error)
-				}
-			}
-
-			const eventString = this.getAttribute(tuiAttribute('events'))
-			if (eventString) {
-				this.events = eventString.split(',').map((event) => event.trim())
-			}
-
-			this.showWhen =
-				this.getAttribute(tuiAttribute('show-when')) === 'not-checked'
-					? 'not-checked'
-					: 'checked'
-
-			const isChecked = this.targetElement.checked
-			this.toggleAttribute(
-				hiddenAttribute,
-				this.showWhen === 'checked' ? !isChecked : isChecked,
-			)
-
-			ready(this)
-			this.addEvents()
-		}
-
-		disconnectedCallback() {
-			document.removeEventListener(
-				`${Component.ExclusiveCheckbox.Name}:${Component.ExclusiveCheckbox.Event.Toggle}`,
-				this.handleTargetChange,
-			)
-			document.removeEventListener(
-				`${Component.SelectAll.Name}:${Component.ExclusiveCheckbox.Event.Toggle}`,
-				this.handleTargetChange,
-			)
-
-			if (this.targetElement) {
-				this.targetElement.removeEventListener(NativeEvent.Change, this.handleTargetChange)
-			}
-
-			if (this.events && this.events.length > 0) {
-				for (const event of this.events) {
-					document.removeEventListener(event, this.handleTargetChange)
-				}
+				console.warn('Could not select focus target', error)
 			}
 		}
 
-		private addEvents() {
-			document.addEventListener(
-				`${Component.ExclusiveCheckbox.Name}:${Component.ExclusiveCheckbox.Event.Toggle}`,
-				this.handleTargetChange,
-			)
-			document.addEventListener(
-				`${Component.SelectAll.Name}:${Component.ExclusiveCheckbox.Event.Toggle}`,
-				this.handleTargetChange,
-			)
-
-			if (this.targetElement) {
-				this.targetElement.addEventListener(NativeEvent.Change, this.handleTargetChange)
-			}
-
-			if (this.events && this.events.length > 0) {
-				for (const event of this.events) {
-					document.addEventListener(event, this.handleTargetChange)
-				}
-			}
+		const eventString = this.getAttribute(tuiAttribute('events'))
+		if (eventString) {
+			this.events = eventString.split(',').map((event) => event.trim())
 		}
 
-		private handleTargetChange = () => {
-			if (!this.targetElement) return
+		this.showWhen =
+			this.getAttribute(tuiAttribute('show-when')) === 'not-checked'
+				? 'not-checked'
+				: 'checked'
 
-			const shouldHideElement =
-				this.showWhen === 'checked'
-					? !this.targetElement.checked
-					: this.targetElement.checked
+		const isChecked = this.targetElement.checked
+		this.toggleAttribute(hiddenAttribute, this.showWhen === 'checked' ? !isChecked : isChecked)
 
-			this.toggleAttribute(hiddenAttribute, shouldHideElement)
-			if (shouldHideElement && this.focusTargetElement && this.matches(':focus-within')) {
-				this.focusTargetElement.focus()
+		this.addEvents()
+		return ok()
+	}
+
+	private addEvents() {
+		this.listeners.add(
+			document,
+			Component.ExclusiveCheckbox.Event.Toggle,
+			this.handleTargetChange,
+		)
+		this.listeners.add(document, Component.SelectAll.Event.Toggle, this.handleTargetChange)
+
+		if (this.targetElement) {
+			this.listeners.add(this.targetElement, NativeEvent.Change, this.handleTargetChange)
+		}
+
+		if (this.events && this.events.length > 0) {
+			for (const event of this.events) {
+				this.listeners.add(document, event, this.handleTargetChange)
 			}
 		}
-	},
-)
+	}
+
+	private handleTargetChange = () => {
+		if (!this.targetElement) return
+
+		const shouldHideElement =
+			this.showWhen === 'checked' ? !this.targetElement.checked : this.targetElement.checked
+
+		this.toggleAttribute(hiddenAttribute, shouldHideElement)
+		if (shouldHideElement && this.focusTargetElement && this.matches(':focus-within')) {
+			this.focusTargetElement.focus()
+		}
+	}
+}
+
+TUIUntilSelected.define()

@@ -3,7 +3,7 @@ module.exports = {
 		require('postcss-import'), // Inlines @import rules
 		require('cssnano')({
 			// Minifies CSS
-			preset: 'default',
+			preset: ['default', { calc: false }],
 		}),
 	],
 }

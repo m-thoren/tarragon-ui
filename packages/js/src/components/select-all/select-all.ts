@@ -1,102 +1,80 @@
-import { Component, NativeEvent, tuiAttribute } from '@/utils/constants'
-import { emitEvent } from '@/utils/emitEvent'
-import { ready } from '@/utils/ready'
+import { Component, NativeEvent, fail, ok, tuiAttribute } from '@/utils/constants'
+import { ComponentBase } from '../component-base'
 
-customElements.define(
-	Component.SelectAll.Name,
-	class extends HTMLElement {
-		private targetName: string | null = null
-		private selectAllCheckbox: HTMLInputElement | null = null
-		private checkboxes: Array<HTMLInputElement> | null = null
-		private checkboxClass: string | null = null
+class TUISelectAll extends ComponentBase {
+	static readonly componentName = Component.SelectAll.Name
 
-		connectedCallback() {
-			this.targetName = this.getAttribute(tuiAttribute('target-name'))
-			this.selectAllCheckbox = this.querySelector('input')
+	private targetName: string | null = null
+	private selectAllCheckbox: HTMLInputElement | null = null
+	private checkboxes: Array<HTMLInputElement> | null = null
+	private checkboxClass: string | null = null
 
-			if (!this.targetName || !this.selectAllCheckbox || !this.parentElement) {
-				return
-			}
+	protected setup() {
+		this.targetName = this.getAttribute(tuiAttribute('target-name'))
+		this.selectAllCheckbox = this.querySelector('input')
 
-			this.checkboxes = [
-				...this.parentElement.querySelectorAll<HTMLInputElement>(
-					`[name="${this.targetName}"]`,
-				),
-			]
-			if (this.checkboxes.length === 0) return
-
-			this.checkboxClass = this.getAttribute(tuiAttribute('checkbox-class'))
-
-			ready(this)
-			this.addEvents()
+		if (!this.targetName || !this.selectAllCheckbox || !this.parentElement) {
+			return fail('Missing required attributes or parent element')
 		}
 
-		disconnectedCallback() {
-			if (this.selectAllCheckbox) {
-				this.selectAllCheckbox.removeEventListener(
-					NativeEvent.Change,
-					this.handleSelectAllChange,
-				)
-			}
-			if (this.checkboxes) {
-				for (const checkbox of this.checkboxes) {
-					checkbox.removeEventListener(NativeEvent.Change, this.handleCheckboxChange)
-				}
-			}
+		this.checkboxes = [
+			...this.parentElement.querySelectorAll<HTMLInputElement>(`[name="${this.targetName}"]`),
+		]
+		if (this.checkboxes.length === 0)
+			return fail('No checkboxes found with the specified target name')
+
+		this.checkboxClass = this.getAttribute(tuiAttribute('checkbox-class'))
+
+		this.addEvents()
+		return ok()
+	}
+
+	private addEvents() {
+		if (
+			!this.selectAllCheckbox ||
+			!this.targetName ||
+			!this.parentElement ||
+			!this.checkboxes
+		) {
+			return
 		}
 
-		private addEvents() {
-			if (
-				!this.selectAllCheckbox ||
-				!this.targetName ||
-				!this.parentElement ||
-				!this.checkboxes
-			)
-				return
-
-			this.selectAllCheckbox.addEventListener('change', this.handleSelectAllChange)
-			for (const checkbox of this.checkboxes) {
-				if (checkbox.disabled) continue
-				if (this.checkboxClass) {
-					checkbox.parentElement?.classList.add(this.checkboxClass)
-				}
-				checkbox.addEventListener(NativeEvent.Change, this.handleCheckboxChange)
+		this.listeners.add(this.selectAllCheckbox, NativeEvent.Change, this.handleSelectAllChange)
+		for (const checkbox of this.checkboxes) {
+			if (checkbox.disabled) continue
+			if (this.checkboxClass) {
+				checkbox.parentElement?.classList.add(this.checkboxClass)
 			}
+			this.listeners.add(checkbox, NativeEvent.Change, this.handleCheckboxChange)
 		}
+	}
 
-		private handleSelectAllChange = () => {
-			if (!this.selectAllCheckbox || !this.checkboxes || this.checkboxes.length === 0) return
-			const isChecked = this.selectAllCheckbox.checked
+	private handleSelectAllChange = () => {
+		if (!this.selectAllCheckbox || !this.checkboxes || this.checkboxes.length === 0) return
+		const isChecked = this.selectAllCheckbox.checked
 
-			for (const checkbox of this.checkboxes) {
-				if (checkbox.disabled) continue
-				checkbox.checked = isChecked
-			}
-			this.selectAllCheckbox.indeterminate = false
-			emitEvent(
-				Component.SelectAll.Name,
-				Component.SelectAll.Event.Toggle,
-				this.selectAllCheckbox,
-			)
+		for (const checkbox of this.checkboxes) {
+			if (checkbox.disabled) continue
+			checkbox.checked = isChecked
 		}
+		this.selectAllCheckbox.indeterminate = false
+		this.emit(Component.SelectAll.Event.Toggle)
+	}
 
-		private handleCheckboxChange = () => {
-			if (!this.selectAllCheckbox || !this.checkboxes || this.checkboxes.length === 0) return
+	private handleCheckboxChange = () => {
+		if (!this.selectAllCheckbox || !this.checkboxes || this.checkboxes.length === 0) return
 
-			const checkedCount = this.checkboxes.filter(
-				(checkbox) => !checkbox.disabled && checkbox.checked,
-			).length
-			const totalCheckBoxes = this.checkboxes.length
-			const allChecked = checkedCount === totalCheckBoxes
-			const noneChecked = checkedCount === 0
+		const checkedCount = this.checkboxes.filter(
+			(checkbox) => !checkbox.disabled && checkbox.checked,
+		).length
+		const totalCheckBoxes = this.checkboxes.length
+		const allChecked = checkedCount === totalCheckBoxes
+		const noneChecked = checkedCount === 0
 
-			this.selectAllCheckbox.indeterminate = !allChecked && !noneChecked
-			this.selectAllCheckbox.checked = allChecked
-			emitEvent(
-				Component.SelectAll.Name,
-				Component.SelectAll.Event.Toggle,
-				this.selectAllCheckbox,
-			)
-		}
-	},
-)
+		this.selectAllCheckbox.indeterminate = !allChecked && !noneChecked
+		this.selectAllCheckbox.checked = allChecked
+		this.emit(Component.SelectAll.Event.Toggle)
+	}
+}
+
+TUISelectAll.define()

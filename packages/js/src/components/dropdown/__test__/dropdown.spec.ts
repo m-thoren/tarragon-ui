@@ -1,19 +1,20 @@
+import { Component, libNamePrefix } from '@/utils/constants'
 import { expect, test } from '@playwright/test'
-import { Component } from '@/utils/constants'
 
 const componentName = Component.Dropdown.Name
+const componentTagName = `${libNamePrefix}${componentName}`
 const testPath = '/src/components/dropdown/__test__'
 
 test.describe(componentName, () => {
 	test.beforeEach(async ({ page }) => {
 		await page.goto(`${testPath}/default.html`)
 
-		const dropdownWrapper = page.locator(componentName)
+		const dropdownWrapper = page.locator(componentTagName)
 		await expect(dropdownWrapper).toHaveAttribute('data-tui-state', 'ready')
 	})
 
 	test('should open and close the dropdown with keyboard', async ({ page }) => {
-		const dropdownWrapper = page.locator(componentName)
+		const dropdownWrapper = page.locator(componentTagName)
 		const trigger = dropdownWrapper.getByRole('button', { name: 'Open Dropdown' })
 		const dropdown = dropdownWrapper.locator('[popover]')
 
@@ -26,7 +27,7 @@ test.describe(componentName, () => {
 	})
 
 	test('should close the dropdown when clicking outside the dropdown area', async ({ page }) => {
-		const dropdownWrapper = page.locator(componentName)
+		const dropdownWrapper = page.locator(componentTagName)
 		const trigger = dropdownWrapper.getByRole('button', { name: 'Open Dropdown' })
 		const dropdown = dropdownWrapper.locator('[popover]')
 
@@ -38,7 +39,7 @@ test.describe(componentName, () => {
 	})
 
 	test('should add open data attribute to trigger', async ({ page }) => {
-		const dropdownWrapper = page.locator(componentName)
+		const dropdownWrapper = page.locator(componentTagName)
 		const trigger = dropdownWrapper.getByRole('button', { name: 'Open Dropdown' })
 		const dropdown = dropdownWrapper.locator('[popover]')
 
@@ -57,7 +58,7 @@ test.describe(componentName, () => {
 	})
 
 	test('should close with tab', async ({ page }) => {
-		const dropdownWrapper = page.locator(componentName)
+		const dropdownWrapper = page.locator(componentTagName)
 		const trigger = dropdownWrapper.getByRole('button', { name: 'Open Dropdown' })
 		const dropdown = dropdownWrapper.locator('[popover]')
 		const firstDropdownButton = dropdown.locator('button').first()
@@ -77,7 +78,7 @@ test.describe(componentName, () => {
 	})
 
 	test('should close with shift + tab', async ({ page }) => {
-		const dropdownWrapper = page.locator(componentName)
+		const dropdownWrapper = page.locator(componentTagName)
 		const trigger = dropdownWrapper.getByRole('button', { name: 'Open Dropdown' })
 		const dropdown = dropdownWrapper.locator('[popover]')
 		const firstDropdownButton = dropdown.locator('button').first()
@@ -99,7 +100,7 @@ test.describe(componentName, () => {
 	})
 
 	test('should navigate down with ArrowDown key', async ({ page }) => {
-		const dropdownWrapper = page.locator(componentName)
+		const dropdownWrapper = page.locator(componentTagName)
 		const trigger = dropdownWrapper.getByRole('button', { name: 'Open Dropdown' })
 		const dropdown = dropdownWrapper.locator('[popover]')
 
@@ -124,7 +125,7 @@ test.describe(componentName, () => {
 	})
 
 	test('should navigate up with ArrowUp key', async ({ page }) => {
-		const dropdownWrapper = page.locator(componentName)
+		const dropdownWrapper = page.locator(componentTagName)
 		const trigger = dropdownWrapper.getByRole('button', { name: 'Open Dropdown' })
 		const dropdown = dropdownWrapper.locator('[popover]')
 
@@ -155,7 +156,7 @@ test.describe(`${componentName} - no-js`, () => {
 	test('should not initialize', async ({ page }) => {
 		await page.goto(`${testPath}/default.html`)
 
-		const component = page.locator(componentName)
+		const component = page.locator(componentTagName)
 		await expect(component).not.toHaveAttribute('data-tui-state', 'ready')
 		await expect(component).toBeVisible()
 	})

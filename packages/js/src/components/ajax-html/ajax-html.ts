@@ -1,121 +1,122 @@
-import { Component, tuiAttribute } from '@/utils/constants'
+import { Component, NativeEvent, fail, ok, tuiAttribute } from '@/utils/constants'
 import { QueryResult, queryCache } from '@/utils/query-cache'
-import { emitEvent } from '@/utils/emitEvent'
-import { ready } from '@/utils/ready'
+import { ComponentBase } from '../component-base'
 
-customElements.define(
-	Component.AjaxHtml.Name,
-	class extends HTMLElement {
-		private queryKey: string | null = null
-		private unsubscribe: (() => void) | null = null
-		private initialFetchTriggered = false // To prevent multiple fetch calls
-		private intersectionObserver: IntersectionObserver | null = null
+class TUIAjaxHtml extends ComponentBase {
+	static readonly componentName = Component.AjaxHtml.Name
 
-		connectedCallback() {
-			if (!this.id) {
-				console.warn(`${Component.AjaxHtml.Name} requires a "id" attribute.`, this)
-				return
-			}
+	private queryKey: string | null = null
+	private unsubscribe: (() => void) | null = null
+	private initialFetchTriggered = false // To prevent multiple fetch calls
+	private intersectionObserver: IntersectionObserver | null = null
 
-			this.queryKey = this.getAttribute(tuiAttribute('query-key'))
-			if (!this.queryKey) {
-				console.warn(`${Component.AjaxHtml.Name} requires a "query-key" attribute.`, this)
-				return
-			}
-
-			this.setAttribute('aria-live', 'polite')
-
-			this.unsubscribe = queryCache.subscribe(this.queryKey, (queryResult) => {
-				this.renderContent(queryResult)
-			})
-
-			const load = this.getAttribute(tuiAttribute('load-strategy'))
-			if (load) {
-				switch (load) {
-					case 'server-side':
-						this.initialFetchTriggered = true
-						break
-					case 'initial':
-						this.triggerInitialFetch()
-						break
-					case 'lazy':
-						this.intersectionObserver = new IntersectionObserver(
-							this.handleIntersection,
-							{ rootMargin: '0px 0px 100px 0px' },
-						)
-						this.intersectionObserver.observe(this)
-						break
-					case 'defer':
-						document.addEventListener('DOMContentLoaded', this.handleDomContentLoaded, {
-							once: true,
-						})
-						break
-				}
-			} else {
-				this.initialFetchTriggered = true
-			}
-			ready(this)
+	protected setup() {
+		if (!this.id) {
+			return fail('Missing id attribute')
 		}
 
-		disconnectedCallback() {
-			if (this.unsubscribe) {
-				this.unsubscribe()
-			}
-			document.removeEventListener('DOMContentLoaded', this.handleDomContentLoaded)
-			if (this.intersectionObserver) {
-				this.intersectionObserver.unobserve(this)
-				this.intersectionObserver.disconnect()
-				this.intersectionObserver = null
-			}
+		this.queryKey = this.getAttribute(tuiAttribute('query-key'))
+		if (!this.queryKey) {
+			return fail('Missing query-key attribute')
 		}
 
-		private handleDomContentLoaded = () => {
-			this.triggerInitialFetch()
-		}
+		this.setAttribute('aria-live', 'polite')
 
-		private handleIntersection = (entries: Array<IntersectionObserverEntry>) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
+		this.unsubscribe = queryCache.subscribe(this.queryKey, (queryResult) => {
+			this.renderContent(queryResult)
+		})
+
+		const load = this.getAttribute(tuiAttribute('load-strategy'))
+		if (load) {
+			switch (load) {
+				case 'server-side':
+					this.initialFetchTriggered = true
+					break
+				case 'initial':
 					this.triggerInitialFetch()
-					if (this.intersectionObserver) {
-						this.intersectionObserver.unobserve(this)
-					}
-				}
-			})
-		}
-
-		private triggerInitialFetch() {
-			if (!this.queryKey) return
-			if (this.initialFetchTriggered) return
+					break
+				case 'lazy':
+					this.intersectionObserver = new IntersectionObserver(this.handleIntersection, {
+						rootMargin: '0px 0px 100px 0px',
+					})
+					this.intersectionObserver.observe(this)
+					break
+				case 'defer':
+					this.listeners.add(
+						document,
+						NativeEvent.DOMContentLoaded,
+						this.handleDomContentLoaded,
+						{
+							once: true,
+						},
+					)
+					break
+			}
+		} else {
 			this.initialFetchTriggered = true
+		}
+		return ok()
+	}
 
-			// Fetch the data. The QueryCache handles staleness, loading, etc.
-			queryCache.invalidateQuery(this.queryKey)
+	protected cleanup() {
+		if (this.unsubscribe) {
+			this.unsubscribe()
+		}
+		if (this.intersectionObserver) {
+			this.intersectionObserver.unobserve(this)
+			this.intersectionObserver.disconnect()
+			this.intersectionObserver = null
+		}
+	}
+
+	private handleDomContentLoaded = () => {
+		this.triggerInitialFetch()
+	}
+
+	private handleIntersection = (entries: Array<IntersectionObserverEntry>) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				this.triggerInitialFetch()
+				if (this.intersectionObserver) {
+					this.intersectionObserver.unobserve(this)
+				}
+			}
+		})
+	}
+
+	private triggerInitialFetch() {
+		if (!this.queryKey) return
+		if (this.initialFetchTriggered) return
+		this.initialFetchTriggered = true
+
+		// Fetch the data. The QueryCache handles staleness, loading, etc.
+		queryCache.invalidateQuery(this.queryKey)
+	}
+
+	private renderContent(queryResult: QueryResult) {
+		if (!this.initialFetchTriggered) return
+		if (!queryResult.data) return
+		if (queryResult.data.type !== 'html') return
+
+		const document = queryResult.data.document
+
+		const newElem = document.querySelector(`#${this.id}`)
+		if (newElem?.id === this.id) {
+			this.innerHTML = newElem.innerHTML
+			this.emit(Component.AjaxHtml.Event.Render)
+			return
 		}
 
-		private renderContent(queryResult: QueryResult) {
-			if (!this.initialFetchTriggered) return
-			if (!queryResult.data) return
-			if (queryResult.data.type !== 'html') return
-
-			const document = queryResult.data.document
-
-			const newElem = document.querySelector(`#${this.id}`)
-			if (newElem?.id === this.id) {
-				this.innerHTML = newElem.innerHTML
-				emitEvent(Component.AjaxHtml.Name, Component.AjaxHtml.Event.Render, this)
-				return
-			}
-
-			if (document.body.innerHTML.trim().length > 0) {
-				this.innerHTML = document.body.innerHTML
-				emitEvent(Component.AjaxHtml.Name, Component.AjaxHtml.Event.Render, this)
-				return
-			}
-
-			if (!queryResult.isFetching) {
-				this.innerHTML = '<p>No results found.</p>'
-			}
+		if (document.body.innerHTML.trim().length > 0) {
+			this.innerHTML = document.body.innerHTML
+			this.emit(Component.AjaxHtml.Event.Render)
+			return
 		}
-	},
-)
+
+		if (!queryResult.isFetching) {
+			this.innerHTML = '<p>No results found.</p>'
+		}
+	}
+}
+
+TUIAjaxHtml.define()

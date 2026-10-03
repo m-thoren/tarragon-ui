@@ -1,47 +1,51 @@
-import { Component, NativeEvent, focusableElementsSelector, tuiAttribute } from '@/utils/constants'
+import {
+	Component,
+	NativeEvent,
+	focusableElementsSelector,
+	ok,
+	tuiAttribute,
+} from '@/utils/constants'
+import { ComponentBase } from '../component-base'
 import { checkPrefersReducedMotion } from '@/utils/reducedMotion'
-import { ready } from '@/utils/ready'
 
-customElements.define(
-	Component.Boop.Name,
-	class extends HTMLElement {
-		private bindElement: HTMLElement | null = null
+class TUIBoop extends ComponentBase {
+	static readonly componentName = Component.Boop.Name
+	private bindElement: HTMLElement | null = null
 
-		connectedCallback() {
-			const bindElementAttr = this.getAttribute(tuiAttribute('bind-element'))
-			if (bindElementAttr) {
-				const bindElement = document.querySelector<HTMLElement>(bindElementAttr)
-				if (bindElement) {
-					this.bindElement = bindElement
-				}
+	protected setup() {
+		const bindElementAttr = this.getAttribute(tuiAttribute('bind-element'))
+		if (bindElementAttr) {
+			const bindElement = document.querySelector<HTMLElement>(bindElementAttr)
+			if (bindElement) {
+				this.bindElement = bindElement
 			}
-			if (!this.bindElement) {
-				const bindElement = this.closest<HTMLElement>(focusableElementsSelector)
-				if (bindElement) {
-					this.bindElement = bindElement
-				}
+		}
+		if (!this.bindElement) {
+			const bindElement = this.closest<HTMLElement>(focusableElementsSelector)
+			if (bindElement) {
+				this.bindElement = bindElement
 			}
-			this.bindElement ??= this.parentElement
+		}
+		this.bindElement ??= this.parentElement
 
-			this.bindElement?.addEventListener(NativeEvent.MouseEnter, this.handleBoop)
-			ready(this)
+		if (this.bindElement) {
+			this.listeners.add(this.bindElement, NativeEvent.MouseEnter, this.handleBoop)
+		}
+		return ok()
+	}
+
+	private handleBoop = () => {
+		const prefersReducedMotion = checkPrefersReducedMotion()
+		if (prefersReducedMotion) {
+			return
 		}
 
-		disconnectedCallback() {
-			this.bindElement?.removeEventListener(NativeEvent.MouseEnter, this.handleBoop)
-		}
+		this.classList.add('boop-active')
 
-		private handleBoop = () => {
-			const prefersReducedMotion = checkPrefersReducedMotion()
-			if (prefersReducedMotion) {
-				return
-			}
+		window.setTimeout(() => {
+			this.classList.remove('boop-active')
+		}, 150)
+	}
+}
 
-			this.classList.add('boop-active')
-
-			window.setTimeout(() => {
-				this.classList.remove('boop-active')
-			}, 150)
-		}
-	},
-)
+TUIBoop.define()

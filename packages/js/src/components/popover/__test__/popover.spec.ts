@@ -2,7 +2,7 @@ import { Component, libNamePrefix } from '@/utils/constants'
 import { expect, test } from '@playwright/test'
 
 const componentName = Component.Popover.Name
-const componentTagName = `${libNamePrefix}${Component.Popover.Name}`
+const componentTagName = `${libNamePrefix}${componentName}`
 const testPath = `/src/components/${componentName}/__test__`
 
 test.describe(componentName, () => {
