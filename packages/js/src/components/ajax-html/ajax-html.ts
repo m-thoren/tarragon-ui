@@ -5,6 +5,7 @@ import { ComponentBase } from '../component-base'
 class TUIAjaxHtml extends ComponentBase {
 	static readonly componentName = Component.AjaxHtml.Name
 
+	private url: string | null = null
 	private queryKey: string | null = null
 	private unsubscribe: (() => void) | null = null
 	private initialFetchTriggered = false // To prevent multiple fetch calls
@@ -15,12 +16,15 @@ class TUIAjaxHtml extends ComponentBase {
 			return fail('Missing id attribute')
 		}
 
+		this.url = this.getAttribute(tuiAttribute('url'))
+		if (!this.url) {
+			return fail('Missing url attribute')
+		}
+
 		this.queryKey = this.getAttribute(tuiAttribute('query-key'))
 		if (!this.queryKey) {
 			return fail('Missing query-key attribute')
 		}
-
-		this.setAttribute('aria-live', 'polite')
 
 		this.unsubscribe = queryCache.subscribe(this.queryKey, (queryResult) => {
 			this.renderContent(queryResult)

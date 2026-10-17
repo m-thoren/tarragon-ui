@@ -1,7 +1,6 @@
 import {
 	Component,
 	NativeEvent,
-	SECOND,
 	fail,
 	hiddenAttribute,
 	ok,
@@ -17,12 +16,12 @@ class TUIAjaxForm extends ComponentBase {
 
 	private form: HTMLFormElement | null = null
 	private announce: HTMLDivElement | null = null
-	private announceTitle: HTMLHeadingElement | null = null
+	private announceTitle: HTMLElement | null = null
 	private spinner: HTMLDivElement | null = null
 	private messageSubmitting = 'Submitting...'
 	private messageSuccess = 'Data submitted successfully'
 	private messageError = 'An error occurred'
-	private actionOnSuccess: 'none' | 'remove-form' | 'remove-message' = 'none'
+	private actionOnSuccess: 'none' | 'remove-form' = 'none'
 	private keepFields = false
 	private queryKeyToInvalidate: string | null = null
 
@@ -35,20 +34,20 @@ class TUIAjaxForm extends ComponentBase {
 		}
 		this.form = form
 
-		const existingAnnounce = this.querySelector<HTMLDivElement>('[role="status"]')
-		if (existingAnnounce) {
-			this.announce = existingAnnounce
-			this.announceTitle = existingAnnounce.querySelector('.alert-title')
-		} else {
-			this.announce = document.createElement('div')
-			this.announce.setAttribute('role', 'status')
-
-			this.announceTitle = document.createElement('p')
-			this.announceTitle.className = 'alert-title'
-			this.announce.append(this.announceTitle)
-
-			this.append(this.announce)
+		const announceId = this.getAttribute(tuiAttribute('announce-id'))
+		if (!announceId) {
+			return fail('Missing announce-id attribute')
 		}
+		const existingAnnounce = document.getElementById(announceId)
+		if (!existingAnnounce) {
+			return fail('Announce element was not found')
+		}
+		this.announce = existingAnnounce as HTMLDivElement
+		const announceTitle = existingAnnounce.querySelector<HTMLElement>(
+			tuiAttributeSelector('announce-title'),
+		)
+		this.announceTitle = announceTitle ?? this.announce
+		this.announce.setAttribute('role', 'status')
 
 		// Define options
 		this.messageSubmitting =
@@ -62,8 +61,6 @@ class TUIAjaxForm extends ComponentBase {
 		const actionOnSuccess = this.getAttribute(tuiAttribute('action-on-success'))
 		if (actionOnSuccess === 'remove-form') {
 			this.actionOnSuccess = 'remove-form'
-		} else if (actionOnSuccess === 'remove-message') {
-			this.actionOnSuccess = 'remove-message'
 		}
 
 		this.spinner = document.createElement('div')
@@ -174,14 +171,6 @@ class TUIAjaxForm extends ComponentBase {
 		switch (status) {
 			case 'success':
 				this.announce.className = 'alert success'
-				if (this.actionOnSuccess === 'remove-message') {
-					setTimeout(() => {
-						if (!this.announce || !this.announceTitle) return
-						this.announceTitle.textContent = ''
-						this.announce.className = ''
-						this.showStatusIcon('pending')
-					}, 6 * SECOND)
-				}
 				break
 			case 'error':
 				this.announce.className = 'alert danger'

@@ -8,6 +8,7 @@ type FetchParameters = {
 	queryParameters?: URLSearchParams
 	headers?: Headers
 	data?: BodyInit
+	signal?: AbortSignal
 }
 
 export type FetchSuccess =
@@ -80,6 +81,7 @@ export class FetchClient {
 			const requestOptions: RequestInit = {
 				method,
 				headers: this.buildHeaders(parameters.headers),
+				signal: parameters.signal,
 			}
 
 			// Add body only for methods that typically use it
@@ -109,6 +111,10 @@ export class FetchClient {
 								? jsonParseError
 								: new Error(String(jsonParseError))
 					}
+				} else if (contentType?.includes('text/html')) {
+					const htmlText = await fetchResponse.text()
+					const document = new DOMParser().parseFromString(htmlText, 'text/html')
+					return fail({ message: '', data: { type: 'html', document } })
 				} else {
 					// For other content types (like text/html for errors), we might just get text
 					const errorText = await fetchResponse.text()

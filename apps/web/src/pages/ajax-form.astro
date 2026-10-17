@@ -6,7 +6,10 @@ import { buildUrl } from '@/scripts/constants'
 
 <ComponentLayout name='Ajax Form'>
 	<CodeExample>
-		<tui-ajax-form data-tui-query-key={buildUrl('/api/messages')}>
+		<tui-ajax-form
+			data-tui-query-key='ajax-form-example'
+			data-tui-announce-id='ajax-form-announce'
+		>
 			<form method='PUT' action={buildUrl('/api/messages')}>
 				<div class='form-group'>
 					<label for='input-username'>
@@ -32,6 +35,9 @@ import { buildUrl } from '@/scripts/constants'
 					<button type='submit'>Submit</button>
 				</div>
 			</form>
+			<div id='ajax-form-announce' role='status' class='alert visually-hidden max-w-form'>
+				<div data-tui-announce-title class='alert-title'></div>
+			</div>
 		</tui-ajax-form>
 	</CodeExample>
 </ComponentLayout>

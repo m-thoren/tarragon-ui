@@ -7,16 +7,60 @@ import { buildUrl } from '@/scripts/constants'
 <ComponentLayout name='Ajax Fetch'>
 	<CodeExample>
 		<tui-ajax-fetch
-			data-tui-query-key={buildUrl('/api/messages')}
-			data-tui-url={buildUrl('/api/messages')}
+			data-tui-query-key='ajax-fetch-example'
+			data-tui-trigger='change'
+			data-tui-debounce='300'
+			data-tui-update-url='true'
+			data-tui-announce-id='ajax-fetch-announce'
 			class='invisible-until-ready'
 		>
-			<button>Fetch HTML</button>
+			<form action={buildUrl('/api/ajax-fetch-example')} method='GET'>
+				<div class='form-group'>
+					<label for='input-text'>Text</label>
+					<input type='text' id='input-text' name='query' />
+				</div>
+				<fieldset class='choice-group'>
+					<legend>Label</legend>
+					<label for='radio-xaa9dv8'>
+						<input
+							checked
+							type='radio'
+							id='radio-xaa9dv8'
+							name='example-radio'
+							value='option-1'
+						/>
+						Label text
+					</label>
+					<label for='radio-xaa9dv9'>
+						<input
+							type='radio'
+							id='radio-xaa9dv9'
+							name='example-radio'
+							value='option-2'
+						/>
+						Label text
+					</label>
+					<label for='radio-xaa9dv1'>
+						<input
+							type='radio'
+							id='radio-xaa9dv1'
+							name='example-radio'
+							value='option-3'
+						/>
+						Label text
+					</label>
+				</fieldset>
+				<button>Fetch HTML</button>
+			</form>
 		</tui-ajax-fetch>
+		<div id='ajax-fetch-announce' role='status' class='alert visually-hidden'>
+			<p data-tui-announce-title></p>
+		</div>
 		<tui-ajax-html
 			class='block'
 			id='ajax-html-example'
-			data-tui-query-key={buildUrl('/api/messages')}
+			data-tui-query-key='ajax-fetch-example'
+			data-tui-url={buildUrl('/api/messages')}
 		>
 			<div class='card'>
 				<div class='card-content'>

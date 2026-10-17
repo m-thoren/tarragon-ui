@@ -7,6 +7,30 @@
 		<link rel="stylesheet" type="text/css" href="../../../../test.css" />
 	</head>
 	<body>
-		<main></main>
+		<main>
+			<tui-ajax-fetch
+				data-tui-query-key="ajax-fetch-change"
+				data-tui-trigger="change"
+				data-tui-debounce="200"
+			>
+				<form action="/api/messages" method="GET">
+					<label>Search <input name="query" /></label>
+					<label><input type="checkbox" name="category" value="news" /> News</label>
+					<label>
+						Sort
+						<select name="sort">
+							<option value="recent">Recent</option>
+							<option value="oldest">Oldest</option>
+						</select>
+					</label>
+				</form>
+			</tui-ajax-fetch>
+			<tui-ajax-fetch data-tui-query-key="ajax-fetch-submit">
+				<form action="/api/messages" method="GET">
+					<label>Search <input name="query" /></label>
+					<button type="submit">Fetch</button>
+				</form>
+			</tui-ajax-fetch>
+		</main>
 	</body>
 </html>
