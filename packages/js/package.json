@@ -6,7 +6,8 @@
 	"main": "dist/tarragon-ui.js",
 	"module": "dist/tarragon-ui.js",
 	"files": [
-		"dist"
+		"dist",
+		"readme.md"
 	],
 	"repository": {
 		"type": "git",

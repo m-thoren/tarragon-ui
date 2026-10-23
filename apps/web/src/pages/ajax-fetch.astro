@@ -5,18 +5,100 @@ import { buildUrl } from '@/scripts/constants'
 ---
 
 <ComponentLayout name='Ajax Fetch'>
+	<p>
+		Use <code>tui-ajax-fetch</code> for read-only requests driven by a form. It sends non-empty string
+		fields as GET query parameters, then publishes the returned HTML to the query cache. A <code
+		>
+			tui-ajax-html
+		</code> element with the same query key updates when the response arrives.
+	</p>
+	<h2>Submit to search</h2>
+	<p>
+		By default, the request runs only when the form is submitted. The announce target is
+		required. Pending text is announced only when a request takes longer than 500 ms; the
+		response message is announced as soon as it arrives. If the response has no announce
+		template, the configured success or error fallback is used.
+	</p>
 	<CodeExample>
 		<tui-ajax-fetch
-			data-tui-query-key={buildUrl('/api/messages')}
-			data-tui-url={buildUrl('/api/messages')}
+			data-tui-query-key='message-search'
+			data-tui-announce-id='ajax-fetch-announce'
 			class='invisible-until-ready'
 		>
-			<button>Fetch HTML</button>
+			<form action={buildUrl('/api/messages')} method='GET'>
+				<div class='form-group'>
+					<label for='ajax-fetch-query'>Search messages</label>
+					<input type='search' id='ajax-fetch-query' name='query' />
+				</div>
+				<button type='submit'>Fetch HTML</button>
+			</form>
 		</tui-ajax-fetch>
+		<div id='ajax-fetch-announce' role='status' class='alert visually-hidden'></div>
+		<tui-ajax-html class='block' id='ajax-html-example' data-tui-query-key='message-search'>
+			<div class='card'>
+				<div class='card-content'>
+					<h2>Old HTML</h2>
+					<p>This HTML was rendered on the server and is now stale</p>
+				</div>
+			</div>
+		</tui-ajax-html>
+	</CodeExample>
+	<p>
+		Include response-specific status text in the returned HTML. A <code>template</code> keeps the
+		announcement separate from result markup; the component copies its contents into the live region.
+	</p>
+	<CodeExample onlyCode>
+		<template data-tui-announce><p>12 messages found.</p></template>
+		<section id='ajax-html-example'>
+			<h2>Search results</h2>
+			<p>...</p>
+		</section>
+	</CodeExample>
+
+	<h2>Fetch as controls change</h2>
+	<p>
+		Set <code>data-tui-trigger='change'</code> to submit on input and change events. Debouncing coalesces
+		quick edits, and a newer request aborts the previous one. Use this for filters where immediate
+		updates are helpful; keep the submit trigger for longer forms.
+	</p>
+	<CodeExample>
+		<tui-ajax-fetch
+			data-tui-query-key='filtered-messages'
+			data-tui-announce-id='filter-announce'
+			data-tui-trigger='change'
+			data-tui-debounce='300'
+			data-tui-update-url='true'
+		>
+			<form action={buildUrl('/api/messages')} method='GET'>
+				<fieldset class='choice-group'>
+					<legend>Label</legend>
+					<label for='checkbox-standard-1'>
+						<input id='checkbox-standard-1' type='checkbox' />
+						Label text
+					</label>
+					<label for='checkbox-standard-2'>
+						<input id='checkbox-standard-2' type='checkbox' />
+						Label text
+					</label>
+					<label for='checkbox-standard-3'>
+						<input id='checkbox-standard-3' type='checkbox' />
+						Label text
+					</label>
+				</fieldset>
+				<div class='form-group'>
+					<label for='filter-sort'>Sort</label>
+					<select id='filter-sort' name='sort'>
+						<option value='recent'>Recent</option>
+						<option value='oldest'>Oldest</option>
+					</select>
+				</div>
+			</form>
+		</tui-ajax-fetch>
+		<div id='filter-announce' role='status' class='visually-hidden'></div>
 		<tui-ajax-html
 			class='block'
-			id='ajax-html-example'
-			data-tui-query-key={buildUrl('/api/messages')}
+			id='ajax-html-filtered-example'
+			data-tui-query-key='filtered-messages'
 		>
 			<div class='card'>
 				<div class='card-content'>
@@ -26,4 +108,24 @@ import { buildUrl } from '@/scripts/constants'
 			</div>
 		</tui-ajax-html>
 	</CodeExample>
+
+	<h2>Options</h2>
+	<ul>
+		<li><code>data-tui-query-key</code>: cache key shared with matching HTML views.</li>
+		<li><code>data-tui-announce-id</code>: required ID of the live status element.</li>
+		<li>
+			<code>data-tui-trigger</code>: <code>submit</code> (default) or <code>change</code>.
+		</li>
+		<li>
+			<code>data-tui-debounce</code>: delay in milliseconds for change-triggered requests.
+		</li>
+		<li>
+			<code>data-tui-update-url='true'</code>: replace the current query string after success.
+		</li>
+		<li>
+			<code>data-tui-message-submitting</code>, <code>data-tui-message-success</code>, and
+			<code>data-tui-message-error</code>: customize pending and fallback status text. Pending
+			text is shown after 500 ms; response-template text takes precedence.
+		</li>
+	</ul>
 </ComponentLayout>

@@ -1,0 +1,28 @@
+---
+import { CircleAlertIcon } from '@lucide/astro'
+
+export const partial = true
+
+Astro.response.status = 422
+---
+
+<template data-tui-announce>
+	<p>There is 1 error. Review the highlighted field.</p>
+</template>
+<form data-tui-validation-form>
+	<div class='form-group'>
+		<label for='profile-email'>Email</label>
+		<p id='profile-email-help'>Use an address you can access.</p>
+		<input
+			id='profile-email'
+			name='email'
+			type='email'
+			aria-invalid='true'
+			aria-describedby='profile-email-help profile-email-error'
+		/>
+		<p id='profile-email-error' data-tui-validation-message class='form-message'>
+			<CircleAlertIcon aria-hidden='true' />
+			<span data-tui-slot='form-message'>This email address is already in use.</span>
+		</p>
+	</div>
+</form>

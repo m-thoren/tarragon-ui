@@ -5,37 +5,75 @@ import { buildUrl } from '@/scripts/constants'
 ---
 
 <ComponentLayout name='Ajax HTML'>
+	<p>
+		<code>tui-ajax-html</code> renders an HTML response from the shared query cache. Use a stable
+		query key to connect it to an <code>ajax-fetch</code> search or an <code>ajax-form</code>
+		submission. Those explicit user actions take precedence over this component's initial fetch; the
+		URL here is for loading HTML when no newer cached result exists.
+	</p>
+	<h2>Lazy results with shared controls</h2>
+	<p>
+		The form and results use the same key. The HTML request starts near the viewport only if
+		another component has not already populated the cache. Responses may contain an element
+		matching this component's ID, or a body whose content should be inserted directly.
+	</p>
 	<CodeExample>
-		<tui-ajax-form data-tui-query-key={buildUrl('/api/messages')}>
+		<tui-ajax-fetch data-tui-query-key='shared-messages' data-tui-announce-id='messages-status'>
 			<form method='GET' action={buildUrl('/api/messages')}>
 				<div class='form-group'>
-					<label for='input-username'>
-						Username
-						<span class='font-medium'>(required)</span>
-					</label>
-					<input type='text' name='username' id='input-username' required />
+					<label for='messages-query'>Search</label>
+					<input id='messages-query' type='search' name='query' />
 				</div>
-				<div class='form-group'>
-					<label for='input-password'>
-						Password
-						<span class='font-medium'>(required)</span>
-					</label>
-					<input
-						type='password'
-						name='password'
-						id='input-password'
-						required
-						minlength='8'
-					/>
-				</div>
-				<div class='action-footer'>
-					<button type='submit'>Submit</button>
-				</div>
+				<button type='submit'>Search</button>
 			</form>
-		</tui-ajax-form>
+		</tui-ajax-fetch>
+		<div id='messages-status' role='status' class='visually-hidden'>
+			<span data-tui-announce-title></span>
+		</div>
 		<tui-ajax-html
 			class='block'
-			id='ajax-html-example'
-			data-tui-query-key={buildUrl('/api/messages')}></tui-ajax-html>
+			id='messages-results'
+			data-tui-query-key='shared-messages'
+			data-tui-url={buildUrl('/api/messages')}
+			data-tui-load-strategy='lazy'
+		>
+			<p>Search to load messages.</p>
+		</tui-ajax-html>
+	</CodeExample>
+
+	<h2>Choose a load strategy</h2>
+	<ul>
+		<li><code>initial</code>: fetch as soon as the component initializes.</li>
+		<li><code>lazy</code>: fetch when the component approaches the viewport.</li>
+		<li><code>defer</code>: wait until <code>DOMContentLoaded</code>.</li>
+		<li>
+			<code>server-side</code>: do not fetch; use server-rendered markup and cache updates.
+		</li>
+	</ul>
+	<p>
+		If the cache already contains data when a lazy load is due, that data renders without
+		another request. If a fetch or form response arrives while the lazy request is in flight,
+		the newer shared-cache result remains visible.
+	</p>
+
+	<h2>Share results with a form</h2>
+	<p>
+		Mutations can use the same key. A successful form response replaces the cached HTML
+		immediately, while the <code>ajax-html</code> URL remains a fallback for its initial lazy load.
+	</p>
+	<CodeExample>
+		<tui-ajax-form
+			data-tui-query-key='shared-messages'
+			data-tui-announce-id='message-submit-status'
+		>
+			<form method='POST' action={buildUrl('/api/messages')}>
+				<label for='new-message'>New message</label>
+				<textarea id='new-message' name='message' required></textarea>
+				<button type='submit'>Post</button>
+			</form>
+			<div id='message-submit-status' role='status' class='visually-hidden'>
+				<span data-tui-announce-title></span>
+			</div>
+		</tui-ajax-form>
 	</CodeExample>
 </ComponentLayout>
