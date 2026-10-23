@@ -15,7 +15,7 @@ export type FetchSuccess = Document
 
 type FetchResult = Promise<Result<FetchSuccess>>
 
-export class FetchClient {
+class FetchClient {
 	private static instance: FetchClient | undefined = undefined
 	private baseHeaders: Headers | undefined = undefined
 
