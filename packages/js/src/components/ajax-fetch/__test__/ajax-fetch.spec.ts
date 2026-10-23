@@ -95,6 +95,89 @@ test.describe('tui-ajax-fetch', () => {
 		release()
 
 		expect(requests[1]?.searchParams.get('query')).toBe('latest')
-		await expect(component.getByRole('status')).toHaveText('Data fetched successfully')
+		await expect(page.locator('#ajax-fetch-status')).toHaveText('Data fetched successfully')
+	})
+
+	test('announces a failed request', async ({ page }) => {
+		await page.route('**/api/messages*', async (route) => {
+			await route.fulfill({
+				status: 500,
+				contentType: 'application/json',
+				body: JSON.stringify({ message: 'Fetch failed' }),
+			})
+		})
+		await page.goto(`${testPath}/default.html`)
+		const component = page.locator('tui-ajax-fetch').nth(1)
+		await component.getByRole('button', { name: 'Fetch' }).click()
+
+		await expect(page.locator('#ajax-fetch-status')).toHaveText('An error occurred')
+	})
+
+	test('announces response content or the success fallback', async ({ page }) => {
+		let requestCount = 0
+		await page.route('**/api/messages*', async (route) => {
+			requestCount += 1
+			const body =
+				requestCount === 1
+					? '<template data-tui-announce><p>12 messages found.</p></template><p>Results</p>'
+					: '<p>Results</p>'
+			await route.fulfill({ status: 200, contentType: 'text/html', body })
+		})
+		await page.goto(`${testPath}/default.html`)
+		const component = page.locator('tui-ajax-fetch').nth(1)
+		const submit = component.getByRole('button', { name: 'Fetch' })
+
+		await submit.click()
+		await expect(page.locator('#ajax-fetch-status')).toHaveText('12 messages found.')
+
+		await submit.click()
+		await expect(page.locator('#ajax-fetch-status')).toHaveText('Data fetched successfully')
+
+		await page.locator('#ajax-fetch-status').evaluate((element) => {
+			const observer = new MutationObserver(() => {
+				if (element.innerHTML === '') element.setAttribute('data-empty-seen', '')
+			})
+			observer.observe(element, { childList: true, subtree: true })
+		})
+		await submit.click()
+		await expect(page.locator('#ajax-fetch-status')).toHaveAttribute('data-empty-seen', '')
+		await expect(page.locator('#ajax-fetch-status')).toHaveText('Data fetched successfully')
+	})
+
+	test('announces pending text only when a request is slow', async ({ page }) => {
+		let releaseRequest: (() => void) | undefined
+		await page.route('**/api/messages*', async (route) => {
+			await new Promise<void>((resolve) => {
+				releaseRequest = resolve
+			})
+			await route.fulfill({ status: 200, contentType: 'text/html', body: '<p>Results</p>' })
+		})
+		await page.goto(`${testPath}/default.html`)
+		const component = page.locator('tui-ajax-fetch').nth(1)
+		await page.locator('#ajax-fetch-status').evaluate((element) => {
+			element.textContent = 'Previous result'
+		})
+		await component.getByRole('button', { name: 'Fetch' }).click()
+
+		await expect(page.locator('#ajax-fetch-status')).toHaveText('Previous result')
+		await expect(page.locator('#ajax-fetch-status')).toHaveText('Fetching...', {
+			timeout: 1000,
+		})
+		releaseRequest?.()
+		await expect(page.locator('#ajax-fetch-status')).toHaveText('Data fetched successfully')
+	})
+
+	test('uses announce content from an HTML error response', async ({ page }) => {
+		await page.route('**/api/messages*', async (route) => {
+			await route.fulfill({
+				status: 422,
+				contentType: 'text/html',
+				body: '<template data-tui-announce><p>Search term is invalid.</p></template>',
+			})
+		})
+		await page.goto(`${testPath}/default.html`)
+		await page.locator('tui-ajax-fetch').nth(1).getByRole('button', { name: 'Fetch' }).click()
+
+		await expect(page.locator('#ajax-fetch-status')).toHaveText('Search term is invalid.')
 	})
 })

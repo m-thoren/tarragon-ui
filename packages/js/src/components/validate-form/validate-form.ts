@@ -8,6 +8,7 @@ import {
 	tuiAttributeSelector,
 } from '@/utils/constants'
 import { ComponentBase } from '../component-base'
+import { hasUnchangedServerValidationValue } from '@/utils/server-validation'
 
 const groupValidationAttribute = 'validate-group'
 
@@ -52,6 +53,7 @@ class TUIValidateForm extends ComponentBase {
 		// Check if the input is part of a group
 		const group = event.target.closest(tuiAttributeSelector(groupValidationAttribute))
 		const field = group ?? event.target
+		if (hasUnchangedServerValidationValue(event.target)) return
 
 		// If a group, set the interacted status
 		group?.setAttribute(tuiAttribute(groupValidationAttribute), 'interacted')
@@ -73,6 +75,7 @@ class TUIValidateForm extends ComponentBase {
 	 */
 	private onBlur = (event: Event) => {
 		if (!(event.target instanceof Element)) return
+		if (hasUnchangedServerValidationValue(event.target)) return
 
 		// If it's an input group and its been interacted with, validate the group
 		const group = event.target.closest(`[${groupValidationAttribute}="interacted"]`)
@@ -191,11 +194,6 @@ class TUIValidateForm extends ComponentBase {
 		return false
 	}
 
-	/**
-	 * Show error message on a field
-	 * @param  {Element} field   The field or fieldset
-	 * @param  {Boolean} isGroup If true, field is a fieldset input group
-	 */
 	private showError(field: Element, isGroup = false) {
 		const errorMsg = this.getMessage(field, isGroup)
 		if (!errorMsg) return
@@ -206,29 +204,25 @@ class TUIValidateForm extends ComponentBase {
 			tuiAttributeSelector('validation-message-template'),
 		)
 		const hasTemplate = !!template
-		const existingErrorID = field.getAttribute('aria-describedby')
-		const newErrorID = existingErrorID ?? `${libNamePrefix}${crypto.randomUUID()}`
+		const describedByIds = this.getDescribedByIds(field)
+		const existingErrorEl = describedByIds
+			.map((id) => this.form?.querySelector<HTMLElement>(`#${CSS.escape(id)}`))
+			.find(
+				(element) =>
+					element?.matches('[data-tui-validation-message], .form-message') ?? false,
+			)
 
 		// Try to find and update an existing error message
-		if (existingErrorID) {
-			const existingErrorEl = this.form?.querySelector<HTMLElement>(`#${existingErrorID}`)
-
-			if (existingErrorEl) {
-				if (hasTemplate) {
-					const formMessageEl = existingErrorEl.querySelector(
-						tuiAttributeSelector('slot', 'form-message'),
-					)
-					if (formMessageEl) formMessageEl.textContent = errorMsg
-					existingErrorEl.id = newErrorID
-					field.setAttribute('aria-describedby', newErrorID)
-					return
-				}
-
+		if (existingErrorEl) {
+			if (hasTemplate) {
+				const formMessageEl = existingErrorEl.querySelector(
+					tuiAttributeSelector('slot', 'form-message'),
+				)
+				if (formMessageEl) formMessageEl.textContent = errorMsg
+			} else {
 				existingErrorEl.textContent = errorMsg
-				existingErrorEl.id = newErrorID
-				field.setAttribute('aria-describedby', newErrorID)
-				return
 			}
+			return
 		}
 
 		// If no existing error was found/updated, create a new one
@@ -237,7 +231,7 @@ class TUIValidateForm extends ComponentBase {
 		if (hasTemplate) {
 			const clonedMessageContent = template.content.cloneNode(true) as DocumentFragment
 			errorEl = clonedMessageContent.firstElementChild as HTMLElement
-			errorEl.id = newErrorID
+			errorEl.id = `${libNamePrefix}${crypto.randomUUID()}`
 			const formMessageEl = errorEl.querySelector(
 				tuiAttributeSelector('slot', 'form-message'),
 			)
@@ -245,11 +239,11 @@ class TUIValidateForm extends ComponentBase {
 		} else {
 			errorEl = document.createElement('p')
 			errorEl.textContent = errorMsg
-			errorEl.id = newErrorID
+			errorEl.id = `${libNamePrefix}${crypto.randomUUID()}`
 			errorEl.className = 'form-message'
 		}
 
-		field.setAttribute('aria-describedby', newErrorID)
+		field.setAttribute('aria-describedby', [...describedByIds, errorEl.id].join(' '))
 
 		if (isGroup) {
 			field.append(errorEl)
@@ -289,9 +283,27 @@ class TUIValidateForm extends ComponentBase {
 	 */
 	private removeError(field: Element) {
 		field.removeAttribute('aria-invalid')
-		const id = field.getAttribute('aria-describedby')
-		if (!id) return
-		this.form?.querySelector(`#${id}`)?.remove()
+		const describedByIds = this.getDescribedByIds(field)
+		const retainedIds = describedByIds.filter((id) => {
+			const message = this.form?.querySelector<HTMLElement>(`#${CSS.escape(id)}`)
+			if (
+				message?.hasAttribute('data-tui-validation-message') ||
+				message?.classList.contains('form-message')
+			) {
+				message.remove()
+				return false
+			}
+			return true
+		})
+		if (retainedIds.length > 0) {
+			field.setAttribute('aria-describedby', retainedIds.join(' '))
+		} else {
+			field.removeAttribute('aria-describedby')
+		}
+	}
+
+	private getDescribedByIds(field: Element): Array<string> {
+		return (field.getAttribute('aria-describedby') ?? '').split(/\s+/).filter(Boolean)
 	}
 }
 

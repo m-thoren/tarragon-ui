@@ -11,17 +11,7 @@ type FetchParameters = {
 	signal?: AbortSignal
 }
 
-export type FetchSuccess =
-	| {
-			type: 'json'
-			message?: string | null
-			redirectUrl?: string | null
-			queryKey?: string
-	  }
-	| {
-			type: 'html'
-			document: Document
-	  }
+export type FetchSuccess = Document
 
 type FetchResult = Promise<Result<FetchSuccess>>
 
@@ -92,57 +82,29 @@ export class FetchClient {
 			const fetchResponse = await fetch(fullUrl, requestOptions)
 
 			if (!fetchResponse.ok) {
-				let errorMessage = 'Request failed'
-				let errorData = undefined
-
 				const contentType = fetchResponse.headers.get('content-type')
-				if (contentType?.includes('application/json')) {
-					try {
-						const jsonError = (await fetchResponse.json()) as {
-							message?: string
-							error?: string
-						}
-						errorMessage = jsonError.message ?? jsonError.error ?? errorMessage
-						// Optionally, you might want to include the raw error object if it's detailed
-					} catch (jsonParseError) {
-						errorMessage = `Failed to parse error JSON: ${errorMessage}`
-						errorData =
-							jsonParseError instanceof Error
-								? jsonParseError
-								: new Error(String(jsonParseError))
-					}
-				} else if (contentType?.includes('text/html')) {
+				if (contentType?.includes('text/html')) {
 					const htmlText = await fetchResponse.text()
 					const document = new DOMParser().parseFromString(htmlText, 'text/html')
-					return fail({ message: '', data: { type: 'html', document } })
-				} else {
-					// For other content types (like text/html for errors), we might just get text
-					const errorText = await fetchResponse.text()
-					if (errorText) {
-						errorMessage = `Server responded with an error: ${errorText.substring(0, 100)}` // Truncate for brevity
-					}
+					return fail({ message: '', data: { document } })
 				}
 				return fail({
-					message: errorMessage,
-					data: { errorData, status: fetchResponse.status },
+					message: 'Request failed',
+					data: { status: fetchResponse.status },
 				})
 			}
 
 			// If the response is OK, process the successful body
 			const contentType = fetchResponse.headers.get('content-type')
-			if (contentType?.includes('application/json')) {
-				const json = (await fetchResponse.json()) as FetchSuccess
-				return ok(json)
-			} else if (contentType?.includes('text/html')) {
+			if (contentType?.includes('text/html')) {
 				const htmlText = await fetchResponse.text()
 				const document = new DOMParser().parseFromString(htmlText, 'text/html')
-				return ok({ type: 'html', document })
-			} else if (contentType?.includes('text/plain')) {
-				const text = await fetchResponse.text()
-				return ok({ type: 'json', message: text }) // Wrap plain text in FetchSuccess
+				return ok(document)
 			}
-			// If no specific content type, return an empty success or default message
-			return ok({ type: 'json', message: 'Request successful, no content.' })
+			return fail({
+				message: 'Response returned with a content-type that was not "text/html"',
+				data: { contentType },
+			})
 		} catch (error: unknown) {
 			if (error instanceof Error) {
 				return fail({ message: 'Network error', data: { error } })

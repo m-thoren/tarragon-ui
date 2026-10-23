@@ -7,9 +7,11 @@
 		<link rel="stylesheet" type="text/css" href="../../../../test.css" />
 	</head>
 	<body>
+		<div id="ajax-fetch-status" role="status"></div>
 		<main>
 			<tui-ajax-fetch
 				data-tui-query-key="ajax-fetch-change"
+				data-tui-announce-id="ajax-fetch-status"
 				data-tui-trigger="change"
 				data-tui-debounce="200"
 			>
@@ -25,7 +27,10 @@
 					</label>
 				</form>
 			</tui-ajax-fetch>
-			<tui-ajax-fetch data-tui-query-key="ajax-fetch-submit">
+			<tui-ajax-fetch
+				data-tui-query-key="ajax-fetch-submit"
+				data-tui-announce-id="ajax-fetch-status"
+			>
 				<form action="/api/messages" method="GET">
 					<label>Search <input name="query" /></label>
 					<button type="submit">Fetch</button>

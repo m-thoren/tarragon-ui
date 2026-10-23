@@ -1,11 +1,4 @@
-import {
-	Component,
-	NativeEvent,
-	fail,
-	ok,
-	tuiAttribute,
-	tuiAttributeSelector,
-} from '@/utils/constants'
+import { Component, NativeEvent, fail, ok, tuiAttribute } from '@/utils/constants'
 import { ComponentBase } from '../component-base'
 import { debounce } from '@/utils/debounce'
 import { fetchClient } from '@/utils/fetch'
@@ -16,7 +9,6 @@ class TUIAjaxFetch extends ComponentBase {
 
 	private trigger: HTMLButtonElement | null = null
 	private announce: HTMLDivElement | null = null
-	private announceTitle: HTMLElement | null = null
 	private messageSubmitting = 'Fetching...'
 	private messageSuccess = 'Data fetched successfully'
 	private messageError = 'An error occurred'
@@ -27,6 +19,10 @@ class TUIAjaxFetch extends ComponentBase {
 	private debounceDelay = 300
 	private debouncedSubmit: (() => void) | null = null
 	private requestController: AbortController | null = null
+	private pendingMessageTimer: ReturnType<typeof setTimeout> | null = null
+	private announcementTimer: ReturnType<typeof setTimeout> | null = null
+	private readonly pendingMessageDelay = 500
+	private readonly repeatedAnnouncementDelay = 100
 
 	setup() {
 		const [formReason, form] = this.require<HTMLFormElement>('form')
@@ -47,10 +43,6 @@ class TUIAjaxFetch extends ComponentBase {
 			return fail('Announce element was not found')
 		}
 		this.announce = existingAnnounce as HTMLDivElement
-		const announceTitle = existingAnnounce.querySelector<HTMLElement>(
-			tuiAttributeSelector('announce-title'),
-		)
-		this.announceTitle = announceTitle ?? this.announce
 		this.announce.setAttribute('role', 'status')
 
 		// Define options
@@ -94,12 +86,19 @@ class TUIAjaxFetch extends ComponentBase {
 		if (!this.queryKey) return
 		if (!this.url) return
 		if (!this.form) return
+		if (!this.announce) return
 
 		this.requestController?.abort()
+		this.clearPendingMessageTimer()
+		this.clearAnnouncementTimer()
 		const requestController = new AbortController()
 		this.requestController = requestController
 
-		this.showStatus('pending')
+		this.pendingMessageTimer = setTimeout(() => {
+			if (!requestController.signal.aborted && this.requestController === requestController) {
+				this.setAnnouncement(this.messageSubmitting)
+			}
+		}, this.pendingMessageDelay)
 
 		const queryParameters = new URLSearchParams()
 		new FormData(this.form).forEach((value, key) => {
@@ -113,17 +112,20 @@ class TUIAjaxFetch extends ComponentBase {
 		})
 
 		if (requestController.signal.aborted || this.requestController !== requestController) return
+		this.clearPendingMessageTimer()
 		if (shouldFocus) this.trigger?.focus()
 
 		if (error) {
-			console.error('An error occurred', error)
-			this.showStatus('error')
-			return
-		}
+			if (error.data?.document && error.data.document instanceof Document) {
+				const errorDocument = error.data.document
+				const newAnnounce = errorDocument.querySelector('[data-tui-announce]')
+				if (newAnnounce) {
+					this.setAnnouncement(newAnnounce.innerHTML)
+					return
+				}
+			}
 
-		if (response.type !== 'html') {
-			console.error('An error occurred', 'Response was not html')
-			this.showStatus('error')
+			this.setAnnouncement(this.messageError)
 			return
 		}
 
@@ -135,31 +137,43 @@ class TUIAjaxFetch extends ComponentBase {
 			)
 		}
 		queryCache.setQueryData(this.queryKey, response)
-		const announceText = response.document.querySelector(
-			tuiAttributeSelector('announce-text'),
-		)?.textContent
-		this.showStatus('success', announceText)
+		const newAnnounce = response.querySelector('[data-tui-announce]')
+		this.setAnnouncement(newAnnounce?.innerHTML ?? this.messageSuccess)
 	}
 
 	protected cleanup() {
 		this.requestController?.abort()
 		this.requestController = null
+		this.clearPendingMessageTimer()
+		this.clearAnnouncementTimer()
 	}
 
-	private showStatus(status: 'success' | 'error' | 'pending', message?: string) {
-		if (!this.announce || !this.announceTitle) return
+	private setAnnouncement(content: string) {
+		if (!this.announce) return
+		this.clearAnnouncementTimer()
 
-		switch (status) {
-			case 'error':
-				this.announceTitle.textContent = message ?? this.messageError
-				break
-			case 'pending':
-				this.announceTitle.textContent = message ?? this.messageSubmitting
-				break
-			case 'success':
-				this.announceTitle.textContent = message ?? this.messageSuccess
-				break
+		if (this.announce.innerHTML !== content) {
+			this.announce.innerHTML = content
+			return
 		}
+
+		this.announce.innerHTML = ''
+		this.announcementTimer = setTimeout(() => {
+			if (this.announce) this.announce.innerHTML = content
+			this.announcementTimer = null
+		}, this.repeatedAnnouncementDelay)
+	}
+
+	private clearAnnouncementTimer() {
+		if (this.announcementTimer === null) return
+		clearTimeout(this.announcementTimer)
+		this.announcementTimer = null
+	}
+
+	private clearPendingMessageTimer() {
+		if (this.pendingMessageTimer === null) return
+		clearTimeout(this.pendingMessageTimer)
+		this.pendingMessageTimer = null
 	}
 }
 

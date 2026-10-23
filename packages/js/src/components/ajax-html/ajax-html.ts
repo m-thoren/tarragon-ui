@@ -1,24 +1,20 @@
 import { Component, NativeEvent, fail, ok, tuiAttribute } from '@/utils/constants'
 import { QueryResult, queryCache } from '@/utils/query-cache'
 import { ComponentBase } from '../component-base'
+import { fetchClient } from '@/utils/fetch'
 
 class TUIAjaxHtml extends ComponentBase {
 	static readonly componentName = Component.AjaxHtml.Name
 
-	private url: string | null = null
 	private queryKey: string | null = null
 	private unsubscribe: (() => void) | null = null
 	private initialFetchTriggered = false // To prevent multiple fetch calls
+	private cacheVersion = 0
 	private intersectionObserver: IntersectionObserver | null = null
 
 	protected setup() {
 		if (!this.id) {
 			return fail('Missing id attribute')
-		}
-
-		this.url = this.getAttribute(tuiAttribute('url'))
-		if (!this.url) {
-			return fail('Missing url attribute')
 		}
 
 		this.queryKey = this.getAttribute(tuiAttribute('query-key'))
@@ -27,6 +23,10 @@ class TUIAjaxHtml extends ComponentBase {
 		}
 
 		this.unsubscribe = queryCache.subscribe(this.queryKey, (queryResult) => {
+			if (queryResult.data) {
+				this.cacheVersion += 1
+				this.initialFetchTriggered = true
+			}
 			this.renderContent(queryResult)
 		})
 
@@ -37,7 +37,7 @@ class TUIAjaxHtml extends ComponentBase {
 					this.initialFetchTriggered = true
 					break
 				case 'initial':
-					this.triggerInitialFetch()
+					void this.triggerInitialFetch()
 					break
 				case 'lazy':
 					this.intersectionObserver = new IntersectionObserver(this.handleIntersection, {
@@ -74,13 +74,13 @@ class TUIAjaxHtml extends ComponentBase {
 	}
 
 	private handleDomContentLoaded = () => {
-		this.triggerInitialFetch()
+		void this.triggerInitialFetch()
 	}
 
 	private handleIntersection = (entries: Array<IntersectionObserverEntry>) => {
 		entries.forEach((entry) => {
 			if (entry.isIntersecting) {
-				this.triggerInitialFetch()
+				void this.triggerInitialFetch()
 				if (this.intersectionObserver) {
 					this.intersectionObserver.unobserve(this)
 				}
@@ -88,31 +88,47 @@ class TUIAjaxHtml extends ComponentBase {
 		})
 	}
 
-	private triggerInitialFetch() {
+	private async triggerInitialFetch() {
 		if (!this.queryKey) return
 		if (this.initialFetchTriggered) return
 		this.initialFetchTriggered = true
+		const currentQuery = queryCache.get(this.queryKey)
+		if (currentQuery?.data) {
+			this.renderContent(currentQuery)
+			return
+		}
 
-		// Fetch the data. The QueryCache handles staleness, loading, etc.
-		queryCache.invalidateQuery(this.queryKey)
+		const url = this.getAttribute(tuiAttribute('url'))
+		if (!url) {
+			this.logError({ message: 'Missing url attribute' })
+			return
+		}
+
+		const cacheVersionAtFetchStart = this.cacheVersion
+		const [error, response] = await fetchClient.get(url)
+		if (this.cacheVersion !== cacheVersionAtFetchStart) return
+		if (typeof error === 'object') {
+			this.logError(error)
+			return
+		}
+		queryCache.setQueryData(this.queryKey, response)
 	}
 
 	private renderContent(queryResult: QueryResult) {
 		if (!this.initialFetchTriggered) return
 		if (!queryResult.data) return
-		if (queryResult.data.type !== 'html') return
 
-		const document = queryResult.data.document
+		const resultDocument = queryResult.data
 
-		const newElem = document.querySelector(`#${this.id}`)
+		const newElem = resultDocument.querySelector(`#${this.id}`)
 		if (newElem?.id === this.id) {
 			this.innerHTML = newElem.innerHTML
 			this.emit(Component.AjaxHtml.Event.Render)
 			return
 		}
 
-		if (document.body.innerHTML.trim().length > 0) {
-			this.innerHTML = document.body.innerHTML
+		if (resultDocument.body.innerHTML.trim().length > 0) {
+			this.innerHTML = resultDocument.body.innerHTML
 			this.emit(Component.AjaxHtml.Event.Render)
 			return
 		}

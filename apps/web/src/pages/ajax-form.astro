@@ -1,43 +1,163 @@
 ---
+import { CircleAlertIcon } from '@lucide/astro'
 import CodeExample from '@/components/CodeExample.astro'
 import ComponentLayout from '@/layouts/ComponentLayout.astro'
 import { buildUrl } from '@/scripts/constants'
 ---
 
 <ComponentLayout name='Ajax Form'>
+	<p>
+		Use <code>tui-ajax-form</code> for submissions that change server state. It serializes successful
+		form controls as URL-encoded data, sends the selected form method, and prevents a full-page navigation.
+		Provide an announce target so pending and result messages are available to assistive technology.
+	</p>
+	<h2>Submit and refresh a view</h2>
+	<p>
+		The query key connects the form response to any <code>tui-ajax-html</code> view using that same
+		key. On success, the form resets by default and the HTML view renders the returned document.
+	</p>
+
+	<p>
+		Pending text is announced only if the request takes longer than 500 ms. Response-specific
+		announce content takes precedence over the configured success or error fallback text.
+	</p>
 	<CodeExample>
 		<tui-ajax-form
-			data-tui-query-key='ajax-form-example'
-			data-tui-announce-id='ajax-form-announce'
+			data-tui-query-key='message-list'
+			data-tui-announce-id='create-message-status'
 		>
-			<form method='PUT' action={buildUrl('/api/messages')}>
+			<form method='POST' action={buildUrl('/api/messages')}>
 				<div class='form-group'>
-					<label for='input-username'>
-						Username
-						<span class='font-medium'>(required)</span>
-					</label>
-					<input type='text' name='username' id='input-username' required />
-				</div>
-				<div class='form-group'>
-					<label for='input-password'>
-						Password
-						<span class='font-medium'>(required)</span>
-					</label>
-					<input
-						type='password'
-						name='password'
-						id='input-password'
-						required
-						minlength='8'
-					/>
+					<label for='message-body'>Message</label>
+					<textarea id='message-body' name='message' required></textarea>
 				</div>
 				<div class='action-footer'>
-					<button type='submit'>Submit</button>
+					<button type='submit'>Send message</button>
 				</div>
 			</form>
-			<div id='ajax-form-announce' role='status' class='alert visually-hidden max-w-form'>
-				<div data-tui-announce-title class='alert-title'></div>
+			<div id='create-message-status' role='status' class='alert visually-hidden max-w-form'>
 			</div>
 		</tui-ajax-form>
+		<tui-ajax-html id='message-list' class='block' data-tui-query-key='message-list'>
+			<p>Messages will appear here.</p>
+		</tui-ajax-html>
 	</CodeExample>
+	<p>
+		For server-side validation, nest <code>tui-validate-form</code> inside <code>
+			tui-ajax-form
+		</code>. Return a <code>422</code> HTML response containing <code>
+			template[data-tui-announce]
+		</code> and
+		<code>form[data-tui-validation-form]</code>. Match controls by <code>id</code> (or by name and
+		type) and mark invalid fields with <code>aria-invalid</code>; put each message in an element
+		marked <code>data-tui-validation-message</code> and reference its ID from <code>
+			aria-describedby
+		</code>. The live controls and entered values stay in place, while
+		<code>tui-validate-form</code> continues handling correction and resubmission.
+	</p>
+	<CodeExample>
+		<tui-ajax-form data-tui-announce-id='profile-status'>
+			<tui-validate-form>
+				<form method='POST' action={buildUrl('/api/profile')}>
+					<div class='form-group'>
+						<label for='profile-email'>Email</label>
+						<p id='profile-email-help'>Use an address you can access.</p>
+						<input
+							id='profile-email'
+							name='email'
+							type='email'
+							required
+							aria-describedby='profile-email-help'
+						/>
+					</div>
+					<button type='submit'>Save profile</button>
+				</form>
+			</tui-validate-form>
+			<div id='profile-status' role='status' class='visually-hidden'></div>
+		</tui-ajax-form>
+	</CodeExample>
+	<p>
+		Example <code>422</code> response for that form. The current email input is not replaced, so the
+		user's entered value remains available to correct.
+	</p>
+	<CodeExample onlyCode>
+		<template data-tui-announce>
+			<p>There is 1 error. Review the highlighted field.</p>
+		</template>
+		<form data-tui-validation-form>
+			<div class='form-group'>
+				<label for='profile-email'>Email</label>
+				<p id='profile-email-help'>Use an address you can access.</p>
+				<input
+					id='profile-email'
+					name='email'
+					type='email'
+					aria-invalid='true'
+					aria-describedby='profile-email-help profile-email-error'
+				/>
+				<p id='profile-email-error' data-tui-validation-message class='form-message'>
+					<CircleAlertIcon aria-hidden='true' />
+					<span data-tui-slot='form-message'>This email address is already in use.</span>
+				</p>
+			</div>
+		</form>
+	</CodeExample>
+	<p>
+		The component announces the summary and focuses the first invalid control. On input, the
+		validator rechecks that field, removes its server error when valid, and keeps other
+		description IDs such as help text. A successful resubmission follows the normal
+		success/reset behavior.
+	</p>
+	<p>
+		For successful responses that refresh a view, return status text inside
+		<code>template[data-tui-announce]</code>; it is copied into the live region and omitted from
+		rendered result markup.
+	</p>
+	<CodeExample onlyCode>
+		<template data-tui-announce>
+			<p>Profile saved.</p>
+		</template>
+		<section id='profile-details'>
+			<h2>Profile</h2>
+			<p>...</p>
+		</section>
+	</CodeExample>
+
+	<h2>Keep fields or remove the form</h2>
+	<p>
+		Set <code>data-tui-keep-fields</code> when the user may need to repeat or revise a submission.
+		Set <code>data-tui-action-on-success='remove-form'</code> for one-time forms. Both behaviors apply
+		only after a successful response; failed requests leave the form available for correction.
+	</p>
+	<CodeExample>
+		<tui-ajax-form data-tui-announce-id='feedback-status' data-tui-keep-fields>
+			<form method='POST' action={buildUrl('/api/messages')}>
+				<div class='form-group'>
+					<label for='feedback-message'>Feedback</label>
+					<textarea id='feedback-message' name='message' required></textarea>
+				</div>
+				<button type='submit'>Submit feedback</button>
+			</form>
+			<div id='feedback-status' role='status' class='alert visually-hidden'></div>
+		</tui-ajax-form>
+	</CodeExample>
+
+	<h2>Options</h2>
+	<ul>
+		<li><code>data-tui-announce-id</code>: required ID of the status element.</li>
+		<li>
+			<code>data-tui-query-key</code>: optional key to publish successful response HTML to.
+		</li>
+		<li><code>data-tui-keep-fields</code>: do not reset fields after success.</li>
+		<li>
+			<code>data-tui-action-on-success='remove-form'</code>: remove this component after
+			success.
+		</li>
+		<li>
+			<code>data-tui-message-submitting</code>, <code>data-tui-message-success</code>, and <code
+			>
+				data-tui-message-error
+			</code>: customize status text.
+		</li>
+	</ul>
 </ComponentLayout>
