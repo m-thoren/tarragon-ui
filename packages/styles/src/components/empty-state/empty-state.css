@@ -9,7 +9,7 @@
 
 		text-align: center;
 
-		@media (width > 640px) {
+		@media (--above-tablet) {
 			padding: var(--size-lg);
 		}
 	}

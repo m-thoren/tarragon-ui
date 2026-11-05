@@ -14,13 +14,13 @@
 		gap: var(--size-2xl);
 		padding-block: var(--size-2xl);
 
-		@media (width > 640px) {
+		@media (--above-tablet) {
 			grid-template-columns: repeat(4, 1fr);
 		}
 	}
 
 	.footer-brand {
-		@media (width > 640px) {
+		@media (--above-tablet) {
 			grid-column: span 2;
 		}
 	}

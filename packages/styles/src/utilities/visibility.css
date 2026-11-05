@@ -52,19 +52,19 @@
 		outline-offset: var(--outline-offset);
 	}
 
-	@media (width > 640px) {
+	@media (--above-tablet) {
 		.hide-above-tablet {
 			display: none;
 		}
 	}
 
-	@media (width > 1024px) {
+	@media (--above-desktop) {
 		.hide-above-desktop {
 			display: none;
 		}
 	}
 
-	@media (width <= calc(640px - 1px)) {
+	@media (--below-tablet) {
 		.show-above-tablet {
 			display: none;
 		}
@@ -85,7 +85,7 @@
 		}
 	}
 
-	@media (width <= calc(1024px - 1px)) {
+	@media (--below-desktop) {
 		.show-above-desktop {
 			display: none;
 		}

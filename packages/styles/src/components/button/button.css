@@ -121,7 +121,7 @@
 			padding: var(--size-sm);
 		}
 
-		@media (width <= calc(640px - 1px)) {
+		@media (--below-tablet) {
 			&.size-icon-below-tablet {
 				width: var(--minimum-clickable-size);
 				height: var(--minimum-clickable-size);
@@ -129,7 +129,7 @@
 			}
 		}
 
-		@media (width <= calc(1024px - 1px)) {
+		@media (--below-desktop) {
 			&.size-icon-below-desktop {
 				width: var(--minimum-clickable-size);
 				height: var(--minimum-clickable-size);

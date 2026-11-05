@@ -58,7 +58,7 @@
 			background-color: inherit;
 		}
 
-		@media (width > 640px) {
+		@media (--above-tablet) {
 			tab-size: 4;
 		}
 	}

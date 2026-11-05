@@ -40,13 +40,13 @@
 			opacity: 0.4;
 			background-color: #0000;
 
-			@media (width > 640px) {
+			@media (--above-tablet) {
 				rotate: 45deg;
 			}
 		}
 
 		li:not(:nth-child(2)) {
-			@media (width <= calc(640px - 1px)) {
+			@media (--below-tablet) {
 				display: none;
 			}
 		}

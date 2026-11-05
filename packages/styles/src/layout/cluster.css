@@ -8,7 +8,7 @@
 }
 
 @layer tarragon-ui.utilities {
-	@media (width > 640px) {
+	@media (--above-tablet) {
 		.cluster-tablet {
 			display: flex;
 			flex-flow: row wrap;
@@ -18,7 +18,7 @@
 		}
 	}
 
-	@media (width > 1024px) {
+	@media (--above-desktop) {
 		.cluster-desktop {
 			display: flex;
 			flex-flow: row wrap;

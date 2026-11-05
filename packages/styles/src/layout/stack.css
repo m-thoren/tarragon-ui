@@ -7,7 +7,7 @@
 }
 
 @layer tarragon-ui.utilities {
-	@media (width > 640px) {
+	@media (--above-tablet) {
 		.stack-tablet {
 			display: flex;
 			flex-direction: column;
@@ -15,7 +15,7 @@
 		}
 	}
 
-	@media (width > 1024px) {
+	@media (--above-desktop) {
 		.stack-desktop {
 			display: flex;
 			flex-direction: column;

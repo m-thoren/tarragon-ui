@@ -12,7 +12,7 @@
 			align-items: start;
 		}
 
-		@media (width > 640px) {
+		@media (--above-tablet) {
 			display: grid;
 			grid-template-columns: repeat(auto-fit, minmax(var(--size-6xl), 1fr));
 			column-gap: var(--size-4xl);

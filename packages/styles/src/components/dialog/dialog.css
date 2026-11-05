@@ -17,7 +17,7 @@
 		background-color: var(--color-background-raised);
 		box-shadow: var(--shadow-elevation-high);
 
-		@media (width > 640px) {
+		@media (--above-tablet) {
 			width: 90%;
 			max-height: 90vh;
 		}

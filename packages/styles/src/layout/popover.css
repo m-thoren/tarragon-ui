@@ -39,7 +39,7 @@
 			}
 		}
 
-		@media (width > 640px) {
+		@media (--above-tablet) {
 			max-width: 80vw;
 			max-height: 80vh;
 			padding: var(--size-xs);

@@ -62,7 +62,7 @@
 		grid-column: auto / span 12;
 	}
 
-	@media (width > 640px) {
+	@media (--above-tablet) {
 		.grid-tablet {
 			display: grid;
 		}
@@ -108,7 +108,7 @@
 		}
 	}
 
-	@media (width > 1024px) {
+	@media (--above-desktop) {
 		.grid-desktop {
 			display: grid;
 		}

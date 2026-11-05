@@ -3,6 +3,7 @@
 @import url('./layers.css');
 
 /* Settings - contain font, colors definitions, etc. */
+@import url('./theme/breakpoints.css');
 @import url('./theme/colors.css');
 @import url('./theme/rounded.css');
 @import url('./theme/size.css');

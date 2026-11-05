@@ -3,6 +3,10 @@ import { CircleAlertIcon } from '@lucide/astro'
 
 export const partial = true
 
+if (Astro.request.method !== 'POST') {
+	return new Response('Method not allowed.', { status: 405 })
+}
+
 Astro.response.status = 422
 ---
 

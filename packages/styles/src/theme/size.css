@@ -20,8 +20,5 @@
 		--size-border-width-lg: 4px;
 		--minimum-clickable-size: 44px;
 		--maximum-input-width: var(--size-7xl);
-		--breakpoint-mobile: 640px;
-		--breakpoint-tablet: 1024px;
-		--breakpoint-desktop: 1440px;
 	}
 }
