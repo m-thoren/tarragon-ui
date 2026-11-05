@@ -198,6 +198,39 @@ test.describe('tui-ajax-post', () => {
 		await expect(page.locator('#form-status')).toHaveText('Data submitted successfully')
 	})
 
+	test('cleans up pending and late announcements after disconnect', async ({ page }) => {
+		let releaseRequest: (() => void) | undefined
+		await page.route('**/api/messages', async (route) => {
+			await new Promise<void>((resolve) => {
+				releaseRequest = resolve
+			})
+			await route.fulfill({ status: 200, contentType: 'text/html', body: '<p>Saved</p>' })
+		})
+		await page.goto(`${testPath}/default.html`)
+		await page.evaluate(() => {
+			const wrapper = document.createElement('tui-ajax-post')
+			wrapper.setAttribute('data-tui-announce-id', 'form-status')
+			wrapper.innerHTML =
+				'<form action="/api/messages" method="POST"><button type="submit">Send</button></form>'
+			const status = document.createElement('div')
+			status.id = 'form-status'
+			status.textContent = 'Previous result'
+			document.querySelector('main')?.append(wrapper, status)
+		})
+		const component = page.locator('tui-ajax-post')
+		await component.getByRole('button', { name: 'Send' }).click()
+		await expect.poll(() => releaseRequest).toBeDefined()
+
+		await component.evaluate((element) => {
+			element.remove()
+		})
+		await page.waitForTimeout(600)
+		await expect(page.locator('#form-status')).toHaveText('Previous result')
+		releaseRequest?.()
+		await page.waitForTimeout(100)
+		await expect(page.locator('#form-status')).toHaveText('Previous result')
+	})
+
 	test('uses announce content from an HTML error response', async ({ page }) => {
 		await page.route('**/api/messages', async (route) => {
 			await route.fulfill({

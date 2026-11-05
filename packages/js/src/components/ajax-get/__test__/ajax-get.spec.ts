@@ -167,6 +167,31 @@ test.describe('tui-ajax-get', () => {
 		await expect(page.locator('#ajax-get-status')).toHaveText('Data fetched successfully')
 	})
 
+	test('cleans up pending announcements after disconnect', async ({ page }) => {
+		let releaseRequest: (() => void) | undefined
+		await page.route('**/api/messages*', async (route) => {
+			await new Promise<void>((resolve) => {
+				releaseRequest = resolve
+			})
+			if (route.request().failure()) return
+			await route.fulfill({ status: 200, contentType: 'text/html', body: '<p>Results</p>' })
+		})
+		await page.goto(`${testPath}/default.html`)
+		const component = page.locator('tui-ajax-get').nth(1)
+		await page.locator('#ajax-get-status').evaluate((element) => {
+			element.textContent = 'Previous result'
+		})
+		await component.getByRole('button', { name: 'Fetch' }).click()
+		await expect.poll(() => releaseRequest).toBeDefined()
+
+		await component.evaluate((element) => {
+			element.remove()
+		})
+		await page.waitForTimeout(600)
+		await expect(page.locator('#ajax-get-status')).toHaveText('Previous result')
+		releaseRequest?.()
+	})
+
 	test('uses announce content from an HTML error response', async ({ page }) => {
 		await page.route('**/api/messages*', async (route) => {
 			await route.fulfill({

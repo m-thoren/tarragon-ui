@@ -1,5 +1,6 @@
 import { Component, NativeEvent, fail, ok, tuiAttribute } from '@/utils/constants'
 import { clearServerValidationValue, setServerValidationValue } from '@/utils/server-validation'
+import { Announcer } from '../announcer'
 import { ComponentBase } from '../component-base'
 import { fetchClient } from '@/utils/fetch'
 import { queryCache } from '@/utils/query-cache'
@@ -10,7 +11,7 @@ class TUIAjaxForm extends ComponentBase {
 	static readonly componentName = Component.AjaxForm.Name
 
 	private form: HTMLFormElement | null = null
-	private announce: HTMLDivElement | null = null
+	private announcer: Announcer | null = null
 	private spinner: HTMLDivElement | null = null
 	private messageSubmitting = 'Submitting...'
 	private messageSuccess = 'Data submitted successfully'
@@ -18,10 +19,6 @@ class TUIAjaxForm extends ComponentBase {
 	private actionOnSuccess: 'none' | 'remove-form' = 'none'
 	private keepFields = false
 	private queryKey: string | null = null
-	private pendingMessageTimer: ReturnType<typeof setTimeout> | null = null
-	private announcementTimer: ReturnType<typeof setTimeout> | null = null
-	private readonly pendingMessageDelay = 500
-	private readonly repeatedAnnouncementDelay = 100
 
 	private readonly isSubmittingAttribute = 'is-submitting'
 
@@ -44,8 +41,7 @@ class TUIAjaxForm extends ComponentBase {
 		if (!existingAnnounce) {
 			return fail('Announce element was not found')
 		}
-		this.announce = existingAnnounce as HTMLDivElement
-		this.announce.setAttribute('role', 'status')
+		this.announcer = new Announcer(existingAnnounce as HTMLDivElement)
 
 		// Define options
 		this.messageSubmitting =
@@ -78,7 +74,8 @@ class TUIAjaxForm extends ComponentBase {
 
 	private handleSubmit = async (event: Event) => {
 		if (!this.form) return
-		if (!this.announce) return
+		const announcer = this.announcer
+		if (!announcer) return
 
 		event.preventDefault()
 
@@ -91,10 +88,8 @@ class TUIAjaxForm extends ComponentBase {
 			return
 		}
 
-		this.clearAnnouncementTimer()
-		this.pendingMessageTimer = setTimeout(() => {
-			this.setAnnouncement(this.messageSubmitting)
-		}, this.pendingMessageDelay)
+		announcer.clear()
+		announcer.announceAfterDelay(this.messageSubmitting)
 
 		let submittingElement: HTMLButtonElement | null = null
 		if (this.spinner) {
@@ -109,7 +104,7 @@ class TUIAjaxForm extends ComponentBase {
 			},
 		})
 
-		this.clearPendingMessageTimer()
+		announcer.clear()
 		this.enable()
 
 		if (error) {
@@ -121,7 +116,7 @@ class TUIAjaxForm extends ComponentBase {
 				if (validationForm) {
 					const firstInvalidControl = this.applyServerValidation(validationForm)
 					const newAnnounce = errorDocument.querySelector('[data-tui-announce]')
-					this.setAnnouncement(newAnnounce?.innerHTML ?? this.messageError)
+					announcer.announce(newAnnounce?.innerHTML ?? this.messageError)
 					firstInvalidControl?.focus()
 					return
 				}
@@ -129,21 +124,17 @@ class TUIAjaxForm extends ComponentBase {
 				const newAnnounce = errorDocument.querySelector('[data-tui-announce]')
 				if (newAnnounce) {
 					submittingElement?.focus()
-					this.setAnnouncement(newAnnounce.innerHTML)
+					announcer.announce(newAnnounce.innerHTML)
 					return
 				}
 			}
 
 			submittingElement?.focus()
-			this.setAnnouncement(this.messageError)
+			announcer.announce(this.messageError)
 			return
 		}
 
 		submittingElement?.focus()
-		if (this.actionOnSuccess === 'remove-form') {
-			this.remove()
-		}
-
 		if (!this.keepFields) {
 			this.reset()
 		}
@@ -153,9 +144,18 @@ class TUIAjaxForm extends ComponentBase {
 		}
 
 		const newAnnounce = response.querySelector('[data-tui-announce]')
-		this.setAnnouncement(newAnnounce?.innerHTML ?? this.messageSuccess)
+		announcer.announce(newAnnounce?.innerHTML ?? this.messageSuccess)
+
+		if (this.actionOnSuccess === 'remove-form') {
+			this.remove()
+		}
 
 		this.emit(Component.AjaxForm.Event.Form)
+	}
+
+	protected cleanup() {
+		this.announcer?.cleanup()
+		this.announcer = null
 	}
 
 	private disable() {
@@ -299,34 +299,6 @@ class TUIAjaxForm extends ComponentBase {
 			return controlNameTypeKey === nameTypeKey
 		})
 		return matchingControls[occurrence] ?? null
-	}
-
-	private clearPendingMessageTimer() {
-		if (this.pendingMessageTimer === null) return
-		clearTimeout(this.pendingMessageTimer)
-		this.pendingMessageTimer = null
-	}
-
-	private setAnnouncement(content: string) {
-		if (!this.announce) return
-		this.clearAnnouncementTimer()
-
-		if (this.announce.innerHTML !== content) {
-			this.announce.innerHTML = content
-			return
-		}
-
-		this.announce.innerHTML = ''
-		this.announcementTimer = setTimeout(() => {
-			if (this.announce) this.announce.innerHTML = content
-			this.announcementTimer = null
-		}, this.repeatedAnnouncementDelay)
-	}
-
-	private clearAnnouncementTimer() {
-		if (this.announcementTimer === null) return
-		clearTimeout(this.announcementTimer)
-		this.announcementTimer = null
 	}
 }
 
