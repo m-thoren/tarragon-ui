@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script type="module" src="../../../../dist/tarragon-ui.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../../../test.css" />
+	</head>
+	<body>
+		<div id="ajax-get-status" role="status"></div>
+		<main>
+			<tui-ajax-get
+				data-tui-query-key="ajax-get-change"
+				data-tui-announce-id="ajax-get-status"
+				data-tui-trigger="change"
+				data-tui-debounce="200"
+			>
+				<form action="/api/messages" method="GET">
+					<label>Search <input name="query" /></label>
+					<label><input type="checkbox" name="category" value="news" /> News</label>
+					<label>
+						Sort
+						<select name="sort">
+							<option value="recent">Recent</option>
+							<option value="oldest">Oldest</option>
+						</select>
+					</label>
+				</form>
+			</tui-ajax-get>
+			<tui-ajax-get
+				data-tui-query-key="ajax-get-submit"
+				data-tui-announce-id="ajax-get-status"
+			>
+				<form action="/api/messages" method="GET">
+					<label>Search <input name="query" /></label>
+					<button type="submit">Fetch</button>
+				</form>
+			</tui-ajax-get>
+		</main>
+	</body>
+</html>

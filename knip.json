@@ -5,6 +5,9 @@
 	"workspaces": {
 		".": {
 			"entry": ["scripts/hooks/*.ts"]
+		},
+		"apps/web": {
+			"entry": ["postcss.config.cjs"]
 		}
 	}
 }

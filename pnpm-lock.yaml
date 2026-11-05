@@ -81,6 +81,9 @@ importers:
       '@types/node':
         specifier: ^25.8.0
         version: 25.8.0
+      postcss-custom-media:
+        specifier: ^12.0.3
+        version: 12.0.3(postcss@8.5.23)
 
   packages/js:
     dependencies:

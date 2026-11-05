@@ -99,20 +99,20 @@ export const sections: Array<Sections> = [
 		name: 'Forms',
 		pages: [
 			{
-				name: 'Ajax Fetch',
-				href: buildUrl('/ajax-fetch'),
+				name: 'Ajax Get',
+				href: buildUrl('/ajax-get'),
 				description:
-					'Fetch HTML from the server. Combine with Ajax HTML to update a section of the page',
+					'Fetch HTML from the server. Combine with Ajax Render to update a section of the page',
 			},
 			{
-				name: 'Ajax Form',
-				href: buildUrl('/ajax-form'),
+				name: 'Ajax Post',
+				href: buildUrl('/ajax-post'),
 				description:
 					'A form that submits data asynchronously without requiring a full page reload.',
 			},
 			{
-				name: 'Ajax HTML',
-				href: buildUrl('/ajax-html'),
+				name: 'Ajax Render',
+				href: buildUrl('/ajax-render'),
 				description:
 					'An HTML element that is updated asynchronously without requiring a full page reload.',
 			},

@@ -27,12 +27,12 @@ The JavaScript package does not add visual styles. Style the documented state at
 
 ## Components
 
-### Ajax Fetch (`tui-ajax-fetch`)
+### Ajax Get (`tui-ajax-get`)
 
-Submits a form as a GET request, then publishes the returned HTML to the shared query cache. Pair it with `tui-ajax-html` to render the result.
+Submits a form as a GET request, then publishes the returned HTML to the shared query cache. Pair it with `tui-ajax-render` to render the result.
 
 ```html
-<tui-ajax-fetch data-tui-query-key="/search" data-tui-announce-id="search-status">
+<tui-ajax-get data-tui-query-key="/search" data-tui-announce-id="search-status">
 	<form action="/search" method="GET">
 		<label>
 			Search
@@ -40,16 +40,16 @@ Submits a form as a GET request, then publishes the returned HTML to the shared 
 		</label>
 		<button type="submit">Search</button>
 	</form>
-</tui-ajax-fetch>
+</tui-ajax-get>
 <div id="search-status" role="status"></div>
-<tui-ajax-html
+<tui-ajax-render
 	id="search-results"
 	data-tui-url="/search"
 	data-tui-query-key="/search"
-></tui-ajax-html>
+></tui-ajax-render>
 ```
 
-Required setup: a descendant `<form>` with an `action`, plus `data-tui-announce-id` pointing to an existing element in the document. `data-tui-query-key` is required for a request to run; it should match the key used by the corresponding `tui-ajax-html` element. The target is assigned `role="status"`. Pending text is announced only if the request takes longer than 500 ms. A response may include `<template data-tui-announce>`; its contents replace the fallback success/error announcement.
+Required setup: a descendant `<form>` with an `action`, plus `data-tui-announce-id` pointing to an existing element in the document. `data-tui-query-key` is required for a request to run; it should match the key used by the corresponding `tui-ajax-render` element. The target is assigned `role="status"`. Pending text is announced only if the request takes longer than 500 ms. A response may include `<template data-tui-announce>`; its contents replace the fallback success/error announcement.
 
 | Attribute                     | Optional                              | Behavior                                                                          |
 | ----------------------------- | ------------------------------------- | --------------------------------------------------------------------------------- |
@@ -64,12 +64,12 @@ Required setup: a descendant `<form>` with an `action`, plus `data-tui-announce-
 
 Package-added styling hooks: the component gets `data-tui-state="ready"`. The announcement element gets `role="status"`. No additional status class or state attribute is added by this component.
 
-### Ajax Form (`tui-ajax-form`)
+### Ajax Post (`tui-ajax-post`)
 
-Submits a form asynchronously using its `action` and `method`. The server response must be HTML. A successful response can update a matching `tui-ajax-html` component through the shared query cache and can include response-specific announcement content.
+Submits a form asynchronously using its `action` and `method`. The server response must be HTML. A successful response can update a matching `tui-ajax-render` component through the shared query cache and can include response-specific announcement content.
 
 ```html
-<tui-ajax-form data-tui-announce-id="form-status" data-tui-query-key="/items">
+<tui-ajax-post data-tui-announce-id="form-status" data-tui-query-key="/items">
 	<form action="/items" method="POST">
 		<label>
 			Name
@@ -78,15 +78,15 @@ Submits a form asynchronously using its `action` and `method`. The server respon
 		<button type="submit">Save</button>
 	</form>
 	<div id="form-status" role="status"></div>
-</tui-ajax-form>
+</tui-ajax-post>
 ```
 
 Required setup: a descendant `<form>`, and `data-tui-announce-id` pointing to an existing element in the document. The target is assigned `role="status"`. Pending text is announced only if the request takes longer than 500 ms. A response may include `<template data-tui-announce>`; its contents replace the fallback success/error announcement. Without a response template, the configured `data-tui-message-success` or `data-tui-message-error` text is used.
 
-For server-side validation, nest `tui-validate-form` inside `tui-ajax-form`. Return a `422` HTML response containing a `form[data-tui-validation-form]`, a summary template, and the invalid controls with `aria-invalid="true"`. Put each field error in an element marked `data-tui-validation-message`, and include its ID in that control's `aria-describedby` value. Controls are matched by `id`, or by name and type when no ID matches. The component patches validation attributes and message content on the existing controls instead of replacing the form, preserving entered values and the active `tui-validate-form` listeners. It announces the summary and focuses the first invalid control. File controls are not patched.
+For server-side validation, nest `tui-validate-form` inside `tui-ajax-post`. Return a `422` HTML response containing a `form[data-tui-validation-form]`, a summary template, and the invalid controls with `aria-invalid="true"`. Put each field error in an element marked `data-tui-validation-message`, and include its ID in that control's `aria-describedby` value. Controls are matched by `id`, or by name and type when no ID matches. The component patches validation attributes and message content on the existing controls instead of replacing the form, preserving entered values and the active `tui-validate-form` listeners. It announces the summary and focuses the first invalid control. File controls are not patched.
 
 ```html
-<tui-ajax-form data-tui-announce-id="profile-status">
+<tui-ajax-post data-tui-announce-id="profile-status">
 	<tui-validate-form>
 		<form action="/profile" method="POST">
 			<label for="profile-email">Email</label>
@@ -102,7 +102,7 @@ For server-side validation, nest `tui-validate-form` inside `tui-ajax-form`. Ret
 		</form>
 	</tui-validate-form>
 	<div id="profile-status" role="status"></div>
-</tui-ajax-form>
+</tui-ajax-post>
 ```
 
 Example `422` response for that form:
@@ -137,19 +137,19 @@ Example `422` response for that form:
 | `data-tui-message-success`    | Yes      | Default success announcement; default `Data submitted successfully`.   |
 | `data-tui-message-error`      | Yes      | Error announcement; default `An error occurred`.                       |
 
-Package-added behavior: while submitting, the component gets `data-tui-is-submitting` and appends a `.loading` element containing `.spinner`. The announcement target receives `role="status"`; the component does not assign announcement classes. After a successful response it emits the bubbling `tui:ajax-form:form` event.
+Package-added behavior: while submitting, the component gets `data-tui-is-submitting` and appends a `.loading` element containing `.spinner`. The announcement target receives `role="status"`; the component does not assign announcement classes. After a successful response it emits the bubbling `tui:ajax-post:form` event.
 
-### Ajax HTML (`tui-ajax-html`)
+### Ajax Render (`tui-ajax-render`)
 
 Renders HTML from a shared query-cache entry, optionally refreshing it according to a load strategy. The response can contain an element with the same `id` as this component, in which case only that element's contents are rendered; otherwise the response body is rendered.
 
 ```html
-<tui-ajax-html
+<tui-ajax-render
 	id="results"
 	data-tui-url="/results"
 	data-tui-query-key="/results"
 	data-tui-load-strategy="lazy"
-></tui-ajax-html>
+></tui-ajax-render>
 ```
 
 Required attributes: a non-empty `id`, `data-tui-url`, and `data-tui-query-key`. The component uses `data-tui-query-key` as the query-cache key and, when it fetches, that key is also the request URL.
@@ -157,11 +157,11 @@ Required attributes: a non-empty `id`, `data-tui-url`, and `data-tui-query-key`.
 | Attribute                | Optional | Behavior                                                                                                                                                                             |
 | ------------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `id`                     | No       | Selects the matching element from returned HTML.                                                                                                                                     |
-| `data-tui-query-key`     | No       | Query-cache key and request URL. Keep it consistent with related Ajax Fetch/Form components.                                                                                         |
+| `data-tui-query-key`     | No       | Query-cache key and request URL. Keep it consistent with related Ajax Get/Form components.                                                                                         |
 | `data-tui-url`           | Yes       | Required when using a load strategy other than 'server-side'.                                                                                                                               |
 | `data-tui-load-strategy` | Yes      | `initial` fetches immediately; `lazy` fetches near viewport; `defer` fetches at `DOMContentLoaded`; `server-side` waits for cache data. With no value, it also waits for cache data. |
 
-Package-added styling hooks: the component gets `data-tui-state="ready"`. After rendering new content, it emits the bubbling `tui:ajax-html:render` event.
+Package-added styling hooks: the component gets `data-tui-state="ready"`. After rendering new content, it emits the bubbling `tui:ajax-render:render` event.
 
 ### Boop (`tui-boop`)
 
