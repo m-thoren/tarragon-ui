@@ -67,11 +67,16 @@ class FetchClient {
 			const method = methodParam.toUpperCase()
 			const queryParameters = this.buildQueryString(parameters.queryParameters)
 			const fullUrl = `${url}${queryParameters}`
+			const requestUrl = new URL(fullUrl, window.location.href)
+			if (requestUrl.origin !== window.location.origin) {
+				return fail({ message: 'Only same-origin requests are allowed' })
+			}
 
 			const requestOptions: RequestInit = {
 				method,
 				headers: this.buildHeaders(parameters.headers),
 				signal: parameters.signal,
+				mode: 'same-origin',
 			}
 
 			// Add body only for methods that typically use it
@@ -79,7 +84,7 @@ class FetchClient {
 				requestOptions.body = parameters.data
 			}
 
-			const fetchResponse = await fetch(fullUrl, requestOptions)
+			const fetchResponse = await fetch(requestUrl, requestOptions)
 
 			if (!fetchResponse.ok) {
 				const contentType = fetchResponse.headers.get('content-type')
@@ -134,6 +139,4 @@ class FetchClient {
 	}
 }
 
-export const fetchClient = FetchClient.getInstance({
-	'Content-Type': 'application/json',
-})
+export const fetchClient = FetchClient.getInstance()

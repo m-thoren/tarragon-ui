@@ -28,6 +28,25 @@ test.describe('tui-ajax-render', () => {
 		await expect(page.locator('#initial-results')).toContainText('Initial response')
 		expect(requestCount).toBe(1)
 	})
+	test('does not request a cross-origin URL', async ({ page }) => {
+		const externalRequests: Array<string> = []
+		await page.route('https://external.example/**', async (route) => {
+			externalRequests.push(route.request().url())
+			await route.fulfill({ status: 200, contentType: 'text/html', body: '<p>External</p>' })
+		})
+		await page.goto(`${testPath}/default.html`)
+		await page.evaluate(() => {
+			const component = document.createElement('tui-ajax-render')
+			component.id = 'external-results'
+			component.setAttribute('data-tui-query-key', 'external-results-key')
+			component.setAttribute('data-tui-url', 'https://external.example/results')
+			component.setAttribute('data-tui-load-strategy', 'initial')
+			document.querySelector('main')?.append(component)
+		})
+		await page.waitForTimeout(100)
+
+		expect(externalRequests).toHaveLength(0)
+	})
 
 	test('uses cache data that exists before the lazy load', async ({ page }) => {
 		let lazyRequestCount = 0
